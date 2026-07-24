@@ -39,7 +39,7 @@ reviews:
         Review as per-section style JSON. Confirm valid JSON structure.
         Note that these are an internal organisational convention.
 
-    - path: "patterns/*.php"
+    - path: "patterns/**/*.php"
       instructions: |
         This is a WordPress block pattern file.
         Review for correct Pattern registration header comments.
@@ -62,7 +62,7 @@ reviews:
         Flag unescaped output, direct database queries without $wpdb->prepare(), and security risks.
         Check for correct translation function usage.
 
-    - path: "templates/*.html"
+    - path: "templates/**/*.html"
       instructions: |
         Review as a WordPress block template (HTML with block markup comments).
         Check for semantic HTML.
@@ -70,7 +70,7 @@ reviews:
         Check heading hierarchy and accessibility.
         Flag any non-block HTML that might not render correctly in FSE.
 
-    - path: "parts/*.html"
+    - path: "parts/**/*.html"
       instructions: |
         Review as a WordPress block template part.
         Check for semantic HTML and accessibility.
