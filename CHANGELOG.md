@@ -19,6 +19,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Header navigation now uses the mobile overlay menu to keep narrow-screen navigation accessible.
+- Footer markup no longer nests the Site Title block inside a paragraph, preventing invalid heading-in-paragraph output.
+
 ### Security
 
 ---
