@@ -23,7 +23,7 @@ Personas help ensure consistent, expert behaviour across sessions and tools.
 
 Reference a persona file at the start of an AI session:
 
-```
+```text
 Please adopt the persona described in .agents/agents/theme-architect.md
 for this session.
 ```

@@ -24,10 +24,10 @@ Always escape PHP output using the appropriate function:
 | URL                      | `esc_url()`                       |
 | JavaScript               | `esc_js()`                        |
 | Rich HTML                | `wp_kses_post()` or `wp_kses()`   |
-| Integer                  | `absint()` or `intval()`          |
 | Translatable text        | `esc_html__()` or `esc_attr__()`  |
 
 Never use bare `echo $variable;` without escaping.
+Use `absint()` and `intval()` as input normalisation helpers, then apply output escaping for the render context.
 
 ---
 

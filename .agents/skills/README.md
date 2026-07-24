@@ -15,7 +15,7 @@ Skills are designed to be portable — they should work with different AI tools.
 
 Each skill has its own subfolder:
 
-```
+```text
 skills/
 └── block-theme-audit/
     └── SKILL.md

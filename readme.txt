@@ -5,7 +5,7 @@ Tested up to: 6.9
 Requires PHP: 8.1
 Stable tag: 1.0.0
 License: GNU General Public License v3 or later
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 The Spotlight Theme 2026 WordPress block theme - a Full Site Editing theme for Spotlight.
 

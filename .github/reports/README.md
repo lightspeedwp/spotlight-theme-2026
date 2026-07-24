@@ -22,7 +22,7 @@ End-user documentation belongs in `docs/`, not here.
 
 Use date-prefixed filenames in ISO 8601 format:
 
-```
+```text
 YYYY-MM-DD-description.md
 ```
 
@@ -37,7 +37,7 @@ Examples:
 
 For larger projects, you may organise reports into monthly subfolders:
 
-```
+```text
 reports/
 ├── 2024-11/
 │   ├── 2024-11-01-theme-audit.md

@@ -20,7 +20,8 @@ Confirm these files exist and are valid:
 - `styles/dark.json`
 
 ## 2. Placeholder Tokens
-Check for any unreplaced placeholder tokens (`Spotlight Theme 2026`, `spotlight-theme-2026`, etc.) in all text files.
+Check for unreplaced placeholder markers (for example `&#123;&#123;THEME_NAME&#125;&#125;`, `&#123;&#123;THEME_SLUG&#125;&#125;`) in all text files.
+Do not flag configured project values like `Spotlight Theme 2026`, `spotlight-theme-2026`, or the canonical text domain.
 
 ## 3. theme.json Quality
 - Confirm the schema version is correct.
@@ -52,4 +53,4 @@ Provide the report as a structured Markdown list with:
 - ⚠️ for warnings
 - ❌ for errors
 
-Save the report to `.github/reports/YYYY-MM-DD-theme-audit.md`.
+Save the report to `.github/reports/<current-iso-date>-theme-audit.md` using today's date in `YYYY-MM-DD` format.

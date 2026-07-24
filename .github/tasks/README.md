@@ -8,7 +8,7 @@ This folder is for **task lists and AI-maintained work tracking** for this repos
 
 Use descriptive filenames:
 
-```
+```text
 YYYY-MM-DD-description.md
 ```
 

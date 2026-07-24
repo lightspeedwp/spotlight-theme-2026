@@ -98,7 +98,8 @@ composer run lint:php     # Lint PHP syntax
 
 ## Placeholder Tokens
 
-If placeholder tokens like `Spotlight Theme 2026` or `spotlight-theme-2026` appear in any file, they must be replaced before the theme is used in production.
+Use explicit placeholder markers (for example `&#123;&#123;THEME_NAME&#125;&#125;`, `&#123;&#123;THEME_SLUG&#125;&#125;`) for unreplaced starter values.
+Do not treat configured project values (for example `Spotlight Theme 2026` and `spotlight-theme-2026`) as placeholders.
 
 Search for unreplaced placeholders:
 ```bash
