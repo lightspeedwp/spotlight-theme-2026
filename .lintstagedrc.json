@@ -1,0 +1,7 @@
+{
+	"theme.json": ["node theme-utils.mjs validate-schema"],
+	"styles/*.json": ["node theme-utils.mjs validate-schema"],
+	"styles/blocks/**/*.json": ["node theme-utils.mjs validate-schema"],
+	"styles/sections/**/*.json": ["node theme-utils.mjs validate-schema"],
+	"*.php": ["composer run lint:php", "composer run phpcs"]
+}

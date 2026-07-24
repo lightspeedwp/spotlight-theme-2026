@@ -1,0 +1,29 @@
+{
+	"name": "lightspeedwp/spotlight-theme-2026",
+	"description": "The Spotlight Theme 2026 WordPress block theme - a Full Site Editing theme for Spotlight.",
+	"type": "wordpress-theme",
+	"license": "GPL-2.0-or-later",
+	"authors": [
+		{
+			"name": "LightSpeed",
+			"homepage": "https://lightspeedwp.agency"
+		}
+	],
+	"require-dev": {
+		"squizlabs/php_codesniffer": "^3.10",
+		"wp-coding-standards/wpcs": "^3.1",
+		"phpcompatibility/phpcompatibility-wp": "^2.1"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	},
+	"scripts": {
+		"phpcs": "phpcs --standard=WordPress --extensions=php --ignore=vendor/,node_modules/ .",
+		"phpcbf": "phpcbf --standard=WordPress --extensions=php --ignore=vendor/,node_modules/ .",
+		"lint:php": "@php -r \"$it=new RecursiveIteratorIterator(new RecursiveDirectoryIterator('.')); foreach($it as $f){ if($f->isDir()) continue; $p=$f->getPathname(); if(substr($p,-4)!=='.php') continue; if(strpos($p,DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR)!==false||strpos($p,DIRECTORY_SEPARATOR.'node_modules'.DIRECTORY_SEPARATOR)!==false) continue; passthru('\\\"'.PHP_BINARY.'\\\" -l '.escapeshellarg($p),$c); if($c!==0){exit($c);} } echo 'PHP lint passed'.PHP_EOL;\""
+	},
+	"minimum-stability": "stable",
+	"prefer-stable": true
+}
