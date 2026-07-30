@@ -1,0 +1,46 @@
+# Git attributes for spotlight-theme-2026
+
+# Normalize line endings to LF on checkout
+* text=auto eol=lf
+
+# Explicitly declare text files
+*.php text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.mjs text eol=lf
+*.sh text eol=lf
+
+# Declare binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+*.eot binary
+*.zip binary
+*.gz binary
+
+# Export ignore — exclude dev-only files from archive downloads
+.agents/ export-ignore
+.github/ export-ignore
+.editorconfig export-ignore
+.gitattributes export-ignore
+.gitignore export-ignore
+.nvmrc export-ignore
+.coderabbit.yml export-ignore
+.lintstagedrc.json export-ignore
+AGENTS.md export-ignore
+CLAUDE.md export-ignore
+composer.json export-ignore
+package.json export-ignore
+theme-utils.mjs export-ignore

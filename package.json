@@ -1,0 +1,22 @@
+{
+	"name": "spotlight-theme-2026",
+	"version": "1.0.0",
+	"description": "The Spotlight Theme 2026 WordPress block theme - a Full Site Editing theme for Spotlight.",
+	"type": "module",
+	"scripts": {
+		"schema:validate": "node theme-utils.mjs validate-schema",
+		"theme:validate": "node theme-utils.mjs validate-theme",
+		"patterns:escape": "node theme-utils.mjs escape-patterns",
+		"security:scan": "node theme-utils.mjs security-scan",
+		"lint": "npm run lint:json",
+		"lint:json": "node --input-type=module --eval \"import { readFileSync } from 'fs'; import { glob } from 'glob'; const files = await glob(['theme.json', 'styles/**/*.json']); let ok = true; for (const f of files) { try { JSON.parse(readFileSync(f, 'utf8')); } catch (e) { console.error('Invalid JSON:', f, e.message); ok = false; } } if (ok) console.log('All JSON files are valid.'); else process.exit(1);\""
+	},
+	"devDependencies": {
+		"ajv": "^8.17.1",
+		"glob": "^11.0.1"
+	},
+	"engines": {
+		"node": ">=20.0.0"
+	},
+	"private": true
+}
