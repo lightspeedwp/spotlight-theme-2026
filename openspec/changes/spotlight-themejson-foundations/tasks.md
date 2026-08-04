@@ -32,8 +32,8 @@
 
 ## 7. Semantic custom tokens
 
-- [ ] 7.1 Add `settings.custom.fontWeight` (named weight scale used by the heading/body styles)
-- [ ] 7.2 Add `settings.custom.lineHeight` and `settings.custom.letterSpacing` groups, and reference them from the `styles.elements.h1`–`h6` entries added in task 3.2 rather than hardcoding literals
+- [x] 7.1 Add `settings.custom.fontWeight` — full 100–900 ladder (thin…black), matching `kwv-theme-2026`'s exact key set, even though only `regular`/`semi-bold`/`bold` are consumed today; the other steps are free future-proofing at zero cost since it's just a static lookup table
+- [x] 7.2 Add `settings.custom.lineHeight` (`heading`: 1.25, `body`: 1.6) and reference both `fontWeight` and `lineHeight` from `styles.typography` and the `heading`/`h1`–`h6`/`button` element entries, replacing their literals. **Skipped `letterSpacing`**: h1–h6 never had a literal `letterSpacing` value to convert (task 3.2 deliberately left it unset — it wasn't part of the designer's confirmed answer), so there was nothing to tokenize. Not adding a `letterSpacing` custom-token group with invented values or as unused scaffolding.
 
 ## 8. Validation
 

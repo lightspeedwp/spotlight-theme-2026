@@ -402,6 +402,21 @@
 			]
 		},
 		"custom": {
+			"fontWeight": {
+				"thin": 100,
+				"extra-light": 200,
+				"light": 300,
+				"regular": 400,
+				"medium": 500,
+				"semi-bold": 600,
+				"bold": 700,
+				"extra-bold": 800,
+				"black": 900
+			},
+			"lineHeight": {
+				"heading": "1.25",
+				"body": "1.6"
+			},
 			"borderWidth": {
 				"none": "0",
 				"base": "1px",
@@ -420,8 +435,8 @@
 		"typography": {
 			"fontFamily": "var(--wp--preset--font-family--body, system-ui, sans-serif)",
 			"fontSize": "var(--wp--preset--font-size--200)",
-			"fontWeight": "400",
-			"lineHeight": "1.6"
+			"fontWeight": "var:custom|font-weight|regular",
+			"lineHeight": "var:custom|line-height|body"
 		},
 		"spacing": {
 			"blockGap": "var(--wp--preset--spacing--30)"
@@ -440,50 +455,50 @@
 			"heading": {
 				"typography": {
 					"fontFamily": "var(--wp--preset--font-family--heading)",
-					"lineHeight": "1.25"
+					"lineHeight": "var:custom|line-height|heading"
 				}
 			},
 			"h1": {
 				"typography": {
 					"fontSize": "var(--wp--preset--font-size--700)",
-					"fontWeight": "700"
+					"fontWeight": "var:custom|font-weight|bold"
 				}
 			},
 			"h2": {
 				"typography": {
 					"fontSize": "var(--wp--preset--font-size--600)",
-					"fontWeight": "600"
+					"fontWeight": "var:custom|font-weight|semi-bold"
 				}
 			},
 			"h3": {
 				"typography": {
 					"fontSize": "var(--wp--preset--font-size--500)",
-					"fontWeight": "600"
+					"fontWeight": "var:custom|font-weight|semi-bold"
 				}
 			},
 			"h4": {
 				"typography": {
 					"fontSize": "var(--wp--preset--font-size--400)",
-					"fontWeight": "600"
+					"fontWeight": "var:custom|font-weight|semi-bold"
 				}
 			},
 			"h5": {
 				"typography": {
 					"fontSize": "var(--wp--preset--font-size--300)",
-					"fontWeight": "600"
+					"fontWeight": "var:custom|font-weight|semi-bold"
 				}
 			},
 			"h6": {
 				"typography": {
 					"fontSize": "var(--wp--preset--font-size--300)",
-					"fontWeight": "700",
+					"fontWeight": "var:custom|font-weight|bold",
 					"textTransform": "uppercase"
 				}
 			},
 			"button": {
 				"typography": {
 					"fontSize": "var(--wp--preset--font-size--200)",
-					"fontWeight": "600"
+					"fontWeight": "var:custom|font-weight|semi-bold"
 				}
 			}
 		},
