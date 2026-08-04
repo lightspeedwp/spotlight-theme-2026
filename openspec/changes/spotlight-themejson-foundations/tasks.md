@@ -37,6 +37,6 @@
 
 ## 8. Validation
 
-- [ ] 8.1 Run `npm run schema:validate` and confirm `theme.json` still validates
-- [ ] 8.2 Run `npm run theme:validate` and confirm no consistency errors
-- [ ] 8.3 Spot-check in the Site Editor (or a quick WP install) that the palette, fonts, spacing, and radius presets appear as expected in the block editor UI
+- [x] 8.1 Run `npm run schema:validate` and confirm `theme.json` still validates — passes
+- [x] 8.2 Run `npm run theme:validate` and confirm no consistency errors — passes (also ran full `npm run lint`, clean)
+- [x] 8.3 Spot-check in the Site Editor (or a quick WP install) that the palette, fonts, spacing, and radius presets appear as expected in the block editor UI — confirmed, everything checks out
