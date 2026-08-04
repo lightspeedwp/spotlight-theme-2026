@@ -19,7 +19,7 @@
 
 ## 4. Spacing
 
-- [ ] 4.1 Replace the auto-generated `settings.spacing.spacingScale` with an explicit `spacingSizes` list matching the audited 10-step scale (5–100px, XXS→Colossal)
+- [x] 4.1 Replace the auto-generated `settings.spacing.spacingScale` with an explicit `spacingSizes` list matching the audited 11-step scale (5–100px, XXS→Colossal — corrected the earlier "10-step" count, the confirmed scale has 11 steps including the `Gigantic` 90px gap-fill). Slugs kept as the literal px numbers (`5`/`10`/.../`100`), matching both the original Figma variable names and `kwv-theme-2026`'s own spacing slug convention — unlike font-size/radius, spacing doesn't use the `n00` numbering. `spacingScale` (the old auto-generation config) removed entirely since it's superseded by the explicit list. Note: slugs `10`–`70` already existed in the placeholder scale, so nothing broke, but their actual sizes changed (e.g. `blockGap`'s `spacing--30` goes from 1.5rem/24px to a literal 30px) — an intended value update, not a dangling reference.
 
 ## 5. Border radius and width
 

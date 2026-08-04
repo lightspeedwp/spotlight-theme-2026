@@ -8,48 +8,61 @@
 			"wideSize": "1200px"
 		},
 		"spacing": {
-			"spacingScale": {
-				"steps": 7,
-				"mediumStep": 1.5,
-				"unit": "rem",
-				"operator": "*",
-				"increment": 1.5
-			},
 			"spacingSizes": [
 				{
-					"name": "1",
+					"name": "XXS",
+					"slug": "5",
+					"size": "5px"
+				},
+				{
+					"name": "XS",
 					"slug": "10",
-					"size": "0.625rem"
+					"size": "10px"
 				},
 				{
-					"name": "2",
+					"name": "S",
 					"slug": "20",
-					"size": "1rem"
+					"size": "20px"
 				},
 				{
-					"name": "3",
+					"name": "M",
 					"slug": "30",
-					"size": "1.5rem"
+					"size": "30px"
 				},
 				{
-					"name": "4",
+					"name": "L",
 					"slug": "40",
-					"size": "2.25rem"
+					"size": "40px"
 				},
 				{
-					"name": "5",
+					"name": "XL",
 					"slug": "50",
-					"size": "3.375rem"
+					"size": "50px"
 				},
 				{
-					"name": "6",
+					"name": "XXL",
 					"slug": "60",
-					"size": "5rem"
+					"size": "60px"
 				},
 				{
-					"name": "7",
+					"name": "XXXL",
 					"slug": "70",
-					"size": "7.5rem"
+					"size": "70px"
+				},
+				{
+					"name": "XXXXL",
+					"slug": "80",
+					"size": "80px"
+				},
+				{
+					"name": "Gigantic",
+					"slug": "90",
+					"size": "90px"
+				},
+				{
+					"name": "Colossal",
+					"slug": "100",
+					"size": "100px"
 				}
 			],
 			"units": ["%", "em", "px", "rem", "vh", "vw"]
