@@ -7,8 +7,8 @@
 
 ## 2. Typography — families and font files
 
-- [ ] 2.1 Source Libre Baskerville and Source Sans 3 `.woff2` files (the weights used by the audited type scale: Bold/SemiBold/Regular) and add them under `assets/fonts/`
-- [ ] 2.2 Register `heading` (Libre Baskerville) and `body` (Source Sans 3) in `settings.typography.fontFamilies` with `@font-face` entries pointing at the added files
+- [x] 2.1 Source Libre Baskerville and Source Sans 3 `.woff2` files and add them under `assets/fonts/` — both are variable fonts on Google Fonts (Libre Baskerville: `wght` axis 400–700, Source Sans 3: 200–900), so a single variable file per subset covers the full Bold/SemiBold/Regular range rather than needing discrete per-weight files; sourced latin + latin-ext subsets only (no other scripts needed for this site)
+- [x] 2.2 Register `heading` (Libre Baskerville) and `body` (Source Sans 3) in `settings.typography.fontFamilies` with `@font-face` entries pointing at the added files, using `fontWeight` ranges ("400 700" / "400 600") matching kwv-theme-2026's own variable-font pattern (e.g. its Bodoni Moda entry)
 
 ## 3. Typography — sizes and element styles
 

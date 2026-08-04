@@ -267,7 +267,50 @@
 		},
 		"typography": {
 			"defaultFontSizes": false,
-			"fontFamilies": [],
+			"fontFamilies": [
+				{
+					"fontFamily": "\"Libre Baskerville\", serif",
+					"name": "Libre Baskerville",
+					"slug": "heading",
+					"fontFace": [
+						{
+							"fontFamily": "Libre Baskerville",
+							"fontStyle": "normal",
+							"fontWeight": "400 700",
+							"fontDisplay": "swap",
+							"src": ["file:./assets/fonts/libre-baskerville/LibreBaskerville-variable-latin.woff2"]
+						},
+						{
+							"fontFamily": "Libre Baskerville",
+							"fontStyle": "normal",
+							"fontWeight": "400 700",
+							"fontDisplay": "swap",
+							"src": ["file:./assets/fonts/libre-baskerville/LibreBaskerville-variable-latin-ext.woff2"]
+						}
+					]
+				},
+				{
+					"fontFamily": "\"Source Sans 3\", sans-serif",
+					"name": "Source Sans 3",
+					"slug": "body",
+					"fontFace": [
+						{
+							"fontFamily": "Source Sans 3",
+							"fontStyle": "normal",
+							"fontWeight": "400 600",
+							"fontDisplay": "swap",
+							"src": ["file:./assets/fonts/source-sans-3/SourceSans3-variable-latin.woff2"]
+						},
+						{
+							"fontFamily": "Source Sans 3",
+							"fontStyle": "normal",
+							"fontWeight": "400 600",
+							"fontDisplay": "swap",
+							"src": ["file:./assets/fonts/source-sans-3/SourceSans3-variable-latin-ext.woff2"]
+						}
+					]
+				}
+			],
 			"fontSizes": [
 				{
 					"name": "Small",
