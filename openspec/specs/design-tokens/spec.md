@@ -25,11 +25,11 @@ Defines the theme.json settings that establish Spotlight's colour, typography, s
 - **THEN** it SHALL contain a `heading` entry whose `fontFamily` value starts with `Libre Baskerville` and a `body` entry whose `fontFamily` value starts with `Source Sans 3`
 
 ### Requirement: Font-size scale
-`theme.json` SHALL define a `settings.typography.fontSizes` scale with 7 steps (slugs `100`–`700`) covering Tiny (12px) through Display (48px), matching the slug shape of `kwv-theme-2026`'s own font-size scale, and replacing the placeholder 6-size scale.
+`theme.json` SHALL define a `settings.typography.fontSizes` scale with 7 steps (slugs `100`–`700`) covering Tiny (12px) through Huge (48px), matching the slug shape of `kwv-theme-2026`'s own font-size scale, and replacing the placeholder 6-size scale.
 
 #### Scenario: Heading sizes match the audited scale
 - **WHEN** the `h1` element style is inspected
-- **THEN** its font size SHALL resolve to the Display step (48px), and `h2`/`h3` SHALL resolve to 40px/32px respectively
+- **THEN** its font size SHALL resolve to the Huge step (48px), and `h2`/`h3` SHALL resolve to 40px/32px respectively
 
 #### Scenario: Paragraph and button Large share the H3 step
 - **WHEN** `Paragraph/Large` or `Button/Large` is inspected
