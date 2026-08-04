@@ -2,8 +2,8 @@
 
 See `proposal.md` for motivation. Relevant constraints:
 - This repo's `theme.json` is currently placeholder-only (starter palette/type/spacing) — there is no live content or existing templates/patterns consuming those placeholder slugs, so this is a greenfield replacement, not a migration of in-use tokens.
-- A sibling LightSpeed theme, `kwv-theme-2026`, establishes a structural pattern (semantic `settings.custom` token groups, self-hosted font-face, explicit non-generated preset lists) that this change follows for consistency across LightSpeed themes — but its actual values (colours, fluid clamp ranges) are theme-specific and not reused.
-- Several audited values are provisional pending a designer review scheduled after this change is drafted (tracked in the proposal's Impact section and as a Linear comment on LS-1709).
+- A sibling LightSpeed theme, `kwv-theme-2026`, establishes a structural pattern (semantic `settings.custom` token groups, self-hosted font-face, explicit non-generated preset lists, numeric `n00`-style slugs for native preset arrays) that this change follows for consistency across LightSpeed themes — but its actual values (colours, fluid clamp ranges) are theme-specific and not reused.
+- The designer has since confirmed the type scale, heading typeface, body/button sizes, the full `accent-100`–`accent-900` colour mapping, and the proposed `250` slug for the `Card` radius step (raised during the LS-1709 audit; see proposal.md's Impact section). Figma's Code Syntax for the Accent ramp will be updated on the design side later — implementation proceeds now against the confirmed values rather than waiting on that.
 
 ## Goals / Non-Goals
 
@@ -28,16 +28,16 @@ See `proposal.md` for motivation. Relevant constraints:
 
 **Drop the `kwv-theme-2026` blanket heading `uppercase` transform.** Spotlight's Libre Franklin headlines are normal-case in every mockup reviewed; only the `H6`/Label style is uppercase. Copying kwv's shared `heading` element (which forces uppercase) would visibly misrender every headline on the site — this is a case where the reference theme's *structural* pattern (a shared `heading` element feeding h1–h6) is worth keeping, but its specific style value is not.
 
-**Implement provisional values now rather than block on designer sign-off.** Libre Franklin (vs a stale `Libre Baskerville` variable), the 46/40/32px H1–H3 sizes (vs a stale 32/28 pull from mockup frames), the exact `Paragraph/Large` px, and the naming for tokens Figma marks "Not defined" (`neutral-450`, `accent-*`, `surface/dark-card`, `surface/dark-inner`, `data/positive`, the 90px "Gigantic" spacing step, the 12px "Card" radius step) are all treated as working values now, clearly flagged in the proposal, rather than blocking this change. None of these change the *shape* of the settings being added — only their exact numbers — so correcting them later (once confirmed on LS-1709) is a small, isolated diff to `theme.json`, not a rework.
+**Implement provisional values now rather than block on designer sign-off.** This paid off: the heading typeface (Libre Baskerville, not the poster's Libre Franklin), the full H1–H6 scale (48/40/32/24/20/20px), and the `Paragraph`/`Button` Large size (32px) were all confirmed by the designer during this change's drafting, so the "provisional" values in the original draft are now final. What's still genuinely open (the `Card` radius slug number, and the unfixed half of the Accent code-syntax bug) doesn't change the *shape* of the settings being added — only a slug label or an implementation-detail workaround — so it doesn't block finishing this change.
 
-**Name the Accent ramp by its Figma variable name, not its (buggy) code syntax.** The Accent scale's Figma "Code Syntax" field currently reads `brand-*` due to a documentation bug on the Figma side. Slugging these as `accent-100`…`accent-900` (matching the Figma variable *name*, and what the Brand & Design Style Guide poster actually documents) avoids baking a known Figma-side bug into the theme.
+**Name the Accent ramp by its Figma variable name, not its (buggy) code syntax.** The Accent scale's Figma "Code Syntax" field was fixed for `accent-100`/`accent-200` but still reads `brand-300`…`brand-900` for the rest — a partially-applied fix, confirmed directly against the Figma variables doc. Slugging the whole ramp as `accent-100`…`accent-900` (matching the Figma variable *name* consistently across all 9 steps, not just the two that got corrected) avoids baking the remaining half of a known Figma-side bug into the theme.
 
 ## Risks / Trade-offs
 
-- **[Provisional values change after designer review]** → Mitigation: every provisional value is isolated to `theme.json`'s settings block and listed explicitly in the proposal's Impact section; correcting any of them is a targeted value edit, not a structural change.
+- **[`Card` radius slug (`250`) may change at PR review]** → Mitigation: it's an insertion between existing slugs (`200`/`300`), not a renumbering, so if the designer requests a different slug during PR review it's a one-line change with no knock-on effect on the other radius steps.
 - **[Removing legacy placeholder palette slugs (`base-2`, `accent-2`, `contrast-2`) is a breaking change]** → Mitigation: confirmed no templates, patterns, or styles in this repo currently reference them (the theme has no content built yet).
-- **[Self-hosted Libre Franklin / Source Sans 3 font files may not be sourced yet]** → Mitigation: tracked as an explicit task; if files aren't available at implementation time, fall back temporarily to a system-font stack and flag it rather than blocking the whole change.
-- **[Static token values diverge from `kwv-theme-2026`'s fluid pattern]** → Mitigation: token *names* and grouping still mirror kwv (`custom.fontWeight`/`.lineHeight`/`.letterSpacing`), so the authoring pattern stays consistent across LightSpeed themes even though the scaling behaviour differs for now.
+- **[Self-hosted Libre Baskerville / Source Sans 3 font files may not be sourced yet]** → Mitigation: tracked as an explicit task; if files aren't available at implementation time, fall back temporarily to a system-font stack and flag it rather than blocking the whole change.
+- **[Static token values diverge from `kwv-theme-2026`'s fluid pattern]** → Mitigation: token *names* and grouping still mirror kwv (`custom.fontWeight`/`.lineHeight`/`.letterSpacing`, numeric `n00` slugs for native preset arrays), so the authoring pattern stays consistent across LightSpeed themes even though the scaling behaviour differs for now.
 
 ## Migration Plan
 
@@ -46,9 +46,3 @@ Greenfield replacement — no existing content depends on the current placeholde
 2. Add font files under `assets/fonts/` and register their `@font-face` entries.
 3. Run `npm run schema:validate` and `npm run theme:validate` (per this repo's `AGENTS.md`) to confirm the file is still schema-valid and passes theme consistency checks.
 4. Rollback, if needed, is a plain `git revert` of the `theme.json`/`assets/fonts/` commit — no data migration involved.
-
-## Open Questions
-
-- Exact px for `Paragraph/Large` / `Button/Large` (illegible on the design poster) — tracked on LS-1709, doesn't change the font-size scale's shape, only one value.
-- Whether Libre Franklin (vs the stale `Libre Baskerville` Figma variable) is fully confirmed — tracked on LS-1709; implementation proceeds with Libre Franklin.
-- Whether the designer wants the Accent ramp's Figma code-syntax bug fixed upstream — doesn't block this change either way.

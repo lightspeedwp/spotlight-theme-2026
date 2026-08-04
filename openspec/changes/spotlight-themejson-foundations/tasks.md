@@ -7,14 +7,15 @@
 
 ## 2. Typography — families and font files
 
-- [ ] 2.1 Source Libre Franklin and Source Sans 3 `.woff2` files (the weights used by the audited type scale: Bold/SemiBold/Regular) and add them under `assets/fonts/`
-- [ ] 2.2 Register `heading` (Libre Franklin) and `body` (Source Sans 3) in `settings.typography.fontFamilies` with `@font-face` entries pointing at the added files
+- [ ] 2.1 Source Libre Baskerville and Source Sans 3 `.woff2` files (the weights used by the audited type scale: Bold/SemiBold/Regular) and add them under `assets/fonts/`
+- [ ] 2.2 Register `heading` (Libre Baskerville) and `body` (Source Sans 3) in `settings.typography.fontFamilies` with `@font-face` entries pointing at the added files
 
 ## 3. Typography — sizes and element styles
 
-- [ ] 3.1 Replace `settings.typography.fontSizes` with the audited scale (Tiny 12 / Base 16 / Small 20 / Card-Heading 24 / Sub-heading 32 / Heading 40 / Display 46)
-- [ ] 3.2 Set `styles.elements.h1`–`h6` typography (size/weight/line-height) per the audited heading scale, without a blanket uppercase transform
+- [ ] 3.1 Replace `settings.typography.fontSizes` with the audited 7-step scale using `kwv-theme-2026`-style numeric slugs: `100` Tiny 12px / `200` Base 16px / `300` Small 20px / `400` Card-Heading 24px / `500` Large/Sub-heading 32px / `600` Heading 40px / `700` Display 48px
+- [ ] 3.2 Set `styles.elements.h1`–`h6` typography (size/weight/line-height) per the audited heading scale (H1 Bold 48 / H2 SemiBold 40 / H3 SemiBold 32 / H4 SemiBold 24 / H5 SemiBold 20 / H6 Bold 20), without a blanket uppercase transform
 - [ ] 3.3 Apply the `H6`/Label uppercase treatment only to that specific style, not to `heading` generally
+- [ ] 3.4 Set `Paragraph`/`Button` sizes (Large 32 / Small 20 / Base 16 / Tiny 12) on the relevant block/element styles — Paragraph Regular weight, Button SemiBold
 
 ## 4. Spacing
 
@@ -22,8 +23,8 @@
 
 ## 5. Border radius and width
 
-- [ ] 5.1 Add `settings.border.radiusSizes` with the 7-step scale (0/4/8/12/16/24/9999, None→Round)
-- [ ] 5.2 Add `settings.custom.borderWidth` (none/base/small/medium/large → 0/1/2/4/8px)
+- [ ] 5.1 Add `settings.border.radiusSizes` with numeric slugs matching `kwv-theme-2026`'s convention: `0`/`100`/`200`/`250`/`300`/`400`/`500` → 0/4/8/12/16/24/9999px (None/Small/Medium/Card/Large/X-Large/Round) — `250` (Card) approved by the designer, to be reviewed formally at PR time
+- [ ] 5.2 Add `settings.custom.borderWidth` (none/base/small/medium/large → 0/1/2/4/8px), following `kwv-theme-2026`'s descriptive-key convention for `settings.custom` groups
 
 ## 6. Layout widths
 
