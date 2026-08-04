@@ -28,7 +28,7 @@
 
 ## 6. Layout widths
 
-- [ ] 6.1 Update `settings.layout.contentSize` to `800px` and `settings.layout.wideSize` to `1320px`
+- [x] 6.1 Update `settings.layout.contentSize` to `800px` and `settings.layout.wideSize` to `1320px`
 
 ## 7. Semantic custom tokens
 
