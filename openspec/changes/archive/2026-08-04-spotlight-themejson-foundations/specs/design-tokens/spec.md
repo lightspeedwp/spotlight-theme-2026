@@ -5,7 +5,7 @@ Defines the theme.json settings that establish Spotlight's colour, typography, s
 ## ADDED Requirements
 
 ### Requirement: Colour palette
-`theme.json` SHALL define a `settings.color.palette` containing the audited Spotlight colours: `base`, `contrast`, a 9-step `neutral` ramp (`neutral-100`…`neutral-900`) plus a `neutral-450` gap-fill step, a 9-step `brand` ramp (`brand-100`…`brand-900`), a 9-step `accent` ramp (`accent-100`…`accent-900`), 5 system colours (`error`, `warning`, `information`, `success`, `positive`, each with a `-foreground` and `-background` slug), and 2 surface colours (`surface-dark-card`, `surface-dark-inner`).
+`theme.json` SHALL define a `settings.color.palette` containing the audited Spotlight colours: `base`, `contrast`, a 9-step `neutral` ramp (`neutral-100`…`neutral-900`) plus a `neutral-450` gap-fill step, a 9-step `brand` ramp (`brand-100`…`brand-900`), a 9-step `accent` ramp (`accent-100`…`accent-900`), 4 system colour pairs (`error`, `warning`, `information`, `success`, each with a `-foreground` and `-background` slug), a single `positive` colour (no background variant, matching its source), and 2 surface colours (`surface-dark-card`, `surface-dark-inner`).
 
 #### Scenario: Palette slug resolves to the audited value
 - **WHEN** a block or style references `var:preset|color|brand-500`
@@ -41,7 +41,7 @@ Heading elements (`h1`–`h5`) SHALL render in normal case. Only the `H6`/Label 
 - **THEN** none of them SHALL set `textTransform: uppercase`
 
 ### Requirement: Spacing scale
-`theme.json` SHALL define a `settings.spacing.spacingSizes` scale with 10 explicit steps (5px–100px, named XXS through Colossal), replacing the auto-generated geometric `spacingScale`.
+`theme.json` SHALL define a `settings.spacing.spacingSizes` scale with 11 explicit steps (5px–100px, named XXS through Colossal), replacing the auto-generated geometric `spacingScale`.
 
 #### Scenario: Spacing step resolves to the audited px value
 - **WHEN** a block references `var:preset|spacing|90`
