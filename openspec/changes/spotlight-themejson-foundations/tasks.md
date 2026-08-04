@@ -23,8 +23,8 @@
 
 ## 5. Border radius and width
 
-- [ ] 5.1 Add `settings.border.radiusSizes` with numeric slugs matching `kwv-theme-2026`'s convention: `0`/`100`/`200`/`250`/`300`/`400`/`500` → 0/4/8/12/16/24/9999px (None/Small/Medium/Card/Large/X-Large/Round) — `250` (Card) approved by the designer, to be reviewed formally at PR time
-- [ ] 5.2 Add `settings.custom.borderWidth` (none/base/small/medium/large → 0/1/2/4/8px), following `kwv-theme-2026`'s descriptive-key convention for `settings.custom` groups
+- [x] 5.1 Add `settings.border.radiusSizes` with numeric slugs matching `kwv-theme-2026`'s convention: `0`/`100`/`200`/`250`/`300`/`400`/`500` → 0/4/8/12/16/24/9999px (None/Small/Medium/Card/Large/X-Large/Round)
+- [x] 5.2 Add `settings.custom.borderWidth` (none/base/small/medium/large → 0/1/2/4/8px), following `kwv-theme-2026`'s descriptive-key convention for `settings.custom` groups (this is also the first `settings.custom` entry in the file)
 
 ## 6. Layout widths
 

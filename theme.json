@@ -67,6 +67,45 @@
 			],
 			"units": ["%", "em", "px", "rem", "vh", "vw"]
 		},
+		"border": {
+			"radiusSizes": [
+				{
+					"name": "None",
+					"slug": "0",
+					"size": "0px"
+				},
+				{
+					"name": "Small",
+					"slug": "100",
+					"size": "4px"
+				},
+				{
+					"name": "Medium",
+					"slug": "200",
+					"size": "8px"
+				},
+				{
+					"name": "Card",
+					"slug": "250",
+					"size": "12px"
+				},
+				{
+					"name": "Large",
+					"slug": "300",
+					"size": "16px"
+				},
+				{
+					"name": "X-Large",
+					"slug": "400",
+					"size": "24px"
+				},
+				{
+					"name": "Round",
+					"slug": "500",
+					"size": "9999px"
+				}
+			]
+		},
 		"color": {
 			"defaultPalette": false,
 			"defaultGradients": false,
@@ -361,6 +400,15 @@
 					"size": "48px"
 				}
 			]
+		},
+		"custom": {
+			"borderWidth": {
+				"none": "0",
+				"base": "1px",
+				"small": "2px",
+				"medium": "4px",
+				"large": "8px"
+			}
 		},
 		"blocks": {}
 	},
