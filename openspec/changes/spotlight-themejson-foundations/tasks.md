@@ -12,10 +12,10 @@
 
 ## 3. Typography — sizes and element styles
 
-- [ ] 3.1 Replace `settings.typography.fontSizes` with the audited 7-step scale using `kwv-theme-2026`-style numeric slugs: `100` Tiny 12px / `200` Base 16px / `300` Small 20px / `400` Card-Heading 24px / `500` Large/Sub-heading 32px / `600` Heading 40px / `700` Display 48px
-- [ ] 3.2 Set `styles.elements.h1`–`h6` typography (size/weight/line-height) per the audited heading scale (H1 Bold 48 / H2 SemiBold 40 / H3 SemiBold 32 / H4 SemiBold 24 / H5 SemiBold 20 / H6 Bold 20), without a blanket uppercase transform
-- [ ] 3.3 Apply the `H6`/Label uppercase treatment only to that specific style, not to `heading` generally
-- [ ] 3.4 Set `Paragraph`/`Button` sizes (Large 32 / Small 20 / Base 16 / Tiny 12) on the relevant block/element styles — Paragraph Regular weight, Button SemiBold
+- [x] 3.1 Replace `settings.typography.fontSizes` with the audited 7-step scale — named to match `kwv-theme-2026`'s own labels for the same slug shape (`100` Tiny 12px / `200` Base 16px / `300` Small 20px / `400` Medium 24px / `500` Large 32px / `600` X-Large 40px / `700` Huge 48px) rather than role-specific names, since these are general-purpose presets selectable on any block, not just headings. Also fixed a dangling reference to the removed `font-size--medium` slug in the global default typography (now `font-size--200`, i.e. Base/16px)
+- [x] 3.2 Set `styles.elements.h1`–`h6` typography (size/weight) per the audited heading scale, plus a shared `heading` element carrying `fontFamily`/`lineHeight` (1.25, matching kwv's own heading line-height) so it isn't repeated 6 times — no blanket uppercase transform
+- [x] 3.3 Applied uppercase only to `h6`'s own style block
+- [x] 3.4 Added a `button` element with `fontWeight: 600` (SemiBold) and a Base (16px) default font size — Large/Small/Tiny button sizes are just the same font-size presets from 3.1, selectable per-instance once buttons appear in patterns; no dedicated "Paragraph" override was needed since Regular/Source Sans 3 is already the global default typography
 
 ## 4. Spacing
 
