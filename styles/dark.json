@@ -8,32 +8,12 @@
 				{
 					"name": "Base",
 					"slug": "base",
-					"color": "#111111"
-				},
-				{
-					"name": "Base Two",
-					"slug": "base-2",
-					"color": "#1a1a1a"
+					"color": "#010204"
 				},
 				{
 					"name": "Contrast",
 					"slug": "contrast",
 					"color": "#ffffff"
-				},
-				{
-					"name": "Contrast Two",
-					"slug": "contrast-2",
-					"color": "#e0e0e0"
-				},
-				{
-					"name": "Accent",
-					"slug": "accent",
-					"color": "#4da6ff"
-				},
-				{
-					"name": "Accent Two",
-					"slug": "accent-2",
-					"color": "#80c1ff"
 				}
 			]
 		}

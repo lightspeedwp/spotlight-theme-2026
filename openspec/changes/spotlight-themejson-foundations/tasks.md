@@ -1,9 +1,9 @@
 ## 1. Colour palette
 
-- [ ] 1.1 Replace `settings.color.palette` with the audited `base`/`contrast`, `neutral-100`…`neutral-900` + `neutral-450`, `brand-100`…`brand-900`, and `accent-100`…`accent-900` slugs and values
-- [ ] 1.2 Add the 5 system colour pairs (`error`/`warning`/`information`/`success`/`positive`, each `-foreground` + `-background`)
-- [ ] 1.3 Add the 2 surface colours (`surface-dark-card`, `surface-dark-inner`)
-- [ ] 1.4 Remove the legacy placeholder slugs (`base-2`, `accent-2`, `contrast-2`) and confirm nothing in the repo references them
+- [x] 1.1 Replace `settings.color.palette` with the audited `base`/`contrast`, `neutral-100`…`neutral-900` + `neutral-450`, `brand-100`…`brand-900`, and `accent-100`…`accent-900` slugs and values
+- [x] 1.2 Add the 5 system colour pairs (`error`/`warning`/`information`/`success`/`positive`, each `-foreground` + `-background`) — note: `positive` is a single colour in the Figma source (no matching background variant), implemented as one slug rather than a pair
+- [x] 1.3 Add the 2 surface colours (`surface-dark-card`, `surface-dark-inner`)
+- [x] 1.4 Remove the legacy placeholder slugs (`base-2`, `accent-2`, `contrast-2`) and confirm nothing in the repo references them — also fixed the dangling `accent`/`accent-2` references in `theme.json`'s link element (now `brand-500`/`brand-600`), and cleaned up `styles/light.json` and `styles/dark.json`, which both duplicated the old placeholder palette
 
 ## 2. Typography — families and font files
 
