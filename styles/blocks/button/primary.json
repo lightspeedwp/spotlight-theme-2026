@@ -25,12 +25,6 @@
 			"fontSize": "var(--wp--preset--font-size--200)",
 			"fontWeight": "var:custom|font-weight|semi-bold"
 		},
-		":hover": {
-			"color": {
-				"background": "var(--wp--preset--color--accent-300)",
-				"text": "var(--wp--preset--color--base)"
-			}
-		},
-		"css": "&::after { content: \"\\2192\"; margin-inline-start: var(--wp--preset--spacing--5); }"
+		"css": "&::after { content: \"\\2192\"; margin-inline-start: var(--wp--preset--spacing--5); } &:hover { background-color: var(--wp--preset--color--accent-300); color: var(--wp--preset--color--base); }"
 	}
 }

@@ -211,6 +211,12 @@ async function validateSchema() {
 				continue;
 			}
 			const isBlockStyleVariation = Array.isArray( data.blockTypes ) && data.blockTypes.length > 0;
+			if ( isBlockStyleVariation && ( typeof data.styles !== 'object' || data.styles === null ) ) {
+				error( `Schema validation failed: ${ rel }` );
+				error( '  /styles must be a non-null object for a block style variation file' );
+				hasErrors = true;
+				continue;
+			}
 			const dataToValidate = isBlockStyleVariation ? wrapBlockStyleVariation( data ) : data;
 			const valid = validate( dataToValidate );
 			if ( ! valid ) {
