@@ -490,11 +490,11 @@
 		"elements": {
 			"link": {
 				"color": {
-					"text": "var(--wp--preset--color--brand-500)"
+					"text": "var(--wp--preset--color--accent-200)"
 				},
 				":hover": {
 					"color": {
-						"text": "var(--wp--preset--color--brand-600)"
+						"text": "var(--wp--preset--color--accent-300)"
 					}
 				}
 			},

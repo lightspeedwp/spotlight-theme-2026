@@ -1,7 +1,7 @@
 ## 1. Link colour correction
 
-- [ ] 1.1 Update `styles.elements.link.color.text` to `var(--wp--preset--color--accent-200)`
-- [ ] 1.2 Update `styles.elements.link[":hover"].color.text` to `var(--wp--preset--color--accent-300)`
+- [x] 1.1 Update `styles.elements.link.color.text` to `var(--wp--preset--color--accent-200)`
+- [x] 1.2 Update `styles.elements.link[":hover"].color.text` to `var(--wp--preset--color--accent-300)`
 
 ## 2. Default button styling
 
