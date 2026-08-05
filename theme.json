@@ -542,9 +542,30 @@
 				}
 			},
 			"button": {
+				"color": {
+					"background": "var(--wp--preset--color--accent-200)",
+					"text": "var(--wp--preset--color--base)"
+				},
+				"border": {
+					"radius": "var(--wp--preset--border-radius--200)"
+				},
+				"spacing": {
+					"padding": {
+						"top": "var(--wp--preset--spacing--20)",
+						"right": "var(--wp--preset--spacing--30)",
+						"bottom": "var(--wp--preset--spacing--20)",
+						"left": "var(--wp--preset--spacing--30)"
+					}
+				},
 				"typography": {
 					"fontSize": "var(--wp--preset--font-size--200)",
 					"fontWeight": "var:custom|font-weight|semi-bold"
+				},
+				":hover": {
+					"color": {
+						"background": "var(--wp--preset--color--accent-300)",
+						"text": "var(--wp--preset--color--base)"
+					}
 				}
 			}
 		},

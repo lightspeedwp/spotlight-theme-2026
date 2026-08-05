@@ -5,10 +5,10 @@
 
 ## 2. Default button styling
 
-- [ ] 2.1 Add `styles.elements.button.color.background` and `.color.text` (filled look matching the "Subscribe" instance)
-- [ ] 2.2 Add `styles.elements.button.border.radius` (standard radius, not full-pill)
-- [ ] 2.3 Add `styles.elements.button.spacing.padding`
-- [ ] 2.4 Add a `:hover` state for the default button
+- [x] 2.1 Add `styles.elements.button.color.background` and `.color.text` (filled look matching the "Subscribe" instance)
+- [x] 2.2 Add `styles.elements.button.border.radius` (standard radius, not full-pill)
+- [x] 2.3 Add `styles.elements.button.spacing.padding`
+- [x] 2.4 Add a `:hover` state for the default button
 
 ## 3. Button block-style variations
 
