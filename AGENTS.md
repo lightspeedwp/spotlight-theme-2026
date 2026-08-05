@@ -159,8 +159,8 @@ Rules:
 - Style variations live in `styles/`.
 - Two starter variations are provided: `light.json` and `dark.json`.
 - Additional variations can be added as `styles/*.json`.
-- `styles/blocks/` and `styles/sections/` are organisational conventions for future per-block or per-section styles.
-- These nested JSON files are not automatically consumed by WordPress as global style variations — they are available for reference or tooling.
+- `styles/blocks/<block>/<variation-slug>.json` and `styles/sections/<variation-slug>.json` register **block style variations**: a JSON file with `slug`, `title`, `blockTypes`, and `styles` keys (see `styles/blocks/button/*.json`). WordPress core auto-registers these — confirmed working in this theme (LS-1711) — so they appear as selectable options in the block style picker for any block listed in `blockTypes`. No PHP registration is needed.
+- Keep each variation file scoped to one block and one look — one file, one responsibility (do not combine multiple unrelated looks in a single file).
 - Keep variation files small and focused.
 
 ---

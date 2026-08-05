@@ -12,14 +12,15 @@
 
 ## 3. Button block-style variations
 
-- [ ] 3.1 Create `styles/blocks/button/primary.json` — filled colour, full-pill (`500`/Round) radius, padding, `:hover` state
-- [ ] 3.2 Add the trailing-arrow `css` rule to `primary.json`
-- [ ] 3.3 Create `styles/blocks/button/dark.json` — dark filled colour, standard radius, padding, `:hover` state
-- [ ] 3.4 Add the leading-icon `css` rule to `dark.json`
-- [ ] 3.5 Create `styles/blocks/button/dark-pill.json` — dark filled colour, full-pill radius, padding, `:hover` state
-- [ ] 3.6 In the Site Editor, confirm all three variations appear in the `core/button` block style picker (verifies WP core auto-registration from `styles/blocks/<block>/<variation>.json`)
-- [ ] 3.7 If auto-registration does not work: add the minimal `wp_register_block_style()` wiring in `functions.php` needed to register them
-- [ ] 3.8 Update `AGENTS.md`'s `styles/blocks/`/`styles/sections/` note to match whatever behaviour was actually confirmed in 3.6/3.7
+- [x] 3.1 Create `styles/blocks/button/primary.json` — filled colour, full-pill (`500`/Round) radius, padding, `:hover` state
+- [x] 3.2 Add the trailing-arrow `css` rule to `primary.json`
+- [x] 3.3 Create `styles/blocks/button/dark.json` — dark filled colour, standard radius, padding, `:hover` state
+- [x] 3.4 Add the leading-icon `css` rule to `dark.json`
+- [x] 3.5 Create `styles/blocks/button/dark-pill.json` — dark filled colour, full-pill radius, padding, `:hover` state
+- [x] 3.6 In the Site Editor, confirm all three variations appear in the `core/button` block style picker (verifies WP core auto-registration from `styles/blocks/<block>/<variation>.json`) — confirmed working, all three appear
+- [x] 3.7 If auto-registration does not work: add the minimal `wp_register_block_style()` wiring in `functions.php` needed to register them — not needed, auto-registration works
+- [x] 3.8 Update `AGENTS.md`'s `styles/blocks/`/`styles/sections/` note to match whatever behaviour was actually confirmed in 3.6/3.7
+- [x] 3.9 Fix `theme-utils.mjs`'s `validate-schema` to check block-style-variation partial files (any JSON with a `blockTypes` array) at their real runtime position (`styles.blocks.<blockType>.variations.<slug>`) instead of the flat root `styles` shape, working around a confirmed upstream schema/ajv limitation with pseudo-selector property names (`:hover` etc.) reproduced against kwv-theme-2026's own production `cta.json`
 
 ## 4. Quote and pullquote styling
 
