@@ -13,7 +13,7 @@ See `proposal.md` for motivation. Relevant constraints:
 - Make provisional values easy to correct in one place once the designer confirms them.
 
 **Non-Goals:**
-- Fluid/clamp-based responsive scaling for spacing or type. Figma provides one static px value per step; inventing fluid min/max ranges without design input would risk conflicting with actual intent. Static values now, fluid scaling is a candidate fast-follow once (if) the designer specifies fluid behavviour.
+- Fluid/clamp-based responsive scaling for spacing or type. Figma provides one static px value per step; inventing fluid min/max ranges without design input would risk conflicting with actual intent. Static values now, fluid scaling is a candidate fast-follow once (if) the designer specifies fluid behaviour.
 - Any `styles.blocks` per-block overrides, templates, template parts, or patterns — that's LS-1711/1712.
 - Documenting custom CSS/JS exceptions — that's LS-1713.
 - Fixing the Figma-side code-syntax bug on the Accent ramp — that's a Figma-file fix for the design team, not a theme.json concern.
@@ -37,7 +37,7 @@ See `proposal.md` for motivation. Relevant constraints:
 - **[`Card` radius slug (`250`) may change at PR review]** → Mitigation: it's an insertion between existing slugs (`200`/`300`), not a renumbering, so if the designer requests a different slug during PR review it's a one-line change with no knock-on effect on the other radius steps.
 - **[Removing legacy placeholder palette slugs (`base-2`, `accent-2`, `contrast-2`) is a breaking change]** → Mitigation: confirmed no templates, patterns, or styles in this repo currently reference them (the theme has no content built yet).
 - **[Self-hosted Libre Baskerville / Source Sans 3 font files may not be sourced yet]** → Mitigation: tracked as an explicit task; if files aren't available at implementation time, fall back temporarily to a system-font stack and flag it rather than blocking the whole change.
-- **[Static token values diverge from `kwv-theme-2026`'s fluid pattern]** → Mitigation: token *names* and grouping still mirror kwv (`custom.fontWeight`/`.lineHeight`/`.letterSpacing`, numeric `n00` slugs for native preset arrays), so the authoring pattern stays consistent across LightSpeed themes even though the scaling behaviour differs for now.
+- **[Static token values diverge from `kwv-theme-2026`'s fluid pattern]** → Mitigation: token *names* and grouping still mirror kwv (`custom.fontWeight`/`.lineHeight`, numeric `n00` slugs for native preset arrays), so the authoring pattern stays consistent across LightSpeed themes even though the scaling behaviour differs for now. (`.letterSpacing` was not added — see proposal.md's Impact section.)
 
 ## Migration Plan
 

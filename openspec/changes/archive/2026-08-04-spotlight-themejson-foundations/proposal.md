@@ -6,14 +6,14 @@ An audit against the Figma "Spotlight Design System" file (posted to [LS-1709](h
 
 ## What Changes
 
-- Replace the placeholder colour palette with the audited Spotlight system: Brand Red (9-step), Accent Navy (9-step), Neutral (9-step + gap-fill `neutral-450`), `base`/`contrast`, 5 system colours (error/warning/information/success/positive, each fg + ~10%-alpha bg), and 2 surface colours (`dark-card`/`dark-inner`) for cards on dark sections. **BREAKING**: existing palette slugs (`base-2`, `accent`, `accent-2`, `contrast-2`) are removed since they don't correspond to any audited token — nothing in the theme currently references them.
+- Replace the placeholder colour palette with the audited Spotlight system: Brand Red (9-step), Accent Navy (9-step), Neutral (9-step + gap-fill `neutral-450`), `base`/`contrast`, 4 system colour pairs (error/warning/information/success, each fg + ~10%-alpha bg), a single `positive` colour (no background variant, matching its source), and 2 surface colours (`dark-card`/`dark-inner`) for cards on dark sections. **BREAKING**: existing palette slugs (`base-2`, `accent`, `accent-2`, `contrast-2`) are removed since they don't correspond to any audited token — nothing in the theme currently references them.
 - Register `heading` (Libre Baskerville) and `body` (Source Sans 3) font families with self-hosted `@font-face` definitions, replacing the theme's currently-unset font family list.
 - Replace the placeholder font-size scale with the audited scale: `100`–`700` mapped to Tiny(12)/Base(16)/Small(20)/Medium(24)/Large(32)/X-Large(40)/Huge(48) — named to match `kwv-theme-2026`'s own labels for the same slug shape (generic, reusable names rather than heading-role-specific ones, since these presets are selectable on any block), just static instead of fluid. Heading element styles (h1–h6) set size/weight/line-height per the audited scale; unlike the `kwv-theme-2026` reference this theme's headings stay normal-case (no blanket `uppercase`) except the H6/Label style (Bold, uppercase, 20px).
-- Replace the auto-generated geometric spacing scale with the audited 10-step px-based scale (`5`–`100`, named XXS→Colossal).
+- Replace the auto-generated geometric spacing scale with the audited 11-step px-based scale (`5`–`100`, named XXS→Colossal).
 - Add a border-radius preset scale using numeric slugs matching the `kwv-theme-2026` convention (`0`/`100`/`200`/`250`/`300`/`400`/`500` → 0/4/8/12/16/24/9999px, named None/Small/Medium/Card/Large/X-Large/Round) — currently unconfigured. The `250` slug for the Card step is our own proposal (Figma has no defined code syntax for it yet), inserted between Medium (`200`) and Large (`300`) so it doesn't renumber the other steps.
 - Add a new `settings.custom.borderWidth` token family (`0`/`1`/`2`/`4`/`8`) since core `theme.json` has no native border-width preset list.
 - Update layout widths: `contentSize` 720px → 800px, `wideSize` 1200px → 1320px.
-- Add `settings.custom.fontWeight`/`.lineHeight`/`.letterSpacing` semantic token groups (structural pattern borrowed from `kwv-theme-2026`, values authored for Spotlight) so element/block styles reference named tokens instead of literal numbers.
+- Add `settings.custom.fontWeight`/`.lineHeight` semantic token groups (structural pattern borrowed from `kwv-theme-2026`, values authored for Spotlight) so element/block styles reference named tokens instead of literal numbers. (`.letterSpacing` was not added — nothing in the audited heading scale ended up needing a literal value to convert.)
 
 ## Capabilities
 
