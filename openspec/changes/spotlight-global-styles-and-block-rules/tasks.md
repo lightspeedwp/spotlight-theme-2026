@@ -31,9 +31,9 @@
 
 ## 5. List styling
 
-- [ ] 5.1 Add `styles.blocks["core/list"]` marker colour (`contrast`)
-- [ ] 5.2 Add `<li>` spacing/gap using an existing `settings.spacing.spacingSizes` step
-- [ ] 5.3 Add start-indent (`padding-inline-start`) using an existing spacing step
+- [x] 5.1 Add `styles.blocks["core/list"]` marker colour (`contrast`) — inherited via CSS `::marker` default color inheritance from `color.text`
+- [x] 5.2 Add `<li>` spacing/gap using an existing `settings.spacing.spacingSizes` step — implemented as `styles.blocks["core/list-item"].spacing.margin.bottom` (`10`/XS), since `core/list-item` is the real per-`<li>` block and `core/list` has no `blockGap` support
+- [x] 5.3 Add start-indent using an existing spacing step — implemented as `styles.blocks["core/list"].spacing.padding.left` (`30`/M); WP's structured `spacing.padding` maps to physical `padding-left`, not the logical `padding-inline-start` property, functionally equivalent for this LTR-only starter theme
 - [ ] 5.4 Note in a code comment or CHANGELOG entry that these values are provisional pending design confirmation
 
 ## 6. Heading and paragraph spacing rhythm

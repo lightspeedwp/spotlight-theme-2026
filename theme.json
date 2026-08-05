@@ -613,6 +613,23 @@
 					"lineHeight": "var:custom|line-height|body"
 				},
 				"css": "& .wp-block-pullquote__citation { color: var(--wp--preset--color--neutral-600) !important; font-family: var(--wp--preset--font-family--body) !important; font-style: normal !important; font-size: var(--wp--preset--font-size--200) !important; font-weight: var(--wp--custom--font-weight--semi-bold) !important; line-height: var(--wp--custom--line-height--heading) !important; }"
+			},
+			"core/list": {
+				"color": {
+					"text": "var(--wp--preset--color--contrast)"
+				},
+				"spacing": {
+					"padding": {
+						"left": "var(--wp--preset--spacing--30)"
+					}
+				}
+			},
+			"core/list-item": {
+				"spacing": {
+					"margin": {
+						"bottom": "var(--wp--preset--spacing--10)"
+					}
+				}
 			}
 		}
 	},
