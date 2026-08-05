@@ -38,8 +38,8 @@
 
 ## 6. Heading and paragraph spacing rhythm
 
-- [ ] 6.1 Add heading top/bottom margin values sourced from `settings.spacing.spacingSizes`
-- [ ] 6.2 Confirm paragraph-to-paragraph rhythm reads correctly in the Site Editor against the article frame's body copy
+- [x] 6.1 Add heading top/bottom margin values sourced from `settings.spacing.spacingSizes` — `styles.elements.heading.spacing.margin`: top `40`/L (generous separation from preceding content), bottom `20`/S (tighter coupling to the paragraph that follows it) — applies to all headings via the shared `heading` element, no per-level overrides needed
+- [x] 6.2 Confirm paragraph-to-paragraph rhythm reads correctly in the Site Editor against the article frame's body copy — confirmed working
 - [ ] 6.3 Note in a code comment or CHANGELOG entry that these values are provisional pending design confirmation
 
 ## 7. Validation

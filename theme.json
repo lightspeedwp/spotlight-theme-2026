@@ -502,6 +502,12 @@
 				"typography": {
 					"fontFamily": "var(--wp--preset--font-family--heading)",
 					"lineHeight": "var:custom|line-height|heading"
+				},
+				"spacing": {
+					"margin": {
+						"top": "var(--wp--preset--spacing--40)",
+						"bottom": "var(--wp--preset--spacing--20)"
+					}
 				}
 			},
 			"h1": {
