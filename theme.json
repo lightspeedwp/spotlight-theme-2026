@@ -12,57 +12,57 @@
 				{
 					"name": "XXS",
 					"slug": "5",
-					"size": "5px"
+					"size": "clamp(0.25rem, calc(0.163rem + 0.181vw), 0.313rem)"
 				},
 				{
 					"name": "XS",
 					"slug": "10",
-					"size": "10px"
+					"size": "clamp(0.5rem, calc(0.326rem + 0.362vw), 0.625rem)"
 				},
 				{
 					"name": "S",
 					"slug": "20",
-					"size": "20px"
+					"size": "clamp(0.875rem, calc(0.353rem + 1.087vw), 1.25rem)"
 				},
 				{
 					"name": "M",
 					"slug": "30",
-					"size": "30px"
+					"size": "clamp(1.25rem, calc(0.38rem + 1.812vw), 1.875rem)"
 				},
 				{
 					"name": "L",
 					"slug": "40",
-					"size": "40px"
+					"size": "clamp(1.625rem, calc(0.408rem + 2.536vw), 2.5rem)"
 				},
 				{
 					"name": "XL",
 					"slug": "50",
-					"size": "50px"
+					"size": "clamp(2.063rem, calc(0.584rem + 3.08vw), 3.125rem)"
 				},
 				{
 					"name": "XXL",
 					"slug": "60",
-					"size": "60px"
+					"size": "clamp(2.313rem, calc(0.313rem + 4.167vw), 3.75rem)"
 				},
 				{
 					"name": "XXXL",
 					"slug": "70",
-					"size": "70px"
+					"size": "clamp(2.625rem, calc(0.19rem + 5.072vw), 4.375rem)"
 				},
 				{
 					"name": "XXXXL",
 					"slug": "80",
-					"size": "80px"
+					"size": "clamp(3rem, calc(0.217rem + 5.797vw), 5rem)"
 				},
 				{
 					"name": "Gigantic",
 					"slug": "90",
-					"size": "90px"
+					"size": "clamp(3.5rem, calc(0.544rem + 6.159vw), 5.625rem)"
 				},
 				{
 					"name": "Colossal",
 					"slug": "100",
-					"size": "100px"
+					"size": "clamp(4rem, calc(0.87rem + 6.522vw), 6.25rem)"
 				}
 			],
 			"units": ["%", "em", "px", "rem", "vh", "vw"]
@@ -349,14 +349,14 @@
 						{
 							"fontFamily": "Source Sans 3",
 							"fontStyle": "normal",
-							"fontWeight": "400 600",
+							"fontWeight": "200 900",
 							"fontDisplay": "swap",
 							"src": ["file:./assets/fonts/source-sans-3/SourceSans3-variable-latin.woff2"]
 						},
 						{
 							"fontFamily": "Source Sans 3",
 							"fontStyle": "normal",
-							"fontWeight": "400 600",
+							"fontWeight": "200 900",
 							"fontDisplay": "swap",
 							"src": ["file:./assets/fonts/source-sans-3/SourceSans3-variable-latin-ext.woff2"]
 						}
@@ -367,37 +367,83 @@
 				{
 					"name": "Tiny",
 					"slug": "100",
-					"size": "12px"
+					"size": "0.75rem",
+					"fluid": {
+						"min": "0.688rem",
+						"max": "0.75rem"
+					}
 				},
 				{
 					"name": "Base",
 					"slug": "200",
-					"size": "16px"
+					"size": "1rem",
+					"fluid": {
+						"min": "0.875rem",
+						"max": "1rem"
+					}
 				},
 				{
 					"name": "Small",
 					"slug": "300",
-					"size": "20px"
+					"size": "1.25rem",
+					"fluid": {
+						"min": "1rem",
+						"max": "1.25rem"
+					}
 				},
 				{
 					"name": "Medium",
 					"slug": "400",
-					"size": "24px"
+					"size": "1.5rem",
+					"fluid": {
+						"min": "1.25rem",
+						"max": "1.5rem"
+					}
 				},
 				{
 					"name": "Large",
 					"slug": "500",
-					"size": "32px"
+					"size": "1.75rem",
+					"fluid": {
+						"min": "1.5rem",
+						"max": "1.75rem"
+					}
 				},
 				{
 					"name": "X-Large",
 					"slug": "600",
-					"size": "40px"
+					"size": "2rem",
+					"fluid": {
+						"min": "1.75rem",
+						"max": "2rem"
+					}
 				},
 				{
 					"name": "Huge",
 					"slug": "700",
-					"size": "48px"
+					"size": "2.5rem",
+					"fluid": {
+						"min": "2.125rem",
+						"max": "2.5rem"
+					}
+				},
+				{
+					"name": "Gigantic",
+					"slug": "800",
+					"size": "3rem",
+					"fluid": {
+						"min": "2.25rem",
+						"max": "3rem"
+					}
+				},
+				{
+					"name": "Colossal",
+					"slug": "900",
+					"size": "4rem",
+					"fluid": {
+						"min": "2.625rem",
+						"max": "4rem"
+					}
 				}
 			]
 		},
@@ -415,7 +461,7 @@
 			},
 			"lineHeight": {
 				"heading": "1.25",
-				"body": "1.6"
+				"body": "1.5"
 			},
 			"borderWidth": {
 				"none": "0",
@@ -460,19 +506,19 @@
 			},
 			"h1": {
 				"typography": {
-					"fontSize": "var(--wp--preset--font-size--700)",
+					"fontSize": "var(--wp--preset--font-size--800)",
 					"fontWeight": "var:custom|font-weight|bold"
 				}
 			},
 			"h2": {
 				"typography": {
-					"fontSize": "var(--wp--preset--font-size--600)",
+					"fontSize": "var(--wp--preset--font-size--700)",
 					"fontWeight": "var:custom|font-weight|semi-bold"
 				}
 			},
 			"h3": {
 				"typography": {
-					"fontSize": "var(--wp--preset--font-size--500)",
+					"fontSize": "var(--wp--preset--font-size--600)",
 					"fontWeight": "var:custom|font-weight|semi-bold"
 				}
 			},
