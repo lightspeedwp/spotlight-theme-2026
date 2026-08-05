@@ -13,12 +13,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Audited Spotlight design-token foundations in `theme.json`: colour palette (Brand Red, Accent Navy, and Neutral 9-step ramps, system colours, surface colours), self-hosted Libre Baskerville/Source Sans 3 variable fonts, a 7-step font-size scale, an 11-step spacing scale, a 7-step border-radius scale, and a `settings.custom.borderWidth` token family.
 - `openspec/specs/design-tokens/` capability spec, documenting the design-token requirements for future template/pattern work to build on.
+- Base element styling in `theme.json`: default button look, `core/quote`/`core/pullquote` border accent and citation styling, `core/list`/`core/list-item` marker colour and spacing, and heading top/bottom margin rhythm (see LS-1711). List marker/spacing and heading/paragraph spacing rhythm values are provisional (no design source yet) pending design confirmation.
+- Three named `core/button` block-style variations — `styles/blocks/button/primary.json`, `dark.json`, `dark-pill.json` — matching the dashboard CTA, article action, and header nav CTA button treatments confirmed in Figma dev-mode frames.
+- `openspec/specs/base-styles/` capability spec, documenting the base element/block styling requirements this change adds.
+- `openspec/changes/spotlight-global-styles-and-block-rules/` proposal, design, and task artifacts for LS-1711.
 
 ### Changed
 
 - Replaced the placeholder colour palette, font sizes, and spacing scale in `theme.json` with the audited Spotlight values (see LS-1704/LS-1709/LS-1710).
 - Updated `settings.layout.contentSize`/`wideSize` to 800px/1320px.
 - Cleaned up `styles/light.json` and `styles/dark.json`, which duplicated the old placeholder palette; `dark.json`'s background/text inversion is preserved with updated colours.
+- Corrected `styles.elements.link` colour from the brand ramp (`brand-500`/`brand-600`) to `accent-200`/`accent-300`, confirmed against real body-copy links; `brand-500` remains reserved for category badges/labels (see LS-1711).
+- Updated `AGENTS.md`'s guidance on `styles/blocks/`/`styles/sections/` files: WordPress core auto-registers these as selectable block style variations (confirmed working), correcting the previous claim that they required manual PHP registration.
 
 ### Deprecated
 
@@ -28,6 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Header navigation now uses the mobile overlay menu to keep narrow-screen navigation accessible.
 - Footer markup no longer nests the Site Title block inside a paragraph, preventing invalid heading-in-paragraph output.
+- Fixed `theme-utils.mjs`'s `validate-schema` command to check block-style-variation partial files (`styles/blocks/**/*.json`) at their real runtime position instead of the flat root `styles` shape, and to work around a confirmed upstream schema/`ajv` limitation with pseudo-selector property names.
 
 ### Security
 

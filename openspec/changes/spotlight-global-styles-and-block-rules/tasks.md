@@ -34,17 +34,17 @@
 - [x] 5.1 Add `styles.blocks["core/list"]` marker colour (`contrast`) — inherited via CSS `::marker` default color inheritance from `color.text`
 - [x] 5.2 Add `<li>` spacing/gap using an existing `settings.spacing.spacingSizes` step — implemented as `styles.blocks["core/list-item"].spacing.margin.bottom` (`10`/XS), since `core/list-item` is the real per-`<li>` block and `core/list` has no `blockGap` support
 - [x] 5.3 Add start-indent using an existing spacing step — implemented as `styles.blocks["core/list"].spacing.padding.left` (`30`/M); WP's structured `spacing.padding` maps to physical `padding-left`, not the logical `padding-inline-start` property, functionally equivalent for this LTR-only starter theme
-- [ ] 5.4 Note in a code comment or CHANGELOG entry that these values are provisional pending design confirmation
+- [x] 5.4 Note in a code comment or CHANGELOG entry that these values are provisional pending design confirmation — covered in the `CHANGELOG.md` entry added in Group 7
 
 ## 6. Heading and paragraph spacing rhythm
 
 - [x] 6.1 Add heading top/bottom margin values sourced from `settings.spacing.spacingSizes` — `styles.elements.heading.spacing.margin`: top `40`/L (generous separation from preceding content), bottom `20`/S (tighter coupling to the paragraph that follows it) — applies to all headings via the shared `heading` element, no per-level overrides needed
 - [x] 6.2 Confirm paragraph-to-paragraph rhythm reads correctly in the Site Editor against the article frame's body copy — confirmed working
-- [ ] 6.3 Note in a code comment or CHANGELOG entry that these values are provisional pending design confirmation
+- [x] 6.3 Note in a code comment or CHANGELOG entry that these values are provisional pending design confirmation — covered in the `CHANGELOG.md` entry added in Group 7
 
 ## 7. Validation
 
-- [ ] 7.1 Run `npm run schema:validate`
-- [ ] 7.2 Run `npm run theme:validate`
-- [ ] 7.3 Spot-check link, button (all 4 looks), quote, pullquote, list, and heading/paragraph rendering in the Site Editor against the four reference frames
-- [ ] 7.4 Update `CHANGELOG.md` under `## [Unreleased]`
+- [x] 7.1 Run `npm run schema:validate`
+- [x] 7.2 Run `npm run theme:validate`
+- [x] 7.3 Spot-check link, button (all 4 looks), quote, pullquote, list, and heading/paragraph rendering in the Site Editor against the four reference frames — confirmed working, including both ordered and unordered lists
+- [x] 7.4 Update `CHANGELOG.md` under `## [Unreleased]`
