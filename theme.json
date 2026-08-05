@@ -569,7 +569,52 @@
 				}
 			}
 		},
-		"blocks": {}
+		"blocks": {
+			"core/quote": {
+				"border": {
+					"left": {
+						"width": "var:custom|border-width|medium",
+						"style": "solid",
+						"color": "var(--wp--preset--color--brand-500)"
+					}
+				},
+				"spacing": {
+					"padding": {
+						"left": "var(--wp--preset--spacing--40)",
+						"right": "var(--wp--preset--spacing--40)"
+					}
+				},
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--heading)",
+					"fontSize": "var(--wp--preset--font-size--300)",
+					"fontWeight": "var:custom|font-weight|regular",
+					"lineHeight": "var:custom|line-height|body"
+				},
+				"css": "& .wp-block-quote__citation { color: var(--wp--preset--color--neutral-600) !important; font-family: var(--wp--preset--font-family--body) !important; font-style: normal !important; font-size: var(--wp--preset--font-size--200) !important; font-weight: var(--wp--custom--font-weight--semi-bold) !important; line-height: var(--wp--custom--line-height--heading) !important; }"
+			},
+			"core/pullquote": {
+				"border": {
+					"top": {
+						"width": "var:custom|border-width|medium",
+						"style": "solid",
+						"color": "var(--wp--preset--color--brand-500)"
+					}
+				},
+				"spacing": {
+					"padding": {
+						"top": "var(--wp--preset--spacing--40)",
+						"bottom": "0"
+					}
+				},
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--heading)",
+					"fontSize": "var(--wp--preset--font-size--300)",
+					"fontWeight": "var:custom|font-weight|regular",
+					"lineHeight": "var:custom|line-height|body"
+				},
+				"css": "& .wp-block-pullquote__citation { color: var(--wp--preset--color--neutral-600) !important; font-family: var(--wp--preset--font-family--body) !important; font-style: normal !important; font-size: var(--wp--preset--font-size--200) !important; font-weight: var(--wp--custom--font-weight--semi-bold) !important; line-height: var(--wp--custom--line-height--heading) !important; }"
+			}
+		}
 	},
 	"templateParts": [
 		{

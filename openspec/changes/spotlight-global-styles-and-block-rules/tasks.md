@@ -24,10 +24,10 @@
 
 ## 4. Quote and pullquote styling
 
-- [ ] 4.1 Add `styles.blocks["core/quote"]` — border accent, quote-body typography, spacing
-- [ ] 4.2 Add the `cite` element override inside `core/quote` (muted text colour, smaller font size)
-- [ ] 4.3 Add `styles.blocks["core/pullquote"]` — border accent, quote-body typography, spacing
-- [ ] 4.4 Add the `cite` element override inside `core/pullquote`
+- [x] 4.1 Add `styles.blocks["core/quote"]` — border accent, quote-body typography, spacing
+- [x] 4.2 Add the `cite` element override inside `core/quote` (muted text colour, smaller font size)
+- [x] 4.3 Add `styles.blocks["core/pullquote"]` — border accent, quote-body typography, spacing
+- [x] 4.4 Add the `cite` element override inside `core/pullquote`
 
 ## 5. List styling
 
