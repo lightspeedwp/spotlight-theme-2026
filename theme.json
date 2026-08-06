@@ -618,11 +618,7 @@
 				"color": {
 					"text": "var(--wp--preset--color--contrast)"
 				},
-				"spacing": {
-					"padding": {
-						"left": "var(--wp--preset--spacing--30)"
-					}
-				}
+				"css": "& { padding-inline-start: var(--wp--preset--spacing--30); }"
 			},
 			"core/list-item": {
 				"spacing": {

@@ -13,7 +13,7 @@
 	height: 1.25em;
 	vertical-align: -0.35em;
 	margin-inline-end: var(--wp--preset--spacing--5);
-	background-color: currentColor;
+	background-color: currentcolor;
 	-webkit-mask-image: url('../icons/arrow-line-up-right.svg');
 	-webkit-mask-repeat: no-repeat;
 	-webkit-mask-size: contain;
@@ -36,7 +36,7 @@
 	height: 1.25em;
 	vertical-align: -0.35em;
 	margin-inline-start: var(--wp--preset--spacing--5);
-	background-color: currentColor;
+	background-color: currentcolor;
 	-webkit-mask-image: url('../icons/arrow-right.svg');
 	-webkit-mask-repeat: no-repeat;
 	-webkit-mask-size: contain;
@@ -59,7 +59,7 @@
 	height: 1.25em;
 	vertical-align: -0.35em;
 	margin-inline-end: var(--wp--preset--spacing--5);
-	background-color: currentColor;
+	background-color: currentcolor;
 	-webkit-mask-image: url('../icons/chart-line-up.svg');
 	-webkit-mask-repeat: no-repeat;
 	-webkit-mask-size: contain;
