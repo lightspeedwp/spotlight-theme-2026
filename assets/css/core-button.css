@@ -1,0 +1,36 @@
+/*
+ * Icon and hover states for WordPress core/button's own built-in "Fill" and
+ * "Outline" block styles, restyled to match Spotlight's design system (see
+ * custom-button.css for Spotlight's own bespoke button variations).
+ */
+
+/* Fill (default, unstyled — styles.elements.button in theme.json) */
+
+.wp-block-button .wp-block-button__link:hover {
+	background-color: var(--wp--preset--color--accent-300);
+	color: var(--wp--preset--color--base);
+}
+
+/* Outline (styles/blocks/button/outline.json) */
+
+.wp-block-button.is-style-outline .wp-block-button__link::after {
+	content: "";
+	display: inline-block;
+	width: 1.25em;
+	height: 1.25em;
+	vertical-align: -0.35em;
+	margin-inline-start: var(--wp--preset--spacing--5);
+	background-color: currentColor;
+	-webkit-mask-image: url('../icons/arrow-right.svg');
+	-webkit-mask-repeat: no-repeat;
+	-webkit-mask-size: contain;
+	mask-image: url('../icons/arrow-right.svg');
+	mask-repeat: no-repeat;
+	mask-size: contain;
+}
+
+.wp-block-button.is-style-outline .wp-block-button__link:hover {
+	background-color: var(--wp--preset--color--accent-300);
+	border-color: var(--wp--preset--color--neutral-200);
+	color: var(--wp--preset--color--neutral-200);
+}

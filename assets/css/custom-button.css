@@ -1,0 +1,74 @@
+/*
+ * Icon and hover states for Spotlight's own custom core/button block-style
+ * variations (i.e. not WP core's built-in "Fill"/"Outline" styles — see
+ * core-button.css for those). One rule block per variation.
+ */
+
+/* Republish Article (styles/blocks/button/republish-article.json) */
+
+.wp-block-button.is-style-republish-article .wp-block-button__link::before {
+	content: "";
+	display: inline-block;
+	width: 1.25em;
+	height: 1.25em;
+	vertical-align: -0.35em;
+	margin-inline-end: var(--wp--preset--spacing--5);
+	background-color: currentColor;
+	-webkit-mask-image: url('../icons/arrow-line-up-right.svg');
+	-webkit-mask-repeat: no-repeat;
+	-webkit-mask-size: contain;
+	mask-image: url('../icons/arrow-line-up-right.svg');
+	mask-repeat: no-repeat;
+	mask-size: contain;
+}
+
+.wp-block-button.is-style-republish-article .wp-block-button__link:hover {
+	background-color: var(--wp--preset--color--accent-600);
+	color: var(--wp--preset--color--base);
+}
+
+/* Secondary (styles/blocks/button/secondary.json) */
+
+.wp-block-button.is-style-secondary .wp-block-button__link::after {
+	content: "";
+	display: inline-block;
+	width: 1.25em;
+	height: 1.25em;
+	vertical-align: -0.35em;
+	margin-inline-start: var(--wp--preset--spacing--5);
+	background-color: currentColor;
+	-webkit-mask-image: url('../icons/arrow-right.svg');
+	-webkit-mask-repeat: no-repeat;
+	-webkit-mask-size: contain;
+	mask-image: url('../icons/arrow-right.svg');
+	mask-repeat: no-repeat;
+	mask-size: contain;
+}
+
+.wp-block-button.is-style-secondary .wp-block-button__link:hover {
+	background-color: var(--wp--preset--color--accent-300);
+	color: var(--wp--preset--color--base);
+}
+
+/* Dashboard (styles/blocks/button/dashboard.json) */
+
+.wp-block-button.is-style-dashboard .wp-block-button__link::before {
+	content: "";
+	display: inline-block;
+	width: 1.25em;
+	height: 1.25em;
+	vertical-align: -0.35em;
+	margin-inline-end: var(--wp--preset--spacing--5);
+	background-color: currentColor;
+	-webkit-mask-image: url('../icons/chart-line-up.svg');
+	-webkit-mask-repeat: no-repeat;
+	-webkit-mask-size: contain;
+	mask-image: url('../icons/chart-line-up.svg');
+	mask-repeat: no-repeat;
+	mask-size: contain;
+}
+
+.wp-block-button.is-style-dashboard .wp-block-button__link:hover {
+	background-color: var(--wp--preset--color--accent-600);
+	color: var(--wp--preset--color--base);
+}

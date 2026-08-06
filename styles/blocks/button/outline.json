@@ -27,7 +27,6 @@
 		"typography": {
 			"fontSize": "var(--wp--preset--font-size--200)",
 			"fontWeight": "var:custom|font-weight|semi-bold"
-		},
-		"css": "&::after { content: \"\\2192\"; margin-inline-start: var(--wp--preset--spacing--5); } &:hover { background-color: var(--wp--preset--color--accent-300); border-color: var(--wp--preset--color--neutral-200); color: var(--wp--preset--color--neutral-200); }"
+		}
 	}
 }

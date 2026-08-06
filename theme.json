@@ -566,12 +566,6 @@
 				"typography": {
 					"fontSize": "var(--wp--preset--font-size--200)",
 					"fontWeight": "var:custom|font-weight|semi-bold"
-				},
-				":hover": {
-					"color": {
-						"background": "var(--wp--preset--color--accent-300)",
-						"text": "var(--wp--preset--color--base)"
-					}
 				}
 			}
 		},
