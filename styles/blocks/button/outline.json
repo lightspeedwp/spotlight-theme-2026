@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Outline",
+	"slug": "outline",
+	"blockTypes": ["core/button"],
+	"description": "White-filled, full-pill button with an accent-blue border and text, matching a trailing arrow icon like the Secondary button. Fills to accent-300 on hover.",
+	"styles": {
+		"color": {
+			"background": "var(--wp--preset--color--neutral-100)",
+			"text": "var(--wp--preset--color--accent-200)"
+		},
+		"border": {
+			"width": "var:custom|border-width|base",
+			"style": "solid",
+			"color": "var(--wp--preset--color--accent-200)",
+			"radius": "var(--wp--preset--border-radius--500)"
+		},
+		"spacing": {
+			"padding": {
+				"top": "var(--wp--preset--spacing--10)",
+				"right": "var(--wp--preset--spacing--30)",
+				"bottom": "var(--wp--preset--spacing--10)",
+				"left": "var(--wp--preset--spacing--30)"
+			}
+		},
+		"typography": {
+			"fontSize": "var(--wp--preset--font-size--200)",
+			"fontWeight": "var:custom|font-weight|semi-bold"
+		},
+		"css": "&::after { content: \"\\2192\"; margin-inline-start: var(--wp--preset--spacing--5); } &:hover { background-color: var(--wp--preset--color--accent-300); border-color: var(--wp--preset--color--neutral-200); color: var(--wp--preset--color--neutral-200); }"
+	}
+}

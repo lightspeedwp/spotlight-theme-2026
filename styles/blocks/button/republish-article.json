@@ -1,17 +1,17 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
 	"version": 3,
-	"title": "Dark Pill",
-	"slug": "dark-pill",
+	"title": "Republish Article",
+	"slug": "republish-article",
 	"blockTypes": ["core/button"],
-	"description": "Full-pill navy-filled button, used for the header navigation CTA (e.g. Dashboards). Darkens to accent-600 on hover.",
+	"description": "Navy-filled rounded-rect button with a leading icon, used for the Republish Article action. Darkens to accent-600 on hover.",
 	"styles": {
 		"color": {
 			"background": "var(--wp--preset--color--accent-500)",
 			"text": "var(--wp--preset--color--base)"
 		},
 		"border": {
-			"radius": "var(--wp--preset--border-radius--500)"
+			"radius": "var(--wp--preset--border-radius--200)"
 		},
 		"spacing": {
 			"padding": {
@@ -25,6 +25,6 @@
 			"fontSize": "var(--wp--preset--font-size--200)",
 			"fontWeight": "var:custom|font-weight|semi-bold"
 		},
-		"css": "&:hover { background-color: var(--wp--preset--color--accent-600); color: var(--wp--preset--color--base); }"
+		"css": "&::before { content: \"\\2197\"; margin-inline-end: var(--wp--preset--spacing--5); } &:hover { background-color: var(--wp--preset--color--accent-600); color: var(--wp--preset--color--base); }"
 	}
 }

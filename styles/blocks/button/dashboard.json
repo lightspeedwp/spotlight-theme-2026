@@ -1,13 +1,13 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
 	"version": 3,
-	"title": "Primary",
-	"slug": "primary",
+	"title": "Dashboard",
+	"slug": "dashboard",
 	"blockTypes": ["core/button"],
-	"description": "Full-pill call-to-action button with an accent-blue fill and a trailing arrow, used for dashboard/CTA links.",
+	"description": "Full-pill navy-filled button, used for the header navigation Dashboard CTA. Darkens to accent-600 on hover.",
 	"styles": {
 		"color": {
-			"background": "var(--wp--preset--color--accent-200)",
+			"background": "var(--wp--preset--color--accent-500)",
 			"text": "var(--wp--preset--color--base)"
 		},
 		"border": {
@@ -25,6 +25,6 @@
 			"fontSize": "var(--wp--preset--font-size--200)",
 			"fontWeight": "var:custom|font-weight|semi-bold"
 		},
-		"css": "&::after { content: \"\\2192\"; margin-inline-start: var(--wp--preset--spacing--5); } &:hover { background-color: var(--wp--preset--color--accent-300); color: var(--wp--preset--color--base); }"
+		"css": "&:hover { background-color: var(--wp--preset--color--accent-600); color: var(--wp--preset--color--base); }"
 	}
 }
