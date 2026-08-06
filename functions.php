@@ -28,15 +28,33 @@ function spotlight_theme_2026_setup() {
 add_action( 'after_setup_theme', 'spotlight_theme_2026_setup' );
 
 /**
- * Enqueues front-end assets.
+ * Enqueues block assets on both the front end and in the editor (post
+ * editor and Site Editor canvas alike).
  *
  * Add CSS and JS files to assets/css/ and assets/js/ and uncomment
  * the relevant lines below once those files exist.
  */
 function spotlight_theme_2026_enqueue_assets() {
-	// Main stylesheet (the theme header stylesheet is loaded automatically).
-	// Add wp_enqueue_style() here when assets/css/main.css exists.
+	// Icon and hover states for Spotlight's own custom core/button block-style variations.
+	// No dependency on 'global-styles' here — that handle is only registered
+	// during the front end's wp_enqueue_scripts flow, which never runs in
+	// wp-admin, so declaring it as a dependency silently drops this
+	// stylesheet from the block editor's iframe.
+	wp_enqueue_style(
+		'spotlight-theme-2026-custom-button',
+		get_theme_file_uri( 'assets/css/custom-button.css' ),
+		array(),
+		wp_get_theme()->get( 'Version' )
+	);
+
+	// Icon and hover states for WordPress core/button's own "Fill"/"Outline" styles.
+	wp_enqueue_style(
+		'spotlight-theme-2026-core-button',
+		get_theme_file_uri( 'assets/css/core-button.css' ),
+		array(),
+		wp_get_theme()->get( 'Version' )
+	);
 
 	// Add wp_enqueue_script() here when assets/js/main.js exists.
 }
-add_action( 'wp_enqueue_scripts', 'spotlight_theme_2026_enqueue_assets' );
+add_action( 'enqueue_block_assets', 'spotlight_theme_2026_enqueue_assets' );
