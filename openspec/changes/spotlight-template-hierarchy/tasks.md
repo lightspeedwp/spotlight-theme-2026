@@ -20,7 +20,7 @@
 - [x] 2.4 Run `npm run schema:validate` and `npm run theme:validate`
 - [x] 2.5 Verify in the Site Editor: `home.html` renders for the configured Posts Page, and a category/tag URL renders `archive.html`
 - [x] 2.6 Update `CHANGELOG.md` under `## [Unreleased]`
-- [ ] 2.7 Open PR against `feat/ls-1715-shared-template-parts-and-wrappers` (note: depends on that PR, do not merge first) — "Closes LS-1716"
+- [x] 2.7 Open PR against `feat/ls-1715-shared-template-parts-and-wrappers` (note: depends on that PR, do not merge first) — "Closes LS-1716"
 
 ## 3. LS-1717 — single and page template structure (branch: `feat/ls-1717-single-and-page-template-structure`, base: `feat/ls-1715-shared-template-parts-and-wrappers`)
 
