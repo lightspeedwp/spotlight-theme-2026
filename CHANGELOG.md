@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- `templates/single.html` — post content (category, title, byline/date, featured image, content) plus the shared `sidebar-editorial` template part and a single-post-specific "Explore topics" module (`core/categories`), previous/next post navigation, and a "Recent stories" related-posts query scoped to the current post's categories via a new `query_loop_block_query_vars` filter in `functions.php` (see LS-1717).
+- `templates/single.html` — post content (category, title, byline/date, featured image, content) plus the shared `sidebar-editorial` template part and a single-post-specific "Explore topics" module (a curated static list, matching the specific topics shown in the design rather than every registered category), previous/next post navigation, and a "Recent stories" related-posts query scoped to the current post's categories via a new `query_loop_block_query_vars` filter in `functions.php` (see LS-1717).
 - `templates/page.html` — prose content plus the shared `sidebar-editorial` template part, with no post-meta elements (see LS-1717).
 - Reworked `parts/header.html`: a utility bar (newsletter/republish links), the site logo, an icon-only `core/search` trigger, and a "Dashboards" CTA button (reusing the existing `is-style-dashboard` variation) (see LS-1714/LS-1715).
 - Reworked `parts/footer.html`: site logo, a secondary-navigation links row, and a `core/social-links` row, alongside the existing copyright line (see LS-1714/LS-1715).
