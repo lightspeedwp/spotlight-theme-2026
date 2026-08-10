@@ -14,12 +14,12 @@
 
 ## 2. LS-1716 — archive template structure (branch: `feat/ls-1716-archive-template-structure`, base: `feat/ls-1715-shared-template-parts-and-wrappers`)
 
-- [ ] 2.1 Create `templates/home.html`: page header (title + search), topic-filter pills, a `core/query` block (inherited query) rendering a post-card grid, `core/query-pagination`, with `header`, `trust-bar`, and `footer` template parts
-- [ ] 2.2 Create `templates/archive.html`: same card-grid structure as `home.html` using an inherited `core/query` block, with `header`, `trust-bar`, and `footer` template parts
-- [ ] 2.3 Add any needed `theme.json` `customTemplates` entry for `home`/`archive` if an editor-facing label/description is warranted
-- [ ] 2.4 Run `npm run schema:validate` and `npm run theme:validate`
+- [x] 2.1 Create `templates/home.html`: page header (title + search), topic-filter pills, a `core/query` block (inherited query) rendering a post-card grid, `core/query-pagination`, with `header`, `trust-bar`, and `footer` template parts
+- [x] 2.2 Create `templates/archive.html`: same card-grid structure as `home.html` using an inherited `core/query` block, with `header`, `trust-bar`, and `footer` template parts
+- [x] 2.3 Add any needed `theme.json` `customTemplates` entry for `home`/`archive` if an editor-facing label/description is warranted (evaluated: not needed — both use standard WP template-hierarchy slugs, which get sensible default editor labels automatically)
+- [x] 2.4 Run `npm run schema:validate` and `npm run theme:validate`
 - [ ] 2.5 Verify in the Site Editor: `home.html` renders for the configured Posts Page, and a category/tag URL renders `archive.html`
-- [ ] 2.6 Update `CHANGELOG.md` under `## [Unreleased]`
+- [x] 2.6 Update `CHANGELOG.md` under `## [Unreleased]`
 - [ ] 2.7 Open PR against `feat/ls-1715-shared-template-parts-and-wrappers` (note: depends on that PR, do not merge first) — "Closes LS-1716"
 
 ## 3. LS-1717 — single and page template structure (branch: `feat/ls-1717-single-and-page-template-structure`, base: `feat/ls-1715-shared-template-parts-and-wrappers`)
