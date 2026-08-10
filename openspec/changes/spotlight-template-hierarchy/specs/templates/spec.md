@@ -18,13 +18,17 @@ Defines which WordPress template file renders which URL for Spotlight, and each 
 ### Requirement: Home (Posts Page) template
 `templates/home.html` SHALL render the site's designated Posts Page as a paginated stream of posts with topic-filter navigation, structurally distinct from `front-page.html`'s curated composition.
 
-#### Scenario: Home template includes a paginated query loop
+#### Scenario: Home template includes a paginated, inherited query loop
 - **WHEN** `templates/home.html` is inspected
-- **THEN** it SHALL contain a `core/query` block and a `core/query-pagination` block
+- **THEN** it SHALL contain a `core/query` block configured with `query.inherit: true` and a `core/query-pagination` block
 
 #### Scenario: Home template includes header, trust bar, and footer parts
 - **WHEN** `templates/home.html` is inspected
 - **THEN** it SHALL include template-part references to `header`, `trust-bar`, and `footer`
+
+#### Scenario: Home template includes real topic-filter links
+- **WHEN** `templates/home.html` is inspected
+- **THEN** it SHALL contain real category/tag term links (server-rendered navigations to term archive URLs) and SHALL NOT implement topic filtering via client-side JavaScript
 
 ### Requirement: Archive template shared structure
 `templates/archive.html` SHALL share the same post-listing structure as `templates/home.html` (query loop, card grid) so that category and tag term URLs — reached by following a topic-filter link — render consistently with the Posts Page, without requiring separate `category.html` or `tag.html` files.
@@ -50,7 +54,7 @@ Defines which WordPress template file renders which URL for Spotlight, and each 
 
 #### Scenario: Single includes a related-posts query
 - **WHEN** `templates/single.html` is inspected
-- **THEN** it SHALL contain a `core/query` block distinct from the main post content, scoped to related posts
+- **THEN** it SHALL contain a `core/query` block distinct from the main post content, configured with `query.taxQuery` matching the current post's terms and `query.excludeCurrent: true` so the current post never appears among its own related posts
 
 ### Requirement: Page template
 `templates/page.html` SHALL render static page content in a two-column layout reusing the same `sidebar-editorial` template part as `templates/single.html`, with no post-meta elements.

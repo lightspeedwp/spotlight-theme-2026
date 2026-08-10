@@ -11,7 +11,7 @@ Spotlight currently ships only `templates/index.html` (a generic query-loop) and
 - Add `page.html` — prose template with optional hero and the same sidebar template-part slot as `single.html`.
 - Add `search.html` and `404.html` — no design source exists for either; both reuse the home/archive grid-and-trust-bar scaffolding (no pills) as a calm, functional default rather than inventing new layout.
 - Keep `index.html` as WordPress's required fallback-of-last-resort; not redesigned in this change.
-- Rework `parts/header.html` — add a utility bar (newsletter/republish links), search trigger, and a "Dashboards" CTA button alongside the existing site-title/navigation.
+- Rework `parts/header.html` — add a utility bar (newsletter/republish links), search trigger, and a "Dashboards" CTA button alongside the existing site-logo/navigation.
 - Rework `parts/footer.html` — add a logo/nav-links row, certification badge, and social-icons row alongside the existing copyright line.
 - Add `parts/trust-bar.html` — the red credibility band (Independent / Evidence-based reporting / 10 years of impact / Free to republish / Focused on public health), reused above the footer on every template.
 - Add `parts/sidebar-editorial.html` — the reusable dashboard-promo-card + newsletter-subscribe-card + explore-topics-list module, reused identically by `single.html` and `page.html`.

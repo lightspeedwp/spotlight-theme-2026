@@ -11,13 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Reworked `parts/header.html`: a utility bar (newsletter/republish links), the site logo, an icon-only `core/search` trigger, and a "Dashboards" CTA button (reusing the existing `is-style-dashboard` variation) (see LS-1705/LS-1715).
-- Reworked `parts/footer.html`: site logo, a secondary-navigation links row, and a `core/social-links` row, alongside the existing copyright line (see LS-1705/LS-1715).
-- `parts/trust-bar.html` — the five-item credibility band (Independent, Evidence-based reporting, 10 years of impact, Free to republish, Focused on public health), included above the footer (see LS-1705/LS-1715).
-- `parts/sidebar-editorial.html` — the reusable dashboard-promo/newsletter-subscribe/explore-topics sidebar module, shared by the upcoming `single.html`/`page.html` templates. Its inner content is explicitly placeholder pending pattern-authoring work (see LS-1705/LS-1715).
+- Reworked `parts/header.html`: a utility bar (newsletter/republish links), the site logo, an icon-only `core/search` trigger, and a "Dashboards" CTA button (reusing the existing `is-style-dashboard` variation) (see LS-1714/LS-1715).
+- Reworked `parts/footer.html`: site logo, a secondary-navigation links row, and a `core/social-links` row, alongside the existing copyright line (see LS-1714/LS-1715).
+- `parts/trust-bar.html` — the five-item credibility band (Independent, Evidence-based reporting, 10 years of impact, Free to republish, Focused on public health), included above the footer (see LS-1714/LS-1715).
+- `parts/sidebar-editorial.html` — the reusable dashboard-promo/newsletter-subscribe/explore-topics sidebar module, shared by the upcoming `single.html`/`page.html` templates. Its inner content is explicitly placeholder pending pattern-authoring work (see LS-1714/LS-1715).
 - New icon assets in `assets/icons/` (`envelope`, `newspaper`, `shield`, `magnifying-glass`, `two-person`, `heart`) and `assets/logos/site-logo.svg`, plus `assets/css/template-parts.css` applying them via CSS `mask-image`.
 - `add_theme_support( 'custom-logo' )` in `functions.php` for the header/footer `wp:site-logo` blocks.
-- `openspec/changes/spotlight-template-hierarchy/` proposal, design, `templates`/`template-parts` capability specs, and task list for LS-1705's template hierarchy work.
+- `openspec/changes/spotlight-template-hierarchy/` proposal, design, `templates`/`template-parts` capability specs, and task list for LS-1714/LS-1715's template hierarchy work.
 - Audited Spotlight design-token foundations in `theme.json`: colour palette (Brand Red, Accent Navy, and Neutral 9-step ramps, system colours, surface colours), self-hosted Libre Baskerville/Source Sans 3 variable fonts, a 7-step font-size scale, an 11-step spacing scale, a 7-step border-radius scale, and a `settings.custom.borderWidth` token family.
 - `openspec/specs/design-tokens/` capability spec, documenting the design-token requirements for future template/pattern work to build on.
 - Base element styling in `theme.json`: default button look, `core/quote`/`core/pullquote` border accent and citation styling, `core/list`/`core/list-item` marker colour and spacing, and heading top/bottom margin rhythm (see LS-1711). List marker/spacing and heading/paragraph spacing rhythm values are provisional (no design source yet) pending design confirmation.

@@ -5,7 +5,7 @@ Defines the reusable template parts Spotlight's templates share — header, foot
 ## ADDED Requirements
 
 ### Requirement: Header template part
-`parts/header.html` SHALL include a utility bar (newsletter and republish links), the primary site navigation, a search trigger, and a "Dashboards" call-to-action, in addition to the existing site title.
+`parts/header.html` SHALL include a utility bar (newsletter and republish links), the primary site navigation, a search trigger, and a "Dashboards" call-to-action, in addition to the existing site logo.
 
 #### Scenario: Header includes utility links ahead of primary navigation
 - **WHEN** `parts/header.html` is inspected
