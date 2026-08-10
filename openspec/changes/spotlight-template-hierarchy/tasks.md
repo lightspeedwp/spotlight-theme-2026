@@ -30,7 +30,7 @@
 - [x] 3.4 Run `npm run schema:validate` and `npm run theme:validate`
 - [x] 3.5 Verify in the Site Editor: `single.html` and `page.html` both render with the shared `sidebar-editorial` part
 - [x] 3.6 Update `CHANGELOG.md` under `## [Unreleased]`
-- [ ] 3.7 Open PR against `feat/ls-1715-shared-template-parts-and-wrappers` (note: depends on that PR, do not merge first) — "Closes LS-1717"
+- [x] 3.7 Open PR against `feat/ls-1715-shared-template-parts-and-wrappers` (note: depends on that PR, do not merge first) — "Closes LS-1717" (PR #6)
 
 ## 4. LS-1718 — system templates and edge-case structure (branch: `feat/ls-1718-system-templates-and-edge-case-structure`, base: `feat/ls-1715-shared-template-parts-and-wrappers`)
 
