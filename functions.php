@@ -71,11 +71,15 @@ add_action( 'init', 'spotlight_theme_2026_register_block_bindings' );
  * attributes — the block's className marks which query loop to target.
  */
 function spotlight_theme_2026_related_posts_query_vars( $query, $block ) {
+	if ( ! is_singular( 'post' ) ) {
+		return $query;
+	}
+
 	if ( empty( $block->attributes['className'] ) || false === strpos( $block->attributes['className'], 'related-posts-query' ) ) {
 		return $query;
 	}
 
-	$categories = wp_get_post_categories( get_the_ID() );
+	$categories = wp_get_post_categories( get_queried_object_id() );
 	if ( ! empty( $categories ) ) {
 		$query['category__in'] = $categories;
 	}
