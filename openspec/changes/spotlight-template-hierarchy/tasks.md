@@ -10,7 +10,7 @@
 - [x] 1.8 Register `trust-bar` and `sidebar-editorial` in `theme.json`'s `templateParts` array
 - [x] 1.9 Run `npm run schema:validate` and `npm run theme:validate`
 - [x] 1.10 Update `CHANGELOG.md` under `## [Unreleased]`
-- [ ] 1.11 Open PR against `develop` — "Closes LS-1714, LS-1715"
+- [x] 1.11 Open PR against `develop` — "Closes LS-1714, LS-1715" (PR #4)
 
 ## 2. LS-1716 — archive template structure (branch: `feat/ls-1716-archive-template-structure`, base: `feat/ls-1715-shared-template-parts-and-wrappers`)
 
