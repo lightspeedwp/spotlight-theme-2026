@@ -11,10 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `templates/single.html` — post content (category, title, byline/date, featured image, content) plus the shared `sidebar-editorial` template part and a single-post-specific "Explore topics" module (`core/categories`), previous/next post navigation, and a "Recent stories" related-posts query scoped to the current post's categories via a new `query_loop_block_query_vars` filter in `functions.php` (see LS-1717).
+- `templates/page.html` — prose content plus the shared `sidebar-editorial` template part, with no post-meta elements (see LS-1717).
 - Reworked `parts/header.html`: a utility bar (newsletter/republish links), the site logo, an icon-only `core/search` trigger, and a "Dashboards" CTA button (reusing the existing `is-style-dashboard` variation) (see LS-1714/LS-1715).
 - Reworked `parts/footer.html`: site logo, a secondary-navigation links row, and a `core/social-links` row, alongside the existing copyright line (see LS-1714/LS-1715).
 - `parts/trust-bar.html` — the five-item credibility band (Independent, Evidence-based reporting, 10 years of impact, Free to republish, Focused on public health), included above the footer (see LS-1714/LS-1715).
-- `parts/sidebar-editorial.html` — the reusable dashboard-promo/newsletter-subscribe/explore-topics sidebar module, shared by the upcoming `single.html`/`page.html` templates. Its inner content is explicitly placeholder pending pattern-authoring work (see LS-1714/LS-1715).
+- `parts/sidebar-editorial.html` — the reusable dashboard-promo/newsletter-subscribe sidebar module, shared by `single.html`/`page.html`. Its inner content is explicitly placeholder pending pattern-authoring work; the "Explore topics" module seen in the same design frames is single-post-specific and lives in `single.html` itself, not this shared part (see LS-1714/LS-1715, corrected under LS-1717).
 - New icon assets in `assets/icons/` (`envelope`, `newspaper`, `shield`, `magnifying-glass`, `two-person`, `heart`) and `assets/logos/site-logo.svg`, plus `assets/css/template-parts.css` applying them via CSS `mask-image`.
 - `add_theme_support( 'custom-logo' )` in `functions.php` for the header/footer `wp:site-logo` blocks.
 - `openspec/changes/spotlight-template-hierarchy/` proposal, design, `templates`/`template-parts` capability specs, and task list for LS-1714/LS-1715's template hierarchy work.

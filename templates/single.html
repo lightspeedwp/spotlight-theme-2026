@@ -1,0 +1,75 @@
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","layout":{"type":"constrained"}} -->
+<main class="wp-block-group">
+	<!-- wp:group {"layout":{"type":"grid","columnCount":2}} -->
+	<div class="wp-block-group">
+		<!-- wp:group {"tagName":"article"} -->
+		<article class="wp-block-group">
+			<!-- wp:post-terms {"term":"category","fontSize":"100"} /-->
+
+			<!-- wp:post-title {"level":1} /-->
+
+			<!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap"}} -->
+			<div class="wp-block-group">
+				<!-- wp:post-author {"showAvatar":false,"fontSize":"100"} /-->
+
+				<!-- wp:post-date {"fontSize":"100"} /-->
+			</div>
+			<!-- /wp:group -->
+
+			<!-- wp:post-featured-image {"isLink":false} /-->
+
+			<!-- wp:post-content /-->
+
+			<!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
+			<div class="wp-block-group">
+				<!-- wp:post-navigation-link {"type":"previous","label":"Previous article"} /-->
+
+				<!-- wp:post-navigation-link {"type":"next","label":"Next article"} /-->
+			</div>
+			<!-- /wp:group -->
+
+			<!-- wp:heading {"level":3,"fontSize":"300"} -->
+			<h3 class="wp-block-heading has-300-font-size">Recent stories</h3>
+			<!-- /wp:heading -->
+
+			<!-- wp:query {"className":"related-posts-query","query":{"perPage":3,"postType":"post","order":"desc","orderBy":"date","inherit":false,"excludeCurrent":true}} -->
+			<div class="wp-block-query related-posts-query">
+				<!-- wp:post-template {"layout":{"type":"grid","columnCount":3}} -->
+					<!-- wp:group {"tagName":"article"} -->
+					<article class="wp-block-group">
+						<!-- wp:post-featured-image {"isLink":true} /-->
+
+						<!-- wp:post-title {"isLink":true,"fontSize":"200"} /-->
+					</article>
+					<!-- /wp:group -->
+				<!-- /wp:post-template -->
+			</div>
+			<!-- /wp:query -->
+		</article>
+		<!-- /wp:group -->
+
+		<!-- wp:group {"layout":{"type":"constrained"}} -->
+		<div class="wp-block-group">
+			<!-- wp:template-part {"slug":"sidebar-editorial"} /-->
+
+			<!-- wp:group {"className":"single-explore-topics","layout":{"type":"constrained"}} -->
+			<div class="wp-block-group single-explore-topics">
+				<!-- wp:heading {"level":3,"fontSize":"300"} -->
+				<h3 class="wp-block-heading has-300-font-size">Explore topics</h3>
+				<!-- /wp:heading -->
+
+				<!-- wp:categories {"showPostCounts":false} /-->
+			</div>
+			<!-- /wp:group -->
+		</div>
+		<!-- /wp:group -->
+	</div>
+	<!-- /wp:group -->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"trust-bar","tagName":"div"} /-->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

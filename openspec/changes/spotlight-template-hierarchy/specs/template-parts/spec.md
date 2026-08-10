@@ -34,11 +34,11 @@ Defines the reusable template parts Spotlight's templates share — header, foot
 - **THEN** each SHALL include a template-part reference to `trust-bar` immediately before its template-part reference to `footer`
 
 ### Requirement: Sidebar editorial template part
-`parts/sidebar-editorial.html` SHALL bundle a dashboard-promo module, a newsletter-subscribe module, and an explore-topics list, and SHALL be the single shared source for the sidebar column used by `single.html` and `page.html`.
+`parts/sidebar-editorial.html` SHALL bundle a dashboard-promo module and a newsletter-subscribe module — the two sidebar modules common to both `single.html` and `page.html` — and SHALL be the single shared source for those modules.
 
-#### Scenario: Sidebar bundles three distinct modules
+#### Scenario: Sidebar bundles two distinct modules
 - **WHEN** `parts/sidebar-editorial.html` is inspected
-- **THEN** it SHALL contain three distinct content groups: a dashboard-promo module, a newsletter-subscribe module, and an explore-topics list
+- **THEN** it SHALL contain two distinct content groups: a dashboard-promo module and a newsletter-subscribe module
 
 #### Scenario: Sidebar is shared, not duplicated per template
 - **WHEN** `templates/single.html` and `templates/page.html` are inspected
