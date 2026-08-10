@@ -39,6 +39,23 @@ function spotlight_theme_2026_setup() {
 add_action( 'after_setup_theme', 'spotlight_theme_2026_setup' );
 
 /**
+ * Registers a block-bindings source that outputs the current year, so the
+ * footer copyright line never needs an annual manual update.
+ */
+function spotlight_theme_2026_register_block_bindings() {
+	register_block_bindings_source(
+		'spotlight-theme-2026/current-year',
+		array(
+			'label'              => __( 'Current Year', 'spotlight-theme-2026' ),
+			'get_value_callback' => function () {
+				return gmdate( 'Y' );
+			},
+		)
+	);
+}
+add_action( 'init', 'spotlight_theme_2026_register_block_bindings' );
+
+/**
  * Enqueues block assets on both the front end and in the editor (post
  * editor and Site Editor canvas alike).
  *

@@ -11,6 +11,7 @@
 	width: 1em;
 	height: 1em;
 	vertical-align: -0.15em;
+	margin: 0;
 	margin-inline-end: var(--wp--preset--spacing--5);
 	background-color: currentColor;
 	mask-repeat: no-repeat;
@@ -82,4 +83,14 @@
 	background-repeat: no-repeat;
 	background-size: contain;
 	background-position: center;
+}
+
+/* Copyright line: tighter word-spacing than the theme's default blockGap,
+ * with the site title and its trailing period held together with no gap. */
+.site-footer__copyright {
+	gap: 0.25em;
+}
+
+.site-footer__brand {
+	gap: 0;
 }
