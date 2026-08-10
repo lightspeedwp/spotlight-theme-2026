@@ -1,15 +1,15 @@
 ## 1. LS-1714 + LS-1715 — shared template parts (branch: `feat/ls-1715-shared-template-parts-and-wrappers`, base: `develop`)
 
-- [ ] 1.1 Commit this OpenSpec change (`proposal.md`, `design.md`, `specs/`, `tasks.md`) as the LS-1714 audit/hierarchy-mapping deliverable
-- [ ] 1.2 Rework `parts/header.html`: add a utility bar (newsletter-prompt and republish-prompt links) positioned before the primary navigation
-- [ ] 1.3 Rework `parts/header.html`: add a search-trigger element and a "Dashboards" call-to-action button/link
-- [ ] 1.4 Rework `parts/footer.html`: add a secondary-navigation links row
-- [ ] 1.5 Rework `parts/footer.html`: add a social-icons row, keeping the existing copyright paragraph
-- [ ] 1.6 Create `parts/trust-bar.html` with the five credibility items (independence, evidence-based reporting, years of impact, free-to-republish, public-health focus), each as an icon-and-label group
-- [ ] 1.7 Create `parts/sidebar-editorial.html` bundling a dashboard-promo module placeholder, a newsletter-subscribe module placeholder, and an explore-topics list placeholder as three distinct content groups
-- [ ] 1.8 Register `trust-bar` and `sidebar-editorial` in `theme.json`'s `templateParts` array
-- [ ] 1.9 Run `npm run schema:validate` and `npm run theme:validate`
-- [ ] 1.10 Update `CHANGELOG.md` under `## [Unreleased]`
+- [x] 1.1 Commit this OpenSpec change (`proposal.md`, `design.md`, `specs/`, `tasks.md`) as the LS-1714 audit/hierarchy-mapping deliverable
+- [x] 1.2 Rework `parts/header.html`: add a utility bar (newsletter-prompt and republish-prompt links) positioned before the primary navigation
+- [x] 1.3 Rework `parts/header.html`: add a search-trigger element and a "Dashboards" call-to-action button/link
+- [x] 1.4 Rework `parts/footer.html`: add a secondary-navigation links row
+- [x] 1.5 Rework `parts/footer.html`: add a social-icons row, keeping the existing copyright paragraph
+- [x] 1.6 Create `parts/trust-bar.html` with the five credibility items (independence, evidence-based reporting, years of impact, free-to-republish, public-health focus), each as an icon-and-label group
+- [x] 1.7 Create `parts/sidebar-editorial.html` bundling a dashboard-promo module placeholder, a newsletter-subscribe module placeholder, and an explore-topics list placeholder as three distinct content groups
+- [x] 1.8 Register `trust-bar` and `sidebar-editorial` in `theme.json`'s `templateParts` array
+- [x] 1.9 Run `npm run schema:validate` and `npm run theme:validate`
+- [x] 1.10 Update `CHANGELOG.md` under `## [Unreleased]`
 - [ ] 1.11 Open PR against `develop` — "Closes LS-1714, LS-1715"
 
 ## 2. LS-1716 — archive template structure (branch: `feat/ls-1716-archive-template-structure`, base: `feat/ls-1715-shared-template-parts-and-wrappers`)

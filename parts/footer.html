@@ -1,11 +1,54 @@
 <!-- wp:group {"tagName":"footer","className":"site-footer","style":{"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40"}}},"layout":{"type":"constrained"}} -->
-<footer class="wp-block-group site-footer">
+<footer class="wp-block-group site-footer" style="padding-top:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40)">
+	<!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
+	<div class="wp-block-group">
+		<!-- wp:site-logo {"width":120} /-->
+
+		<!-- wp:group {"tagName":"div","className":"site-footer__links","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"center"}} -->
+		<div class="wp-block-group site-footer__links">
+			<!-- wp:paragraph {"fontSize":"100"} -->
+			<p class="has-100-font-size"><a href="#">Latest News</a></p>
+			<!-- /wp:paragraph -->
+
+			<!-- wp:paragraph {"fontSize":"100"} -->
+			<p class="has-100-font-size"><a href="#">Data Desk</a></p>
+			<!-- /wp:paragraph -->
+
+			<!-- wp:paragraph {"fontSize":"100"} -->
+			<p class="has-100-font-size"><a href="#">Republish</a></p>
+			<!-- /wp:paragraph -->
+
+			<!-- wp:paragraph {"fontSize":"100"} -->
+			<p class="has-100-font-size"><a href="#">Contact us</a></p>
+			<!-- /wp:paragraph -->
+		</div>
+		<!-- /wp:group -->
+
+		<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"right"}} -->
+		<div class="wp-block-group">
+			<!-- wp:html -->
+			<p class="site-footer__certification" role="img" aria-label="Press Council FAIR"></p>
+			<!-- /wp:html -->
+
+			<!-- wp:social-links {"className":"site-footer__social"} -->
+			<ul class="wp-block-social-links site-footer__social">
+				<!-- wp:social-link {"url":"#","service":"x"} /-->
+
+				<!-- wp:social-link {"url":"#","service":"facebook"} /-->
+
+				<!-- wp:social-link {"url":"#","service":"bluesky"} /-->
+			</ul>
+			<!-- /wp:social-links -->
+		</div>
+		<!-- /wp:group -->
+	</div>
+	<!-- /wp:group -->
+
 	<!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left"}} -->
 	<div class="wp-block-group">
 		<!-- wp:paragraph {"fontSize":"small"} -->
-		<p class="has-small-font-size">©</p>
+		<p class="has-small-font-size">© 2026 Spotlight. All rights reserved.</p>
 		<!-- /wp:paragraph -->
-		<!-- wp:site-title {"level":0,"isLink":false,"fontSize":"small"} /-->
 	</div>
 	<!-- /wp:group -->
 </footer>

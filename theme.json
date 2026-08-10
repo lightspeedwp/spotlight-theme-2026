@@ -639,6 +639,16 @@
 			"name": "footer",
 			"title": "Footer",
 			"area": "footer"
+		},
+		{
+			"name": "trust-bar",
+			"title": "Trust Bar",
+			"area": "uncategorized"
+		},
+		{
+			"name": "sidebar-editorial",
+			"title": "Editorial Sidebar",
+			"area": "uncategorized"
 		}
 	],
 	"customTemplates": []
