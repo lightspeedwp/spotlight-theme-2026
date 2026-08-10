@@ -41,14 +41,23 @@ add_action( 'after_setup_theme', 'spotlight_theme_2026_setup' );
 /**
  * Registers a block-bindings source that outputs the current year, so the
  * footer copyright line never needs an annual manual update.
+ *
+ * register_block_bindings_source() requires WordPress 6.5+; this theme
+ * declares 6.4 as its minimum, so the guard below lets the footer's bound
+ * paragraph fall back to its static placeholder text on older WordPress
+ * instead of a fatal error.
  */
 function spotlight_theme_2026_register_block_bindings() {
+	if ( ! function_exists( 'register_block_bindings_source' ) ) {
+		return;
+	}
+
 	register_block_bindings_source(
 		'spotlight-theme-2026/current-year',
 		array(
 			'label'              => __( 'Current Year', 'spotlight-theme-2026' ),
 			'get_value_callback' => function () {
-				return gmdate( 'Y' );
+				return wp_date( 'Y' );
 			},
 		)
 	);
