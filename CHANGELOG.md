@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `templates/front-page.html` — the curated homepage: hero, "Explore by topic," "Latest news," dashboard-CTA banner, "Special Projects," provincial coverage + newsletter, and "Perspectives" sections, each a structural placeholder pending pattern-authoring work; no `core/query` block, `header`/`trust-bar`/`footer` parts (see LS-1718).
+- `templates/search.html` — reuses the home/archive card-grid structure with an inherited `core/query` block bound to the search query and a `core/query-title` showing the search term, no topic-filter pills (see LS-1718).
+- `templates/404.html` — a calm "Page not found" message plus a `core/search` form, no post query loop (see LS-1718).
 - Reworked `parts/header.html`: a utility bar (newsletter/republish links), the site logo, an icon-only `core/search` trigger, and a "Dashboards" CTA button (reusing the existing `is-style-dashboard` variation) (see LS-1714/LS-1715).
 - Reworked `parts/footer.html`: site logo, a secondary-navigation links row, and a `core/social-links` row, alongside the existing copyright line (see LS-1714/LS-1715).
 - `parts/trust-bar.html` — the five-item credibility band (Independent, Evidence-based reporting, 10 years of impact, Free to republish, Focused on public health), included above the footer (see LS-1714/LS-1715).
