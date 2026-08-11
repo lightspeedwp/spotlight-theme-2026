@@ -24,13 +24,13 @@
 
 ## 3. LS-1717 — single and page template structure (branch: `feat/ls-1717-single-and-page-template-structure`, base: `feat/ls-1715-shared-template-parts-and-wrappers`)
 
-- [ ] 3.1 Create `templates/single.html`: content column (category label, title, byline/date, featured image, body) plus `sidebar-editorial` template-part column, previous/next post navigation, and a related-posts `core/query` block, with `header`, `trust-bar`, and `footer` template parts — ensure main content precedes the sidebar in markup order
-- [ ] 3.2 Create `templates/page.html`: prose content column plus `sidebar-editorial` template-part column (no post-meta elements), with `header`, `trust-bar`, and `footer` template parts — ensure main content precedes the sidebar in markup order
-- [ ] 3.3 Add any needed `theme.json` `customTemplates` entry for `single`/`page` if an editor-facing label/description is warranted
-- [ ] 3.4 Run `npm run schema:validate` and `npm run theme:validate`
-- [ ] 3.5 Verify in the Site Editor: `single.html` and `page.html` both render with the shared `sidebar-editorial` part
-- [ ] 3.6 Update `CHANGELOG.md` under `## [Unreleased]`
-- [ ] 3.7 Open PR against `feat/ls-1715-shared-template-parts-and-wrappers` (note: depends on that PR, do not merge first) — "Closes LS-1717"
+- [x] 3.1 Create `templates/single.html`: content column (category label, title, byline/date, featured image, body) plus `sidebar-editorial` template-part column, previous/next post navigation, and a related-posts `core/query` block, with `header`, `trust-bar`, and `footer` template parts — ensure main content precedes the sidebar in markup order
+- [x] 3.2 Create `templates/page.html`: prose content column plus `sidebar-editorial` template-part column (no post-meta elements), with `header`, `trust-bar`, and `footer` template parts — ensure main content precedes the sidebar in markup order
+- [x] 3.3 Add any needed `theme.json` `customTemplates` entry for `single`/`page` if an editor-facing label/description is warranted (evaluated: not needed — standard hierarchy slugs get sensible default editor labels automatically)
+- [x] 3.4 Run `npm run schema:validate` and `npm run theme:validate`
+- [x] 3.5 Verify in the Site Editor: `single.html` and `page.html` both render with the shared `sidebar-editorial` part
+- [x] 3.6 Update `CHANGELOG.md` under `## [Unreleased]`
+- [x] 3.7 Open PR against `feat/ls-1715-shared-template-parts-and-wrappers` (note: depends on that PR, do not merge first) — "Closes LS-1717" (PR #6)
 
 ## 4. LS-1718 — system templates and edge-case structure (branch: `feat/ls-1718-system-templates-and-edge-case-structure`, base: `feat/ls-1715-shared-template-parts-and-wrappers`)
 
