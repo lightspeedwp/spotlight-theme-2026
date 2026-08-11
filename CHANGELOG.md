@@ -11,8 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- `templates/home.html` — the site's Posts Page: page header (title + search), a real `core/categories` topic-filter list, an inherited/paginated `core/query` post-card grid (featured image, category term, title, excerpt, author/date), `header`/`trust-bar`/`footer` template parts (see LS-1716).
-- `templates/archive.html` — shares `home.html`'s card-grid structure for category/tag/date archive URLs, with a dynamic `core/query-title` in place of the static "Latest news" heading; no separate `category.html`/`tag.html` needed yet (see LS-1716).
+- `templates/home.html` — the site's Posts Page: page header (title + search), a real `core/categories` topic-filter list, an inherited/paginated `core/query` post grid, `header`/`trust-bar`/`footer` template parts (see LS-1716). Each card is a `[Blog Card pattern placeholder]`, pending the design-system pattern Zared confirmed will be authored in the upcoming patterns phase, per his review feedback on PR #5.
+- `templates/archive.html` — shares `home.html`'s grid structure for category/tag/date archive URLs, with a dynamic `core/query-title` in place of the static "Latest news" heading; no separate `category.html`/`tag.html` needed yet (see LS-1716).
 - Reworked `parts/header.html`: a utility bar (newsletter/republish links), the site logo, an icon-only `core/search` trigger, and a "Dashboards" CTA button (reusing the existing `is-style-dashboard` variation) (see LS-1714/LS-1715).
 - Reworked `parts/footer.html`: site logo, a secondary-navigation links row, and a `core/social-links` row, alongside the existing copyright line (see LS-1714/LS-1715).
 - `parts/trust-bar.html` — the five-item credibility band (Independent, Evidence-based reporting, 10 years of impact, Free to republish, Focused on public health), included above the footer (see LS-1714/LS-1715).
