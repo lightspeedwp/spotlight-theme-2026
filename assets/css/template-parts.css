@@ -1,63 +1,8 @@
 /*
- * Icon treatment for the header utility bar and the trust-bar template part
- * (the header's Dashboards CTA reuses the existing is-style-dashboard button
- * variation and its icon from custom-button.css). Icons are applied as mask
- * images so their colour always follows currentColor rather than the source
- * SVG's own fill.
+ * Structural spacing for the header utility bar, trust-bar, and footer parts.
+ * Icons themselves are now handled by the Icon Block plugin (outermost/icon-block)
+ * directly in each template's own markup, not via custom CSS.
  */
-
-.icon {
-	display: inline-block;
-	width: 1em;
-	height: 1em;
-	vertical-align: -0.15em;
-	margin: 0;
-	margin-inline-end: var(--wp--preset--spacing--5);
-	background-color: currentColor;
-	mask-repeat: no-repeat;
-	mask-size: contain;
-	mask-position: center;
-	-webkit-mask-repeat: no-repeat;
-	-webkit-mask-size: contain;
-	-webkit-mask-position: center;
-}
-
-.icon-envelope {
-	mask-image: url('../icons/envelope.svg');
-	-webkit-mask-image: url('../icons/envelope.svg');
-}
-
-.icon-newspaper {
-	mask-image: url('../icons/newspaper.svg');
-	-webkit-mask-image: url('../icons/newspaper.svg');
-}
-
-.icon-shield {
-	mask-image: url('../icons/shield.svg');
-	-webkit-mask-image: url('../icons/shield.svg');
-}
-
-.icon-magnifying-glass {
-	mask-image: url('../icons/magnifying-glass.svg');
-	-webkit-mask-image: url('../icons/magnifying-glass.svg');
-}
-
-.icon-two-person {
-	mask-image: url('../icons/two-person.svg');
-	-webkit-mask-image: url('../icons/two-person.svg');
-}
-
-.icon-heart {
-	mask-image: url('../icons/heart.svg');
-	-webkit-mask-image: url('../icons/heart.svg');
-}
-
-/* Trust-bar's icons render larger than the inline utility-bar icons. */
-.icon-lg {
-	width: 2.5em;
-	height: 2.5em;
-	margin-inline-end: 0;
-}
 
 .trust-bar__item {
 	align-items: center;
@@ -74,7 +19,7 @@
 }
 
 /* Press Council / FAIR certification badge — a full-colour raster mark, so it
- * uses background-image rather than the currentColor mask approach above. */
+ * uses background-image rather than an icon block. */
 .site-footer__certification {
 	width: 90px;
 	height: 56px;
@@ -85,12 +30,3 @@
 	background-position: center;
 }
 
-/* Copyright line: tighter word-spacing than the theme's default blockGap,
- * with the site title and its trailing period held together with no gap. */
-.site-footer__copyright {
-	gap: 0.25em;
-}
-
-.site-footer__brand {
-	gap: 0;
-}
