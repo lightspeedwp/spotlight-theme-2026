@@ -34,14 +34,14 @@
 
 ## 4. LS-1718 — system templates and edge-case structure (branch: `feat/ls-1718-system-templates-and-edge-case-structure`, base: `feat/ls-1715-shared-template-parts-and-wrappers`)
 
-- [ ] 4.1 Create `templates/front-page.html`: compose pattern insertion-point placeholders for hero, topic grid, latest-news row, dashboard CTA, special projects, provincial coverage + newsletter, and perspectives, with `header`, `trust-bar`, and `footer` template parts and no `core/query` block (bundled here rather than under 1716/1717, since it predates the dev-ready designs and doesn't map cleanly to either of those sub-issue titles)
-- [ ] 4.2 Create `templates/search.html`: reuse the home/archive card-grid structure with a `core/query` block bound to the search query, no topic-filter pills, with `header`, `trust-bar`, and `footer` template parts
-- [ ] 4.3 Create `templates/404.html`: calm message plus a search form element, no post query loop, with `header`, `trust-bar`, and `footer` template parts
-- [ ] 4.4 Confirm `templates/index.html` is left unmodified as the fallback-of-last-resort
-- [ ] 4.5 Add any needed `theme.json` `customTemplates` entry for `front-page`/`search`/`404` if an editor-facing label/description is warranted
-- [ ] 4.6 Run `npm run schema:validate` and `npm run theme:validate`
-- [ ] 4.7 Verify in the Site Editor: `front-page.html` renders for the site root, `search.html`/`404.html` render without fatal errors
-- [ ] 4.8 Update `CHANGELOG.md` under `## [Unreleased]`
+- [x] 4.1 Create `templates/front-page.html`: compose pattern insertion-point placeholders for hero, topic grid, latest-news row, dashboard CTA, special projects, provincial coverage + newsletter, and perspectives, with `header`, `trust-bar`, and `footer` template parts and no `core/query` block (bundled here rather than under 1716/1717, since it predates the dev-ready designs and doesn't map cleanly to either of those sub-issue titles)
+- [x] 4.2 Create `templates/search.html`: reuse the home/archive card-grid structure with a `core/query` block bound to the search query, no topic-filter pills, with `header`, `trust-bar`, and `footer` template parts
+- [x] 4.3 Create `templates/404.html`: calm message plus a search form element, no post query loop, with `header`, `trust-bar`, and `footer` template parts
+- [x] 4.4 Confirm `templates/index.html` is left unmodified as the fallback-of-last-resort
+- [x] 4.5 Add any needed `theme.json` `customTemplates` entry for `front-page`/`search`/`404` if an editor-facing label/description is warranted (evaluated: not needed — standard hierarchy slugs get sensible default editor labels automatically)
+- [x] 4.6 Run `npm run schema:validate` and `npm run theme:validate`
+- [x] 4.7 Verify in the Site Editor: `front-page.html` renders for the site root, `search.html`/`404.html` render without fatal errors
+- [x] 4.8 Update `CHANGELOG.md` under `## [Unreleased]`
 - [ ] 4.9 Open PR against `feat/ls-1715-shared-template-parts-and-wrappers` (note: depends on that PR, do not merge first) — "Closes LS-1718"
 
 ## 5. After LS-1715 merges to `develop`
