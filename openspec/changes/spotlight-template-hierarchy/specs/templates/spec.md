@@ -42,11 +42,15 @@ Defines which WordPress template file renders which URL for Spotlight, and each 
 - **THEN** it SHALL contain a `core/query` block configured to inherit the current archive's query context
 
 ### Requirement: Single post template
-`templates/single.html` SHALL render post content in a two-column layout — a constrained-width content column and a `sidebar-editorial` template-part column — plus fixed post-navigation and related-posts elements that are not optional per-post.
+`templates/single.html` SHALL render post content in a two-column layout — a constrained-width content column and a sidebar column (the shared `sidebar-editorial` template part plus a single-post-specific explore-topics module) — plus fixed post-navigation and related-posts elements that are not optional per-post.
 
 #### Scenario: Single includes the sidebar-editorial part
 - **WHEN** `templates/single.html` is inspected
 - **THEN** it SHALL include a template-part reference to `sidebar-editorial`
+
+#### Scenario: Single includes an explore-topics module not shared with Page
+- **WHEN** `templates/single.html` is inspected
+- **THEN** it SHALL contain an explore-topics content group in its sidebar column, positioned after the `sidebar-editorial` template-part reference, distinct from the shared part itself
 
 #### Scenario: Single includes previous/next post navigation
 - **WHEN** `templates/single.html` is inspected
@@ -54,7 +58,7 @@ Defines which WordPress template file renders which URL for Spotlight, and each 
 
 #### Scenario: Single includes a related-posts query
 - **WHEN** `templates/single.html` is inspected
-- **THEN** it SHALL contain a `core/query` block distinct from the main post content, configured with `query.taxQuery` matching the current post's terms and `query.excludeCurrent: true` so the current post never appears among its own related posts
+- **THEN** it SHALL contain a `core/query` block distinct from the main post content, configured with `query.excludeCurrent: true` so the current post never appears among its own related posts, and identifiable (e.g. via a distinguishing `className`) so a `query_loop_block_query_vars` filter can scope it to categories shared with the current post — a post's categories vary per post and can't be expressed as a static `query` attribute value
 
 ### Requirement: Page template
 `templates/page.html` SHALL render static page content in a two-column layout reusing the same `sidebar-editorial` template part as `templates/single.html`, with no post-meta elements.
