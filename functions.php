@@ -65,30 +65,6 @@ function spotlight_theme_2026_register_block_bindings() {
 add_action( 'init', 'spotlight_theme_2026_register_block_bindings' );
 
 /**
- * Scopes single.html's "Recent stories" query to posts sharing a category
- * with the post currently being viewed. A post's categories vary per post,
- * so this can't be expressed as a static value in the query block's saved
- * attributes — the block's className marks which query loop to target.
- */
-function spotlight_theme_2026_related_posts_query_vars( $query, $block ) {
-	if ( ! is_singular( 'post' ) ) {
-		return $query;
-	}
-
-	if ( empty( $block->attributes['className'] ) || false === strpos( $block->attributes['className'], 'related-posts-query' ) ) {
-		return $query;
-	}
-
-	$categories = wp_get_post_categories( get_queried_object_id() );
-	if ( ! empty( $categories ) ) {
-		$query['category__in'] = $categories;
-	}
-
-	return $query;
-}
-add_filter( 'query_loop_block_query_vars', 'spotlight_theme_2026_related_posts_query_vars', 10, 2 );
-
-/**
  * Enqueues block assets on both the front end and in the editor (post
  * editor and Site Editor canvas alike).
  *
