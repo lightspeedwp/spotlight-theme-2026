@@ -1,0 +1,32 @@
+/*
+ * Structural spacing for the header utility bar, trust-bar, and footer parts.
+ * Icons themselves are now handled by the Icon Block plugin (outermost/icon-block)
+ * directly in each template's own markup, not via custom CSS.
+ */
+
+.trust-bar__item {
+	align-items: center;
+}
+
+.trust-bar__icon {
+	flex-shrink: 0;
+}
+
+.trust-bar__icon--number {
+	font-size: var(--wp--preset--font-size--700);
+	line-height: 1;
+	margin: 0;
+}
+
+/* Press Council / FAIR certification badge — a full-colour raster mark, so it
+ * uses background-image rather than an icon block. */
+.site-footer__certification {
+	width: 90px;
+	height: 56px;
+	margin: 0;
+	background-image: url('../logos/fair-logo.png');
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
+}
+

@@ -24,6 +24,11 @@ function spotlight_theme_2026_setup() {
 
 	// Enqueue editor styles.
 	add_editor_style( 'style.css' );
+
+	// Add support for a custom logo in the header/footer wp:site-logo blocks.
+	// No width/height constraints here — each wp:site-logo instance is sized
+	// directly in its own pattern markup instead.
+	add_theme_support( 'custom-logo' );
 }
 add_action( 'after_setup_theme', 'spotlight_theme_2026_setup' );
 
@@ -51,6 +56,14 @@ function spotlight_theme_2026_enqueue_assets() {
 	wp_enqueue_style(
 		'spotlight-theme-2026-core-button',
 		get_theme_file_uri( 'assets/css/core-button.css' ),
+		array(),
+		wp_get_theme()->get( 'Version' )
+	);
+
+	// Structural spacing for the header utility bar, trust-bar, and footer parts.
+	wp_enqueue_style(
+		'spotlight-theme-2026-template-parts',
+		get_theme_file_uri( 'assets/css/template-parts.css' ),
 		array(),
 		wp_get_theme()->get( 'Version' )
 	);
