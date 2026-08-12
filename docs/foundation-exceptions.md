@@ -18,14 +18,16 @@ Icon and `:hover` states for WordPress core's own built-in `core/button` "Fill" 
 
 ## `assets/css/template-parts.css`
 
-Four unrelated small exceptions bundled in one file:
+One remaining exception:
 
-- **Structural spacing helpers** (`.trust-bar__item`, `.trust-bar__icon`, `.trust-bar__icon--number`) — layout fine-tuning (icon shrink behaviour, a numeral treated as an icon substitute in the "10 years of impact" trust-bar item) that doesn't map to a block support.
-- **Trust-bar item dividers** (`.trust-bar__item:not(:first-child)`) — a vertical rule between each of the five items, matching the design. Block border/gap settings only style a group's own edges, not the seams between its flex children, so there's no native way to put a rule *between* items without this.
 - **Header search-button outline style** (`.site-header .wp-block-search__button`) — the design shows the header's search trigger as a plain outline circle, not the filled colour `core/search`'s button-only mode otherwise inherits from `styles.elements.button`. There's no per-instance override for a single `core/search` block's button sub-element in theme.json, so this is scoped narrowly to `.site-header` to avoid touching `core/search` usage elsewhere.
-- **The Press Council/FAIR certification badge** is no longer a CSS exception — it now renders as a real `wp:image` block in `parts/footer.html`, referencing `assets/logos/fair-logo.png` directly by path (template parts are static HTML with no PHP, so this can't go through `get_theme_file_uri()`). The prior `background-image`-on-an-empty-`<p>` hack has been removed.
 
-**Why this can't be native:** none of the remaining three is expressible through theme.json settings/styles or a block's own supports; all are small, targeted CSS rules scoped to a specific class or block context.
+Two exceptions this file used to carry are now gone:
+
+- **Trust-bar item dividers and vertical-centering helper** — `parts/trust-bar.html` was rebuilt as a real `core/columns` block, with each item as its own column; the divider between items is now each column's native `border-left`, and each item's icon/text row uses the group layout's own `verticalAlignment:"center"` instead of a `.trust-bar__item { align-items: center; }` rule.
+- **The Press Council/FAIR certification badge** — now a real `wp:image` block in `parts/footer.html`, referencing `assets/logos/fair-logo.png` directly by path (template parts are static HTML with no PHP, so this can't go through `get_theme_file_uri()`). The prior `background-image`-on-an-empty-`<p>` hack has been removed. Same for the "10 years of impact" item's numeral — no longer a text substitute needing its own sizing rule, it's a real inline SVG in the same 60×60 box as the other four icons (an SVG `<text>` element set in the heading typeface).
+
+**Why the remaining one can't be native:** it's not expressible through theme.json settings/styles or a block's own supports — a small, targeted CSS rule scoped to a specific block context.
 
 ## `theme.json` → `styles.blocks."core/quote".css` and `styles.blocks."core/pullquote".css`
 

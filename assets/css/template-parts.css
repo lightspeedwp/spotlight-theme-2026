@@ -4,28 +4,6 @@
  * directly in each template's own markup, not via custom CSS.
  */
 
-.trust-bar__item {
-	align-items: center;
-}
-
-/* Vertical rule between trust-bar items, matching the design's divided row —
- * not expressible via block layout gap/border settings, which only affect a
- * group's own edges, not the seams between its flex children. */
-.trust-bar__item:not(:first-child) {
-	border-inline-start: var(--wp--custom--border-width--base) solid var(--wp--preset--color--base);
-	padding-inline-start: var(--wp--preset--spacing--20);
-}
-
-.trust-bar__icon {
-	flex-shrink: 0;
-}
-
-.trust-bar__icon--number {
-	font-size: var(--wp--preset--font-size--700);
-	line-height: 1;
-	margin: 0;
-}
-
 /* Header search trigger — an outline circle per the design. The block's own
  * backgroundColor/textColor attributes (set in the editor) already give it a
  * flat, blended-in fill; there's no block-attribute equivalent for a border
