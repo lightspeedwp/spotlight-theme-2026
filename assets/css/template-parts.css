@@ -8,6 +8,14 @@
 	align-items: center;
 }
 
+/* Vertical rule between trust-bar items, matching the design's divided row —
+ * not expressible via block layout gap/border settings, which only affect a
+ * group's own edges, not the seams between its flex children. */
+.trust-bar__item:not(:first-child) {
+	border-inline-start: var(--wp--custom--border-width--base) solid var(--wp--preset--color--base);
+	padding-inline-start: var(--wp--preset--spacing--20);
+}
+
 .trust-bar__icon {
 	flex-shrink: 0;
 }
@@ -18,15 +26,16 @@
 	margin: 0;
 }
 
-/* Press Council / FAIR certification badge — a full-colour raster mark, so it
- * uses background-image rather than an icon block. */
-.site-footer__certification {
-	width: 90px;
-	height: 56px;
-	margin: 0;
-	background-image: url('../logos/fair-logo.png');
-	background-repeat: no-repeat;
-	background-size: contain;
-	background-position: center;
+/* Header search trigger — an outline circle per the design, not the theme's
+ * default filled button look (styles.elements.button), which core/search's
+ * button-only mode otherwise inherits with no dedicated style-variation hook. */
+.site-header .wp-block-search__button {
+	background-color: transparent;
+	border: var(--wp--custom--border-width--base) solid currentcolor;
+	color: var(--wp--preset--color--contrast);
+}
+
+.site-header .wp-block-search__button:hover {
+	background-color: var(--wp--preset--color--neutral-200);
 }
 

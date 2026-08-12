@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `.wp-block-search__button` outline style and `.trust-bar__item` divider rule in `template-parts.css`, closing the visual gap between the built `header`/`trust-bar` parts and the Figma design (found during LS-1712's front-end review).
+- `docs/foundation-exceptions.md` — documents every custom CSS exception beyond native `theme.json`/block-support styling (button icon states in `custom-button.css`/`core-button.css`, the trust-bar spacing helpers and FAIR-badge background-image in `template-parts.css`, and the `core/quote`/`core/pullquote` citation `css` overrides in `theme.json`), why each is necessary, and where it lives (see LS-1713).
+- `.github/reports/2026-08-12-editor-styling-parity-verification.md` — verifies typography/spacing/width/core-style parity between the front end and the block editor across the real templates and parts landed under LS-1714–1718, confirming the `enqueue_block_assets` strategy from LS-1709–1711 holds up; documents the accepted phase-1 limitation that placeholder pattern content can't be fully parity-checked until the patterns phase (see LS-1712).
 - `templates/front-page.html` — the curated homepage: hero, "Explore by topic," "Latest news," dashboard-CTA banner, "Special Projects," provincial coverage + newsletter, and "Perspectives" sections, each a structural placeholder pending pattern-authoring work; no `core/query` block, `header`/`trust-bar`/`footer` parts (see LS-1718).
 - `templates/search.html` — reuses the home/archive card-grid structure with an inherited `core/query` block bound to the search query and a `core/query-title` showing the search term, no topic-filter pills (see LS-1718).
 - `templates/404.html` — a calm "Page not found" message plus a `core/search` form, no post query loop (see LS-1718).
@@ -34,6 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- `parts/header.html`, `parts/footer.html`, `parts/trust-bar.html` — corrected against the Figma design after a front-end review flagged them as visually off (LS-1712 follow-up): the utility bar, header row, footer, and trust-bar's inner content row now use `align:"wide"` (the trust-bar's coloured band uses `align:"full"`) instead of defaulting to the 800px `contentSize` column, which was also why the trust bar's five items wrapped into two rows. Added a divider border under the header utility bar and above the footer copyright row; added the footer's site tagline; moved `core/social-links` into the copyright row with the built-in "Logos Only" style; un-styled the footer nav links' default blue/underline via a block-level `elements.link` override. Fixed the Press Council/FAIR badge — previously an empty, CSS-`background-image`-styled `<p>` (a `wp:html` block) — to a real `wp:image` referencing `assets/logos/fair-logo.png`.
 - Replaced the placeholder colour palette, font sizes, and spacing scale in `theme.json` with the audited Spotlight values (see LS-1704/LS-1709/LS-1710).
 - Updated `settings.layout.contentSize`/`wideSize` to 800px/1320px.
 - Cleaned up `styles/light.json` and `styles/dark.json`, which duplicated the old placeholder palette; `dark.json`'s background/text inversion is preserved with updated colours.

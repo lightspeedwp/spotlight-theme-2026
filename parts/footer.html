@@ -1,72 +1,78 @@
-<!-- wp:group {"tagName":"footer","className":"site-footer","style":{"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40"}}},"layout":{"type":"constrained"}} -->
-<footer class="wp-block-group site-footer" style="padding-top:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40)">
+<!-- wp:group {"tagName":"footer","className":"site-footer","style":{"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40"}}},"layout":{"type":"constrained"},"align":"wide"} -->
+<footer class="wp-block-group alignwide site-footer" style="padding-top:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40)">
 	<!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
 	<div class="wp-block-group">
-		<!-- wp:site-logo {"width":120} /-->
-
-		<!-- wp:group {"tagName":"div","className":"site-footer__links","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"center"}} -->
-		<div class="wp-block-group site-footer__links">
-			<!-- wp:paragraph {"fontSize":"100"} -->
-			<p class="has-100-font-size"><a href="#">Latest News</a></p>
-			<!-- /wp:paragraph -->
-
-			<!-- wp:paragraph {"fontSize":"100"} -->
-			<p class="has-100-font-size"><a href="#">Data Desk</a></p>
-			<!-- /wp:paragraph -->
-
-			<!-- wp:paragraph {"fontSize":"100"} -->
-			<p class="has-100-font-size"><a href="#">Republish</a></p>
-			<!-- /wp:paragraph -->
-
-			<!-- wp:paragraph {"fontSize":"100"} -->
-			<p class="has-100-font-size"><a href="#">Contact us</a></p>
-			<!-- /wp:paragraph -->
-		</div>
-		<!-- /wp:group -->
-
-		<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"right"}} -->
+		<!-- wp:group {"layout":{"type":"constrained"}} -->
 		<div class="wp-block-group">
-			<!-- wp:html -->
-			<p class="site-footer__certification" role="img" aria-label="Press Council FAIR"></p>
-			<!-- /wp:html -->
+			<!-- wp:site-logo {"width":120} /-->
 
-			<!-- wp:social-links {"className":"site-footer__social"} -->
-			<ul class="wp-block-social-links site-footer__social">
-				<!-- wp:social-link {"url":"#","service":"x"} /-->
-
-				<!-- wp:social-link {"url":"#","service":"facebook"} /-->
-
-				<!-- wp:social-link {"url":"#","service":"bluesky"} /-->
-			</ul>
-			<!-- /wp:social-links -->
+			<!-- wp:site-tagline {"fontSize":"100"} /-->
 		</div>
 		<!-- /wp:group -->
+
+		<!-- wp:group {"tagName":"div","className":"site-footer__links","style":{"elements":{"link":{"color":{"text":"var(--wp--preset--color--contrast)"},":hover":{"color":{"text":"var(--wp--preset--color--accent-200)"}}}}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"center"}} -->
+		<div class="wp-block-group site-footer__links" style="text-decoration:none">
+			<!-- wp:paragraph {"fontSize":"100"} -->
+			<p class="has-100-font-size"><a href="#" style="text-decoration:none">Latest News</a></p>
+			<!-- /wp:paragraph -->
+
+			<!-- wp:paragraph {"fontSize":"100"} -->
+			<p class="has-100-font-size"><a href="#" style="text-decoration:none">Data Desk</a></p>
+			<!-- /wp:paragraph -->
+
+			<!-- wp:paragraph {"fontSize":"100"} -->
+			<p class="has-100-font-size"><a href="#" style="text-decoration:none">Republish</a></p>
+			<!-- /wp:paragraph -->
+
+			<!-- wp:paragraph {"fontSize":"100"} -->
+			<p class="has-100-font-size"><a href="#" style="text-decoration:none">Contact us</a></p>
+			<!-- /wp:paragraph -->
+		</div>
+		<!-- /wp:group -->
+
+		<!-- wp:image {"width":90,"height":65,"sizeSlug":"full","linkDestination":"none","className":"site-footer__certification is-resized"} -->
+		<figure class="wp-block-image size-full is-resized site-footer__certification"><img src="/wp-content/themes/spotlight-theme-2026/assets/logos/fair-logo.png" alt="Press Council FAIR certification" width="90" height="65"/></figure>
+		<!-- /wp:image -->
 	</div>
 	<!-- /wp:group -->
 
-	<!-- wp:group {"className":"site-footer__copyright","style":{"spacing":{"blockGap":"var:preset|spacing|5"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left"}} -->
-	<div class="wp-block-group site-footer__copyright">
-		<!-- wp:paragraph {"fontSize":"small"} -->
-		<p class="has-small-font-size">©</p>
-		<!-- /wp:paragraph -->
-
-		<!-- wp:paragraph {"fontSize":"small"} -->
-		<p class="has-small-font-size">2026</p>
-		<!-- /wp:paragraph -->
-
-		<!-- wp:group {"className":"site-footer__brand","style":{"spacing":{"blockGap":"var:preset|spacing|0"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-		<div class="wp-block-group site-footer__brand">
-			<!-- wp:site-title {"level":0,"isLink":false,"fontSize":"small"} /-->
+	<!-- wp:group {"className":"site-footer__copyright","style":{"spacing":{"blockGap":"var:preset|spacing|5","padding":{"top":"var:preset|spacing|20"}},"border":{"top":{"width":"var:custom|border-width|base","color":"var:preset|color|neutral-300"}}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
+	<div class="wp-block-group site-footer__copyright" style="border-top-color:var(--wp--preset--color--neutral-300);border-top-width:var(--wp--custom--border-width--base);padding-top:var(--wp--preset--spacing--20)">
+		<!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left"}} -->
+		<div class="wp-block-group">
+			<!-- wp:paragraph {"fontSize":"small"} -->
+			<p class="has-small-font-size">©</p>
+			<!-- /wp:paragraph -->
 
 			<!-- wp:paragraph {"fontSize":"small"} -->
-			<p class="has-small-font-size">.</p>
+			<p class="has-small-font-size">2026</p>
+			<!-- /wp:paragraph -->
+
+			<!-- wp:group {"className":"site-footer__brand","style":{"spacing":{"blockGap":"var:preset|spacing|0"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+			<div class="wp-block-group site-footer__brand">
+				<!-- wp:site-title {"level":0,"isLink":false,"fontSize":"small"} /-->
+
+				<!-- wp:paragraph {"fontSize":"small"} -->
+				<p class="has-small-font-size">.</p>
+				<!-- /wp:paragraph -->
+			</div>
+			<!-- /wp:group -->
+
+			<!-- wp:paragraph {"fontSize":"small"} -->
+			<p class="has-small-font-size">All rights reserved.</p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:group -->
 
-		<!-- wp:paragraph {"fontSize":"small"} -->
-		<p class="has-small-font-size">All rights reserved.</p>
-		<!-- /wp:paragraph -->
+		<!-- wp:social-links {"className":"is-style-logos-only site-footer__social"} -->
+		<ul class="wp-block-social-links is-style-logos-only site-footer__social">
+			<!-- wp:social-link {"url":"#","service":"x"} /-->
+
+			<!-- wp:social-link {"url":"#","service":"facebook"} /-->
+
+			<!-- wp:social-link {"url":"#","service":"bluesky"} /-->
+		</ul>
+		<!-- /wp:social-links -->
 	</div>
 	<!-- /wp:group -->
 </footer>
