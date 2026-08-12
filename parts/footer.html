@@ -1,44 +1,58 @@
-<!-- wp:group {"tagName":"footer","className":"site-footer","style":{"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40"}}},"layout":{"type":"constrained"},"align":"wide"} -->
-<footer class="wp-block-group alignwide site-footer" style="padding-top:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40)">
-	<!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
-	<div class="wp-block-group">
-		<!-- wp:group {"layout":{"type":"constrained"}} -->
-		<div class="wp-block-group">
-			<!-- wp:site-logo {"width":120} /-->
+<!-- wp:group {"tagName":"footer","className":"site-footer","style":{"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40","left":"var:preset|spacing|60","right":"var:preset|spacing|60"}}},"layout":{"type":"constrained"},"hideFromFeed":true} -->
+<footer class="wp-block-group site-footer" style="padding-top:var(--wp--preset--spacing--40);padding-right:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--60)">
+	<!-- wp:group {"align":"wide","layout":{"type":"constrained"},"hideFromFeed":true} -->
+	<div class="wp-block-group alignwide">
+		<!-- wp:columns {"verticalAlignment":null,"align":"wide"} -->
+		<div class="wp-block-columns alignwide">
+			<!-- wp:column {"verticalAlignment":"center"} -->
+			<div class="wp-block-column is-vertically-aligned-center">
+				<!-- wp:group {"layout":{"type":"constrained","justifyContent":"left"},"hideFromFeed":true} -->
+				<div class="wp-block-group">
+					<!-- wp:site-logo {"width":242} /-->
+				</div>
+				<!-- /wp:group -->
+			</div>
+			<!-- /wp:column -->
 
-			<!-- wp:site-tagline {"fontSize":"100"} /-->
+			<!-- wp:column {"verticalAlignment":"center","layout":{"type":"default"}} -->
+			<div class="wp-block-column is-vertically-aligned-center">
+				<!-- wp:group {"className":"site-footer__links","style":{"elements":{"link":{"color":{"text":"var(--wp--preset--color--contrast)"},":hover":{"color":{"text":"var(--wp--preset--color--accent-200)"}}}},"layout":{"selfStretch":"fill","flexSize":null}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"center","orientation":"horizontal"},"hideFromFeed":true} -->
+				<div class="wp-block-group site-footer__links has-link-color">
+					<!-- wp:heading {"level":5,"style":{"layout":{"selfStretch":"fill","flexSize":null},"typography":{"textAlign":"center"}},"fontSize":"200","anchor":"h-latest-news"} -->
+					<h5 class="wp-block-heading has-text-align-center has-200-font-size" id="h-latest-news"><a style="text-decoration:none" href="#">Latest News</a></h5>
+					<!-- /wp:heading -->
+
+					<!-- wp:heading {"level":5,"style":{"layout":{"selfStretch":"fill","flexSize":null},"typography":{"textAlign":"center"}},"fontSize":"200","anchor":"h-data-desk"} -->
+					<h5 class="wp-block-heading has-text-align-center has-200-font-size" id="h-data-desk"><a href="#" style="text-decoration:none">Data Desk</a></h5>
+					<!-- /wp:heading -->
+
+					<!-- wp:heading {"level":5,"style":{"layout":{"selfStretch":"fill","flexSize":null},"typography":{"textAlign":"center"}},"fontSize":"200","anchor":"h-republish"} -->
+					<h5 class="wp-block-heading has-text-align-center has-200-font-size" id="h-republish"><a href="#" style="text-decoration:none">Republish</a></h5>
+					<!-- /wp:heading -->
+
+					<!-- wp:heading {"level":5,"style":{"layout":{"selfStretch":"fill","flexSize":null},"typography":{"textAlign":"center"}},"fontSize":"200","anchor":"h-contact-us"} -->
+					<h5 class="wp-block-heading has-text-align-center has-200-font-size" id="h-contact-us"><a href="#" style="text-decoration:none">Contact us</a></h5>
+					<!-- /wp:heading -->
+				</div>
+				<!-- /wp:group -->
+			</div>
+			<!-- /wp:column -->
+
+			<!-- wp:column {"verticalAlignment":"center"} -->
+			<div class="wp-block-column is-vertically-aligned-center">
+				<!-- wp:image {"width":"90px","height":"65px","sizeSlug":"full","linkDestination":"none","align":"right","className":"site-footer__certification is-resized"} -->
+				<figure class="wp-block-image alignright size-full is-resized site-footer__certification"><img src="/wp-content/themes/spotlight-theme-2026/assets/logos/fair-logo.png" alt="Press Council FAIR certification" style="width:90px;height:65px"/></figure>
+				<!-- /wp:image -->
+			</div>
+			<!-- /wp:column -->
 		</div>
-		<!-- /wp:group -->
-
-		<!-- wp:group {"tagName":"div","className":"site-footer__links","style":{"elements":{"link":{"color":{"text":"var(--wp--preset--color--contrast)"},":hover":{"color":{"text":"var(--wp--preset--color--accent-200)"}}}}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"center"}} -->
-		<div class="wp-block-group site-footer__links" style="text-decoration:none">
-			<!-- wp:paragraph {"fontSize":"100"} -->
-			<p class="has-100-font-size"><a href="#" style="text-decoration:none">Latest News</a></p>
-			<!-- /wp:paragraph -->
-
-			<!-- wp:paragraph {"fontSize":"100"} -->
-			<p class="has-100-font-size"><a href="#" style="text-decoration:none">Data Desk</a></p>
-			<!-- /wp:paragraph -->
-
-			<!-- wp:paragraph {"fontSize":"100"} -->
-			<p class="has-100-font-size"><a href="#" style="text-decoration:none">Republish</a></p>
-			<!-- /wp:paragraph -->
-
-			<!-- wp:paragraph {"fontSize":"100"} -->
-			<p class="has-100-font-size"><a href="#" style="text-decoration:none">Contact us</a></p>
-			<!-- /wp:paragraph -->
-		</div>
-		<!-- /wp:group -->
-
-		<!-- wp:image {"width":90,"height":65,"sizeSlug":"full","linkDestination":"none","className":"site-footer__certification is-resized"} -->
-		<figure class="wp-block-image size-full is-resized site-footer__certification"><img src="/wp-content/themes/spotlight-theme-2026/assets/logos/fair-logo.png" alt="Press Council FAIR certification" width="90" height="65"/></figure>
-		<!-- /wp:image -->
+		<!-- /wp:columns -->
 	</div>
 	<!-- /wp:group -->
 
-	<!-- wp:group {"className":"site-footer__copyright","style":{"spacing":{"blockGap":"var:preset|spacing|5","padding":{"top":"var:preset|spacing|20"}},"border":{"top":{"width":"var:custom|border-width|base","style":"solid","color":"var:preset|color|neutral-300"}}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
-	<div class="wp-block-group site-footer__copyright" style="border-top-color:var(--wp--preset--color--neutral-300);border-top-style:solid;border-top-width:var(--wp--custom--border-width--base);padding-top:var(--wp--preset--spacing--20)">
-		<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|5"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left"}} -->
+	<!-- wp:group {"align":"wide","className":"site-footer__copyright","style":{"spacing":{"blockGap":"var:preset|spacing|5","padding":{"top":"var:preset|spacing|20"}},"border":{"top":{"width":"var:custom|border-width|base","style":"solid","color":"var:preset|color|neutral-300"},"right":{"width":"0px","style":"none"},"bottom":{"width":"0px","style":"none"},"left":{"width":"0px","style":"none"}}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"},"hideFromFeed":true} -->
+	<div class="wp-block-group alignwide site-footer__copyright" style="border-top-color:var(--wp--preset--color--neutral-300);border-top-style:solid;border-top-width:var(--wp--custom--border-width--base);border-right-style:none;border-right-width:0px;border-bottom-style:none;border-bottom-width:0px;border-left-style:none;border-left-width:0px;padding-top:var(--wp--preset--spacing--20)">
+		<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|5"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left"},"hideFromFeed":true} -->
 		<div class="wp-block-group">
 			<!-- wp:paragraph {"fontSize":"small"} -->
 			<p class="has-small-font-size">©</p>
@@ -48,7 +62,7 @@
 			<p class="has-small-font-size">2026</p>
 			<!-- /wp:paragraph -->
 
-			<!-- wp:group {"className":"site-footer__brand","style":{"spacing":{"blockGap":"var:preset|spacing|0"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+			<!-- wp:group {"className":"site-footer__brand","style":{"spacing":{"blockGap":"var:preset|spacing|0"}},"layout":{"type":"flex","flexWrap":"nowrap"},"hideFromFeed":true} -->
 			<div class="wp-block-group site-footer__brand">
 				<!-- wp:site-title {"level":0,"isLink":false,"fontSize":"small"} /-->
 
