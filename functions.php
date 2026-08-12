@@ -33,6 +33,28 @@ function spotlight_theme_2026_setup() {
 add_action( 'after_setup_theme', 'spotlight_theme_2026_setup' );
 
 /**
+ * Returns a cache-busting version string for a theme file.
+ *
+ * Prefers the file's last-modified time, so edits bust the browser cache
+ * immediately during active development instead of requiring a manual
+ * theme-version bump. Falls back to the theme version if the file is
+ * missing (e.g. a partial deploy), so enqueueing never triggers a PHP
+ * warning.
+ *
+ * @param string $relative_path Path relative to the theme root.
+ * @return string|int
+ */
+function spotlight_theme_2026_asset_version( $relative_path ) {
+	$path = get_theme_file_path( $relative_path );
+
+	if ( file_exists( $path ) ) {
+		return filemtime( $path );
+	}
+
+	return wp_get_theme()->get( 'Version' );
+}
+
+/**
  * Enqueues block assets on both the front end and in the editor (post
  * editor and Site Editor canvas alike).
  *
@@ -45,15 +67,11 @@ function spotlight_theme_2026_enqueue_assets() {
 	// during the front end's wp_enqueue_scripts flow, which never runs in
 	// wp-admin, so declaring it as a dependency silently drops this
 	// stylesheet from the block editor's iframe.
-	//
-	// Versioned by filemtime(), not the theme version string, so edits to
-	// these files bust the browser cache immediately during active
-	// development instead of requiring a manual theme-version bump.
 	wp_enqueue_style(
 		'spotlight-theme-2026-custom-button',
 		get_theme_file_uri( 'assets/css/custom-button.css' ),
 		array(),
-		filemtime( get_theme_file_path( 'assets/css/custom-button.css' ) )
+		spotlight_theme_2026_asset_version( 'assets/css/custom-button.css' )
 	);
 
 	// Icon and hover states for WordPress core/button's own "Fill"/"Outline" styles.
@@ -61,7 +79,7 @@ function spotlight_theme_2026_enqueue_assets() {
 		'spotlight-theme-2026-core-button',
 		get_theme_file_uri( 'assets/css/core-button.css' ),
 		array(),
-		filemtime( get_theme_file_path( 'assets/css/core-button.css' ) )
+		spotlight_theme_2026_asset_version( 'assets/css/core-button.css' )
 	);
 
 	// Structural spacing for the header utility bar, trust-bar, and footer parts.
@@ -69,7 +87,7 @@ function spotlight_theme_2026_enqueue_assets() {
 		'spotlight-theme-2026-template-parts',
 		get_theme_file_uri( 'assets/css/template-parts.css' ),
 		array(),
-		filemtime( get_theme_file_path( 'assets/css/template-parts.css' ) )
+		spotlight_theme_2026_asset_version( 'assets/css/template-parts.css' )
 	);
 
 	// Add wp_enqueue_script() here when assets/js/main.js exists.

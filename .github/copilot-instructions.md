@@ -8,7 +8,7 @@ For full AI and developer guidance, read [`AGENTS.md`](../AGENTS.md) at the root
 
 ## Repo Overview
 
-This is a **LightSpeed WordPress block theme starter repository**.
+This is **Spotlight** — a specific WordPress block theme for a specific client site (spotlightnsp.co.za), not a reusable starter or template repo. It was bootstrapped from LightSpeed's internal starter theme; all placeholder tokens have already been replaced with real values. Do not flag hard-coded, site-specific values (a real navigation menu `ref`, real asset paths, real content) as portability concerns.
 One theme, one repo. Not a monorepo.
 
 The theme uses the WordPress Full Site Editing (FSE) / block theme approach:
