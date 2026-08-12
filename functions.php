@@ -35,23 +35,20 @@ add_action( 'after_setup_theme', 'spotlight_theme_2026_setup' );
 /**
  * Returns a cache-busting version string for a theme file.
  *
- * Prefers the file's last-modified time, so edits bust the browser cache
- * immediately during active development instead of requiring a manual
- * theme-version bump. Falls back to the theme version if the file is
- * missing (e.g. a partial deploy), so enqueueing never triggers a PHP
- * warning.
+ * Uses the file's own last-modified time — the theme `Version` header isn't
+ * bumped per asset edit, so it goes stale exactly like a literal would.
+ * Falls back to the theme version if the file isn't readable (a partial
+ * deploy, a permissions issue), so enqueueing never triggers a PHP warning.
+ * Matches the same pattern used in kwv-theme-2026.
  *
  * @param string $relative_path Path relative to the theme root.
- * @return string|int
+ * @return string
  */
 function spotlight_theme_2026_asset_version( $relative_path ) {
-	$path = get_theme_file_path( $relative_path );
+	$file  = get_theme_file_path( $relative_path );
+	$mtime = is_readable( $file ) ? filemtime( $file ) : false;
 
-	if ( file_exists( $path ) ) {
-		return filemtime( $path );
-	}
-
-	return wp_get_theme()->get( 'Version' );
+	return (string) ( false !== $mtime ? $mtime : wp_get_theme()->get( 'Version' ) );
 }
 
 /**
