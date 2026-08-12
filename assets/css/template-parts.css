@@ -26,16 +26,11 @@
 	margin: 0;
 }
 
-/* Header search trigger — an outline circle per the design, not the theme's
- * default filled button look (styles.elements.button), which core/search's
- * button-only mode otherwise inherits with no dedicated style-variation hook. */
-.site-header .wp-block-search__button {
-	background-color: transparent;
+/* Header search trigger — an outline circle per the design. The block's own
+ * backgroundColor/textColor attributes (set in the editor) already give it a
+ * flat, blended-in fill; there's no block-attribute equivalent for a border
+ * on just the button sub-element, so that part still needs a rule here. */
+.site-header .wp-block-search .wp-block-search__button {
 	border: var(--wp--custom--border-width--base) solid currentcolor;
-	color: var(--wp--preset--color--contrast);
-}
-
-.site-header .wp-block-search__button:hover {
-	background-color: var(--wp--preset--color--neutral-200);
 }
 
