@@ -45,11 +45,15 @@ function spotlight_theme_2026_enqueue_assets() {
 	// during the front end's wp_enqueue_scripts flow, which never runs in
 	// wp-admin, so declaring it as a dependency silently drops this
 	// stylesheet from the block editor's iframe.
+	//
+	// Versioned by filemtime(), not the theme version string, so edits to
+	// these files bust the browser cache immediately during active
+	// development instead of requiring a manual theme-version bump.
 	wp_enqueue_style(
 		'spotlight-theme-2026-custom-button',
 		get_theme_file_uri( 'assets/css/custom-button.css' ),
 		array(),
-		wp_get_theme()->get( 'Version' )
+		filemtime( get_theme_file_path( 'assets/css/custom-button.css' ) )
 	);
 
 	// Icon and hover states for WordPress core/button's own "Fill"/"Outline" styles.
@@ -57,7 +61,7 @@ function spotlight_theme_2026_enqueue_assets() {
 		'spotlight-theme-2026-core-button',
 		get_theme_file_uri( 'assets/css/core-button.css' ),
 		array(),
-		wp_get_theme()->get( 'Version' )
+		filemtime( get_theme_file_path( 'assets/css/core-button.css' ) )
 	);
 
 	// Structural spacing for the header utility bar, trust-bar, and footer parts.
@@ -65,7 +69,7 @@ function spotlight_theme_2026_enqueue_assets() {
 		'spotlight-theme-2026-template-parts',
 		get_theme_file_uri( 'assets/css/template-parts.css' ),
 		array(),
-		wp_get_theme()->get( 'Version' )
+		filemtime( get_theme_file_path( 'assets/css/template-parts.css' ) )
 	);
 
 	// Add wp_enqueue_script() here when assets/js/main.js exists.

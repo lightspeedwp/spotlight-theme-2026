@@ -1,5 +1,5 @@
-<!-- wp:group {"tagName":"div","className":"site-utility-bar","style":{"border":{"bottom":{"width":"var:custom|border-width|base","color":"var:preset|color|neutral-300"}}},"layout":{"type":"constrained"},"align":"wide"} -->
-<div class="wp-block-group alignwide site-utility-bar" style="border-bottom-color:var(--wp--preset--color--neutral-300);border-bottom-width:var(--wp--custom--border-width--base)">
+<!-- wp:group {"tagName":"div","className":"site-utility-bar","style":{"border":{"bottom":{"width":"var:custom|border-width|base","style":"solid","color":"var:preset|color|neutral-300"}},"spacing":{"padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10"}},"elements":{"link":{"color":{"text":"var(--wp--preset--color--contrast)"},":hover":{"color":{"text":"var(--wp--preset--color--accent-200)"}}}}},"layout":{"type":"constrained"},"align":"wide"} -->
+<div class="wp-block-group alignwide site-utility-bar" style="border-bottom-color:var(--wp--preset--color--neutral-300);border-bottom-style:solid;border-bottom-width:var(--wp--custom--border-width--base);padding-top:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10)">
 	<!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left"}} -->
 	<div class="wp-block-group">
 		<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
@@ -9,7 +9,7 @@
 			<!-- /wp:outermost/icon-block -->
 
 			<!-- wp:paragraph {"className":"utility-link","fontSize":"100"} -->
-			<p class="utility-link has-100-font-size"><a href="#">Get our newsletter</a></p>
+			<p class="utility-link has-100-font-size"><a href="#" style="text-decoration:none">Get our newsletter</a></p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:group -->
@@ -21,7 +21,7 @@
 			<!-- /wp:outermost/icon-block -->
 
 			<!-- wp:paragraph {"className":"utility-link","fontSize":"100"} -->
-			<p class="utility-link has-100-font-size"><a href="#">Republish our stories</a></p>
+			<p class="utility-link has-100-font-size"><a href="#" style="text-decoration:none">Republish our stories</a></p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:group -->
@@ -30,8 +30,8 @@
 </div>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"header","className":"site-header","layout":{"type":"constrained"},"align":"wide"} -->
-<header class="wp-block-group alignwide site-header">
+<!-- wp:group {"tagName":"header","className":"site-header","style":{"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20"}}},"layout":{"type":"constrained"},"align":"wide"} -->
+<header class="wp-block-group alignwide site-header" style="padding-top:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20)">
 	<!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
 	<div class="wp-block-group">
 		<!-- wp:site-logo {"width":140} /-->
