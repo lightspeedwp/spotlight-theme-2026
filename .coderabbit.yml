@@ -18,7 +18,7 @@ reviews:
         Ensure colour palette slugs are consistent with style variations.
         Ensure font family slugs are consistent with enqueued fonts.
         Flag any deprecated settings.
-        Check that placeholder tokens ({{...}}) have been replaced if this is not a starter template.
+        This is the Spotlight client theme, not a starter template — check that no {{...}} placeholder tokens remain unreplaced.
 
     - path: "styles/*.json"
       instructions: |
@@ -95,7 +95,7 @@ reviews:
       instructions: |
         Review for accuracy. This is the primary guidance file for AI agents.
         Ensure commands listed are consistent with package.json and composer.json.
-        Ensure placeholder strategy is documented.
+        Ensure the theme correctly documents itself as the Spotlight client theme (not a starter/template repo), with placeholder tokens already replaced by real values.
 
     - path: "README.md"
       instructions: |
@@ -109,7 +109,7 @@ reviews:
     - Check for WordPress coding standards
     - Check for consistent use of theme.json over PHP
     - Check for unnecessary complexity or dependencies
-    - Check that placeholder tokens have been replaced (if not a starter)
+    - Check that no {{...}} placeholder tokens remain unreplaced — this is the Spotlight client theme, not a starter template
     - Check for consistent text domain usage
 
 chat:

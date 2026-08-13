@@ -33,6 +33,25 @@ function spotlight_theme_2026_setup() {
 add_action( 'after_setup_theme', 'spotlight_theme_2026_setup' );
 
 /**
+ * Returns a cache-busting version string for a theme file.
+ *
+ * Uses the file's own last-modified time — the theme `Version` header isn't
+ * bumped per asset edit, so it goes stale exactly like a literal would.
+ * Falls back to the theme version if the file isn't readable (a partial
+ * deploy, a permissions issue), so enqueueing never triggers a PHP warning.
+ * Matches the same pattern used in kwv-theme-2026.
+ *
+ * @param string $relative_path Path relative to the theme root.
+ * @return string
+ */
+function spotlight_theme_2026_asset_version( $relative_path ) {
+	$file  = get_theme_file_path( $relative_path );
+	$mtime = is_readable( $file ) ? filemtime( $file ) : false;
+
+	return (string) ( false !== $mtime ? $mtime : wp_get_theme()->get( 'Version' ) );
+}
+
+/**
  * Enqueues block assets on both the front end and in the editor (post
  * editor and Site Editor canvas alike).
  *
@@ -49,7 +68,7 @@ function spotlight_theme_2026_enqueue_assets() {
 		'spotlight-theme-2026-custom-button',
 		get_theme_file_uri( 'assets/css/custom-button.css' ),
 		array(),
-		wp_get_theme()->get( 'Version' )
+		spotlight_theme_2026_asset_version( 'assets/css/custom-button.css' )
 	);
 
 	// Icon and hover states for WordPress core/button's own "Fill"/"Outline" styles.
@@ -57,15 +76,16 @@ function spotlight_theme_2026_enqueue_assets() {
 		'spotlight-theme-2026-core-button',
 		get_theme_file_uri( 'assets/css/core-button.css' ),
 		array(),
-		wp_get_theme()->get( 'Version' )
+		spotlight_theme_2026_asset_version( 'assets/css/core-button.css' )
 	);
 
-	// Structural spacing for the header utility bar, trust-bar, and footer parts.
+	// Overrides core/navigation-link's own color:inherit rule, which out-specifies
+	// theme.json's generated link color styles.
 	wp_enqueue_style(
-		'spotlight-theme-2026-template-parts',
-		get_theme_file_uri( 'assets/css/template-parts.css' ),
+		'spotlight-theme-2026-core-navigation',
+		get_theme_file_uri( 'assets/css/core-navigation.css' ),
 		array(),
-		wp_get_theme()->get( 'Version' )
+		spotlight_theme_2026_asset_version( 'assets/css/core-navigation.css' )
 	);
 
 	// Add wp_enqueue_script() here when assets/js/main.js exists.

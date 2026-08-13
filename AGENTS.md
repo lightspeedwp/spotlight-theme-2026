@@ -7,8 +7,7 @@ Human developers should also read this file before contributing.
 
 ## Repo Purpose
 
-This is a **LightSpeed WordPress block theme starter repository**.
-It is designed to be used as a GitHub template for building custom WordPress block themes for client and commercial work.
+This is the **Spotlight** theme — a specific WordPress block theme built for a specific client site (spotlightnsp.co.za), not a reusable starter or GitHub template. It was bootstrapped from LightSpeed's internal WordPress block theme starter, and all placeholder tokens have already been replaced with Spotlight's real values (see `style.css`, `theme.json`, `composer.json`, `package.json`). Do not treat hard-coded, site-specific values here — a real navigation menu `ref`, real image paths, real content — as portability gaps to flag; they're correct for this site.
 
 It is **not** specifically packaged for WordPress.org submission.
 Do not add WordPress.org-specific bureaucracy unless there is clear value.
@@ -80,9 +79,9 @@ Do not add WordPress.org-specific bureaucracy unless there is clear value.
 
 ## Slug and Text Domain Consistency
 
-Replace all placeholder tokens before using this starter:
+This theme's identity is already set — these are the confirmed, final values, not placeholders awaiting replacement:
 
-| Placeholder         | Description                              |
+| Value               | Description                              |
 |---------------------|------------------------------------------|
 | `Spotlight Theme 2026`    | Human-readable theme name                |
 | `spotlight-theme-2026`    | Kebab-case slug (used in folder names)   |
@@ -97,8 +96,7 @@ Replace all placeholder tokens before using this starter:
 Rules:
 - `spotlight-theme-2026` must match `spotlight-theme-2026` everywhere.
 - Keep the slug consistent in `style.css`, `theme.json`, `composer.json`, and `package.json`.
-- Do not leave placeholder tokens blank — replace them with real values.
-- Search the repo for `{{` to find all remaining placeholders.
+- Do not reintroduce `{{...}}`-style placeholder tokens — that pattern belongs to the starter theme this project was bootstrapped from, not to this repo.
 
 ---
 
@@ -250,5 +248,5 @@ composer run lint:php
 12. **Keep agent personas in `.agents/agents/`.** Agent persona files describe specialist roles.
 13. **Do not modify `.github/workflows/` without understanding CI impacts.**
 14. **Always update `CHANGELOG.md`** when making meaningful changes.
-15. **Replace all placeholder tokens** before considering setup complete.
-16. **Use placeholder tokens** (`spotlight-theme-2026` etc.) rather than leaving metadata blank.
+15. **Do not reintroduce placeholder tokens.** This theme's identity (`spotlight-theme-2026` etc.) is already set — see "Slug and Text Domain Consistency" above.
+16. **Do not flag site-specific hard-coded values as portability gaps.** This is a specific client theme, not a starter template — a real navigation menu `ref`, real asset paths, and real content are correct here, not something to generalize.

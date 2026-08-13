@@ -42,9 +42,9 @@
 - [x] 4.6 Run `npm run schema:validate` and `npm run theme:validate`
 - [x] 4.7 Verify in the Site Editor: `front-page.html` renders for the site root, `search.html`/`404.html` render without fatal errors
 - [x] 4.8 Update `CHANGELOG.md` under `## [Unreleased]`
-- [ ] 4.9 Open PR against `feat/ls-1715-shared-template-parts-and-wrappers` (note: depends on that PR, do not merge first) — "Closes LS-1718"
+- [x] 4.9 Open PR against `feat/ls-1715-shared-template-parts-and-wrappers` (note: depends on that PR, do not merge first) — "Closes LS-1718" (PR #7)
 
 ## 5. After LS-1715 merges to `develop`
 
-- [ ] 5.1 Retarget the LS-1716, LS-1717, and LS-1718 PRs' base branch to `develop` (automatic if `feat/ls-1715-...` is deleted post-merge)
-- [ ] 5.2 Confirm no rebase is needed — this repo merges via merge commits, so each sibling branch already contains LS-1715's commits as ancestors
+- [x] 5.1 PR #5 (LS-1716), PR #6 (LS-1717), and PR #7 (LS-1718) were each merged directly into the `feat/ls-1715-shared-template-parts-and-wrappers` base branch, in that order — no retargeting to `develop` was needed since the sibling branches never left that base
+- [x] 5.2 `feat/ls-1715-shared-template-parts-and-wrappers` (now containing LS-1716/1717/1718's merged commits) was merged into `develop` last, via PR #4 — confirmed no rebase was needed since this repo merges via merge commits and each sibling branch already carried LS-1715's commits as ancestors

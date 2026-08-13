@@ -626,6 +626,20 @@
 						"bottom": "var(--wp--preset--spacing--10)"
 					}
 				}
+			},
+			"core/navigation": {
+				"elements": {
+					"link": {
+						"color": {
+							"text": "var(--wp--preset--color--accent-700)"
+						},
+						":hover": {
+							"color": {
+								"text": "var(--wp--preset--color--brand-500)"
+							}
+						}
+					}
+				}
 			}
 		}
 	},
