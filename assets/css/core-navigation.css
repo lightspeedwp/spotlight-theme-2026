@@ -1,0 +1,19 @@
+/*
+ * WordPress core/navigation-link's own built-in style
+ * (wp-includes/blocks/navigation-link/style.min.css) sets
+ * .wp-block-navigation-item__content.wp-block-navigation-item__content
+ * { color: inherit } — specificity (0,3,0) — which out-specifies
+ * theme.json's generated elements.link color rule (0,2,1, since its
+ * :where() wrapping contributes zero specificity). Matching that
+ * specificity exactly is a tie broken by source order, which is
+ * fragile, so this selector is one class deeper — (0,4,0) — to win
+ * outright regardless of load order.
+ */
+
+.wp-block-navigation .wp-block-navigation-item .wp-block-navigation-item__content.wp-block-navigation-item__content {
+	color: var(--wp--preset--color--accent-700);
+}
+
+.wp-block-navigation .wp-block-navigation-item .wp-block-navigation-item__content.wp-block-navigation-item__content:hover {
+	color: var(--wp--preset--color--brand-500);
+}

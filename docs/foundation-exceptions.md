@@ -29,6 +29,12 @@ Two exceptions this file used to carry are now gone:
 
 **Why the remaining one can't be native:** it's not expressible through theme.json settings/styles or a block's own supports — a small, targeted CSS rule scoped to a specific block context.
 
+## `assets/css/core-navigation.css`
+
+Overrides the link colour on every `core/navigation` menu (header and footer), for both the base and `:hover` states.
+
+**Why this can't be native:** `theme.json`'s `styles.blocks."core/navigation".elements.link` generates `:root :where(.wp-block-navigation a:where(:not(.wp-element-button)))` — but WordPress core's own `core/navigation-link` stylesheet (`wp-includes/blocks/navigation-link/style.min.css`) sets `.wp-block-navigation .wp-block-navigation-item__content.wp-block-navigation-item__content { color: inherit }`, a doubled-class selector with higher specificity that wins regardless of the `theme.json` rule's colour value. This stylesheet targets the same doubled-class selector core uses, so it wins on equal specificity via source order (it's enqueued after core's block styles). The `theme.json` `core/navigation` element style is left in place as the underlying value/fallback; this file is what actually renders.
+
 ## `theme.json` → `styles.blocks."core/quote".css` and `styles.blocks."core/pullquote".css`
 
 Raw CSS (via theme.json's supported `css` field) forcing the citation element's colour, font, style, weight, and line-height, overriding the block's own default citation styling.
