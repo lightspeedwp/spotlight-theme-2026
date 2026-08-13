@@ -79,14 +79,6 @@ function spotlight_theme_2026_enqueue_assets() {
 		spotlight_theme_2026_asset_version( 'assets/css/core-button.css' )
 	);
 
-	// Structural spacing for the header utility bar, trust-bar, and footer parts.
-	wp_enqueue_style(
-		'spotlight-theme-2026-template-parts',
-		get_theme_file_uri( 'assets/css/template-parts.css' ),
-		array(),
-		spotlight_theme_2026_asset_version( 'assets/css/template-parts.css' )
-	);
-
 	// Overrides core/navigation-link's own color:inherit rule, which out-specifies
 	// theme.json's generated link color styles.
 	wp_enqueue_style(

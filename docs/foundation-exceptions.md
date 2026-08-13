@@ -16,18 +16,15 @@ Icon and `:hover` states for WordPress core's own built-in `core/button` "Fill" 
 
 **Why this can't be native:** same constraint as above — the Outline style's arrow icon needs a `mask-image` pseudo-element that block style variation JSON can't express.
 
-## `assets/css/template-parts.css`
+## Not an exception anymore: `assets/css/template-parts.css`
 
-One remaining exception:
+This file (and its `wp_enqueue_style()` call in `functions.php`) has been removed entirely. It carried three exceptions over time, all now gone:
 
-- **Header search-button outline style** (`.site-header .wp-block-search__button`) — the design shows the header's search trigger as a plain outline circle, not the filled colour `core/search`'s button-only mode otherwise inherits from `styles.elements.button`. There's no per-instance override for a single `core/search` block's button sub-element in theme.json, so this is scoped narrowly to `.site-header` to avoid touching `core/search` usage elsewhere.
-
-Two exceptions this file used to carry are now gone:
-
+- **Header search-button outline style** — the header search trigger no longer has a custom border rule at all; the design's plain-circle look comes from the button's own default (no border), not an added one.
 - **Trust-bar item dividers and vertical-centering helper** — `parts/trust-bar.html` was rebuilt as a real `core/columns` block, with each item as its own column; the divider between items is now each column's native `border-left`, and each item's icon/text row uses the group layout's own `verticalAlignment:"center"` instead of a `.trust-bar__item { align-items: center; }` rule.
 - **The Press Council/FAIR certification badge** — now a real `wp:image` block in `parts/footer.html`, referencing a real Media Library attachment. The prior `background-image`-on-an-empty-`<p>` hack (and a later PHP-pattern workaround) has both been removed — there's nothing left to work around once the image is a genuine upload rather than a theme-bundled file. Same for the "10 years of impact" item's numeral — no longer a text substitute needing its own sizing rule, it's a real inline SVG in the same 60×60 box as the other four icons (an SVG `<text>` element set in the heading typeface).
 
-**Why the remaining one can't be native:** it's not expressible through theme.json settings/styles or a block's own supports — a small, targeted CSS rule scoped to a specific block context.
+**Known limitation, not an exception:** `core/image`'s `<img src>` is serialized directly into the block's saved markup — unlike `wp:site-logo`, it's a static/hybrid block with no render callback that resolves the URL from its `id` attribute at request time. `parts/footer.html`'s FAIR badge uses a domain-relative path (`/wp-content/uploads/...`) so it isn't tied to one hostname, but the upload path itself will still differ if this attachment is re-uploaded on another environment. This is an inherent constraint of static `wp:image` markup in block themes, not something a CSS/theme.json exception could fix — a dynamic PHP render (a custom pattern with a render callback, as `wp:site-logo` itself uses) would be the only way around it, which is out of scope for a single fixed image.
 
 ## `assets/css/core-navigation.css`
 

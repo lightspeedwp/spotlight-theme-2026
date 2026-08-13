@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - `styles.blocks."core/navigation".elements.link` in `theme.json` — `core/navigation` has no Style panel control for a hover state, so its links previously had none at all. Base text colour `accent-700`, hover `brand-500`. Applies to every `core/navigation` block theme-wide — both the header's existing menu and the new footer menu — from one place.
-- `assets/css/core-navigation.css` — the `theme.json` navigation link colours above weren't actually rendering: WordPress core's own `core/navigation-link` stylesheet sets a doubled-class `.wp-block-navigation-item__content.wp-block-navigation-item__content { color: inherit }` rule that out-specifies `theme.json`'s generated link-colour selector. This stylesheet targets the same doubled-class selector at matching specificity so it wins on source order, giving every navigation menu its intended `accent-700` base / `brand-500` hover colours (see `docs/foundation-exceptions.md`).
+- `assets/css/core-navigation.css` — the `theme.json` navigation link colours above weren't actually rendering: WordPress core's own `core/navigation-link` stylesheet sets a doubled-class `.wp-block-navigation-item__content.wp-block-navigation-item__content { color: inherit }` rule that out-specifies `theme.json`'s generated link-colour selector. This stylesheet matches core's selector at the same specificity, `(0,3,0)`, rather than exceeding it, and wins the tie on source order (enqueued after core's block styles) — going a class deeper would also override a real per-instance link colour a user picks for a single Navigation block in the Site Editor's Style panel (see `docs/foundation-exceptions.md`).
 - A new WordPress Navigation menu ("Footer", `wp_navigation` post 34013) with the footer's four links (Latest News, Data Desk, Republish, Contact us) as real `wp:navigation-link` items, created directly via the database per Zared's request to make the footer links a proper nav menu rather than plain paragraph links.
 
 - Nothing — a manually-added "Skip to content" link (in response to CodeRabbit's PR review) was reverted after discovering WordPress core already provides one automatically for block themes (`_block_template_add_skip_link()`, since 6.4), including its own guaranteed-loading stylesheet. The hand-rolled version duplicated core's, sharing its `.skip-link` class but without core's `screen-reader-text` hiding, so it rendered visibly instead of only on focus.
@@ -43,6 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - `parts/footer.html` — the footer's four links are now a real `<!-- wp:navigation {"ref":34013} /-->` block (the new "Footer" menu) instead of plain `wp:paragraph`/`<a>` markup, matching the header nav's typography (`fontSize:"300"`, `fontWeight:"500"`). Removed the now-redundant per-instance `elements.link`/`:hover` override on the wrapping group — the new `theme.json` `core/navigation` rule covers it globally.
+- `parts/header.html` — the utility-links group (newsletter/republish links) now lays out with `verticalAlignment:"center"` on a vertical flex orientation, matching the design's centered stack.
 
 - `parts/trust-bar.html` — reduced the columns' padding from `spacing|60` to `spacing|40` to match the design more closely; item titles now use `fontFamily:"heading"` on a `<p>` (Libre Baskerville, matching the design) instead of an `<h5>`, keeping the CodeRabbit-flagged heading-outline fix while still getting the right typeface.
 
@@ -71,11 +72,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- `assets/css/template-parts.css` and its `wp_enqueue_style()` call in `functions.php` — its one remaining rule (the header search-button's outline-circle border) was removed per design feedback; the trust-bar and FAIR-badge rules it used to carry were already superseded earlier. Nothing left in the file to keep it around for (see `docs/foundation-exceptions.md`).
+
 ### Fixed
 
 - Header navigation now uses the mobile overlay menu to keep narrow-screen navigation accessible.
 - Footer markup no longer nests the Site Title block inside a paragraph, preventing invalid heading-in-paragraph output.
 - Fixed `theme-utils.mjs`'s `validate-schema` command to check block-style-variation partial files (`styles/blocks/**/*.json`) at their real runtime position instead of the flat root `styles` shape, and to work around a confirmed upstream schema/`ajv` limitation with pseudo-selector property names.
+- `parts/footer.html`'s root block no longer sets `tagName:"footer"` — every template already wraps this part's `<!-- wp:template-part /-->` call in its own `tagName:"footer"`, so the part's own root was producing two nested `<footer>` landmarks on every page (CodeRabbit PR #8 review).
+- `parts/header.html`'s root block no longer sets `tagName:"header"`, for the same reason — every template's `<!-- wp:template-part /-->` call for the header already provides its own `tagName:"header"`, so this was producing two nested `<header>` landmarks too.
+- FAIR certification badge image in `parts/footer.html`: added descriptive `alt` text (was empty) and changed the `<img src>` from an absolute `http://spotlight.local/...` URL to a domain-relative path, so it isn't tied to one hostname (CodeRabbit PR #8 review; see `docs/foundation-exceptions.md` for the remaining environment-portability caveat this can't fully solve).
 
 ### Security
 
