@@ -1,8 +1,9 @@
 ## Context
 
 See `proposal.md` for motivation. Relevant constraints:
-- No `patterns/` directory exists yet in this theme. This change defines the pattern inventory; it does not create any `patterns/*.html` or `patterns/*.php` file.
-- `kwv-theme-2026` is a structural reference only (its `blog-card`/`blog-card-large` size-suffixed pattern naming) — its values and exact file set are not reused.
+- No `patterns/` directory exists yet in this theme. This change creates it, one `patterns/*.php` file per pattern named in `specs/pattern-library/spec.md`, across the 7 PRs below.
+- WordPress's file-based pattern loader only scans `.php` files in `patterns/` — `.html` is not a supported pattern-registration mechanism at all. Confirmed by inspecting `kwv-theme-2026`, the theme's structural reference (96 pattern files, all `.php`): most are a `<?php /** Title: ... Slug: ... Categories: ... */ ?>` header comment followed by static block markup, with a minority (e.g. its `template-single-post.php`) using genuine PHP logic (conditionals, `get_option()`/`get_permalink()`, i18n functions) where a pattern actually needs it. This theme's patterns follow the same convention: `.php` always, static markup by default, real PHP only where a specific pattern requires it (e.g. `provincial-map`'s interactivity data, if server-rendered state is needed).
+- `kwv-theme-2026` is a structural reference only for naming/sizing-variant conventions (its `blog-card`/`blog-card-large` size-suffixed pattern naming) and the `.php`-format confirmation above — its actual values and exact file set are not reused.
 - The redevelopment analysis PDF referenced by LS-1706 does not exist in this repo or as a Linear attachment on LS-1706 or its sub-issues (confirmed during explore). This change is built from the merged template placeholders (`templates/*.html`, `parts/sidebar-editorial.html`) and the Figma "Spotlight Design System" file instead.
 - A Figma client-feedback annotation on the "Provincial coverage" frame (file `XFmtkYUZ69HLFLzokvwif5`, frame `543:7632`) surfaced several requirements not captured when LS-1706's original sub-issues were written: the provincial map's hover/select interactivity, the confirmed CC BY-ND 4.0 republish copy, a question about pinning the dashboard-promo pattern to archive/category pages, and confirmation of the primary-navigation label order (resolving the open question LS-1705's design doc parked). The navigation and footer-redesign feedback items are out of this change's scope (patterns only); the map, republish-copy, and dashboard-placement items are captured in the spec above.
 - The Figma file shows three variants of the provincial-map component (map+newsletter, map+dynamic-latest-post, map+province-count-grid), but only the map+newsletter variant is marked "Ready for Dev." The other two are noted as later-phase and explicitly not defined by this change.
@@ -12,21 +13,21 @@ See `proposal.md` for motivation. Relevant constraints:
 ## Goals / Non-Goals
 
 **Goals:**
-- Map every existing template placeholder to exactly one named, phase-labeled pattern.
-- Resolve the two pattern-sizing questions LS-1705's design doc deferred (dashboard-promo, topic/section-band) as single patterns with named size variants.
-- Sequence the pattern groups into PR-sized units so implementation ships as several small, reviewable pull requests rather than one large one.
-- Capture the provincial-map's interactivity requirement and the other Figma-annotation findings as documented, flagged decisions rather than losing them.
+- Map every existing template placeholder to exactly one named, phase-labeled pattern, and build that pattern as a real `patterns/*.php` file.
+- Resolve the two pattern-sizing questions LS-1705's design doc deferred (dashboard-promo, topic/section-band) as single patterns with named size variants, each variant built and working.
+- Sequence the pattern groups into PR-sized units so implementation ships as several small, reviewable pull requests rather than one large one — each PR both finalizes its patterns' definitions and merges working pattern markup.
+- Capture the provincial-map's interactivity requirement and the other Figma-annotation findings as documented, flagged decisions rather than losing them, and build everything that is decided (deferring only what's explicitly flagged as an open question).
+- Update every affected template/part to reference the new patterns via `wp:pattern`, replacing `[... placeholder]` markers and unstyled inline markup.
 
 **Non-Goals:**
-- Authoring any pattern's actual markup, CSS, or PHP — a follow-on implementation change per PR unit defined below.
-- Deciding the provincial map's interaction technical approach (Interactivity API vs. non-JS fallback) — flagged as an open question for that pattern's implementation PR.
-- Defining the two later-phase provincial-map variants (dynamic latest-post swap, province-count grid) — noted for a future change once they're confirmed Ready for Dev.
-- Redesigning the primary navigation or footer — real feedback surfaced during this exploration, but out of this pattern-library change's scope; tracked separately.
-- Deciding whether the dashboard-promo pattern should also appear on `archive.html` — recorded as an open question for that pattern's implementation PR, not a template-structure decision this change can make.
+- Deciding the provincial map's interaction technical approach (Interactivity API vs. non-JS fallback) before PR 6 starts — that pattern's own PR investigates and resolves it, then builds against the resolution.
+- Defining or building the two later-phase provincial-map variants (dynamic latest-post swap, province-count grid) — deferred to a future change once they're confirmed Ready for Dev.
+- Redesigning the primary navigation or footer — real feedback surfaced during exploration, but out of this pattern-library change's scope; tracked separately.
+- Deciding whether the dashboard-promo pattern should also appear on `archive.html` — recorded as an open question for the PR 5 pattern build, not a template-structure decision resolved in advance.
 
 ## Decisions
 
-**Six pattern groups, six PR-sized implementation units — one Linear sub-issue (or the one closely-coupled pair below) per PR.** The user explicitly wants this shipped as several small, reviewable PRs rather than one large PR covering the whole pattern library. The six groups already have clean seams (no pattern is split across two groups, per the spec's inventory-completeness requirement), so each maps to one PR:
+**Seven pattern groups, seven PR-sized implementation units — one Linear sub-issue (or the cross-cutting group) per PR.** The user explicitly wants this shipped as several small, reviewable PRs rather than one large PR covering the whole pattern library. The groups already have clean seams (no pattern is split across two groups, per the spec's inventory-completeness requirement), so each maps to one PR:
 
 | PR | Pattern group | Sub-issue | Patterns delivered |
 |----|---------------|-----------|---------------------|
@@ -38,9 +39,9 @@ See `proposal.md` for motivation. Relevant constraints:
 | 6 | Interactive provincial-map | LS-2616 | `provincial-map` (map+newsletter variant only) |
 | 7 | Cross-cutting styling fidelity | none (spans LS-1719–1723) | `spotlight-badge`; global spacing/content-width pass across `single.html`/`home.html`/`archive.html` |
 
-This is a *definition-level* change, so the "PRs" above are actually this change's own tasks.md checkpoints (each producing a reviewable slice of the spec/design), and the same six-way split is recommended to whoever picks up implementation next, so the definition work and the build work stay aligned PR-for-PR. Not merged into fewer, larger groups: LS-1720 and LS-1723 both touch "cards," but LS-1720's cards are content-grid patterns while LS-1723's are entry/promo patterns with different CTA intent — collapsing them would blur the acceptance-criteria boundary Linear already drew. Not split further: six PRs for a library this size is already granular; splitting each further (e.g., one PR per size variant) would fragment tightly-coupled work (a pattern and its own size variant belong in the same review).
+Each PR's tasks.md group both finalizes that pattern group's definition (already largely decided below) and builds it as real `patterns/*.php` file(s), then wires the affected template(s) to reference them. The same seven-way split is the actual PR sequence to implement, not just a documentation grouping. Not merged into fewer, larger groups: LS-1720 and LS-1723 both touch "cards," but LS-1720's cards are content-grid patterns while LS-1723's are entry/promo patterns with different CTA intent — collapsing them would blur the acceptance-criteria boundary Linear already drew. Not split further: seven PRs for a library this size is already granular; splitting each further (e.g., one PR per size variant) would fragment tightly-coupled work (a pattern and its own size variant belong in the same review).
 
-**Dashboard-promo and topic-band are each one pattern with size variants, not two independent pattern files.** Confirmed directly with the user during exploration. This follows the `kwv-theme-2026` structural precedent (`blog-card`/`blog-card-large`) of size-suffixed pattern names sharing one definition rather than duplicated markup — the exact file-naming mechanism (e.g. `dashboard-promo.html` + `dashboard-promo-compact.html`, or a single pattern with a block-level size attribute) is left to the implementation PR, since it has no bearing on the pattern's definition, structure, or phase status.
+**Dashboard-promo and topic-band are each one pattern file with size variants, not two independent pattern files.** Confirmed directly with the user during exploration. This follows the `kwv-theme-2026` structural precedent (`blog-card`/`blog-card-large` as size-suffixed *separate* pattern files sharing a naming convention) — for this theme, each variant is its own `patterns/*.php` file following that same size-suffix naming (e.g. `patterns/dashboard-promo.php` for the full banner, `patterns/dashboard-promo-compact.php` for the sidebar card; `patterns/topic-band.php` for grid-with-counts, `patterns/topic-band-compact.php` for the sidebar list) rather than one file trying to express both sizes via a runtime attribute. This mirrors kwv's actual mechanism (separate files, shared prefix) rather than inventing a new one.
 
 **`parts/trust-bar.html` stays a template part, not a pattern.** Confirmed directly with the user. It is already fully authored, functional, and reused correctly as a shared template part — retroactively defining it as a pattern would add scope with no reader benefit. LS-1721's "trust panels" acceptance criteria is satisfied by the `republish-notice` and other utility patterns instead.
 
@@ -52,7 +53,7 @@ This is a *definition-level* change, so the "PRs" above are actually this change
 
 **The provincial-map pattern is scoped to only the Figma-confirmed "Ready for Dev" variant.** Confirmed directly with the user: of the three variants found in Figma (map+newsletter, map+dynamic-latest-post, map+province-count-grid), only map+newsletter is marked ready. Defining the other two now would be speculative work against unconfirmed designs — the same "ship what's confirmed, flag the rest" posture LS-1705's design doc established for `search.html`/`404.html`.
 
-**The provincial map's interaction technical approach is an open question, not a decision made here.** The Figma annotation confirms a hover/select-tooltip requirement exists, but choosing between the Interactivity API (`data-wp-*` directives) and a simpler CSS-only/no-JS fallback is an implementation-level technical decision with no bearing on the pattern's structural definition — resolving it now would be guessing ahead of the LS-2616 implementation PR's own investigation.
+**The provincial map's interaction technical approach is an open question, resolved at the start of PR 6, not guessed at now.** The Figma annotation confirms a hover/select-tooltip requirement exists, but choosing between the Interactivity API (`data-wp-*` directives) and a simpler CSS-only/no-JS fallback needs its own short investigation — task 6.1 requires resolving this with the user before `provincial-map.php` is built, rather than guessing a technical approach while still scoping the whole library.
 
 **The republish pattern's copy is fixed to the Figma-confirmed CC BY-ND 4.0 text, not placeholder legal copy.** The client-provided attribution copy was found directly in the Figma design annotation during this exploration; using anything else (e.g. inventing generic Creative Commons boilerplate) would risk shipping incorrect legal language for an already-answered question.
 
@@ -63,22 +64,27 @@ This is a *definition-level* change, so the "PRs" above are actually this change
 ## Risks / Trade-offs
 
 - **[No redevelopment analysis PDF was available]** → Mitigation: this change is built entirely from the merged template placeholders and the Figma design system, both of which already encode the homepage hierarchy and archive-logic decisions the PDF would have described. If the PDF surfaces later and conflicts with this spec, it is a scoped follow-up update to `specs/pattern-library/spec.md`, not a rebuild.
-- **[The provincial map's interactivity requirement may need more technical investigation than a pattern-definition change can resolve]** → Mitigation: flagged explicitly as an open question for the LS-2616 implementation PR rather than guessed at here; the pattern's structural definition (SVG map + newsletter pairing) does not depend on which interaction approach is eventually chosen.
-- **[Six PR-sized units may drift out of sync if implemented by different people/times, e.g. `story-card`'s shared structure diverging between LS-1720 and LS-1723's usage]** → Mitigation: the spec's `story-card` requirement explicitly documents it as one pattern with content-specific variants, giving implementers a single source of truth to check against regardless of which PR they're working from.
-- **[The dashboard-CTA-on-archive-pages question raised in the Figma annotation has no answer yet]** → Mitigation: recorded as an open question in the spec and proposal for the LS-1723 implementation PR; does not block this change or any other PR unit.
+- **[The provincial map's interactivity requirement may need more technical investigation than expected]** → Mitigation: task 6.1 requires resolving the technical approach (with a short spike if needed) before `provincial-map.php` is built, rather than guessing; the pattern's structural definition (SVG map + newsletter pairing) does not depend on which interaction approach is chosen.
+- **[Seven PR-sized units may drift out of sync if implemented by different people/times, e.g. `story-card`'s shared structure diverging between PR 2 and PR 5's usage]** → Mitigation: the spec's `story-card` requirement explicitly documents it as one pattern with content-specific variants, giving implementers a single source of truth to check against regardless of which PR they're working from.
+- **[The dashboard-CTA-on-archive-pages question raised in the Figma annotation has no answer yet]** → Mitigation: task 5.1 requires resolving this with the user before PR 5's `dashboard-promo` placements are built; does not block this change or any other PR unit.
 - **[PR 7's cross-cutting items (badge, spacing) could be built inconsistently if each dependent PR implements its own copy before PR 7 lands]** → Mitigation: PR 7 is called out explicitly in tasks.md as needing early sequencing relative to the PRs that consume it (2, 3, 4), or at minimum a shared reference point implementers check before adding their own badge/spacing treatment.
 
 ## Migration Plan
 
-This is a definition-only change — no theme code is added or modified.
-1. Merge this change's `proposal.md`, `specs/pattern-library/spec.md`, `design.md`, and `tasks.md`.
-2. Run `openspec sync-specs` (or `/opsx:sync`) to promote the delta spec into `openspec/specs/pattern-library/spec.md` once this change is archived, matching the LS-1704/1705 precedent.
-3. Each of the six PR-sized units above becomes its own future implementation change (new `patterns/*.html` files, `theme.json` pattern-category registration if needed), scoped and reviewed independently against this spec.
-4. Rollback, if needed, is a plain `git revert` of the OpenSpec change files — no theme code, no data migration involved.
+Additive per PR — no existing template/part is removed; each PR adds pattern files and updates its own template(s)/part(s) to reference them.
+1. PR 1 (LS-1719): add `patterns/hero-lead-story.php`, `patterns/featured-story.php`, `patterns/archive-listing-header.php`, `patterns/page-intro-banner.php`; update `templates/front-page.html`, `templates/home.html`, `templates/archive.html`, `templates/page.html` to reference them via `wp:pattern`.
+2. PR 2 (LS-1720): add `patterns/story-card.php` (+ variants), `patterns/topic-band.php`/`topic-band-compact.php`; update `templates/home.html`, `templates/archive.html`, `templates/front-page.html`, `templates/single.html`; style filter pills and pagination.
+3. PR 3 (LS-1721): add `patterns/newsletter-signup.php`/`newsletter-signup-compact.php`, `patterns/republish-notice.php`; update `parts/sidebar-editorial.html`, `templates/front-page.html`; tighten sidebar spacing/icons.
+4. PR 4 (LS-1722): add `patterns/related-coverage.php` (+ in-article variant); update `templates/single.html`, including the new "More from Spotlight" callout and the column-width/header-layout fixes.
+5. PR 5 (LS-1723): add `patterns/project-entry.php`, `patterns/dashboard-promo.php`/`dashboard-promo-compact.php`; update `templates/front-page.html`, `parts/sidebar-editorial.html`.
+6. PR 6 (LS-2616): resolve the Interactivity-API-vs-fallback open question, then add `patterns/provincial-map.php`; update `templates/front-page.html`.
+7. PR 7 (cross-cutting): add `patterns/spotlight-badge.php`; measure and apply spacing/content-width adjustments across `single.html`/`home.html`/`archive.html` and `theme.json` as needed. Sequence early relative to PRs 2–4 per the Risk noted below.
+8. Register any new pattern categories in `theme.json` if needed (WordPress auto-discovers `patterns/*.php` files via their header comment; no manual registration required beyond that).
+9. Run `npm run schema:validate` and `npm run theme:validate` after each PR; run `openspec validate --strict spotlight-pattern-library` once all PRs are drafted, then archive the change once merged.
+10. Rollback, if needed, is a plain `git revert` per PR — each PR is scoped to its own pattern files and template edits, so a revert doesn't affect the others.
 
 ## Open Questions
 
-- Should the `dashboard-promo` pattern also appear on `archive.html`/category pages, per the Figma client annotation's question about pinning the dashboard block across category pages? Deferred to the LS-1723 implementation PR.
-- Is the provincial-map tooltip built with the WordPress Interactivity API or a simpler non-JS fallback? Deferred to the LS-2616 implementation PR.
-- What is the exact file-naming/authoring mechanism for the `dashboard-promo` and `topic-band` size variants (separate files à la `kwv-theme-2026`, or a single pattern with a variant attribute)? Deferred to whichever PR first authors each pattern — doesn't affect this change's spec.
-- Will the dynamic latest-post-swap and province-count-grid map variants ever move from Figma exploration to "Ready for Dev"? Not tracked by this change; a future change would define them if/when confirmed.
+- Should the `dashboard-promo` pattern also appear on `archive.html`/category pages, per the Figma client annotation's question about pinning the dashboard block across category pages? To be resolved at the start of PR 5, before building `dashboard-promo.php`'s placements — ask the user if not already answered by then.
+- Is the provincial-map tooltip built with the WordPress Interactivity API or a simpler non-JS fallback? To be resolved at the start of PR 6, before building `provincial-map.php` — may need a short technical spike.
+- Will the dynamic latest-post-swap and province-count-grid map variants ever move from Figma exploration to "Ready for Dev"? Not tracked by this change; a future change would define and build them if/when confirmed.
