@@ -30,16 +30,12 @@ The pattern inventory SHALL define a `spotlight-badge` pattern for the solid bra
 - **WHEN** the `spotlight-badge` pattern is placed on the front-page hero, a `story-card` variant (e.g. Special Projects), and the single-post article header
 - **THEN** all three placements reference the same `spotlight-badge` pattern definition, differing only by which term/label value is displayed
 
-### Requirement: Lead-story hero and featured-story patterns
-The pattern inventory SHALL define a `hero-lead-story` pattern for the front page's primary headline treatment and one or more `featured-story` variant patterns for supporting story placements near the top of the homepage, both structured to support a calm, curated editorial front page rather than a stacked latest-posts feed.
+### Requirement: Lead-story hero pattern
+The pattern inventory SHALL define a `hero-lead-story` pattern for the front page's primary headline treatment, structured to support a calm, curated editorial front page rather than a stacked latest-posts feed. No separate "featured-story" pattern is defined — confirmed by walking the Figma "Homepage" Ready-for-Dev frame section by section, every homepage element after the hero belongs to another pattern group (`story-card`, `topic-band`, `dashboard-promo`, `project-entry`, or `provincial-map`).
 
 #### Scenario: Hero pattern fills the front-page hero insertion point
 - **WHEN** `front-page.html`'s `front-page__hero` section is rendered
 - **THEN** the `hero-lead-story` pattern supplies its content, replacing `[Featured-story hero pattern placeholder]`
-
-#### Scenario: Featured-story variants are distinct from the hero
-- **WHEN** a featured-story pattern is placed independently of the lead-story hero
-- **THEN** it is documented as a `featured-story` variant, not a duplicate or alias of `hero-lead-story`
 
 ### Requirement: Archive-listing header pattern
 The pattern inventory SHALL define an `archive-listing-header` pattern for the dark-banner title-and-search treatment confirmed on the Figma "Blog Landing Page" Ready-for-Dev frame, replacing the plain `wp:query-title`/`wp:search` markup currently authored inline in `home.html` and `archive.html`'s `post-listing-header` group.

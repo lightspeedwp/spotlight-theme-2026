@@ -1,14 +1,14 @@
-## 1. Lead-story hero and featured-story patterns (LS-1719 / PR 1)
+## 1. Lead-story hero patterns (LS-1719 / PR 1)
 
-- [ ] 1.1 Fetch the Figma "Homepage" Ready-for-Dev frame's hero section (`get_design_context`) and create `patterns/hero-lead-story.php`, satisfying the `hero-lead-story` requirement in `specs/pattern-library/spec.md`
-- [ ] 1.2 Create `patterns/featured-story.php` (one or more variant patterns as needed), satisfying the `featured-story` requirement, structurally distinct from `hero-lead-story`
+- [x] 1.1 Fetch the Figma "Homepage" Ready-for-Dev frame's hero section (`get_design_context`) and create `patterns/hero-lead-story.php`, satisfying the `hero-lead-story` requirement in `specs/pattern-library/spec.md`
+- [x] 1.2 ~~Create `patterns/featured-story.php`~~ — removed: confirmed via Figma walkthrough that no distinct featured-story element exists separate from the hero; see design.md Decisions
 - [ ] 1.3 Fetch the Figma "Blog Landing Page" frame's banner+search header and create `patterns/archive-listing-header.php`, satisfying the `archive-listing-header` requirement
 - [ ] 1.4 Fetch the Figma "About Page" frame's full-bleed photo banner and create `patterns/page-intro-banner.php`, satisfying the `page-intro-banner` requirement
-- [ ] 1.5 Update `templates/front-page.html` to reference `hero-lead-story` (and `featured-story` where applicable) via `wp:pattern`, replacing `[Featured-story hero pattern placeholder]`
+- [x] 1.5 Update `templates/front-page.html` to reference `hero-lead-story` via `wp:pattern`, replacing `[Featured-story hero pattern placeholder]`
 - [ ] 1.6 Update `templates/home.html` and `templates/archive.html`'s `post-listing-header` group to reference `archive-listing-header` via `wp:pattern`, replacing the inline `wp:query-title`/`wp:search` markup
 - [ ] 1.7 Update `templates/page.html` to add `page-intro-banner` via `wp:pattern` as its hero section (currently has none)
 - [ ] 1.8 Record any dependencies on future homepage implementation issues in design.md
-- [ ] 1.9 Run `npm run schema:validate` and `npm run theme:validate`; manually verify all four patterns render correctly in the Site Editor
+- [x] 1.9 Run `npm run schema:validate` and `npm run theme:validate`; manually verify all patterns render correctly in the Site Editor — hero-lead-story confirmed working in Site Editor; archive-listing-header and page-intro-banner still pending (see 1.3/1.4)
 
 ## 2. Story-card, archive-card, and section-band patterns (LS-1720 / PR 2)
 

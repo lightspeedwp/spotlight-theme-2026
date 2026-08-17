@@ -32,7 +32,7 @@ See `proposal.md` for motivation. Relevant constraints:
 
 | PR | Pattern group | Sub-issue | Patterns delivered |
 |----|---------------|-----------|---------------------|
-| 1 | Lead-story hero + featured-story | LS-1719 | `hero-lead-story`, `featured-story`, `archive-listing-header`, `page-intro-banner` |
+| 1 | Lead-story hero | LS-1719 | `hero-lead-story`, `archive-listing-header`, `page-intro-banner` |
 | 2 | Story-card, archive-card, section-band | LS-1720 | `story-card` (+ Perspectives/Recent-stories-shape variants), `topic-band` (2 size variants) |
 | 3 | Trust, newsletter, editorial-utility | LS-1721 | `newsletter-signup` (2 size variants), `republish-notice` |
 | 4 | Related-coverage, onward-journey | LS-1722 | `related-coverage` |
@@ -45,6 +45,8 @@ Each PR's tasks.md group both finalizes that pattern group's definition (already
 **Dashboard-promo and topic-band are each one pattern file with size variants, not two independent pattern files.** Confirmed directly with the user during exploration. This follows the `kwv-theme-2026` structural precedent (`blog-card`/`blog-card-large` as size-suffixed *separate* pattern files sharing a naming convention) — for this theme, each variant is its own `patterns/*.php` file following that same size-suffix naming (e.g. `patterns/dashboard-promo.php` for the full banner, `patterns/dashboard-promo-compact.php` for the sidebar card; `patterns/topic-band.php` for grid-with-counts, `patterns/topic-band-compact.php` for the sidebar list) rather than one file trying to express both sizes via a runtime attribute. This mirrors kwv's actual mechanism (separate files, shared prefix) rather than inventing a new one.
 
 **`parts/trust-bar.html` stays a template part, not a pattern.** Confirmed directly with the user. It is already fully authored, functional, and reused correctly as a shared template part — retroactively defining it as a pattern would add scope with no reader benefit. LS-1721's "trust panels" acceptance criteria is satisfied by the `republish-notice` and other utility patterns instead.
+
+**`featured-story` is removed from scope — no confirmed Figma frame shows it.** During PR 1 implementation, walking the actual "Homepage" Ready-for-Dev frame section by section with the user confirmed every element after the hero (topic grid, latest news, dashboards, special projects, provincial coverage, perspectives) is `story-card`/`topic-band`/`dashboard-promo`/`project-entry`/`provincial-map` scope — none is a second, distinct "featured story" placement. This requirement was speculative scope carried over from LS-1706's original sub-issue wording, written before this pattern-by-pattern Figma walkthrough happened. Removed from the spec, design, and tasks rather than built against no design source — the same "ship what's confirmed, don't invent" posture already established for `search.html`/`404.html` in the LS-1705 design doc.
 
 **`archive-listing-header` and `page-intro-banner` join LS-1719, not a new sub-issue.** Confirmed directly with the user after cross-checking all four Figma Ready-for-Dev page frames (`Homepage`, `Blog Landing Page`, `About Page`, `Single Blog Post`) against the merged templates. Both are page-level header/banner patterns — the same structural family as `hero-lead-story` — not cards or section-bands, so they belong with LS-1719 rather than LS-1720. Neither was previously named because both are authored as plain inline core blocks (or, for `page.html`, not authored at all) rather than a `[... placeholder]` marker, so the original six-group breakdown's placeholder-only sweep missed them. `Single Blog Post` was also checked and needs no new pattern — its headline sits directly in the article flow, already covered by the existing spec.
 
@@ -73,7 +75,7 @@ Each PR's tasks.md group both finalizes that pattern group's definition (already
 ## Migration Plan
 
 Additive per PR — no existing template/part is removed; each PR adds pattern files and updates its own template(s)/part(s) to reference them.
-1. PR 1 (LS-1719): add `patterns/hero-lead-story.php`, `patterns/featured-story.php`, `patterns/archive-listing-header.php`, `patterns/page-intro-banner.php`; update `templates/front-page.html`, `templates/home.html`, `templates/archive.html`, `templates/page.html` to reference them via `wp:pattern`.
+1. PR 1 (LS-1719): add `patterns/hero-lead-story.php`, `patterns/archive-listing-header.php`, `patterns/page-intro-banner.php`; update `templates/front-page.html`, `templates/home.html`, `templates/archive.html`, `templates/page.html` to reference them via `wp:pattern`.
 2. PR 2 (LS-1720): add `patterns/story-card.php` (+ variants), `patterns/topic-band.php`/`topic-band-compact.php`; update `templates/home.html`, `templates/archive.html`, `templates/front-page.html`, `templates/single.html`; style filter pills and pagination.
 3. PR 3 (LS-1721): add `patterns/newsletter-signup.php`/`newsletter-signup-compact.php`, `patterns/republish-notice.php`; update `parts/sidebar-editorial.html`, `templates/front-page.html`; tighten sidebar spacing/icons.
 4. PR 4 (LS-1722): add `patterns/related-coverage.php` (+ in-article variant); update `templates/single.html`, including the new "More from Spotlight" callout and the column-width/header-layout fixes.
