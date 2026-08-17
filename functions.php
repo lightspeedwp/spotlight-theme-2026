@@ -33,6 +33,53 @@ function spotlight_theme_2026_setup() {
 add_action( 'after_setup_theme', 'spotlight_theme_2026_setup' );
 
 /**
+ * Registers the theme's block pattern category.
+ */
+function spotlight_theme_2026_register_pattern_categories() {
+	register_block_pattern_category(
+		'spotlight',
+		array( 'label' => __( 'Spotlight', 'spotlight-theme-2026' ) )
+	);
+}
+add_action( 'init', 'spotlight_theme_2026_register_pattern_categories' );
+
+/**
+ * Resolves the "featured" tag's real term ID into the Hero Lead Story
+ * pattern's query at render time.
+ *
+ * The core/query block's taxQuery attribute only accepts numeric term IDs,
+ * never slugs, and the "featured" tag's ID isn't known when the pattern file is
+ * authored (it varies per install and doesn't exist until an editor
+ * creates it). This filter looks the ID up by slug just before the block
+ * renders, so patterns/hero-lead-story.php can stay portable and
+ * slug-based instead of hardcoding an ID.
+ *
+ * @param array $parsed_block The block being rendered.
+ * @return array
+ */
+function spotlight_theme_2026_resolve_hero_featured_tag( $parsed_block ) {
+	if (
+		'core/query' !== $parsed_block['blockName']
+		|| 'spotlight/hero-lead-story' !== ( $parsed_block['attrs']['namespace'] ?? '' )
+	) {
+		return $parsed_block;
+	}
+
+	$featured_tag = get_term_by( 'slug', 'featured', 'post_tag' );
+
+	if ( ! $featured_tag instanceof WP_Term ) {
+		return $parsed_block;
+	}
+
+	$parsed_block['attrs']['query']['taxQuery'] = array(
+		'post_tag' => array( $featured_tag->term_id ),
+	);
+
+	return $parsed_block;
+}
+add_filter( 'render_block_data', 'spotlight_theme_2026_resolve_hero_featured_tag' );
+
+/**
  * Returns a cache-busting version string for a theme file.
  *
  * Uses the file's own last-modified time — the theme `Version` header isn't
@@ -86,6 +133,15 @@ function spotlight_theme_2026_enqueue_assets() {
 		get_theme_file_uri( 'assets/css/core-navigation.css' ),
 		array(),
 		spotlight_theme_2026_asset_version( 'assets/css/core-navigation.css' )
+	);
+
+	// Makes the Spotlight Badge (core/post-terms) hug its content width
+	// instead of stretching to fill its block-level <div> wrapper.
+	wp_enqueue_style(
+		'spotlight-theme-2026-spotlight-badge',
+		get_theme_file_uri( 'assets/css/spotlight-badge.css' ),
+		array(),
+		spotlight_theme_2026_asset_version( 'assets/css/spotlight-badge.css' )
 	);
 
 	// Add wp_enqueue_script() here when assets/js/main.js exists.

@@ -58,6 +58,8 @@ The pattern inventory SHALL define a `page-intro-banner` pattern for the full-bl
 ### Requirement: Story-card, archive-card, and section-band patterns
 The pattern inventory SHALL define a `story-card` pattern (covering `home.html`/`archive.html`'s grid card, the front page's Latest News/Special Projects/Perspectives card-rows, and `single.html`'s Recent Stories card, as shared structure with content-specific variants) and a `topic-band` pattern (covering the front page's topic grid and `single.html`'s sidebar "Explore topics" list as a full-grid-with-counts variant and a compact sidebar-list variant of the same pattern, not two independent patterns). CTA behavior, visual hierarchy, and scanability SHALL be consistent across all `story-card` variants.
 
+The `story-card` pattern SHALL reuse the `spotlight-badge` pattern (via `require()`) for its image-overlay status label where present, and SHALL define a separate plain-text category label (brand-500 colored text, uppercase, no background/padding/border) for the label shown below the image — confirmed against the Figma "Special Projects" section as two distinct elements, not two styles of the same badge.
+
 #### Scenario: Blog Card placeholder resolves to story-card
 - **WHEN** `home.html` or `archive.html`'s post-template loop is reviewed
 - **THEN** the `[Blog Card pattern placeholder]` resolves to the `story-card` pattern's default grid variant
@@ -65,6 +67,10 @@ The pattern inventory SHALL define a `story-card` pattern (covering `home.html`/
 #### Scenario: Topic-band has exactly two size variants
 - **WHEN** the `topic-band` pattern is placed on the front page versus in `single.html`'s sidebar
 - **THEN** both placements use the same `topic-band` pattern definition, differing only by a documented size variant (grid-with-counts vs. sidebar-list)
+
+#### Scenario: Story-card's two category labels are distinct
+- **WHEN** a `story-card` instance has both an image-overlay status badge and a below-image category label
+- **THEN** the overlay badge reuses the existing `spotlight-badge` pattern, and the below-image label uses a separate plain-text category-label treatment, not a shared or duplicated component
 
 ### Requirement: Trust, newsletter, and editorial-utility patterns
 The pattern inventory SHALL define a `newsletter-signup` pattern (with a front-page size variant and a sidebar/compact size variant), a `republish-notice` pattern using the Creative Commons BY-ND 4.0 attribution copy confirmed in the Figma design annotation, and any other recurring credibility/utility pattern needed by `parts/sidebar-editorial.html` or `single.html`. The already-built `parts/trust-bar.html` template part SHALL NOT be redefined as a pattern by this capability.

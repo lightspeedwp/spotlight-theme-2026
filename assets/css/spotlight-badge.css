@@ -1,0 +1,11 @@
+/*
+ * core/post-terms renders a block-level <div> wrapper with no built-in
+ * "hug content width" option, so the Spotlight Badge (patterns/spotlight-
+ * badge.php) stretches full-width in any constrained/flow parent unless
+ * told otherwise here.
+ */
+
+.spotlight-badge {
+	display: inline-flex;
+	width: fit-content;
+}
