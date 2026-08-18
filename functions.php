@@ -184,6 +184,17 @@ function spotlight_theme_2026_enqueue_assets() {
 		spotlight_theme_2026_asset_version( 'assets/css/spotlight-breadcrumb-icon.css' )
 	);
 
+	// core/post-featured-image's border support doesn't reliably serialize
+	// via block attributes, and core/group has no "position" attribute —
+	// both needed for story-card/-editorial/-featured's image radius and
+	// badge-overlay placement.
+	wp_enqueue_style(
+		'spotlight-theme-2026-story-card',
+		get_theme_file_uri( 'assets/css/story-card.css' ),
+		array(),
+		spotlight_theme_2026_asset_version( 'assets/css/story-card.css' )
+	);
+
 	// Add wp_enqueue_script() here when assets/js/main.js exists.
 }
 add_action( 'enqueue_block_assets', 'spotlight_theme_2026_enqueue_assets' );

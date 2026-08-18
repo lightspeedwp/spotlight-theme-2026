@@ -12,7 +12,7 @@
 
 ## 2. Story-card, archive-card, and section-band patterns (LS-1720 / PR 2)
 
-- [ ] 2.1 Create `patterns/story-card.php` covering: `home.html`/`archive.html` grid card, front-page Latest News/Special Projects/Perspectives rows, and `single.html` Recent Stories card — satisfying the `story-card` requirement, with content-specific variants as needed
+- [x] 2.1 Create `story-card.php` (boxed, default — home.html/archive.html grid, Latest News), `story-card-editorial.php` (no card background, larger radius, no badge — Perspectives), and `story-card-featured.php` (editorial style + spotlight-badge overlay — Special Projects) — satisfying the `story-card` requirement's content-specific variants. `single.html`'s Recent Stories card is out of scope here — confirmed against spec.md's `related-coverage` requirement and design.md's Decisions, it belongs to PR 4 (LS-1722), not `story-card`; the original wording here was stale. Three files instead of one, confirmed directly against Figma: all three placements use the same "Card/Blog" component and content structure, but differ in card background/radius and badge presence — not documentation categories, real distinct visual treatments.
 - [ ] 2.2 Create `patterns/topic-band.php` (grid-with-counts, for the front page) and `patterns/topic-band-compact.php` (sidebar-list, for `single.html` Explore topics) — satisfying the `topic-band` requirement's two size variants
 - [ ] 2.3 Verify CTA behaviour, hierarchy, and scanability consistency across all `story-card` variants
 - [ ] 2.4 Update `templates/home.html`/`templates/archive.html`'s post-template loop to reference `story-card` via `wp:pattern`, replacing `[Blog Card pattern placeholder]`
