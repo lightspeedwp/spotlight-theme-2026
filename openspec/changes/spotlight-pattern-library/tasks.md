@@ -7,8 +7,8 @@
 - [x] 1.5 Update `templates/front-page.html` to reference `hero-lead-story` via `wp:pattern`, replacing `[Featured-story hero pattern placeholder]`
 - [x] 1.6 Update `templates/home.html` and `templates/archive.html`'s `post-listing-header` group to reference `archive-listing-header`/`archive-listing-header-archive` via `wp:pattern`
 - [x] 1.7 Update `templates/page.html` to add `page-intro-banner` via `wp:pattern` as a direct child of `main` (for its own align:"full" to apply correctly); removed the template's standalone `wp:post-title` to avoid a duplicate H1, since the pattern now owns the page's title
-- [ ] 1.8 Record any dependencies on future homepage implementation issues in design.md
-- [x] 1.9 Run `npm run schema:validate` and `npm run theme:validate`; manually verify all patterns render correctly in the Site Editor — hero-lead-story confirmed working in Site Editor; archive-listing-header and page-intro-banner still pending (see 1.3/1.4)
+- [x] 1.8 Record any dependencies on future homepage implementation issues in design.md
+- [x] 1.9 Run `npm run schema:validate` and `npm run theme:validate`; manually verify all patterns render correctly in the Site Editor — hero-lead-story, archive-listing-header, archive-listing-header-archive, and page-intro-banner all confirmed working in the Site Editor and on the front end
 
 ## 2. Story-card, archive-card, and section-band patterns (LS-1720 / PR 2)
 
