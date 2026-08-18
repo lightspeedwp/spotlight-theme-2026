@@ -1,0 +1,52 @@
+/*
+ * Width/left-alignment is handled natively by wp:columns {"align":"wide"}
+ * with an explicit column width percentage (matching this theme's own
+ * footer.html convention) — no CSS override needed for that.
+ *
+ * The breadcrumb→title and title→search gaps use padding-bottom set
+ * directly as a real block attribute (style.spacing.padding on wp:group
+ * and wp:post-title/wp:query-title), not margin or blockGap — both proved
+ * unreliable here via direct DevTools inspection (WordPress's layout
+ * support zeroes margin-block-end on every child of a default/constrained
+ * container, and a competing rule silently beat blockGap's own
+ * margin-block-start too). Padding has no such conflict.
+ *
+ * theme.json's global heading style still sets its own margin-top on every
+ * heading, which the padding-bottom approach doesn't cancel — reset just
+ * that one property so it doesn't add unwanted extra space above the title
+ * on top of the breadcrumb's padding-bottom.
+ *
+ * core/search's border support is marked __experimentalSkipSerialization in
+ * its own block.json, so border-radius set via block attributes does not
+ * reliably serialize into the saved markup — this genuinely needs CSS,
+ * unlike the spacing/width issues above.
+ *
+ * The breadcrumb icon's line-height:0 fix lives in the shared
+ * spotlight-breadcrumb-icon.css instead of here, since the same icon
+ * pattern repeats in page-intro-banner.php too.
+ */
+
+.archive-listing-header .wp-block-post-title.archive-listing-header__title,
+.archive-listing-header .wp-block-query-title.archive-listing-header__title {
+	margin-top: 0;
+}
+
+.archive-listing-header .wp-block-search__inside-wrapper {
+	border-radius: var(--wp--preset--border-radius--500);
+	overflow: hidden;
+}
+
+/* Figma's Search Button node (547:9536) uses border-radius--500 directly
+   on the button itself, not just the outer wrapper — a full pill/capsule,
+   not just rounded corners on the overall bar. */
+.archive-listing-header .wp-block-search__button {
+	border-radius: var(--wp--preset--border-radius--500);
+}
+
+.archive-listing-header .wp-block-search__input {
+	padding-left: var(--wp--preset--spacing--60);
+	background-image: url('../icons/magnifying-glass.svg');
+	background-repeat: no-repeat;
+	background-position: var(--wp--preset--spacing--20) center;
+	background-size: 1.25em;
+}

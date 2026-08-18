@@ -29,8 +29,74 @@ function spotlight_theme_2026_setup() {
 	// No width/height constraints here — each wp:site-logo instance is sized
 	// directly in its own pattern markup instead.
 	add_theme_support( 'custom-logo' );
+
+	// Pages don't have excerpt support by default. page-intro-banner.php uses
+	// core/post-excerpt for its intro copy so editors can write dedicated,
+	// separate intro text per page; without this, the Excerpt field never
+	// appears in the editor and the block silently falls back to
+	// auto-generated content trimmed from the page body.
+	add_post_type_support( 'page', 'excerpt' );
 }
 add_action( 'after_setup_theme', 'spotlight_theme_2026_setup' );
+
+/**
+ * Registers the theme's block pattern category.
+ *
+ * Guarded against an already-registered "spotlight" slug — registering a
+ * duplicate category name triggers a PHP notice, and another plugin or a
+ * future centralized registration could plausibly claim the same slug.
+ */
+function spotlight_theme_2026_register_pattern_categories() {
+	if ( WP_Block_Pattern_Categories_Registry::get_instance()->is_registered( 'spotlight' ) ) {
+		return;
+	}
+
+	register_block_pattern_category(
+		'spotlight',
+		array( 'label' => __( 'Spotlight', 'spotlight-theme-2026' ) )
+	);
+}
+add_action( 'init', 'spotlight_theme_2026_register_pattern_categories' );
+
+/**
+ * Resolves the "featured" tag's real term ID into the Hero Lead Story
+ * pattern's query at render time.
+ *
+ * The core/query block's taxQuery attribute only accepts numeric term IDs,
+ * never slugs, and the "featured" tag's ID isn't known when the pattern file is
+ * authored (it varies per install and doesn't exist until an editor
+ * creates it). This filter looks the ID up by slug just before the block
+ * renders, so patterns/hero-lead-story.php can stay portable and
+ * slug-based instead of hardcoding an ID.
+ *
+ * If the "featured" tag doesn't exist yet (a fresh install, or before an
+ * editor has tagged anything), the query is forced to return zero results
+ * rather than left unfiltered — otherwise the hero would silently show the
+ * latest post as if it were featured, which is incorrect on every install
+ * until the tag is actually created and used.
+ *
+ * @param array $parsed_block The block being rendered.
+ * @return array
+ */
+function spotlight_theme_2026_resolve_hero_featured_tag( $parsed_block ) {
+	if (
+		'core/query' !== $parsed_block['blockName']
+		|| 'spotlight/hero-lead-story' !== ( $parsed_block['attrs']['namespace'] ?? '' )
+	) {
+		return $parsed_block;
+	}
+
+	$featured_tag = get_term_by( 'slug', 'featured', 'post_tag' );
+
+	// A term ID of 0 never matches a real term, forcing zero results instead
+	// of an unfiltered (and therefore incorrectly "featured") query.
+	$parsed_block['attrs']['query']['taxQuery'] = array(
+		'post_tag' => array( $featured_tag instanceof WP_Term ? $featured_tag->term_id : 0 ),
+	);
+
+	return $parsed_block;
+}
+add_filter( 'render_block_data', 'spotlight_theme_2026_resolve_hero_featured_tag' );
 
 /**
  * Returns a cache-busting version string for a theme file.
@@ -86,6 +152,36 @@ function spotlight_theme_2026_enqueue_assets() {
 		get_theme_file_uri( 'assets/css/core-navigation.css' ),
 		array(),
 		spotlight_theme_2026_asset_version( 'assets/css/core-navigation.css' )
+	);
+
+	// Makes the Spotlight Badge (core/post-terms) hug its content width
+	// instead of stretching to fill its block-level <div> wrapper.
+	wp_enqueue_style(
+		'spotlight-theme-2026-spotlight-badge',
+		get_theme_file_uri( 'assets/css/spotlight-badge.css' ),
+		array(),
+		spotlight_theme_2026_asset_version( 'assets/css/spotlight-badge.css' )
+	);
+
+	// core/search's border support doesn't reliably serialize via block
+	// attributes, and core/group has no max-width attribute — both need
+	// real CSS for the archive-listing-header patterns' width/radius/icon.
+	wp_enqueue_style(
+		'spotlight-theme-2026-archive-listing-header',
+		get_theme_file_uri( 'assets/css/archive-listing-header.css' ),
+		array(),
+		spotlight_theme_2026_asset_version( 'assets/css/archive-listing-header.css' )
+	);
+
+	// Shared line-height:0 fix for the breadcrumb separator icon
+	// (core/image has no style support for it), reused by
+	// archive-listing-header, archive-listing-header-archive, and
+	// page-intro-banner instead of duplicating the rule per pattern.
+	wp_enqueue_style(
+		'spotlight-theme-2026-breadcrumb-icon',
+		get_theme_file_uri( 'assets/css/spotlight-breadcrumb-icon.css' ),
+		array(),
+		spotlight_theme_2026_asset_version( 'assets/css/spotlight-breadcrumb-icon.css' )
 	);
 
 	// Add wp_enqueue_script() here when assets/js/main.js exists.
