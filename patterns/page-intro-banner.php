@@ -30,11 +30,12 @@
  *   genuinely differ here per their respective Figma frames.
  * - The title/intro-copy block is a fixed 800px in the design — exactly
  *   theme.json's contentSize. It's deliberately NOT align:"wide": as a
- *   plain (unaligned) child of this group's "constrained" layout, core's
- *   own layout support already constrains it to contentSize (800px)
- *   automatically — the same native mechanism that caused the
- *   hero-lead-story width bug, working correctly here in its intended
- *   use case, no custom width override needed.
+ *   plain child of the wide wrapper's "constrained" layout below
+ *   (contentSize:"800px", justifyContent:"left"), core's own layout
+ *   support constrains and left-aligns it automatically — no custom CSS
+ *   needed. contentSize is spelled out explicitly since bare
+ *   {"type":"constrained"} in static markup has no max-width effect;
+ *   WordPress only fills that in from theme.json via the editor UI.
  *
  * wp:post-title stays at its real level:1 here (unlike
  * archive-listing-header's level:3) — this is the page's actual, primary
@@ -51,7 +52,7 @@
 ?>
 <!-- wp:group {"align":"full","className":"page-intro-banner","backgroundColor":"accent-600","textColor":"neutral-100","style":{"spacing":{"padding":{"top":"var:preset|spacing|20","right":"var:preset|spacing|20","bottom":"var:preset|spacing|100","left":"var:preset|spacing|20"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull page-intro-banner has-neutral-100-color has-accent-600-background-color has-text-color has-background" style="padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--100);padding-left:var(--wp--preset--spacing--20)">
-	<!-- wp:group {"align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|50","padding":{"top":"var:preset|spacing|50","right":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|50"}}},"layout":{"type":"default"}} -->
+	<!-- wp:group {"align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|50","padding":{"top":"var:preset|spacing|50","right":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|50"}}},"layout":{"type":"constrained","contentSize":"800px","justifyContent":"left"}} -->
 	<div class="wp-block-group alignwide" style="padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--50)">
 		<!-- wp:group {"className":"page-intro-banner__breadcrumbs","style":{"spacing":{"blockGap":"var:preset|spacing|20","padding":{"bottom":"var:preset|spacing|50"}}},"layout":{"type":"flex","flexWrap":"nowrap"},"fontSize":"100"} -->
 		<div class="wp-block-group page-intro-banner__breadcrumbs has-100-font-size" style="padding-bottom:var(--wp--preset--spacing--50)">
@@ -67,8 +68,8 @@
 		</div>
 		<!-- /wp:group -->
 
-		<!-- wp:group {"className":"page-intro-banner__title-group","style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"default"}} -->
-		<div class="wp-block-group page-intro-banner__title-group">
+		<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"default"}} -->
+		<div class="wp-block-group">
 			<!-- wp:post-title {"level":1,"fontSize":"500","textColor":"neutral-100","style":{"spacing":{"padding":{"bottom":"var:preset|spacing|60"}}}} /-->
 
 			<!-- wp:post-excerpt {"fontSize":"400","textColor":"neutral-300"} /-->
