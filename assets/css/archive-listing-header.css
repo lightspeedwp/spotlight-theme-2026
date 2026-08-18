@@ -20,18 +20,15 @@
  * its own block.json, so border-radius set via block attributes does not
  * reliably serialize into the saved markup — this genuinely needs CSS,
  * unlike the spacing/width issues above.
+ *
+ * The breadcrumb icon's line-height:0 fix lives in the shared
+ * spotlight-breadcrumb-icon.css instead of here, since the same icon
+ * pattern repeats in page-intro-banner.php too.
  */
 
 .archive-listing-header .wp-block-post-title.archive-listing-header__title,
 .archive-listing-header .wp-block-query-title.archive-listing-header__title {
 	margin-top: 0;
-}
-
-/* core/image's figure has no style support for line-height — the real
-   save() output never includes an inline style on the figure, so this has
-   to be real CSS or the breadcrumb icon's own block-validity breaks. */
-.archive-listing-header__breadcrumbs figure.wp-block-image {
-	line-height: 0;
 }
 
 .archive-listing-header .wp-block-search__inside-wrapper {

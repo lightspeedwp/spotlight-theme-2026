@@ -184,6 +184,17 @@ function spotlight_theme_2026_enqueue_assets() {
 		spotlight_theme_2026_asset_version( 'assets/css/page-intro-banner.css' )
 	);
 
+	// Shared line-height:0 fix for the breadcrumb separator icon
+	// (core/image has no style support for it), reused by
+	// archive-listing-header, archive-listing-header-archive, and
+	// page-intro-banner instead of duplicating the rule per pattern.
+	wp_enqueue_style(
+		'spotlight-theme-2026-breadcrumb-icon',
+		get_theme_file_uri( 'assets/css/spotlight-breadcrumb-icon.css' ),
+		array(),
+		spotlight_theme_2026_asset_version( 'assets/css/spotlight-breadcrumb-icon.css' )
+	);
+
 	// Add wp_enqueue_script() here when assets/js/main.js exists.
 }
 add_action( 'enqueue_block_assets', 'spotlight_theme_2026_enqueue_assets' );

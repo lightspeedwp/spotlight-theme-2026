@@ -6,14 +6,11 @@
  * layout would. core/group has no max-width style attribute, so this needs
  * real CSS instead. Scoped to this group only, so the sibling breadcrumbs
  * group is unaffected.
+ *
+ * The breadcrumb icon's line-height:0 fix lives in the shared
+ * spotlight-breadcrumb-icon.css instead of here, since the same icon
+ * pattern repeats in archive-listing-header.php/-archive.php too.
  */
 .page-intro-banner__title-group {
 	max-width: var(--wp--style--global--content-size);
-}
-
-/* core/image's figure has no style support for line-height — the real
-   save() output never includes an inline style on the figure, so this has
-   to be real CSS or the breadcrumb icon's own block-validity breaks. */
-.page-intro-banner__breadcrumbs figure.wp-block-image {
-	line-height: 0;
 }
