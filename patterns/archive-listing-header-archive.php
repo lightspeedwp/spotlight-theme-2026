@@ -71,7 +71,19 @@
 
 			<!-- wp:query-title {"type":"archive","level":1,"fontSize":"500","className":"archive-listing-header__title","textColor":"neutral-100","showPrefix":false,"style":{"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|50"}}}} /-->
 
-			<!-- wp:search {"label":"Search","showLabel":false,"placeholder":"Search articles, authors, or topics...","buttonText":"Search","buttonPosition":"button-inside"} /-->
+			<!-- wp:search
+			<?php
+			echo wp_json_encode(
+				array(
+					'label'          => __( 'Search', 'spotlight-theme-2026' ),
+					'showLabel'      => false,
+					'placeholder'    => __( 'Search articles, authors, or topics...', 'spotlight-theme-2026' ),
+					'buttonText'     => __( 'Search', 'spotlight-theme-2026' ),
+					'buttonPosition' => 'button-inside',
+				)
+			);
+			?>
+			/-->
 		</div>
 		<!-- /wp:column -->
 

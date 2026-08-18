@@ -25,11 +25,15 @@
  * type scale automatically.
  *
  * The Spotlight Badge below is inlined via require(), not a nested
- * wp:pattern block reference — a wp:pattern reference nested inside
- * another pattern's content silently fails to resolve on front-end
- * template render (WordPress pattern-nesting limitation). require() keeps
- * spotlight-badge.php independently registered and reusable elsewhere
- * while inlining its markup here.
+ * wp:pattern block reference. core/pattern's render_block_core_pattern()
+ * renders a referenced pattern's content through a fresh do_blocks() call
+ * with no parent block context, so spotlight-badge.php's core/post-terms
+ * block (which needs the postId context this query loop provides) would
+ * render no terms if referenced that way instead. This is a context-loss
+ * issue specific to context-dependent blocks, not a general pattern-nesting
+ * failure — require() sidesteps it by inlining the markup directly into
+ * this query loop's own render pass, while keeping spotlight-badge.php
+ * independently registered and reusable elsewhere.
  *
  * core/group's layout attribute only accepts "default", "constrained",
  * "flex", or "grid" as its type — "flow" is not a real value and silently

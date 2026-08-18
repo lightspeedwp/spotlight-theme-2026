@@ -29,6 +29,13 @@ function spotlight_theme_2026_setup() {
 	// No width/height constraints here — each wp:site-logo instance is sized
 	// directly in its own pattern markup instead.
 	add_theme_support( 'custom-logo' );
+
+	// Pages don't have excerpt support by default. page-intro-banner.php uses
+	// core/post-excerpt for its intro copy so editors can write dedicated,
+	// separate intro text per page; without this, the Excerpt field never
+	// appears in the editor and the block silently falls back to
+	// auto-generated content trimmed from the page body.
+	add_post_type_support( 'page', 'excerpt' );
 }
 add_action( 'after_setup_theme', 'spotlight_theme_2026_setup' );
 
