@@ -34,8 +34,16 @@ add_action( 'after_setup_theme', 'spotlight_theme_2026_setup' );
 
 /**
  * Registers the theme's block pattern category.
+ *
+ * Guarded against an already-registered "spotlight" slug — registering a
+ * duplicate category name triggers a PHP notice, and another plugin or a
+ * future centralized registration could plausibly claim the same slug.
  */
 function spotlight_theme_2026_register_pattern_categories() {
+	if ( WP_Block_Pattern_Categories_Registry::get_instance()->is_registered( 'spotlight' ) ) {
+		return;
+	}
+
 	register_block_pattern_category(
 		'spotlight',
 		array( 'label' => __( 'Spotlight', 'spotlight-theme-2026' ) )
@@ -54,6 +62,12 @@ add_action( 'init', 'spotlight_theme_2026_register_pattern_categories' );
  * renders, so patterns/hero-lead-story.php can stay portable and
  * slug-based instead of hardcoding an ID.
  *
+ * If the "featured" tag doesn't exist yet (a fresh install, or before an
+ * editor has tagged anything), the query is forced to return zero results
+ * rather than left unfiltered — otherwise the hero would silently show the
+ * latest post as if it were featured, which is incorrect on every install
+ * until the tag is actually created and used.
+ *
  * @param array $parsed_block The block being rendered.
  * @return array
  */
@@ -67,12 +81,10 @@ function spotlight_theme_2026_resolve_hero_featured_tag( $parsed_block ) {
 
 	$featured_tag = get_term_by( 'slug', 'featured', 'post_tag' );
 
-	if ( ! $featured_tag instanceof WP_Term ) {
-		return $parsed_block;
-	}
-
+	// A term ID of 0 never matches a real term, forcing zero results instead
+	// of an unfiltered (and therefore incorrectly "featured") query.
 	$parsed_block['attrs']['query']['taxQuery'] = array(
-		'post_tag' => array( $featured_tag->term_id ),
+		'post_tag' => array( $featured_tag instanceof WP_Term ? $featured_tag->term_id : 0 ),
 	);
 
 	return $parsed_block;
