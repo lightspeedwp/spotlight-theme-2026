@@ -35,25 +35,37 @@
  * "flex", or "grid" as its type — "flow" is not a real value and silently
  * breaks block preview/validation. Use "default" for plain vertical
  * stacking with no special layout behaviour.
+ *
+ * align:"wide" is set on the wp:query block, not the nested wp:columns.
+ * wp:pattern inlines this file's content with no wrapper div, so wp:query
+ * is the actual direct child of front-page.html's constrained-layout hero
+ * group — confirmed via DevTools that wp-block-query, not wp-block-columns,
+ * was the element getting max-width:content-size (800px) from WordPress's
+ * layout support, which only targets direct children. align:"wide" on the
+ * deeply-nested columns block was a no-op; its ancestor was already capped.
  */
 
 ?>
-<!-- wp:query {"query":{"perPage":1,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":false},"namespace":"spotlight/hero-lead-story"} -->
-<div class="wp-block-query">
+<!-- wp:query {"align":"wide","style":{"spacing":{"padding":{"left":"var:preset|spacing|50","right":"var:preset|spacing|50"}}},"query":{"perPage":1,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":false},"namespace":"spotlight/hero-lead-story"} -->
+<div class="wp-block-query alignwide" style="padding-right:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--50)">
 	<!-- wp:post-template -->
 		<!-- wp:columns {"style":{"spacing":{"blockGap":{"left":"var:preset|spacing|60"}}}} -->
 		<div class="wp-block-columns">
-			<!-- wp:column -->
-			<div class="wp-block-column">
+			<!-- wp:column {"style":{"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30"}}}} -->
+			<div class="wp-block-column" style="padding-top:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30)">
 				<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"default"}} -->
 				<div class="wp-block-group">
-					<?php require __DIR__ . '/spotlight-badge.php'; ?>
+					<!-- wp:group {"style":{"spacing":{"padding":{"bottom":"var:preset|spacing|20"}}},"layout":{"type":"default"}} -->
+					<div class="wp-block-group" style="padding-bottom:var(--wp--preset--spacing--20)">
+						<?php require __DIR__ . '/spotlight-badge.php'; ?>
+					</div>
+					<!-- /wp:group -->
 
-					<!-- wp:post-title {"level":3,"isLink":true,"textColor":"surface-dark-inner","style":{"elements":{"link":{"color":{"text":"var:preset|color|surface-dark-inner"}}}}} /-->
+					<!-- wp:post-title {"level":3,"isLink":true,"textColor":"surface-dark-inner","style":{"spacing":{"padding":{"bottom":"var:preset|spacing|20"}},"elements":{"link":{"color":{"text":"var:preset|color|surface-dark-inner"}}}}} /-->
 
 					<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"default"}} -->
 					<div class="wp-block-group">
-						<!-- wp:post-excerpt {"fontSize":"300"} /-->
+						<!-- wp:post-excerpt {"fontSize":"300","style":{"spacing":{"padding":{"bottom":"var:preset|spacing|20"}}}} /-->
 
 						<!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap"}} -->
 						<div class="wp-block-group">
