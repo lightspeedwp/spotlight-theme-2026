@@ -33,8 +33,11 @@
  * The column's own spacing--5 bottom padding matches the Figma "Content"
  * frame's own pb-[5px].
  *
- * No exact theme.json heading size matches the Figma frame's font-size--500;
- * uses H3's font-size--600 (the closest preset) instead of a one-off override.
+ * query-title stays at its real level:1 — this heading is the only H1 on
+ * archive.html (there's no separate page title elsewhere on this
+ * template), so the semantic H1 is kept for accessibility/SEO; only its
+ * visual font-size is overridden to font-size--500, matching the Figma
+ * frame, rather than changing heading level to get a smaller size.
  * showPrefix:false on both query-title instances — every Figma frame checked
  * this session shows a plain term name, never a "Category:"/"Tag:" prefix.
  * No gap is added between this banner and the site header — confirmed
@@ -52,21 +55,21 @@
 	<div class="wp-block-columns alignwide" style="padding-top:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--50)">
 		<!-- wp:column {"width":"45%","style":{"spacing":{"padding":{"bottom":"var:preset|spacing|5"}}}} -->
 		<div class="wp-block-column" style="padding-bottom:var(--wp--preset--spacing--5);flex-basis:45%">
-			<!-- wp:group {"className":"archive-listing-header__breadcrumbs","style":{"spacing":{"padding":{"bottom":"var:preset|spacing|30"}}},"layout":{"type":"flex","flexWrap":"nowrap"},"fontSize":"100"} -->
+			<!-- wp:group {"className":"archive-listing-header__breadcrumbs","style":{"spacing":{"padding":{"bottom":"var:preset|spacing|30"},"blockGap":"var:preset|spacing|20"}},"layout":{"type":"flex","flexWrap":"nowrap"},"fontSize":"100"} -->
 			<div class="wp-block-group archive-listing-header__breadcrumbs has-100-font-size" style="padding-bottom:var(--wp--preset--spacing--30)">
 				<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|neutral-100"}}}}} -->
 				<p><a href="<?php echo esc_url( home_url( '/' ) ); ?>" style="color:var(--wp--preset--color--neutral-100)"><?php echo esc_html__( 'Home', 'spotlight-theme-2026' ); ?></a></p>
 				<!-- /wp:paragraph -->
 
-				<!-- wp:paragraph -->
-				<p>&gt;</p>
-				<!-- /wp:paragraph -->
+				<!-- wp:image {"width":"12px","height":"12px","sizeSlug":"full","linkDestination":"none"} -->
+				<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/icons/caret-right.svg' ) ); ?>" alt="" style="width:12px;height:12px" /></figure>
+				<!-- /wp:image -->
 
 				<!-- wp:query-title {"type":"archive","level":0,"showPrefix":false} /-->
 			</div>
 			<!-- /wp:group -->
 
-			<!-- wp:query-title {"type":"archive","level":3,"className":"archive-listing-header__title","textColor":"neutral-100","showPrefix":false,"style":{"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|50"}}}} /-->
+			<!-- wp:query-title {"type":"archive","level":1,"fontSize":"500","className":"archive-listing-header__title","textColor":"neutral-100","showPrefix":false,"style":{"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|50"}}}} /-->
 
 			<!-- wp:search {"label":"Search","showLabel":false,"placeholder":"Search articles, authors, or topics...","buttonText":"Search","buttonPosition":"button-inside"} /-->
 		</div>

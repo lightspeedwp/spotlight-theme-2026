@@ -27,6 +27,13 @@
 	margin-top: 0;
 }
 
+/* core/image's figure has no style support for line-height — the real
+   save() output never includes an inline style on the figure, so this has
+   to be real CSS or the breadcrumb icon's own block-validity breaks. */
+.archive-listing-header__breadcrumbs figure.wp-block-image {
+	line-height: 0;
+}
+
 .archive-listing-header .wp-block-search__inside-wrapper {
 	border-radius: var(--wp--preset--border-radius--500);
 	overflow: hidden;

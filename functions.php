@@ -154,6 +154,17 @@ function spotlight_theme_2026_enqueue_assets() {
 		spotlight_theme_2026_asset_version( 'assets/css/archive-listing-header.css' )
 	);
 
+	// core/group has no max-width style attribute — the title/excerpt group
+	// in page-intro-banner needs real CSS to stay constrained to
+	// contentSize since its parent's layout type is "default", not
+	// "constrained".
+	wp_enqueue_style(
+		'spotlight-theme-2026-page-intro-banner',
+		get_theme_file_uri( 'assets/css/page-intro-banner.css' ),
+		array(),
+		spotlight_theme_2026_asset_version( 'assets/css/page-intro-banner.css' )
+	);
+
 	// Add wp_enqueue_script() here when assets/js/main.js exists.
 }
 add_action( 'enqueue_block_assets', 'spotlight_theme_2026_enqueue_assets' );
