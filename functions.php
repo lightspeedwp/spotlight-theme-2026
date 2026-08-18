@@ -144,6 +144,16 @@ function spotlight_theme_2026_enqueue_assets() {
 		spotlight_theme_2026_asset_version( 'assets/css/spotlight-badge.css' )
 	);
 
+	// core/search's border support doesn't reliably serialize via block
+	// attributes, and core/group has no max-width attribute — both need
+	// real CSS for the archive-listing-header patterns' width/radius/icon.
+	wp_enqueue_style(
+		'spotlight-theme-2026-archive-listing-header',
+		get_theme_file_uri( 'assets/css/archive-listing-header.css' ),
+		array(),
+		spotlight_theme_2026_asset_version( 'assets/css/archive-listing-header.css' )
+	);
+
 	// Add wp_enqueue_script() here when assets/js/main.js exists.
 }
 add_action( 'enqueue_block_assets', 'spotlight_theme_2026_enqueue_assets' );

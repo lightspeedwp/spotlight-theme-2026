@@ -37,12 +37,16 @@ The pattern inventory SHALL define a `hero-lead-story` pattern for the front pag
 - **WHEN** `front-page.html`'s `front-page__hero` section is rendered
 - **THEN** the `hero-lead-story` pattern supplies its content, replacing `[Featured-story hero pattern placeholder]`
 
-### Requirement: Archive-listing header pattern
-The pattern inventory SHALL define an `archive-listing-header` pattern for the dark-banner title-and-search treatment confirmed on the Figma "Blog Landing Page" Ready-for-Dev frame, replacing the plain `wp:query-title`/`wp:search` markup currently authored inline in `home.html` and `archive.html`'s `post-listing-header` group.
+### Requirement: Archive-listing header patterns
+The pattern inventory SHALL define two dark-banner title-and-search patterns matching the Figma "Blog Landing Page" Ready-for-Dev frame: `archive-listing-header` for `home.html` (using `wp:post-title`, since the Posts Page is a real queried page object) and `archive-listing-header-archive` for `archive.html` (using `wp:query-title`, since a category/tag page's queried object is a taxonomy term, not a page). `core/query-title` has no mode that renders a static Posts Page title, so one shared pattern cannot correctly serve both templates.
 
-#### Scenario: Archive-listing header fills the home/archive page-header insertion point
-- **WHEN** `home.html` or `archive.html`'s `post-listing-header` group is reviewed
-- **THEN** the `archive-listing-header` pattern supplies the banner, title, and search treatment shown in the Figma "Blog Landing Page" frame
+#### Scenario: Archive-listing header fills the home page-header insertion point
+- **WHEN** `home.html`'s `post-listing-header` group is reviewed
+- **THEN** the `archive-listing-header` pattern supplies the banner, dynamic post-title, and search treatment shown in the Figma "Blog Landing Page" frame
+
+#### Scenario: Archive-listing header (archive) fills the archive page-header insertion point
+- **WHEN** `archive.html`'s `post-listing-header` group is reviewed
+- **THEN** the `archive-listing-header-archive` pattern supplies the banner, dynamic term title, and search treatment shown in the Figma "Blog Landing Page" frame
 
 ### Requirement: Page-intro banner pattern
 The pattern inventory SHALL define a `page-intro-banner` pattern for the full-bleed photo banner with title and intro copy confirmed on the Figma "About Page" Ready-for-Dev frame, filling `page.html`'s currently-missing hero section (today `page.html` renders only a bare `wp:post-title` with no banner).
