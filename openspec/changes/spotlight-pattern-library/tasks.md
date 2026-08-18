@@ -69,7 +69,7 @@
 - [ ] 6.6 Note the two later-phase map variants (dynamic latest-post swap, province-count grid) as explicitly deferred, not built in this PR
 - [ ] 6.7 Run `npm run schema:validate` and `npm run theme:validate`; manually verify the map and tooltip interaction in the Site Editor and front end
 
-## 7. Cross-cutting styling fidelity (PR 7 — spans LS-1719–1723, sequence early)
+## 7. Cross-cutting styling fidelity (PR 7 — spans LS-1719–1723, runs after PR 6)
 
 - [x] 7.1 ~~Create `patterns/spotlight-badge.php`~~ — already delivered in PR 1 (task 1.1's `hero-lead-story.php` needed a working badge immediately); satisfies the `spotlight-badge` requirement, see design.md Risks/Trade-offs
 - [ ] 7.2 Confirm `spotlight-badge` is inlined via PHP `require()` (never `wp:pattern`) at every post-context placement: front-page hero (PR 1, done), `story-card` variants (PR 2), single-post article header (PR 4) — `require()` is mandatory here, not a style choice, since `wp:pattern` loses the query loop's `postId` context that the badge's `core/post-terms` block needs; coordinate with those PRs if built out of order

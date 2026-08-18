@@ -148,17 +148,13 @@ Every pattern in the inventory SHALL be explicitly labeled as phase-1 (required 
 | `archive-listing-header-archive` | Phase 1 | PR 1 |
 | `page-intro-banner` | Phase 1 | PR 1 |
 | `spotlight-badge` | Phase 1 | PR 1 |
-| `story-card` | Phase 1 | PR 2 |
-| `topic-band` (grid-with-counts) | Phase 1 | PR 2 |
-| `topic-band-compact` (sidebar-list) | Phase 1 | PR 2 |
-| `newsletter-signup` | Phase 1 | PR 3 |
-| `newsletter-signup-compact` | Phase 1 | PR 3 |
+| `story-card` (grid, Latest News/Special Projects/Perspectives, Recent Stories variants) | Phase 1 | PR 2 |
+| `topic-band` (grid-with-counts + sidebar-list-compact size variants) | Phase 1 | PR 2 |
+| `newsletter-signup` (front-page + sidebar-compact size variants) | Phase 1 | PR 3 |
 | `republish-notice` | Phase 1 | PR 3 |
-| `related-coverage` (card-row) | Phase 1 | PR 4 |
-| `related-coverage` (in-article "More from Spotlight" variant) | Phase 1 | PR 4 |
+| `related-coverage` (card-row + in-article "More from Spotlight" variants) | Phase 1 | PR 4 |
 | `project-entry` | Phase 1 | PR 5 |
-| `dashboard-promo` | Phase 1 | PR 5 |
-| `dashboard-promo-compact` | Phase 1 | PR 5 |
+| `dashboard-promo` (full-banner + sidebar-compact size variants) | Phase 1 | PR 5 |
 | `provincial-map` (map+newsletter, confirmed Ready for Dev) | Phase 1 | PR 6 |
 | `provincial-map` (dynamic latest-post-swap variant) | Later | not Ready for Dev in Figma |
 | `provincial-map` (province-count-grid variant) | Later | not Ready for Dev in Figma |
