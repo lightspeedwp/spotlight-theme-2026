@@ -28,11 +28,11 @@
  */
 
 ?>
-<!-- wp:group {"className":"story-card-editorial","style":{"border":{"radius":"var:preset|border-radius|200"}},"layout":{"type":"default"}} -->
-<div class="wp-block-group story-card-editorial" style="border-radius:var(--wp--preset--border-radius--200)">
+<!-- wp:group {"tagName":"article","className":"story-card-editorial","style":{"border":{"radius":"var:preset|border-radius|200"}},"layout":{"type":"default"}} -->
+<article class="wp-block-group story-card-editorial" style="border-radius:var(--wp--preset--border-radius--200)">
 	<!-- wp:group {"className":"story-card__media","style":{"spacing":{"padding":"var:preset|spacing|10"}},"layout":{"type":"default"}} -->
 	<div class="wp-block-group story-card__media" style="padding:var(--wp--preset--spacing--10)">
-		<!-- wp:post-featured-image {"isLink":true,"aspectRatio":"3/2","scale":"cover"} /-->
+		<!-- wp:post-featured-image {"className":"story-card__featured-image","isLink":true,"aspectRatio":"3/2","scale":"cover"} /-->
 	</div>
 	<!-- /wp:group -->
 
@@ -61,5 +61,5 @@
 		<!-- /wp:group -->
 	</div>
 	<!-- /wp:group -->
-</div>
+</article>
 <!-- /wp:group -->

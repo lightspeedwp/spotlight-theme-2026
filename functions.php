@@ -182,6 +182,46 @@ function spotlight_theme_2026_resolve_topic_band_term( $parsed_block ) {
 add_filter( 'render_block_data', 'spotlight_theme_2026_resolve_topic_band_term' );
 
 /**
+ * Hides a story-card's featured-image link from assistive technology.
+ *
+ * Each story-card variant links both its featured image and its title to
+ * the same post — a sighted user sees one obvious card, but a screen
+ * reader announces the same destination twice per card. The title link
+ * already provides an accessible, clearly-labelled way to reach the post,
+ * so the image's own link is hidden from assistive tech rather than
+ * removed outright (sighted/mouse users still get the larger, familiar
+ * click target).
+ *
+ * Scoped to post-featured-image blocks carrying the "story-card__featured-image"
+ * class, not applied globally — other patterns (e.g. hero-lead-story.php)
+ * that link both an image and a title make their own accessibility
+ * decisions independently.
+ *
+ * @param string $block_content The block's rendered HTML.
+ * @param array  $block         The block being rendered.
+ * @return string
+ */
+function spotlight_theme_2026_hide_duplicate_card_image_link( $block_content, $block ) {
+	if ( 'core/post-featured-image' !== $block['blockName'] ) {
+		return $block_content;
+	}
+
+	if ( ! str_contains( $block['attrs']['className'] ?? '', 'story-card__featured-image' ) ) {
+		return $block_content;
+	}
+
+	$processor = new WP_HTML_Tag_Processor( $block_content );
+
+	if ( $processor->next_tag( 'a' ) ) {
+		$processor->set_attribute( 'aria-hidden', 'true' );
+		$processor->set_attribute( 'tabindex', '-1' );
+	}
+
+	return $processor->get_updated_html();
+}
+add_filter( 'render_block', 'spotlight_theme_2026_hide_duplicate_card_image_link', 10, 2 );
+
+/**
  * Returns a cache-busting version string for a theme file.
  *
  * Uses the file's own last-modified time — the theme `Version` header isn't
