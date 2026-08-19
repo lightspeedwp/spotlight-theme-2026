@@ -99,6 +99,46 @@ function spotlight_theme_2026_resolve_hero_featured_tag( $parsed_block ) {
 add_filter( 'render_block_data', 'spotlight_theme_2026_resolve_hero_featured_tag' );
 
 /**
+ * Resolves a tag slug encoded in a query block's namespace into that tag's
+ * real term ID at render time.
+ *
+ * Generalizes the same technique as spotlight_theme_2026_resolve_hero_featured_tag()
+ * for front-page.html's tag-filtered card rows (Special Projects, Perspectives)
+ * instead of writing one dedicated filter per row. A query using this
+ * mechanism sets its own "namespace" attribute to
+ * "spotlight/tag-query/{tag-slug}" (e.g. "spotlight/tag-query/special-projects")
+ * — the part after the last slash is the tag slug to resolve.
+ *
+ * Same safe-fallback behavior as the hero's filter: if the named tag
+ * doesn't exist yet, the query is forced to zero results rather than left
+ * unfiltered, so the row doesn't silently show unrelated latest posts.
+ *
+ * @param array $parsed_block The block being rendered.
+ * @return array
+ */
+function spotlight_theme_2026_resolve_tag_query_namespace( $parsed_block ) {
+	if ( 'core/query' !== $parsed_block['blockName'] ) {
+		return $parsed_block;
+	}
+
+	$namespace = $parsed_block['attrs']['namespace'] ?? '';
+
+	if ( ! str_starts_with( $namespace, 'spotlight/tag-query/' ) ) {
+		return $parsed_block;
+	}
+
+	$slug = substr( $namespace, strlen( 'spotlight/tag-query/' ) );
+	$tag  = get_term_by( 'slug', $slug, 'post_tag' );
+
+	$parsed_block['attrs']['query']['taxQuery'] = array(
+		'post_tag' => array( $tag instanceof WP_Term ? $tag->term_id : 0 ),
+	);
+
+	return $parsed_block;
+}
+add_filter( 'render_block_data', 'spotlight_theme_2026_resolve_tag_query_namespace' );
+
+/**
  * Resolves a topic-band tile's target category into its real name, link,
  * and post count at render time.
  *
