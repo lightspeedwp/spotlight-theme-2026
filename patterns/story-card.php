@@ -4,7 +4,7 @@
  * Slug: spotlight-theme-2026/story-card
  * Categories: spotlight
  * Keywords: story, blog, post, card, article, grid
- * Description: The default "Card/Blog" treatment from Figma — white card background, small corner radius, no image-overlay badge. Used for home.html/archive.html's post-listing grid and the front page's "Latest news" row.
+ * Description: The default "Card/Blog" treatment from Figma — white card background, small corner radius, no image-overlay badge. Used for the front page's "Latest news" row only.
  * Inserter: true
  * Block Types: core/post-template
  *
@@ -14,12 +14,19 @@
  * is this theme's own, chosen to match the `story-card` requirement in
  * specs/pattern-library/spec.md. Two visually distinct sibling variants
  * exist: story-card-editorial.php (no card background, larger radius, no
- * badge — Perspectives) and story-card-featured.php (same editorial style,
- * plus the spotlight-badge overlay — Special Projects). Confirmed directly
- * against Figma instances across all three rows plus the Blog Landing
- * Page's own Cards Grid — content structure (image, category label, title,
- * excerpt, author/date) is identical across all three; only the outer
+ * badge — Perspectives, and also home.html/archive.html's own grid) and
+ * story-card-featured.php (same editorial style, plus the spotlight-badge
+ * overlay — Special Projects, and the Blog Landing Page grid's first
+ * card). Content structure (image, category label, title, excerpt,
+ * author/date) is identical across all three; only the outer
  * background/radius and the badge presence differ.
+ *
+ * Confirmed directly against Figma that home.html/archive.html's grid uses
+ * the editorial style, not this boxed one — checked two separate non-first
+ * cards in that grid (not just the first/featured one), both had no
+ * background and the 8px/16px editorial radius. The original assumption
+ * that "Latest news" and the general grid shared this same boxed
+ * treatment was wrong; only "Latest news" actually uses it.
  *
  * core/post-featured-image's border support is __experimentalSkipSerialization
  * in its own block.json, so a style.border.radius attribute here would
@@ -31,11 +38,6 @@
  * (brand-500 text, uppercase, no background/padding/border) — confirmed
  * distinct from the spotlight-badge pill (see spotlight-badge.php), not a
  * shared or duplicated component, per the Special Projects Figma section.
- *
- * Whether home.html/archive.html's grid should feature story-card-featured
- * for its first post (confirmed present in the Blog Landing Page Figma
- * frame) is an open question pending Zared's confirmation — see design.md.
- * This pattern renders every post identically until that's resolved.
  */
 
 ?>
@@ -53,7 +55,7 @@
 
 		<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"default"}} -->
 		<div class="wp-block-group">
-			<!-- wp:post-title {"level":4,"isLink":true,"fontSize":"300"} /-->
+			<!-- wp:post-title {"level":4,"isLink":true,"textColor":"contrast","fontSize":"300","style":{"elements":{"link":{"color":{"text":"var:preset|color|contrast"},":hover":{"color":{"text":"var:preset|color|brand-500"}}}}}} /-->
 
 			<!-- wp:post-excerpt {"fontSize":"200"} /-->
 

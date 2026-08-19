@@ -42,15 +42,15 @@ A wrong assumption here doesn't error — it silently produces no visual effect,
 
 ---
 
-## Pitfall: a nested `wp:pattern` reference loses its parent's block context
+## Pitfall: any unexpanded `wp:pattern` reference loses ambient block context — not just when nested inside another pattern
 
-**Symptom:** A pattern embedded via `<!-- wp:pattern {"slug":"..."} /-->` inside another pattern renders empty/wrong on the **front end** — but a WP-CLI `do_blocks()` test of the same markup looks fine, which hides the bug until it's live.
+**Symptom:** A pattern embedded via `<!-- wp:pattern {"slug":"..."} /-->` renders empty/wrong on the **front end** wherever it sits — inside another pattern's own markup, or directly inside a query loop's `wp:post-template` in a theme template file. A WP-CLI `do_blocks()` test of the same markup looks fine, which hides the bug until it's live.
 
-**Why:** `render_block_core_pattern()` renders the referenced pattern's content through a fresh `do_blocks()` call with **no parent block context** passed in. Any block that needs context from an ancestor (e.g. `core/post-terms`/`core/post-title` needing `postId` inside a query loop) gets nothing, so it renders empty. This is a context-loss issue specific to context-dependent blocks, not a blanket "nested patterns don't work" rule — a context-independent nested pattern renders fine.
+**Why:** `render_block_core_pattern()` (`wp-includes/blocks/pattern.php`) renders the referenced pattern's content through a fresh `do_blocks( $content )` call with **no context argument at all** — this is a property of `core/pattern`'s own render function, not something that depends on where the reference happens to sit in the block tree. Any block that needs context from an ancestor (e.g. `core/post-terms`/`core/post-title`/`core/post-featured-image` needing `postId` inside a query loop) gets nothing, so it renders empty. This is a context-loss issue specific to context-dependent blocks, not a blanket "nested patterns don't work" rule — a context-independent pattern (or one whose dynamic behavior comes from a custom filter matched on the block's own static attributes, not on inherited context) renders fine either way.
 
-**Fix:** For a pattern that needs query-loop (or other block) context, inline it with PHP `require __DIR__ . '/other-pattern.php';` instead of `wp:pattern`. The required file stays independently registered and reusable elsewhere. Always test on the actual rendered front-end page for this one — CLI `do_blocks()` will not reproduce it.
+**Fix:** for a `.php` pattern referencing another pattern that needs ambient context, inline it with PHP `require __DIR__ . '/other-pattern.php';` instead of `wp:pattern` — the required file stays independently registered and reusable elsewhere. For a `.html` **template** — which can't use `require()` at all — the fix is to expand the referenced pattern's block markup directly into the template instead of leaving a `wp:pattern` reference, accepting that the template-embedded copy won't stay perfectly in sync if the source pattern is edited later. This is a real, inherent limitation of Gutenberg's pattern system inside query loops, not something to route around cleverly. Always test on the actual rendered front-end page for this one — CLI `do_blocks()` will not reproduce it.
 
-**Working example:** `patterns/hero-lead-story.php` requiring `patterns/spotlight-badge.php` inside its query loop.
+**Working examples:** `patterns/hero-lead-story.php` requiring `patterns/spotlight-badge.php` inside its query loop (the `.php`-pattern case); `templates/home.html`/`templates/archive.html` expanding `story-card`'s markup directly inside `wp:post-template` instead of referencing it (the `.html`-template case).
 
 ---
 
