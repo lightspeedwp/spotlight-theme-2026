@@ -106,6 +106,16 @@ A wrong assumption here doesn't error — it silently produces no visual effect,
 
 ---
 
+## Pitfall: `php -l` doesn't catch a `require()` to a deleted file
+
+**Symptom:** Every pattern in the theme disappears at once — not just the one that changed. No PHP error is visible anywhere obvious, and `composer run lint:php` reports a clean pass.
+
+**Why:** `php -l` only checks syntax, not whether a `require()` target actually exists on disk. A plain `require` (not `require_once` with error suppression) throws a fatal error the instant it can't find its target — and since `WP_DEVELOPMENT_MODE=theme` (this theme's dev setup) re-scans and re-executes every `patterns/*.php` file's top-level PHP on every single request, one dangling `require()` can crash that whole scan, taking every other pattern down with it, not just the file that broke.
+
+**Fix:** When deleting a file that other patterns `require()`, grep for its filename across `patterns/` (and `functions.php`) before considering the deletion done — `grep -rn "the-deleted-file" patterns/`. Removing the file itself is only half the change.
+
+**Verify by executing every pattern file, not just linting it:** loop over `patterns/*.php`, `require` each one with plain function stubs (`__`, `esc_html__`, `esc_url`, `home_url`, `get_theme_file_uri`, etc.) in a real PHP process, and confirm none of them fatals. This catches missing `require()` targets, undefined functions, and other runtime-only errors that `php -l` cannot see.
+
 ## Verification habits that catch these early
 
 - Render a pattern in isolation with plain PHP stubs for `esc_html__`/`esc_url`/etc. and assert the output block comments parse as valid JSON — catches malformed attribute JSON before it ever reaches WordPress.

@@ -11,6 +11,10 @@
 	text-decoration: none;
 }
 
+.topic-band__term-name:hover {
+	color: var(--wp--preset--color--brand-500);
+}
+
 .topic-band__term-count {
 	font-family: var(--wp--preset--font-family--body);
 	font-size: var(--wp--preset--font-size--200);

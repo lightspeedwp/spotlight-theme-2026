@@ -42,11 +42,6 @@
  * since the Figma sidebar design never shows a count.
  */
 
-$section_heading_title     = __( 'Explore by topic', 'spotlight-theme-2026' );
-$section_heading_link_text = __( 'Read all articles', 'spotlight-theme-2026' );
-
-require __DIR__ . '/section-heading.php';
-
 ?>
 <!-- wp:columns {"style":{"spacing":{"blockGap":{"left":"var:preset|spacing|20"}}}} -->
 <div class="wp-block-columns">
@@ -60,8 +55,13 @@ require __DIR__ . '/section-heading.php';
 
 			<!-- wp:group {"anchor":"topic-band-hiv-aids","className":"topic-band__term-info topic-band__term-info--with-count","layout":{"type":"default"}} -->
 			<div id="topic-band-hiv-aids" class="wp-block-group topic-band__term-info topic-band__term-info--with-count">
-				<a class="topic-band__term-name" href="#"><?php echo esc_html__( 'HIV/AIDS', 'spotlight-theme-2026' ); ?></a>
-				<span class="topic-band__term-count"><?php echo esc_html__( '187 articles', 'spotlight-theme-2026' ); ?></span>
+				<!-- wp:paragraph -->
+				<p><a class="topic-band__term-name" href="#"><?php echo esc_html__( 'HIV/AIDS', 'spotlight-theme-2026' ); ?></a></p>
+				<!-- /wp:paragraph -->
+
+				<!-- wp:paragraph {"className":"topic-band__term-count"} -->
+				<p class="topic-band__term-count"><?php echo esc_html__( '187 articles', 'spotlight-theme-2026' ); ?></p>
+				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
 		</div>
@@ -79,8 +79,13 @@ require __DIR__ . '/section-heading.php';
 
 			<!-- wp:group {"anchor":"topic-band-tuberculosis","className":"topic-band__term-info topic-band__term-info--with-count","layout":{"type":"default"}} -->
 			<div id="topic-band-tuberculosis" class="wp-block-group topic-band__term-info topic-band__term-info--with-count">
-				<a class="topic-band__term-name" href="#"><?php echo esc_html__( 'Tuberculosis', 'spotlight-theme-2026' ); ?></a>
-				<span class="topic-band__term-count"><?php echo esc_html__( '68 articles', 'spotlight-theme-2026' ); ?></span>
+				<!-- wp:paragraph -->
+				<p><a class="topic-band__term-name" href="#"><?php echo esc_html__( 'Tuberculosis', 'spotlight-theme-2026' ); ?></a></p>
+				<!-- /wp:paragraph -->
+
+				<!-- wp:paragraph {"className":"topic-band__term-count"} -->
+				<p class="topic-band__term-count"><?php echo esc_html__( '68 articles', 'spotlight-theme-2026' ); ?></p>
+				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
 		</div>
@@ -98,8 +103,13 @@ require __DIR__ . '/section-heading.php';
 
 			<!-- wp:group {"anchor":"topic-band-nhi","className":"topic-band__term-info topic-band__term-info--with-count","layout":{"type":"default"}} -->
 			<div id="topic-band-nhi" class="wp-block-group topic-band__term-info topic-band__term-info--with-count">
-				<a class="topic-band__term-name" href="#"><?php echo esc_html__( 'NHI', 'spotlight-theme-2026' ); ?></a>
-				<span class="topic-band__term-count"><?php echo esc_html__( '122 articles', 'spotlight-theme-2026' ); ?></span>
+				<!-- wp:paragraph -->
+				<p><a class="topic-band__term-name" href="#"><?php echo esc_html__( 'NHI', 'spotlight-theme-2026' ); ?></a></p>
+				<!-- /wp:paragraph -->
+
+				<!-- wp:paragraph {"className":"topic-band__term-count"} -->
+				<p class="topic-band__term-count"><?php echo esc_html__( '122 articles', 'spotlight-theme-2026' ); ?></p>
+				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
 		</div>
@@ -117,8 +127,13 @@ require __DIR__ . '/section-heading.php';
 
 			<!-- wp:group {"anchor":"topic-band-access-to-medicines","className":"topic-band__term-info topic-band__term-info--with-count","layout":{"type":"default"}} -->
 			<div id="topic-band-access-to-medicines" class="wp-block-group topic-band__term-info topic-band__term-info--with-count">
-				<a class="topic-band__term-name" href="#"><?php echo esc_html__( 'Access to Medicines', 'spotlight-theme-2026' ); ?></a>
-				<span class="topic-band__term-count"><?php echo esc_html__( '136 articles', 'spotlight-theme-2026' ); ?></span>
+				<!-- wp:paragraph -->
+				<p><a class="topic-band__term-name" href="#"><?php echo esc_html__( 'Access to Medicines', 'spotlight-theme-2026' ); ?></a></p>
+				<!-- /wp:paragraph -->
+
+				<!-- wp:paragraph {"className":"topic-band__term-count"} -->
+				<p class="topic-band__term-count"><?php echo esc_html__( '136 articles', 'spotlight-theme-2026' ); ?></p>
+				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
 		</div>
@@ -136,8 +151,13 @@ require __DIR__ . '/section-heading.php';
 
 			<!-- wp:group {"anchor":"topic-band-healthcare-system","className":"topic-band__term-info topic-band__term-info--with-count","layout":{"type":"default"}} -->
 			<div id="topic-band-healthcare-system" class="wp-block-group topic-band__term-info topic-band__term-info--with-count">
-				<a class="topic-band__term-name" href="#"><?php echo esc_html__( 'Healthcare System', 'spotlight-theme-2026' ); ?></a>
-				<span class="topic-band__term-count"><?php echo esc_html__( '65 articles', 'spotlight-theme-2026' ); ?></span>
+				<!-- wp:paragraph -->
+				<p><a class="topic-band__term-name" href="#"><?php echo esc_html__( 'Healthcare System', 'spotlight-theme-2026' ); ?></a></p>
+				<!-- /wp:paragraph -->
+
+				<!-- wp:paragraph {"className":"topic-band__term-count"} -->
+				<p class="topic-band__term-count"><?php echo esc_html__( '65 articles', 'spotlight-theme-2026' ); ?></p>
+				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
 		</div>
@@ -155,8 +175,13 @@ require __DIR__ . '/section-heading.php';
 
 			<!-- wp:group {"anchor":"topic-band-ncds","className":"topic-band__term-info topic-band__term-info--with-count","layout":{"type":"default"}} -->
 			<div id="topic-band-ncds" class="wp-block-group topic-band__term-info topic-band__term-info--with-count">
-				<a class="topic-band__term-name" href="#"><?php echo esc_html__( 'NCDs', 'spotlight-theme-2026' ); ?></a>
-				<span class="topic-band__term-count"><?php echo esc_html__( '125 articles', 'spotlight-theme-2026' ); ?></span>
+				<!-- wp:paragraph -->
+				<p><a class="topic-band__term-name" href="#"><?php echo esc_html__( 'NCDs', 'spotlight-theme-2026' ); ?></a></p>
+				<!-- /wp:paragraph -->
+
+				<!-- wp:paragraph {"className":"topic-band__term-count"} -->
+				<p class="topic-band__term-count"><?php echo esc_html__( '125 articles', 'spotlight-theme-2026' ); ?></p>
+				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
 		</div>
