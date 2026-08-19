@@ -1,0 +1,43 @@
+/*
+ * spotlight_theme_2026_resolve_topic_band_term() (functions.php) rebuilds
+ * each tile's name/count markup from scratch at render time — its output
+ * has no inline styling of its own, so the typography lives here instead.
+ */
+.topic-band__term-name {
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--200);
+	font-weight: 600;
+	color: var(--wp--preset--color--contrast);
+	text-decoration: none;
+}
+
+.topic-band__term-count {
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--200);
+	color: var(--wp--preset--color--neutral-700);
+}
+
+/*
+ * topic-band.php's grid tiles: icon and text centered, name/count
+ * stacked as separate lines — confirmed against Figma's vertical tile
+ * layout. The name/count wrapper's default flow is horizontal (an <a>
+ * and a <span> are both inline), so this also makes it a column.
+ */
+.topic-band__tile {
+	align-items: center;
+	text-align: center;
+}
+
+.topic-band__term-info {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+/*
+ * topic-band-compact.php's sidebar tiles: icon and name sit side by side
+ * instead of stacked, confirmed against Figma's horizontal row layout.
+ */
+.topic-band-compact__tile {
+	align-items: center;
+}

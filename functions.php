@@ -99,6 +99,89 @@ function spotlight_theme_2026_resolve_hero_featured_tag( $parsed_block ) {
 add_filter( 'render_block_data', 'spotlight_theme_2026_resolve_hero_featured_tag' );
 
 /**
+ * Resolves a topic-band tile's target category into its real name, link,
+ * and post count at render time.
+ *
+ * Each tile in patterns/topic-band.php and patterns/topic-band-compact.php
+ * is a wp:group whose real WordPress `anchor` attribute (e.g.
+ * "topic-band-hiv-aids") names which category slug it represents — a
+ * curated, easy-to-edit list living directly in the pattern markup, not
+ * this function. This filter looks that category up and swaps in its
+ * live name/link/post-count, so a renamed category or a growing post
+ * count is always shown correctly without ever needing a pattern-file
+ * edit. Adding, removing, or reordering topics is done entirely in the
+ * pattern files; this function only resolves whichever anchors it finds.
+ *
+ * If the named category doesn't exist yet (e.g. a fresh install), the
+ * tile falls back to the pattern's own static placeholder content
+ * instead of being resolved — matching this design's Figma content
+ * exactly until the real category is created.
+ *
+ * The optional "topic-band__term-info--with-count" class on the same
+ * group opts a tile into showing its post count (topic-band.php's
+ * grid-with-counts variant); without it, only the name/link renders
+ * (topic-band-compact.php's sidebar-list variant, which never shows a
+ * count in the Figma design).
+ *
+ * @param array $parsed_block The block being rendered.
+ * @return array
+ */
+function spotlight_theme_2026_resolve_topic_band_term( $parsed_block ) {
+	if ( 'core/group' !== $parsed_block['blockName'] ) {
+		return $parsed_block;
+	}
+
+	$anchor = $parsed_block['attrs']['anchor'] ?? '';
+
+	if ( ! str_starts_with( $anchor, 'topic-band-' ) ) {
+		return $parsed_block;
+	}
+
+	$slug = substr( $anchor, strlen( 'topic-band-' ) );
+	$term = get_term_by( 'slug', $slug, 'category' );
+
+	if ( ! ( $term instanceof WP_Term ) ) {
+		return $parsed_block;
+	}
+
+	$class_name = $parsed_block['attrs']['className'] ?? '';
+	$name_html  = sprintf(
+		'<a class="topic-band__term-name" href="%1$s">%2$s</a>',
+		esc_url( get_term_link( $term ) ),
+		esc_html( $term->name )
+	);
+	$count_html = '';
+
+	if ( str_contains( $class_name, 'topic-band__term-info--with-count' ) ) {
+		$count_html = sprintf(
+			'<span class="topic-band__term-count">%s</span>',
+			esc_html(
+				sprintf(
+					/* translators: %s: number of articles in this topic (already formatted, e.g. "1,234"). */
+					_n( '%s article', '%s articles', $term->count, 'spotlight-theme-2026' ),
+					number_format_i18n( $term->count )
+				)
+			)
+		);
+	}
+
+	$markup = sprintf(
+		'<div id="%1$s" class="wp-block-group %2$s">%3$s%4$s</div>',
+		esc_attr( $anchor ),
+		esc_attr( $class_name ),
+		$name_html,
+		$count_html
+	);
+
+	$parsed_block['innerHTML']    = $markup;
+	$parsed_block['innerContent'] = array( $markup );
+	$parsed_block['innerBlocks']  = array();
+
+	return $parsed_block;
+}
+add_filter( 'render_block_data', 'spotlight_theme_2026_resolve_topic_band_term' );
+
+/**
  * Returns a cache-busting version string for a theme file.
  *
  * Uses the file's own last-modified time — the theme `Version` header isn't
@@ -193,6 +276,16 @@ function spotlight_theme_2026_enqueue_assets() {
 		get_theme_file_uri( 'assets/css/story-card.css' ),
 		array(),
 		spotlight_theme_2026_asset_version( 'assets/css/story-card.css' )
+	);
+
+	// spotlight_theme_2026_resolve_topic_band_term()'s render-time markup
+	// has no inline styling of its own; tile alignment and name/count
+	// typography live here instead.
+	wp_enqueue_style(
+		'spotlight-theme-2026-topic-band',
+		get_theme_file_uri( 'assets/css/topic-band.css' ),
+		array(),
+		spotlight_theme_2026_asset_version( 'assets/css/topic-band.css' )
 	);
 
 	// Add wp_enqueue_script() here when assets/js/main.js exists.
