@@ -21,10 +21,10 @@
 	align-items: center;
 	box-sizing: border-box;
 	padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--50);
-	border: var(--wp--custom--border-width--base) solid var(--wp--preset--color--accent-200);
+	border: var(--wp--custom--border-width--base) solid var(--wp--preset--color--accent-300);
 	border-radius: var(--wp--preset--border-radius--200);
 	background-color: var(--wp--preset--color--neutral-100);
-	color: var(--wp--preset--color--accent-200);
+	color: var(--wp--preset--color--accent-300);
 	font-size: var(--wp--preset--font-size--200);
 	font-weight: 600;
 	line-height: 1;
@@ -33,6 +33,6 @@
 
 .topic-filter .wp-block-term-name a:hover,
 .topic-filter .wp-block-term-name a.is-current {
-	background-color: var(--wp--preset--color--accent-200);
+	background-color: var(--wp--preset--color--accent-300);
 	color: var(--wp--preset--color--neutral-100);
 }
