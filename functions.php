@@ -222,6 +222,35 @@ function spotlight_theme_2026_resolve_topic_band_term( $parsed_block ) {
 add_filter( 'render_block_data', 'spotlight_theme_2026_resolve_topic_band_term' );
 
 /**
+ * Marks the topic-filter pill matching the current category archive.
+ *
+ * Core/term-template has no "current" class the way wp_list_categories()
+ * does, so this compares the pill's own termId context against the page
+ * actually being viewed.
+ *
+ * @param string   $block_content Rendered block HTML.
+ * @param array    $parsed_block  The block being rendered.
+ * @param WP_Block $block         Block instance (context is resolved by now).
+ * @return string
+ */
+function spotlight_theme_2026_mark_current_topic_filter_pill( $block_content, $parsed_block, $block ) {
+	$term_id = $block->context['termId'] ?? 0;
+
+	if ( ! $term_id || ! is_category( $term_id ) ) {
+		return $block_content;
+	}
+
+	$tags = new WP_HTML_Tag_Processor( $block_content );
+
+	if ( $tags->next_tag( 'a' ) ) {
+		$tags->add_class( 'is-current' );
+	}
+
+	return $tags->get_updated_html();
+}
+add_filter( 'render_block_core/term-name', 'spotlight_theme_2026_mark_current_topic_filter_pill', 10, 3 );
+
+/**
  * Hides a story-card's featured-image link from assistive technology.
  *
  * Each story-card variant links both its featured image and its title to
@@ -375,6 +404,13 @@ function spotlight_theme_2026_enqueue_assets() {
 		get_theme_file_uri( 'assets/css/post-listing.css' ),
 		array(),
 		spotlight_theme_2026_asset_version( 'assets/css/post-listing.css' )
+	);
+
+	wp_enqueue_style(
+		'spotlight-theme-2026-topic-filter',
+		get_theme_file_uri( 'assets/css/topic-filter.css' ),
+		array(),
+		spotlight_theme_2026_asset_version( 'assets/css/topic-filter.css' )
 	);
 
 	// Add wp_enqueue_script() here when assets/js/main.js exists.

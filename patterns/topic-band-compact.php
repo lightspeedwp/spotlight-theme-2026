@@ -21,9 +21,9 @@
  * - No "topic-band__term-info--with-count" class here, so the render
  *   filter never appends a post count — the sidebar design never shows
  *   one, unlike the front-page grid.
- * - The first item is "Latest news", not a category — a static shortcut
- *   link to the blog home, not run through the term-resolution filter at
- *   all (there's no "Latest news" taxonomy term to resolve).
+ * - The first item, "Latest news", links to the real "latest-news"
+ *   category — same anchor-resolution technique as every other tile,
+ *   not a special case.
  *
  * The heading here has no divider/"read more" link — confirmed against
  * Figma, the sidebar's "Explore topics" heading is plain text only.
@@ -56,9 +56,13 @@
 			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/icons/topic-latest-news.svg' ) ); ?>" alt="" style="width:24px;height:24px" /></figure>
 			<!-- /wp:image -->
 
-			<!-- wp:paragraph -->
-			<p><a class="topic-band__term-name" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php echo esc_html__( 'Latest news', 'spotlight-theme-2026' ); ?></a></p>
-			<!-- /wp:paragraph -->
+			<!-- wp:group {"anchor":"topic-band-latest-news","className":"topic-band__term-info","layout":{"type":"default"}} -->
+			<div id="topic-band-latest-news" class="wp-block-group topic-band__term-info">
+				<!-- wp:paragraph -->
+				<p><a class="topic-band__term-name" href="#"><?php echo esc_html__( 'Latest news', 'spotlight-theme-2026' ); ?></a></p>
+				<!-- /wp:paragraph -->
+			</div>
+			<!-- /wp:group -->
 		</div>
 		<!-- /wp:group -->
 
@@ -84,8 +88,8 @@
 			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/icons/topic-tuberculosis.svg' ) ); ?>" alt="" style="width:24px;height:24px" /></figure>
 			<!-- /wp:image -->
 
-			<!-- wp:group {"anchor":"topic-band-tuberculosis","className":"topic-band__term-info","layout":{"type":"default"}} -->
-			<div id="topic-band-tuberculosis" class="wp-block-group topic-band__term-info">
+			<!-- wp:group {"anchor":"topic-band-tb-response","className":"topic-band__term-info","layout":{"type":"default"}} -->
+			<div id="topic-band-tb-response" class="wp-block-group topic-band__term-info">
 				<!-- wp:paragraph -->
 				<p><a class="topic-band__term-name" href="#"><?php echo esc_html__( 'Tuberculosis', 'spotlight-theme-2026' ); ?></a></p>
 				<!-- /wp:paragraph -->

@@ -77,8 +77,8 @@
 			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/icons/topic-tuberculosis.svg' ) ); ?>" alt="" style="width:52px;height:52px" /></figure>
 			<!-- /wp:image -->
 
-			<!-- wp:group {"anchor":"topic-band-tuberculosis","className":"topic-band__term-info topic-band__term-info--with-count","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"default"}} -->
-			<div id="topic-band-tuberculosis" class="wp-block-group topic-band__term-info topic-band__term-info--with-count">
+			<!-- wp:group {"anchor":"topic-band-tb-response","className":"topic-band__term-info topic-band__term-info--with-count","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"default"}} -->
+			<div id="topic-band-tb-response" class="wp-block-group topic-band__term-info topic-band__term-info--with-count">
 				<!-- wp:paragraph -->
 				<p><a class="topic-band__term-name" href="#"><?php echo esc_html__( 'Tuberculosis', 'spotlight-theme-2026' ); ?></a></p>
 				<!-- /wp:paragraph -->

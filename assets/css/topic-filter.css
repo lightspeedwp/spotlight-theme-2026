@@ -1,0 +1,38 @@
+/*
+ * core/term-name renders its border/padding/background on a wrapping <p>,
+ * with a plain unstyled <a> inside it — so the pill has to be styled on
+ * the <a> itself, not the wrapper, or only the text is clickable.
+ * The row layout itself is a real "layout" attribute on wp:term-template
+ * (in the templates), not CSS — giving it that attribute directly avoids
+ * the "is-layout-flow" default, which was adding WordPress's own
+ * margin-block-start spacing between items (skipping the first one).
+ */
+.topic-filter .wp-block-term {
+	display: flex;
+}
+
+.topic-filter .wp-block-term-name {
+	display: flex;
+	margin: 0;
+}
+
+.topic-filter .wp-block-term-name a {
+	display: flex;
+	align-items: center;
+	box-sizing: border-box;
+	padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--50);
+	border: var(--wp--custom--border-width--base) solid var(--wp--preset--color--accent-200);
+	border-radius: var(--wp--preset--border-radius--200);
+	background-color: var(--wp--preset--color--neutral-100);
+	color: var(--wp--preset--color--accent-200);
+	font-size: var(--wp--preset--font-size--200);
+	font-weight: 600;
+	line-height: 1;
+	text-decoration: none;
+}
+
+.topic-filter .wp-block-term-name a:hover,
+.topic-filter .wp-block-term-name a.is-current {
+	background-color: var(--wp--preset--color--accent-200);
+	color: var(--wp--preset--color--neutral-100);
+}

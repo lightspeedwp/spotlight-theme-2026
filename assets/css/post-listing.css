@@ -11,5 +11,5 @@
  * "main" section's padding for consistency) is a separate, later task.
  */
 .wp-block-query.post-listing-query {
-	padding: var(--wp--preset--spacing--50) var(--wp--preset--spacing--20);
+	padding: 0 0;
 }
