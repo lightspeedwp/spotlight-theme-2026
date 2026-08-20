@@ -26,10 +26,12 @@
  *   all (there's no "Latest news" taxonomy term to resolve).
  *
  * The heading here has no divider/"read more" link — confirmed against
- * Figma, the sidebar's "Explore topics" heading is plain text only. Like
- * topic-band.php's own heading, it's authored directly in whichever
- * template embeds this pattern, not inside the pattern itself — see
- * design.md's Decisions for why.
+ * Figma, the sidebar's "Explore topics" heading is plain text only.
+ * Unlike topic-band.php's own heading (authored directly in front-page.html,
+ * per design.md's Decisions), this one is baked into the pattern itself:
+ * single.html uses this pattern in exactly one place, so there's no
+ * cross-template duplication to avoid the way there is for the front
+ * page's four repeated Category Header instances.
  *
  * The heading uses accent-500 (#10233f in theme.json), matching the
  * actual rendered color — confirmed directly with the user, same
