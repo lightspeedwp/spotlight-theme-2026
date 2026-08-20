@@ -64,13 +64,17 @@
 			<!-- /wp:paragraph -->
 		<!-- /wp:query-no-results -->
 
-		<!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"center"}} -->
-			<!-- wp:query-pagination-previous /-->
+		<!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|40","left":"var:preset|spacing|80","right":"var:preset|spacing|80"}}},"layout":{"type":"default"}} -->
+		<div class="wp-block-group alignwide" style="padding-top:var(--wp--preset--spacing--70);padding-right:var(--wp--preset--spacing--80);padding-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--80)">
+			<!-- wp:query-pagination {"paginationArrow":"none","className":"post-listing-pagination","layout":{"type":"flex","justifyContent":"space-between"}} -->
+				<!-- wp:query-pagination-previous {"label":"Previous page"} /-->
 
-			<!-- wp:query-pagination-numbers /-->
+				<!-- wp:query-pagination-numbers /-->
 
-			<!-- wp:query-pagination-next /-->
-		<!-- /wp:query-pagination -->
+				<!-- wp:query-pagination-next {"label":"Next page"} /-->
+			<!-- /wp:query-pagination -->
+		</div>
+		<!-- /wp:group -->
 	</div>
 	<!-- /wp:query -->
 	</div>
