@@ -13,6 +13,21 @@
 }
 
 /*
+ * WordPress core's own wp-includes/css/dist/block-library/theme.css sets
+ * :where(.wp-block-group.has-background) { padding: 1.25em 2.375em; } —
+ * a low-specificity default meant for background groups used as generic
+ * content sections. story-card.php sets backgroundColor to get the card's
+ * white fill, not that spacing, so it's zeroed out here; story-card__media
+ * and story-card__content already carry their own deliberate padding.
+ * story-card-editorial.php / story-card-featured.php never set a
+ * backgroundColor, so they never get the has-background class and don't
+ * need this override.
+ */
+.story-card.has-background {
+	padding: 0;
+}
+
+/*
  * story-card-editorial.php / story-card-featured.php: all four corners,
  * since these cards have no background of their own — the image is a
  * rounded "island" inset by story-card__media's own padding, not a photo

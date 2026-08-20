@@ -43,8 +43,8 @@
 ?>
 <!-- wp:group {"tagName":"article","className":"story-card","backgroundColor":"neutral-100","style":{"border":{"radius":"var:preset|border-radius|100"}},"layout":{"type":"default"}} -->
 <article class="wp-block-group story-card has-neutral-100-background-color has-background" style="border-radius:var(--wp--preset--border-radius--100)">
-	<!-- wp:group {"className":"story-card__media","style":{"spacing":{"padding":"var:preset|spacing|10"}},"layout":{"type":"default"}} -->
-	<div class="wp-block-group story-card__media" style="padding:var(--wp--preset--spacing--10)">
+	<!-- wp:group {"className":"story-card__media","layout":{"type":"default"}} -->
+	<div class="wp-block-group story-card__media">
 		<!-- wp:post-featured-image {"className":"story-card__featured-image","isLink":true,"aspectRatio":"3/2","scale":"cover"} /-->
 	</div>
 	<!-- /wp:group -->
