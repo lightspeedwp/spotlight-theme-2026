@@ -30,15 +30,15 @@ A wrong assumption here doesn't error — it silently produces no visual effect,
 
 ---
 
-## Pitfall: `{"type":"constrained"}` alone does nothing in static pattern markup
+## Pitfall: setting only one of `contentSize`/`wideSize` overrides both
 
-**Symptom:** A group with `"layout":{"type":"constrained"}` and no explicit size renders its children full-width instead of constrained — the "auto-centers to theme.json's contentSize" behavior everyone expects from the Site Editor doesn't happen.
+**Symptom:** A group with `"layout":{"type":"constrained"}` and no explicit size still gets a working max-width with no extra attribute needed — theme.json's own global base stylesheet emits a generic `:where(.is-layout-constrained)` rule using the theme's default `contentSize`/`wideSize` automatically. This works the same in hand-authored PHP patterns as anywhere else, so most patterns don't need to set either value at all.
 
-**Why:** `wp_get_layout_style()` (`wp-includes/block-supports/layout.php`) only outputs `max-width` when the block's own `layout` attribute already contains an explicit `contentSize` (and/or `wideSize`). It does **not** fall back to `theme.json`'s global settings at render time. That merge normally happens in the editor's JS UI when a person picks "constrained" visually — the resolved value gets baked into the saved attribute. Hand-authored PHP pattern markup skips that step entirely.
+The real pitfall is a partial override. `wp_get_layout_style()` (`wp-includes/block-supports/layout.php`) cross-fills a missing value from the one you *did* set — `contentSize` alone becomes the max-width for both normal and wide-aligned children, not just normal-width ones, and this per-instance rule replaces theme.json's separate default entirely for that block. That's fine when a single width is genuinely the intent (e.g. `page-intro-banner.php` deliberately sets only `contentSize` so `alignwide` children don't get a separate, wider breakout). It's a mistake if you meant to keep the theme's own `wideSize` for `alignwide` children while only narrowing the default column — that requires setting both explicitly.
 
-**Fix:** Spell out the real value explicitly, matching `theme.json`: `"layout":{"type":"constrained","contentSize":"800px"}`. To left-align instead of center (without a custom CSS override), add `"justifyContent":"left"` — this produces `margin-left:0` instead of the type's centered default, verified directly against the same core file.
+**Fix:** Leave both unset to inherit the theme.json default entirely. Set only `contentSize` when a single width is genuinely intended for all children regardless of alignment. Set both explicitly, matching `theme.json`'s real values, only when overriding each independently: `"layout":{"type":"constrained","contentSize":"800px","wideSize":"1320px"}`. To left-align instead of center (without a custom CSS override), add `"justifyContent":"left"` — this produces `margin-left:0` instead of the type's centered default, verified directly against the same core file.
 
-**Working example:** `patterns/page-intro-banner.php`'s wide wrapper group.
+**Working example:** `patterns/page-intro-banner.php`'s wrapper group (single-width override via `contentSize` alone); `templates/front-page.html`'s section wrappers (no override, relies on the theme.json default).
 
 ---
 

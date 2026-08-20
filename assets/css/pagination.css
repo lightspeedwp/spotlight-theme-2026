@@ -32,7 +32,7 @@
 	display: inline-block;
 	width: 1.25em;
 	height: 1.25em;
-	background-color: currentColor;
+	background-color: currentcolor;
 	mask-repeat: no-repeat;
 	mask-position: center;
 	mask-size: contain;
