@@ -1,11 +1,16 @@
 /*
  * core/query-pagination-numbers renders via paginate_links(), a fixed
  * WordPress core structure (<a class="page-numbers">, <span class="page-numbers
- * current">) with no per-item block attributes — needs real CSS. The
- * previous/next arrows are custom SVGs from Figma, not WordPress's
- * built-in unicode arrow, so those are CSS mask-images (not
- * background-images) so the icon recolors with the text on hover instead
- * of staying a fixed gray.
+ * current">) with no per-item block attributes — needs real CSS. Same for
+ * border/text-color on all three pagination blocks (previous/next/numbers):
+ * none of them support border or text-color as a block attribute at all
+ * (confirmed in their own block.json), so those stay CSS regardless.
+ * Font-size is a real block attribute on the template blocks instead, so
+ * the client can edit it directly. None of the three have a fill of
+ * their own — same as the page background, so nothing to set there.
+ *
+ * Previous/next use WordPress's built-in "chevron" pagination arrow
+ * (paginationArrow:"chevron" on wp:query-pagination), not a custom icon.
  */
 .post-listing-pagination {
 	align-items: center;
@@ -16,39 +21,13 @@
 	display: inline-flex;
 	align-items: center;
 	gap: var(--wp--preset--spacing--10);
-	padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--30);
-	border: var(--wp--custom--border-width--base) solid var(--wp--preset--color--neutral-300);
+	height: 2.5rem;
+	padding: 0 var(--wp--preset--spacing--40);
+	border: var(--wp--custom--border-width--base) solid var(--wp--preset--color--neutral-400);
 	border-radius: var(--wp--preset--border-radius--200);
-	background-color: var(--wp--preset--color--neutral-100);
 	color: var(--wp--preset--color--neutral-700);
-	font-size: var(--wp--preset--font-size--200);
 	font-weight: 600;
 	text-decoration: none;
-}
-
-.post-listing-pagination .wp-block-query-pagination-previous::before,
-.post-listing-pagination .wp-block-query-pagination-next::after {
-	content: "";
-	display: inline-block;
-	width: 1.25em;
-	height: 1.25em;
-	background-color: currentcolor;
-	mask-repeat: no-repeat;
-	mask-position: center;
-	mask-size: contain;
-	-webkit-mask-repeat: no-repeat;
-	-webkit-mask-position: center;
-	-webkit-mask-size: contain;
-}
-
-.post-listing-pagination .wp-block-query-pagination-previous::before {
-	mask-image: url("../icons/caret-double-left.svg");
-	-webkit-mask-image: url("../icons/caret-double-left.svg");
-}
-
-.post-listing-pagination .wp-block-query-pagination-next::after {
-	mask-image: url("../icons/caret-double-right.svg");
-	-webkit-mask-image: url("../icons/caret-double-right.svg");
 }
 
 .post-listing-pagination .wp-block-query-pagination-numbers {
@@ -65,17 +44,15 @@
 	padding: 0 0;
 	border: var(--wp--custom--border-width--base) solid var(--wp--preset--color--neutral-300);
 	border-radius: var(--wp--preset--border-radius--200);
-	background-color: var(--wp--preset--color--neutral-100);
 	color: var(--wp--preset--color--neutral-700);
-	font-size: var(--wp--preset--font-size--200);
 	font-weight: 600;
 	text-decoration: none;
 }
 
 .post-listing-pagination .page-numbers.current,
+.post-listing-pagination a.page-numbers:hover,
 .post-listing-pagination .wp-block-query-pagination-previous:hover,
-.post-listing-pagination .wp-block-query-pagination-next:hover,
-.post-listing-pagination a.page-numbers:hover {
+.post-listing-pagination .wp-block-query-pagination-next:hover {
 	border-color: var(--wp--preset--color--accent-600);
 	background-color: var(--wp--preset--color--accent-600);
 	color: var(--wp--preset--color--neutral-100);
@@ -84,4 +61,16 @@
 .post-listing-pagination .page-numbers.dots {
 	border: none;
 	background: none;
+}
+
+/*
+ * Core's own chevron arrows (wp-includes/css/dist/block-library/style.css)
+ * set a 1ch margin on these spans — overridden here at matching
+ * specificity (both classes on the same selector) rather than relying on
+ * enqueue order to win the cascade.
+ */
+.wp-block-query-pagination.post-listing-pagination .wp-block-query-pagination-previous-arrow,
+.wp-block-query-pagination.post-listing-pagination .wp-block-query-pagination-next-arrow {
+	margin: 0;
+	font-size: 1.4em;
 }
