@@ -1,0 +1,15 @@
+/*
+ * core/query has no spacing support at all in its own block.json — no
+ * style.spacing.padding attribute exists for this block, so this genuinely
+ * needs real CSS. Scoped to .post-listing-query (home.html/archive.html's
+ * post grid) rather than a blanket .wp-block-query rule, so it doesn't
+ * affect other query loops elsewhere in the theme (e.g. hero-lead-story's
+ * own query).
+ *
+ * Values confirmed directly with the user from live testing, not
+ * measured from Figma — a broader site-wide spacing pass (matching every
+ * "main" section's padding for consistency) is a separate, later task.
+ */
+.wp-block-query.post-listing-query {
+	padding: 0 0;
+}

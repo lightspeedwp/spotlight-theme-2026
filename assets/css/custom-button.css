@@ -50,6 +50,28 @@
 	color: var(--wp--preset--color--base);
 }
 
+/* Text Link (styles/blocks/button/text-link.json) */
+
+.wp-block-button.is-style-text-link .wp-block-button__link::after {
+	content: "";
+	display: inline-block;
+	width: 1.25em;
+	height: 1.25em;
+	vertical-align: -0.35em;
+	margin-inline-start: var(--wp--preset--spacing--5);
+	background-color: currentcolor;
+	-webkit-mask-image: url('../icons/arrow-right.svg');
+	-webkit-mask-repeat: no-repeat;
+	-webkit-mask-size: contain;
+	mask-image: url('../icons/arrow-right.svg');
+	mask-repeat: no-repeat;
+	mask-size: contain;
+}
+
+/* No hover color rule: unlike the other custom button styles, Text Link's
+   hover color is the same brand-500 as its resting state, confirmed
+   directly with the user — nothing to override on hover. */
+
 /* Dashboard (styles/blocks/button/dashboard.json) */
 
 .wp-block-button.is-style-dashboard .wp-block-button__link::before {

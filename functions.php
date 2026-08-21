@@ -99,6 +99,198 @@ function spotlight_theme_2026_resolve_hero_featured_tag( $parsed_block ) {
 add_filter( 'render_block_data', 'spotlight_theme_2026_resolve_hero_featured_tag' );
 
 /**
+ * Resolves a tag slug encoded in a query block's namespace into that tag's
+ * real term ID at render time.
+ *
+ * Generalizes the same technique as spotlight_theme_2026_resolve_hero_featured_tag()
+ * for front-page.html's tag-filtered card rows (Special Projects, Perspectives)
+ * instead of writing one dedicated filter per row. A query using this
+ * mechanism sets its own "namespace" attribute to
+ * "spotlight/tag-query/{tag-slug}" (e.g. "spotlight/tag-query/special-projects")
+ * — the part after the last slash is the tag slug to resolve.
+ *
+ * Same safe-fallback behavior as the hero's filter: if the named tag
+ * doesn't exist yet, the query is forced to zero results rather than left
+ * unfiltered, so the row doesn't silently show unrelated latest posts.
+ *
+ * @param array $parsed_block The block being rendered.
+ * @return array
+ */
+function spotlight_theme_2026_resolve_tag_query_namespace( $parsed_block ) {
+	if ( 'core/query' !== $parsed_block['blockName'] ) {
+		return $parsed_block;
+	}
+
+	$namespace = $parsed_block['attrs']['namespace'] ?? '';
+
+	if ( ! str_starts_with( $namespace, 'spotlight/tag-query/' ) ) {
+		return $parsed_block;
+	}
+
+	$slug = substr( $namespace, strlen( 'spotlight/tag-query/' ) );
+	$tag  = get_term_by( 'slug', $slug, 'post_tag' );
+
+	$parsed_block['attrs']['query']['taxQuery'] = array(
+		'post_tag' => array( $tag instanceof WP_Term ? $tag->term_id : 0 ),
+	);
+
+	return $parsed_block;
+}
+add_filter( 'render_block_data', 'spotlight_theme_2026_resolve_tag_query_namespace' );
+
+/**
+ * Resolves a topic-band tile's target category into its real name, link,
+ * and post count at render time.
+ *
+ * Each tile in patterns/topic-band.php and patterns/topic-band-compact.php
+ * is a wp:group whose real WordPress `anchor` attribute (e.g.
+ * "topic-band-hiv-aids") names which category slug it represents — a
+ * curated, easy-to-edit list living directly in the pattern markup, not
+ * this function. This filter looks that category up and swaps in its
+ * live name/link/post-count, so a renamed category or a growing post
+ * count is always shown correctly without ever needing a pattern-file
+ * edit. Adding, removing, or reordering topics is done entirely in the
+ * pattern files; this function only resolves whichever anchors it finds.
+ *
+ * If the named category doesn't exist yet (e.g. a fresh install), the
+ * tile falls back to the pattern's own static placeholder content
+ * instead of being resolved — matching this design's Figma content
+ * exactly until the real category is created.
+ *
+ * The optional "topic-band__term-info--with-count" class on the same
+ * group opts a tile into showing its post count (topic-band.php's
+ * grid-with-counts variant); without it, only the name/link renders
+ * (topic-band-compact.php's sidebar-list variant, which never shows a
+ * count in the Figma design).
+ *
+ * @param array $parsed_block The block being rendered.
+ * @return array
+ */
+function spotlight_theme_2026_resolve_topic_band_term( $parsed_block ) {
+	if ( 'core/group' !== $parsed_block['blockName'] ) {
+		return $parsed_block;
+	}
+
+	$anchor = $parsed_block['attrs']['anchor'] ?? '';
+
+	if ( ! str_starts_with( $anchor, 'topic-band-' ) ) {
+		return $parsed_block;
+	}
+
+	$slug = substr( $anchor, strlen( 'topic-band-' ) );
+	$term = get_term_by( 'slug', $slug, 'category' );
+
+	if ( ! ( $term instanceof WP_Term ) ) {
+		return $parsed_block;
+	}
+
+	$class_name = $parsed_block['attrs']['className'] ?? '';
+	$name_html  = sprintf(
+		'<a class="topic-band__term-name" href="%1$s">%2$s</a>',
+		esc_url( get_term_link( $term ) ),
+		esc_html( $term->name )
+	);
+	$count_html = '';
+
+	if ( str_contains( $class_name, 'topic-band__term-info--with-count' ) ) {
+		$count_html = sprintf(
+			'<span class="topic-band__term-count">%s</span>',
+			esc_html(
+				sprintf(
+					/* translators: %s: number of articles in this topic (already formatted, e.g. "1,234"). */
+					_n( '%s article', '%s articles', $term->count, 'spotlight-theme-2026' ),
+					number_format_i18n( $term->count )
+				)
+			)
+		);
+	}
+
+	$markup = sprintf(
+		'<div id="%1$s" class="wp-block-group %2$s">%3$s%4$s</div>',
+		esc_attr( $anchor ),
+		esc_attr( $class_name ),
+		$name_html,
+		$count_html
+	);
+
+	$parsed_block['innerHTML']    = $markup;
+	$parsed_block['innerContent'] = array( $markup );
+	$parsed_block['innerBlocks']  = array();
+
+	return $parsed_block;
+}
+add_filter( 'render_block_data', 'spotlight_theme_2026_resolve_topic_band_term' );
+
+/**
+ * Marks the topic-filter pill matching the current category archive.
+ *
+ * Core/term-template has no "current" class the way wp_list_categories()
+ * does, so this compares the pill's own termId context against the page
+ * actually being viewed.
+ *
+ * @param string   $block_content Rendered block HTML.
+ * @param array    $parsed_block  The block being rendered.
+ * @param WP_Block $block         Block instance (context is resolved by now).
+ * @return string
+ */
+function spotlight_theme_2026_mark_current_topic_filter_pill( $block_content, $parsed_block, $block ) {
+	$term_id = $block->context['termId'] ?? 0;
+
+	if ( ! $term_id || ! is_category( $term_id ) ) {
+		return $block_content;
+	}
+
+	$tags = new WP_HTML_Tag_Processor( $block_content );
+
+	if ( $tags->next_tag( 'a' ) ) {
+		$tags->add_class( 'is-current' );
+	}
+
+	return $tags->get_updated_html();
+}
+add_filter( 'render_block_core/term-name', 'spotlight_theme_2026_mark_current_topic_filter_pill', 10, 3 );
+
+/**
+ * Hides a story-card's featured-image link from assistive technology.
+ *
+ * Each story-card variant links both its featured image and its title to
+ * the same post — a sighted user sees one obvious card, but a screen
+ * reader announces the same destination twice per card. The title link
+ * already provides an accessible, clearly-labelled way to reach the post,
+ * so the image's own link is hidden from assistive tech rather than
+ * removed outright (sighted/mouse users still get the larger, familiar
+ * click target).
+ *
+ * Scoped to post-featured-image blocks carrying the "story-card__featured-image"
+ * class, not applied globally — other patterns (e.g. hero-lead-story.php)
+ * that link both an image and a title make their own accessibility
+ * decisions independently.
+ *
+ * @param string $block_content The block's rendered HTML.
+ * @param array  $block         The block being rendered.
+ * @return string
+ */
+function spotlight_theme_2026_hide_duplicate_card_image_link( $block_content, $block ) {
+	if ( 'core/post-featured-image' !== $block['blockName'] ) {
+		return $block_content;
+	}
+
+	if ( ! str_contains( $block['attrs']['className'] ?? '', 'story-card__featured-image' ) ) {
+		return $block_content;
+	}
+
+	$processor = new WP_HTML_Tag_Processor( $block_content );
+
+	if ( $processor->next_tag( 'a' ) ) {
+		$processor->set_attribute( 'aria-hidden', 'true' );
+		$processor->set_attribute( 'tabindex', '-1' );
+	}
+
+	return $processor->get_updated_html();
+}
+add_filter( 'render_block', 'spotlight_theme_2026_hide_duplicate_card_image_link', 10, 2 );
+
+/**
  * Returns a cache-busting version string for a theme file.
  *
  * Uses the file's own last-modified time — the theme `Version` header isn't
@@ -182,6 +374,50 @@ function spotlight_theme_2026_enqueue_assets() {
 		get_theme_file_uri( 'assets/css/spotlight-breadcrumb-icon.css' ),
 		array(),
 		spotlight_theme_2026_asset_version( 'assets/css/spotlight-breadcrumb-icon.css' )
+	);
+
+	// core/post-featured-image's border support doesn't reliably serialize
+	// via block attributes, and core/group has no "position" attribute —
+	// both needed for story-card/-editorial/-featured's image radius and
+	// badge-overlay placement.
+	wp_enqueue_style(
+		'spotlight-theme-2026-story-card',
+		get_theme_file_uri( 'assets/css/story-card.css' ),
+		array(),
+		spotlight_theme_2026_asset_version( 'assets/css/story-card.css' )
+	);
+
+	// spotlight_theme_2026_resolve_topic_band_term()'s render-time markup
+	// has no inline styling of its own; tile alignment and name/count
+	// typography live here instead.
+	wp_enqueue_style(
+		'spotlight-theme-2026-topic-band',
+		get_theme_file_uri( 'assets/css/topic-band.css' ),
+		array(),
+		spotlight_theme_2026_asset_version( 'assets/css/topic-band.css' )
+	);
+
+	// core/query has no spacing support at all — home.html/archive.html's
+	// post-listing query needs real CSS for its own padding.
+	wp_enqueue_style(
+		'spotlight-theme-2026-post-listing',
+		get_theme_file_uri( 'assets/css/post-listing.css' ),
+		array(),
+		spotlight_theme_2026_asset_version( 'assets/css/post-listing.css' )
+	);
+
+	wp_enqueue_style(
+		'spotlight-theme-2026-topic-filter',
+		get_theme_file_uri( 'assets/css/topic-filter.css' ),
+		array(),
+		spotlight_theme_2026_asset_version( 'assets/css/topic-filter.css' )
+	);
+
+	wp_enqueue_style(
+		'spotlight-theme-2026-pagination',
+		get_theme_file_uri( 'assets/css/pagination.css' ),
+		array(),
+		spotlight_theme_2026_asset_version( 'assets/css/pagination.css' )
 	);
 
 	// Add wp_enqueue_script() here when assets/js/main.js exists.

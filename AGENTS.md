@@ -163,6 +163,14 @@ Rules:
 
 ---
 
+## Pattern and Template Development
+
+Before writing or debugging anything in `patterns/*.php`, `templates/*.html`, or `parts/*.html`, read `.agents/skills/wp-block-pattern-gotchas/SKILL.md`. It documents WordPress core behaviors that fail *silently* rather than with an error — invalid layout types, `constrained` layout needing an explicit `contentSize` in static markup, nested `wp:pattern` losing block context, unreliable margin/`blockGap` spacing, attributes that don't actually serialize, and DB template overrides shadowing file edits. Every entry there cost real debugging time once; the goal is to not pay that cost twice.
+
+**Verify WordPress core behavior against its actual source before implementing it** — `wp-includes/block-supports/*.php` for layout/spacing mechanics, a block's own `block.json` for its real attributes and supports — rather than assuming from memory. A wrong assumption about a core mechanism usually produces no error at all, just a silent no-op, which is far more expensive to trace back than reading the source up front.
+
+---
+
 ## Validation and Linting Commands
 
 Run these before committing:
@@ -250,3 +258,5 @@ composer run lint:php
 14. **Always update `CHANGELOG.md`** when making meaningful changes.
 15. **Do not reintroduce placeholder tokens.** This theme's identity (`spotlight-theme-2026` etc.) is already set — see "Slug and Text Domain Consistency" above.
 16. **Do not flag site-specific hard-coded values as portability gaps.** This is a specific client theme, not a starter template — a real navigation menu `ref`, real asset paths, and real content are correct here, not something to generalize.
+17. **Read `.agents/skills/wp-block-pattern-gotchas/SKILL.md` before writing or debugging `patterns/*.php`, `templates/*.html`, or `parts/*.html`.** It documents known WordPress core behaviors that fail silently — see "Pattern and Template Development" above.
+18. **Verify a WordPress core mechanism against its actual source before implementing it** — `wp-includes/block-supports/*.php` for layout/spacing, a block's `block.json` for its real attributes/supports — rather than assuming from memory. Do not guess at layout types, attribute serialization, or spacing behavior.
