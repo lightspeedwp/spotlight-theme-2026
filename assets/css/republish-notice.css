@@ -1,0 +1,56 @@
+/*
+ * The "CC" icon circle needs a fixed size core/group can't set via any
+ * block attribute — real CSS for size/centering. Border is CSS too, not
+ * a hand-typed inline-style block attribute — that combination (all
+ * four border sub-properties at once) triggered a "Block contains
+ * unexpected or invalid content" editor error, since it didn't match
+ * WordPress's own generated serialization.
+ */
+.republish-notice__icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 2.5em;
+	height: 2.5em;
+	flex-shrink: 0;
+	border: var(--wp--custom--border-width--base) solid var(--wp--preset--color--neutral-700);
+	border-radius: var(--wp--preset--border-radius--500);
+}
+
+/*
+ * The plugin's button isn't a core/button, so
+ * styles/blocks/button/republish-article.json's is-style-republish-article
+ * class can't reach it — same values, targeted directly instead. The
+ * icon is the same arrow custom-button.css already uses for that style.
+ */
+.republish-notice #cc-post-republisher-modal-button-open {
+	display: inline-flex;
+	align-items: center;
+	background-color: var(--wp--preset--color--accent-500);
+	color: var(--wp--preset--color--base);
+	border: none;
+	border-radius: var(--wp--preset--border-radius--200);
+	padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
+	font-size: var(--wp--preset--font-size--200);
+	font-weight: var(--wp--custom--font-weight--semi-bold);
+	cursor: pointer;
+}
+
+.republish-notice #cc-post-republisher-modal-button-open:hover {
+	background-color: var(--wp--preset--color--accent-600);
+}
+
+.republish-notice #cc-post-republisher-modal-button-open::before {
+	content: "";
+	display: inline-block;
+	width: 1.25em;
+	height: 1.25em;
+	margin-inline-end: var(--wp--preset--spacing--5);
+	background-color: currentcolor;
+	mask-image: url("../icons/arrow-line-up-right.svg");
+	mask-repeat: no-repeat;
+	mask-size: contain;
+	-webkit-mask-image: url("../icons/arrow-line-up-right.svg");
+	-webkit-mask-repeat: no-repeat;
+	-webkit-mask-size: contain;
+}

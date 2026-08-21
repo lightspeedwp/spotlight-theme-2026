@@ -28,11 +28,11 @@
 ## 3. Trust, newsletter, and editorial-utility patterns (LS-1721 / PR 3)
 
 - [ ] 3.1 Create `patterns/newsletter-signup.php` (front-page size) and `patterns/newsletter-signup-compact.php` (sidebar size) — satisfying the `newsletter-signup` requirement's two size variants
-- [ ] 3.2 Create `patterns/republish-notice.php`, including the CC BY-ND 4.0 attribution copy confirmed in the Figma client annotation — satisfying the `republish-notice` requirement
+- [x] 3.2 Create `patterns/republish-notice.php`, including the CC BY-ND 4.0 attribution copy confirmed in the Figma client annotation — satisfying the `republish-notice` requirement. The visible "Republish article" button and its modal match the site's own CC Post Republisher plugin's expected markup, so its existing modal JS actually works — the plugin only ever renders that button/modal, so the card, icon, heading, and body copy around it are authored directly. Written as plain HTML rather than a `wp:cc/post-republisher` block reference: that block's `save()` returns real content, and a self-closing block reference stores none, which broke both the front-end button and editor validation ("Block contains unexpected or invalid content") — the plugin's modal JS only looks for the element IDs, not a real block instance, so plain HTML works identically. Card has no background — confirmed with the user live testing showed it unnecessary. The button's look reuses `styles/blocks/button/republish-article.json`'s exact values in `assets/css/republish-notice.css`, since the plugin's button isn't a `core/button` and can't take that style variation's class directly.
 - [ ] 3.3 Confirm `parts/trust-bar.html` remains an existing template part, not converted to a pattern
 - [ ] 3.4 Update `templates/front-page.html`'s `front-page__provincial-newsletter` section to reference `newsletter-signup` via `wp:pattern`
 - [ ] 3.5 Update `parts/sidebar-editorial.html`'s newsletter module to reference `newsletter-signup-compact` via `wp:pattern`
-- [ ] 3.6 Update `templates/single.html`'s republish section to reference `republish-notice` via `wp:pattern`, replacing `[Republish pattern placeholder]`
+- [x] 3.6 Update `templates/single.html`'s republish section to reference `republish-notice` via `wp:pattern`, replacing `[Republish pattern placeholder]`
 - [ ] 3.7 Tighten `parts/sidebar-editorial.html` spacing, borders, and Explore-topics icon treatment to match the Figma "Single Blog Post" sidebar exactly
 - [ ] 3.8 Note any dependencies on form-integration decisions (e.g. real newsletter subscription handling vs. static markup) in design.md
 - [ ] 3.9 Run `npm run schema:validate` and `npm run theme:validate`; manually verify in the Site Editor and front end
