@@ -36,8 +36,8 @@
 - [x] 3.5 Update `parts/sidebar-editorial.html`'s newsletter module to reference `newsletter-signup-compact` via `wp:pattern` — same whole-group replacement; confirmed live in the sidebar with the real Gravity Form rendering and styled correctly
 - [x] 3.6 Update `templates/single.html`'s republish section to reference `republish-notice` via `wp:pattern`, replacing `[Republish pattern placeholder]`
 - [x] 3.7 Tighten `parts/sidebar-editorial.html` spacing, borders, and Explore-topics icon treatment to match the Figma "Single Blog Post" sidebar exactly. Icon/text typography (topic-band.css) already matched Figma correctly, nothing to change there. `topic-band-compact.php`'s tile padding was genuinely wrong (spacing|40 instead of Figma's spacing|20, confirmed against a fresh pull of the sidebar's "Topic Sidebar" component) — not something today's theme.json fix caused, but the fix made it newly visible at its real (larger) size. Also removed the heading's redundant padding-bottom, since the outer wrapper's own blockGap already provides the correct single gap per Figma.
-- [ ] 3.8 Note any dependencies on form-integration decisions (e.g. real newsletter subscription handling vs. static markup) in design.md
-- [ ] 3.9 Run `npm run schema:validate` and `npm run theme:validate`; manually verify in the Site Editor and front end
+- [x] 3.8 Note any dependencies on form-integration decisions (e.g. real newsletter subscription handling vs. static markup) in design.md — sidebar variant's real Gravity Form embed is confirmed correct; front-page variant's button destination is still open, pending Zared
+- [x] 3.9 Run `npm run schema:validate` and `npm run theme:validate`; manually verify in the Site Editor and front end — both pass; all PR 3 patterns and template wiring confirmed live via Playwright throughout today's session
 
 ## 4. Related-coverage and onward-journey patterns (LS-1722 / PR 4)
 
