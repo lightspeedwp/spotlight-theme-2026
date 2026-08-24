@@ -43,9 +43,17 @@
  * image's top-left corner, inset by story-card__media's own padding.
  * core/group has no "position" style attribute, so this needs real CSS —
  * .story-card__media is the positioned ancestor every variant shares.
+ *
+ * overflow:hidden also contains a broken/missing image to this box: a
+ * failed image falls back to its raw width/height HTML attributes
+ * (often large, oversized crops), and with overflow:visible up the
+ * ancestor chain that box bleeds straight through the rest of the
+ * page — not just a local-dev demo-content risk, any deleted/failed
+ * media file on staging or live would do the same without this.
  */
 .story-card__media {
 	position: relative;
+	overflow: hidden;
 }
 
 .story-card__badge-overlay {
@@ -53,4 +61,19 @@
 	top: var(--wp--preset--spacing--10);
 	left: var(--wp--preset--spacing--50);
 	z-index: 1;
+}
+
+/*
+ * CSS Grid's default align-items:stretch makes every card in a
+ * post-template row match the row's tallest card (e.g. one with a much
+ * longer excerpt) — with no block attribute to opt a grid item out of
+ * that (same gap as columnStart/rowSpan, confirmed in tasks.md task
+ * 2.9). The stretch cascades into story-card__media's aspect-ratio
+ * figure, blowing its image out to the row's full height instead of
+ * its own 3/2 ratio. Each card sizes to its own content instead.
+ */
+.story-card,
+.story-card-featured,
+.story-card-editorial {
+	align-self: start;
 }
