@@ -30,7 +30,7 @@
 	color: var(--wp--preset--color--base);
 	border: none;
 	border-radius: var(--wp--preset--border-radius--200);
-	padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
+	padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--20);
 	font-size: var(--wp--preset--font-size--200);
 	font-weight: var(--wp--custom--font-weight--semi-bold);
 	cursor: pointer;
