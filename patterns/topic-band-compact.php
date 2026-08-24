@@ -39,19 +39,25 @@
  *
  * The outer wrapper has no background color, confirmed directly with the
  * user after testing.
+ *
+ * Tile padding corrected from spacing|40 to spacing|20 and the heading's
+ * redundant padding-bottom removed (2026-08-24), confirmed against a
+ * fresh Figma pull of the sidebar's "Topic Sidebar" component — both
+ * were over-spaced once today's theme.json spacing-scale fix made
+ * spacing|40 resolve to its real fluid value instead of a broken flat one.
  */
 
 ?>
 <!-- wp:group {"className":"topic-band-compact","style":{"border":{"radius":"var:preset|border-radius|300"},"spacing":{"padding":"var:preset|spacing|20","blockGap":"var:preset|spacing|20"}},"layout":{"type":"default"}} -->
 <div class="wp-block-group topic-band-compact" style="border-radius:var(--wp--preset--border-radius--300);padding:var(--wp--preset--spacing--20)">
-	<!-- wp:heading {"level":2,"textColor":"accent-500","fontSize":"500","style":{"typography":{"letterSpacing":"0.3px"},"spacing":{"padding":{"bottom":"var:preset|spacing|40"}}}} -->
-	<h2 class="wp-block-heading has-accent-500-color has-text-color has-500-font-size" style="letter-spacing:0.3px;padding-bottom:var(--wp--preset--spacing--40)"><?php echo esc_html__( 'Explore topics', 'spotlight-theme-2026' ); ?></h2>
+	<!-- wp:heading {"level":2,"textColor":"accent-500","fontSize":"500","style":{"typography":{"letterSpacing":"0.3px"}}} -->
+	<h2 class="wp-block-heading has-accent-500-color has-text-color has-500-font-size" style="letter-spacing:0.3px"><?php echo esc_html__( 'Explore topics', 'spotlight-theme-2026' ); ?></h2>
 	<!-- /wp:heading -->
 
 	<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"default"}} -->
 	<div class="wp-block-group">
-		<!-- wp:group {"className":"topic-band-compact__tile","backgroundColor":"neutral-100","style":{"border":{"radius":"var:preset|border-radius|200"},"spacing":{"padding":"var:preset|spacing|40","blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-		<div class="wp-block-group topic-band-compact__tile has-neutral-100-background-color has-background" style="border-radius:var(--wp--preset--border-radius--200);padding:var(--wp--preset--spacing--40)">
+		<!-- wp:group {"className":"topic-band-compact__tile","backgroundColor":"neutral-100","style":{"border":{"radius":"var:preset|border-radius|200"},"spacing":{"padding":"var:preset|spacing|20","blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+		<div class="wp-block-group topic-band-compact__tile has-neutral-100-background-color has-background" style="border-radius:var(--wp--preset--border-radius--200);padding:var(--wp--preset--spacing--20)">
 			<!-- wp:image {"width":"24px","height":"24px","sizeSlug":"full","linkDestination":"none"} -->
 			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/icons/topic-latest-news.svg' ) ); ?>" alt="" style="width:24px;height:24px" /></figure>
 			<!-- /wp:image -->
@@ -66,8 +72,8 @@
 		</div>
 		<!-- /wp:group -->
 
-		<!-- wp:group {"className":"topic-band-compact__tile","backgroundColor":"neutral-100","style":{"border":{"radius":"var:preset|border-radius|200"},"spacing":{"padding":"var:preset|spacing|40","blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-		<div class="wp-block-group topic-band-compact__tile has-neutral-100-background-color has-background" style="border-radius:var(--wp--preset--border-radius--200);padding:var(--wp--preset--spacing--40)">
+		<!-- wp:group {"className":"topic-band-compact__tile","backgroundColor":"neutral-100","style":{"border":{"radius":"var:preset|border-radius|200"},"spacing":{"padding":"var:preset|spacing|20","blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+		<div class="wp-block-group topic-band-compact__tile has-neutral-100-background-color has-background" style="border-radius:var(--wp--preset--border-radius--200);padding:var(--wp--preset--spacing--20)">
 			<!-- wp:image {"width":"24px","height":"24px","sizeSlug":"full","linkDestination":"none"} -->
 			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/icons/topic-hiv-aids.svg' ) ); ?>" alt="" style="width:24px;height:24px" /></figure>
 			<!-- /wp:image -->
@@ -82,8 +88,8 @@
 		</div>
 		<!-- /wp:group -->
 
-		<!-- wp:group {"className":"topic-band-compact__tile","backgroundColor":"neutral-100","style":{"border":{"radius":"var:preset|border-radius|200"},"spacing":{"padding":"var:preset|spacing|40","blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-		<div class="wp-block-group topic-band-compact__tile has-neutral-100-background-color has-background" style="border-radius:var(--wp--preset--border-radius--200);padding:var(--wp--preset--spacing--40)">
+		<!-- wp:group {"className":"topic-band-compact__tile","backgroundColor":"neutral-100","style":{"border":{"radius":"var:preset|border-radius|200"},"spacing":{"padding":"var:preset|spacing|20","blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+		<div class="wp-block-group topic-band-compact__tile has-neutral-100-background-color has-background" style="border-radius:var(--wp--preset--border-radius--200);padding:var(--wp--preset--spacing--20)">
 			<!-- wp:image {"width":"24px","height":"24px","sizeSlug":"full","linkDestination":"none"} -->
 			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/icons/topic-tuberculosis.svg' ) ); ?>" alt="" style="width:24px;height:24px" /></figure>
 			<!-- /wp:image -->
@@ -98,8 +104,8 @@
 		</div>
 		<!-- /wp:group -->
 
-		<!-- wp:group {"className":"topic-band-compact__tile","backgroundColor":"neutral-100","style":{"border":{"radius":"var:preset|border-radius|200"},"spacing":{"padding":"var:preset|spacing|40","blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-		<div class="wp-block-group topic-band-compact__tile has-neutral-100-background-color has-background" style="border-radius:var(--wp--preset--border-radius--200);padding:var(--wp--preset--spacing--40)">
+		<!-- wp:group {"className":"topic-band-compact__tile","backgroundColor":"neutral-100","style":{"border":{"radius":"var:preset|border-radius|200"},"spacing":{"padding":"var:preset|spacing|20","blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+		<div class="wp-block-group topic-band-compact__tile has-neutral-100-background-color has-background" style="border-radius:var(--wp--preset--border-radius--200);padding:var(--wp--preset--spacing--20)">
 			<!-- wp:image {"width":"24px","height":"24px","sizeSlug":"full","linkDestination":"none"} -->
 			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/icons/topic-nhi.svg' ) ); ?>" alt="" style="width:24px;height:24px" /></figure>
 			<!-- /wp:image -->
@@ -114,8 +120,8 @@
 		</div>
 		<!-- /wp:group -->
 
-		<!-- wp:group {"className":"topic-band-compact__tile","backgroundColor":"neutral-100","style":{"border":{"radius":"var:preset|border-radius|200"},"spacing":{"padding":"var:preset|spacing|40","blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-		<div class="wp-block-group topic-band-compact__tile has-neutral-100-background-color has-background" style="border-radius:var(--wp--preset--border-radius--200);padding:var(--wp--preset--spacing--40)">
+		<!-- wp:group {"className":"topic-band-compact__tile","backgroundColor":"neutral-100","style":{"border":{"radius":"var:preset|border-radius|200"},"spacing":{"padding":"var:preset|spacing|20","blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+		<div class="wp-block-group topic-band-compact__tile has-neutral-100-background-color has-background" style="border-radius:var(--wp--preset--border-radius--200);padding:var(--wp--preset--spacing--20)">
 			<!-- wp:image {"width":"24px","height":"24px","sizeSlug":"full","linkDestination":"none"} -->
 			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/icons/topic-access-to-medicines.svg' ) ); ?>" alt="" style="width:24px;height:24px" /></figure>
 			<!-- /wp:image -->
@@ -130,8 +136,8 @@
 		</div>
 		<!-- /wp:group -->
 
-		<!-- wp:group {"className":"topic-band-compact__tile","backgroundColor":"neutral-100","style":{"border":{"radius":"var:preset|border-radius|200"},"spacing":{"padding":"var:preset|spacing|40","blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-		<div class="wp-block-group topic-band-compact__tile has-neutral-100-background-color has-background" style="border-radius:var(--wp--preset--border-radius--200);padding:var(--wp--preset--spacing--40)">
+		<!-- wp:group {"className":"topic-band-compact__tile","backgroundColor":"neutral-100","style":{"border":{"radius":"var:preset|border-radius|200"},"spacing":{"padding":"var:preset|spacing|20","blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+		<div class="wp-block-group topic-band-compact__tile has-neutral-100-background-color has-background" style="border-radius:var(--wp--preset--border-radius--200);padding:var(--wp--preset--spacing--20)">
 			<!-- wp:image {"width":"24px","height":"24px","sizeSlug":"full","linkDestination":"none"} -->
 			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/icons/topic-healthcare-system.svg' ) ); ?>" alt="" style="width:24px;height:24px" /></figure>
 			<!-- /wp:image -->
@@ -146,8 +152,8 @@
 		</div>
 		<!-- /wp:group -->
 
-		<!-- wp:group {"className":"topic-band-compact__tile","backgroundColor":"neutral-100","style":{"border":{"radius":"var:preset|border-radius|200"},"spacing":{"padding":"var:preset|spacing|40","blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-		<div class="wp-block-group topic-band-compact__tile has-neutral-100-background-color has-background" style="border-radius:var(--wp--preset--border-radius--200);padding:var(--wp--preset--spacing--40)">
+		<!-- wp:group {"className":"topic-band-compact__tile","backgroundColor":"neutral-100","style":{"border":{"radius":"var:preset|border-radius|200"},"spacing":{"padding":"var:preset|spacing|20","blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+		<div class="wp-block-group topic-band-compact__tile has-neutral-100-background-color has-background" style="border-radius:var(--wp--preset--border-radius--200);padding:var(--wp--preset--spacing--20)">
 			<!-- wp:image {"width":"24px","height":"24px","sizeSlug":"full","linkDestination":"none"} -->
 			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/icons/topic-ncds.svg' ) ); ?>" alt="" style="width:24px;height:24px" /></figure>
 			<!-- /wp:image -->
