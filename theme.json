@@ -8,6 +8,7 @@
 			"wideSize": "1320px"
 		},
 		"spacing": {
+			"defaultSpacingSizes": false,
 			"spacingSizes": [
 				{
 					"name": "XXS",

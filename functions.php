@@ -291,6 +291,24 @@ function spotlight_theme_2026_hide_duplicate_card_image_link( $block_content, $b
 add_filter( 'render_block', 'spotlight_theme_2026_hide_duplicate_card_image_link', 10, 2 );
 
 /**
+ * Suppresses the CC Post Republisher plugin's own `cc/post-republisher`
+ * block wherever editors have inserted it directly into post content.
+ *
+ * `patterns/republish-notice.php` already renders the plugin's button/modal
+ * markup with the site's own design, appended once per single.html via
+ * `wp:pattern`. Editors are used to placing the plugin's default block
+ * inline in the article body too, which duplicates the button (and its
+ * element IDs) on the page. The pattern doesn't use this block, so
+ * suppressing it here only ever removes the redundant inline copy.
+ *
+ * @return string
+ */
+function spotlight_theme_2026_suppress_inline_republish_block() {
+	return '';
+}
+add_filter( 'render_block_cc/post-republisher', 'spotlight_theme_2026_suppress_inline_republish_block' );
+
+/**
  * Returns a cache-busting version string for a theme file.
  *
  * Uses the file's own last-modified time — the theme `Version` header isn't
@@ -418,6 +436,37 @@ function spotlight_theme_2026_enqueue_assets() {
 		get_theme_file_uri( 'assets/css/pagination.css' ),
 		array(),
 		spotlight_theme_2026_asset_version( 'assets/css/pagination.css' )
+	);
+
+	// cc-post-republisher-style is only ever auto-enqueued by WordPress when
+	// a real cc/post-republisher block is detected in the content; our
+	// pattern embeds the plugin's markup as plain HTML instead (see
+	// patterns/republish-notice.php), so it never gets picked up on its
+	// own. Declaring it as a dependency here enqueues the plugin's own
+	// modal styling — already registered by the plugin — ahead of ours.
+	wp_enqueue_style(
+		'spotlight-theme-2026-republish-notice',
+		get_theme_file_uri( 'assets/css/republish-notice.css' ),
+		array( 'cc-post-republisher-style' ),
+		spotlight_theme_2026_asset_version( 'assets/css/republish-notice.css' )
+	);
+
+	wp_enqueue_style(
+		'spotlight-theme-2026-newsletter-signup',
+		get_theme_file_uri( 'assets/css/newsletter-signup.css' ),
+		array(),
+		spotlight_theme_2026_asset_version( 'assets/css/newsletter-signup.css' )
+	);
+
+	// The "Newsletter Subscribe Pop Up" Popup Maker popup preloads its
+	// content into the front page's own markup, so this loads on the
+	// same page load as everything else — no separate popup-page hook
+	// needed.
+	wp_enqueue_style(
+		'spotlight-theme-2026-newsletter-popup',
+		get_theme_file_uri( 'assets/css/newsletter-popup.css' ),
+		array(),
+		spotlight_theme_2026_asset_version( 'assets/css/newsletter-popup.css' )
 	);
 
 	// Add wp_enqueue_script() here when assets/js/main.js exists.

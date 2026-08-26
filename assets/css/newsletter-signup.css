@@ -1,0 +1,60 @@
+/*
+ * A hand-typed border width+style+color+radius block-style attribute
+ * doesn't byte-match WordPress's own style-engine serialization (see
+ * patterns/newsletter-signup.php's header comment) — real CSS instead,
+ * same fix already used for republish-notice.
+ */
+.newsletter-signup {
+	border: 1px solid var(--wp--preset--color--neutral-300);
+	border-radius: var(--wp--preset--border-radius--200);
+}
+
+/*
+ * newsletter-signup-compact.php embeds the site's real Gravity Form
+ * rather than static markup, so its input/button come from Gravity
+ * Forms' own generated HTML, not core/button — restyled directly here
+ * instead of rebuilt from scratch, the same CSS-bridge approach already
+ * used for the CC Post Republisher plugin's button in
+ * republish-notice.css. The field's visible label is screen-reader-only
+ * since the field's placeholder text (set directly in the form, in
+ * wp-admin) already communicates its purpose visually, matching Figma.
+ */
+.newsletter-signup-compact .gfield_label {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+.newsletter-signup-compact .ginput_container input[type="email"],
+.newsletter-signup-compact .ginput_container input[type="text"] {
+	width: 100%;
+	background-color: var(--wp--preset--color--base);
+	border: 1px solid var(--wp--preset--color--neutral-400);
+	border-radius: var(--wp--preset--border-radius--200);
+	padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--200);
+}
+
+.newsletter-signup-compact .gform_footer input.gform_button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	background-color: var(--wp--preset--color--accent-200);
+	color: var(--wp--preset--color--neutral-100);
+	border: none;
+	border-radius: var(--wp--preset--border-radius--500);
+	padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--30);
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--300);
+	font-weight: var(--wp--custom--font-weight--semi-bold);
+	cursor: pointer;
+}
+
+.newsletter-signup-compact .gform_footer input.gform_button:hover {
+	background-color: var(--wp--preset--color--accent-300);
+}

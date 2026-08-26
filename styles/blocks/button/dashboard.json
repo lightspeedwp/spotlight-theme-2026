@@ -15,10 +15,10 @@
 		},
 		"spacing": {
 			"padding": {
-				"top": "var(--wp--preset--spacing--20)",
-				"right": "var(--wp--preset--spacing--30)",
-				"bottom": "var(--wp--preset--spacing--20)",
-				"left": "var(--wp--preset--spacing--30)"
+				"top": "var(--wp--preset--spacing--10)",
+				"right": "var(--wp--preset--spacing--20)",
+				"bottom": "var(--wp--preset--spacing--10)",
+				"left": "var(--wp--preset--spacing--20)"
 			}
 		},
 		"typography": {
