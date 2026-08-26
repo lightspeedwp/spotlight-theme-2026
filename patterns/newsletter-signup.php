@@ -14,9 +14,12 @@
  * This site has real "Edition"/"Spotlight Edition" categories that could
  * back a genuine "latest newsletters" list later, but going dynamic is
  * deferred pending Zared's feedback on whether it's actually needed —
- * edit the three list items directly in the Site Editor for now. The
- * "Subscribe for the latest news" button's destination (real form
- * submission vs. linking elsewhere) is also unresolved; see design.md.
+ * edit the three list items directly in the Site Editor for now.
+ *
+ * "Subscribe for the latest news" opens the "Newsletter Subscribe Pop
+ * Up" Popup Maker popup (wp-admin, not a theme file) via its
+ * newsletter-signup__cta class, configured as that popup's Click Open
+ * trigger selector.
  *
  * Border lives in assets/css/newsletter-signup.css, not a block style
  * attribute — a hand-typed border width+style+color+radius combination
@@ -99,8 +102,8 @@
 
 	<!-- wp:buttons -->
 	<div class="wp-block-buttons">
-		<!-- wp:button {"className":"is-style-secondary"} -->
-		<div class="wp-block-button is-style-secondary"><a class="wp-block-button__link wp-element-button" href="#"><?php echo esc_html__( 'Subscribe for the latest news', 'spotlight-theme-2026' ); ?></a></div>
+		<!-- wp:button {"className":"is-style-secondary newsletter-signup__cta"} -->
+		<div class="wp-block-button is-style-secondary newsletter-signup__cta"><a class="wp-block-button__link wp-element-button" href="#"><?php echo esc_html__( 'Subscribe for the latest news', 'spotlight-theme-2026' ); ?></a></div>
 		<!-- /wp:button -->
 	</div>
 	<!-- /wp:buttons -->
