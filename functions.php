@@ -291,6 +291,41 @@ function spotlight_theme_2026_hide_duplicate_card_image_link( $block_content, $b
 add_filter( 'render_block', 'spotlight_theme_2026_hide_duplicate_card_image_link', 10, 2 );
 
 /**
+ * Appends the featured image's own Caption field below
+ * article-header.php's featured image — core/post-featured-image has no
+ * native caption display. Uses Caption, not alt text: alt is
+ * accessibility-only (describes the image for screen readers), while
+ * Caption is the editorial field meant for visible copy like this.
+ *
+ * Scoped to post-featured-image blocks carrying the
+ * "article-header__featured-image" class. Renders nothing if the image
+ * has no caption set — a real editorial field, not a placeholder.
+ *
+ * @param string $block_content The block's rendered HTML.
+ * @param array  $block         The block being rendered.
+ * @return string
+ */
+function spotlight_theme_2026_add_article_header_image_caption( $block_content, $block ) {
+	if ( 'core/post-featured-image' !== $block['blockName'] ) {
+		return $block_content;
+	}
+
+	if ( ! str_contains( $block['attrs']['className'] ?? '', 'article-header__featured-image' ) ) {
+		return $block_content;
+	}
+
+	$attachment_id = get_post_thumbnail_id();
+	$caption       = $attachment_id ? wp_get_attachment_caption( $attachment_id ) : '';
+
+	if ( ! $caption ) {
+		return $block_content;
+	}
+
+	return $block_content . '<p class="has-neutral-700-color has-text-color has-100-font-size">' . esc_html( $caption ) . '</p>';
+}
+add_filter( 'render_block', 'spotlight_theme_2026_add_article_header_image_caption', 10, 2 );
+
+/**
  * Suppresses the CC Post Republisher plugin's own `cc/post-republisher`
  * block wherever editors have inserted it directly into post content.
  *
@@ -467,6 +502,13 @@ function spotlight_theme_2026_enqueue_assets() {
 		get_theme_file_uri( 'assets/css/newsletter-popup.css' ),
 		array(),
 		spotlight_theme_2026_asset_version( 'assets/css/newsletter-popup.css' )
+	);
+
+	wp_enqueue_style(
+		'spotlight-theme-2026-article-header',
+		get_theme_file_uri( 'assets/css/article-header.css' ),
+		array(),
+		spotlight_theme_2026_asset_version( 'assets/css/article-header.css' )
 	);
 
 	// Add wp_enqueue_script() here when assets/js/main.js exists.

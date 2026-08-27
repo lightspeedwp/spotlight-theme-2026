@@ -1,25 +1,13 @@
 <!-- wp:template-part {"slug":"header","tagName":"header","align":"wide"} /-->
 
-<!-- wp:group {"tagName":"main","layout":{"type":"constrained"},"align":"wide"} -->
-<main class="wp-block-group alignwide">
+<!-- wp:group {"tagName":"main","className":"single-content","layout":{"type":"constrained"},"align":"wide"} -->
+<main class="wp-block-group single-content alignwide">
+	<!-- wp:pattern {"slug":"spotlight-theme-2026/article-header"} /-->
+
 	<!-- wp:group {"layout":{"type":"grid","columnCount":2},"align":"wide"} -->
 	<div class="wp-block-group alignwide">
 		<!-- wp:group {"tagName":"article"} -->
 		<article class="wp-block-group">
-			<!-- wp:post-terms {"term":"category","fontSize":"100"} /-->
-
-			<!-- wp:post-title {"level":1} /-->
-
-			<!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap"}} -->
-			<div class="wp-block-group">
-				<!-- wp:post-author {"showAvatar":false,"fontSize":"100"} /-->
-
-				<!-- wp:post-date {"fontSize":"100"} /-->
-			</div>
-			<!-- /wp:group -->
-
-			<!-- wp:post-featured-image {"isLink":false} /-->
-
 			<!-- wp:post-content /-->
 
 			<!-- wp:pattern {"slug":"spotlight-theme-2026/republish-notice"} /-->
@@ -31,8 +19,6 @@
 				<!-- wp:post-navigation-link {"type":"next"} /-->
 			</div>
 			<!-- /wp:group -->
-
-			<!-- wp:pattern {"slug":"spotlight-theme-2026/related-coverage"} /-->
 		</article>
 		<!-- /wp:group -->
 
@@ -45,6 +31,8 @@
 		<!-- /wp:group -->
 	</div>
 	<!-- /wp:group -->
+
+	<!-- wp:pattern {"slug":"spotlight-theme-2026/related-coverage"} /-->
 </main>
 <!-- /wp:group -->
 
