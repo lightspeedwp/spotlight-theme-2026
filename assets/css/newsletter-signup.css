@@ -19,6 +19,25 @@
  * since the field's placeholder text (set directly in the form, in
  * wp-admin) already communicates its purpose visually, matching Figma.
  */
+.newsletter-signup-compact .gform_wrapper {
+	margin-block-start: var(--wp--preset--spacing--10);
+}
+
+/*
+ * Gravity Forms' own gravity-theme CSS (theme.min.css) targets these
+ * same elements via .gform_wrapper.gravity-theme .gform_footer (and
+ * ...gform_footer input), both 3+ classes deep — matching that depth
+ * here instead of one class shallower so these win regardless of
+ * stylesheet load order, no !important needed.
+ */
+.newsletter-signup-compact .gform_wrapper .gform_footer.top_label {
+	padding: 4px 0;
+}
+
+.newsletter-signup-compact .gform_wrapper .gform_footer .gform_button {
+	margin-bottom: 0;
+}
+
 .newsletter-signup-compact .gfield_label {
 	position: absolute;
 	width: 1px;
