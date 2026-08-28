@@ -32,8 +32,8 @@
  */
 
 ?>
-<!-- wp:group {"className":"related-coverage","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"},"blockGap":"var:preset|spacing|20"}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group related-coverage" style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50)">
+<!-- wp:group {"className":"related-coverage","align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"},"blockGap":"var:preset|spacing|20"}},"layout":{"type":"default"}} -->
+<div class="wp-block-group related-coverage alignwide" style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50)">
 	<!-- wp:heading {"level":3,"fontSize":"300"} -->
 	<h3 class="wp-block-heading has-300-font-size"><?php echo esc_html__( 'Recent stories', 'spotlight-theme-2026' ); ?></h3>
 	<!-- /wp:heading -->

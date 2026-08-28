@@ -24,7 +24,7 @@
  */
 
 ?>
-<!-- wp:group {"className":"related-coverage-callout","backgroundColor":"neutral-200","style":{"border":{"radius":"var:preset|border-radius|200"},"spacing":{"padding":"var:preset|spacing|20","blockGap":"var:preset|spacing|20"}},"layout":{"type":"constrained"}} -->
+<!-- wp:group {"className":"related-coverage-callout","backgroundColor":"neutral-200","style":{"border":{"radius":"var:preset|border-radius|200"},"spacing":{"padding":"var:preset|spacing|20","blockGap":"var:preset|spacing|20"}},"layout":{"type":"default"}} -->
 <div class="wp-block-group related-coverage-callout has-neutral-200-background-color has-background" style="border-radius:var(--wp--preset--border-radius--200);padding:var(--wp--preset--spacing--20)">
 	<!-- wp:heading {"level":3,"textColor":"accent-700","fontSize":"400","style":{"typography":{"fontWeight":"500","lineHeight":"var:custom|line-height|heading","letterSpacing":"0.3px"}}} -->
 	<h3 class="wp-block-heading has-accent-700-color has-text-color has-400-font-size" style="font-weight:500;line-height:var(--wp--custom--line-height--heading);letter-spacing:0.3px">More from Spotlight</h3>

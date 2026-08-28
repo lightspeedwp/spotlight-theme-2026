@@ -1,39 +1,4 @@
 /*
- * single.html's content column measures 1100px in Figma — matching
- * neither theme.json's sitewide contentSize (800px) nor wideSize
- * (1320px). Redefining both custom properties for this template only
- * (rather than overriding a computed max-width directly) lets core's
- * own align:wide/constrained machinery keep working normally, just
- * recalibrated to this template's own value.
- *
- * Scoped to .single-content (single.html's own <main>), not body.single —
- * these custom properties inherit through the whole DOM, and body.single
- * also wraps the site header/trust-bar/footer template parts, which sit
- * outside <main> and must keep their normal sitewide width.
- */
-.single-content {
-	--wp--style--global--content-size: 1100px;
-	--wp--style--global--wide-size: 1100px;
-}
-
-/*
- * related-coverage.php's "Recent stories" section is full width like
- * the site header/trust-bar/footer (theme.json's sitewide 1320px
- * wideSize), not the 1100px scope above. Redefining the custom
- * properties here too (not just the container's own max-width) matters
- * because .related-coverage's own children (heading, query/cards) are
- * themselves a constrained layout — without this they'd keep inheriting
- * the 1100px from .single-content and render narrow inside the now-wide
- * 1320px box.
- */
-.single-content .related-coverage {
-	--wp--style--global--content-size: 1320px;
-	--wp--style--global--wide-size: 1320px;
-	max-width: 1320px;
-	margin-inline: auto;
-}
-
-/*
  * Two-sided border (article-header__meta) and post-featured-image's
  * corner radius aren't reliably expressible as block style attributes —
  * see article-header.php's header comment.
