@@ -20,8 +20,8 @@
  */
 
 ?>
-<!-- wp:group {"className":"newsletter-signup-compact","backgroundColor":"neutral-200","style":{"spacing":{"padding":"var:preset|spacing|20","blockGap":"var:preset|spacing|20"}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group newsletter-signup-compact has-neutral-200-background-color has-background" style="padding:var(--wp--preset--spacing--20)">
+<!-- wp:group {"className":"newsletter-signup-compact","backgroundColor":"neutral-300","style":{"border":{"radius":"var:preset|border-radius|300"},"spacing":{"padding":"var:preset|spacing|20","blockGap":"var:preset|spacing|20"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group newsletter-signup-compact has-neutral-300-background-color has-background" style="border-radius:var(--wp--preset--border-radius--300);padding:var(--wp--preset--spacing--20)">
 	<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"default"}} -->
 	<div class="wp-block-group">
 		<!-- wp:heading {"level":3,"fontSize":"300"} -->

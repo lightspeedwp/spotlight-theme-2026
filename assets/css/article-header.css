@@ -1,0 +1,73 @@
+/*
+ * Two-sided border (article-header__meta) and post-featured-image's
+ * corner radius aren't reliably expressible as block style attributes —
+ * see article-header.php's header comment.
+ */
+.article-header__meta {
+	border-top: 1px solid var(--wp--preset--color--neutral-300);
+	border-bottom: 1px solid var(--wp--preset--color--neutral-300);
+}
+
+.article-header__featured-image img {
+	height: 34.375rem;
+	border-radius: var(--wp--preset--border-radius--300);
+	object-fit: cover;
+	width: 100%;
+}
+
+/*
+ * No mobile/tablet frame in Figma for this section — a 550px-tall image
+ * makes no sense on a narrow viewport, so this switches to a fluid 3/2
+ * aspect-ratio (already used elsewhere in the theme, e.g. story-card)
+ * instead of guessing a second fixed height.
+ */
+@media (max-width: 782px) {
+	.article-header__featured-image img {
+		height: auto;
+		aspect-ratio: 3/2;
+	}
+}
+
+/*
+ * Previous/Next article links: same colour/weight/chevron treatment as
+ * pagination.css's previous/next controls, but no border/box — these
+ * are a plain divider row, not standalone buttons. The border above
+ * them lives here (not as a border-bottom on republish-notice.php),
+ * so a reusable pattern doesn't need to know what follows it in this
+ * one template.
+ *
+ * post-navigation-link is a dynamic block (server-rendered), so its
+ * "arrow" attribute is a real, safe option — not subject to the
+ * invalid-content mismatches static block markup can hit. Its arrow
+ * span and link are siblings, not nested (confirmed against core's
+ * own render source), hence the two separate selectors below. The
+ * 1ch margin core adds to the arrow span is reset the same way
+ * pagination.css already resets it, so the gap isn't doubled up.
+ */
+.article-nav {
+	border-top: 1px solid var(--wp--preset--color--neutral-300);
+	padding-top: var(--wp--preset--spacing--30);
+}
+
+.article-nav .wp-block-post-navigation-link {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--wp--preset--spacing--10);
+	color: var(--wp--preset--color--neutral-700);
+	font-weight: 600;
+}
+
+.article-nav .wp-block-post-navigation-link a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.article-nav .wp-block-post-navigation-link:hover a {
+	color: var(--wp--preset--color--accent-600);
+}
+
+.article-nav .wp-block-post-navigation-link__arrow-previous,
+.article-nav .wp-block-post-navigation-link__arrow-next {
+	margin: 0;
+	font-size: 1.4em;
+}
