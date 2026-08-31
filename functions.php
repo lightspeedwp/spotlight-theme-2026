@@ -532,6 +532,13 @@ function spotlight_theme_2026_enqueue_assets() {
 		spotlight_theme_2026_asset_version( 'assets/css/dashboard-promo-compact.css' )
 	);
 
+	wp_enqueue_style(
+		'spotlight-theme-2026-dashboard-promo-hero',
+		get_theme_file_uri( 'assets/css/dashboard-promo-hero.css' ),
+		array(),
+		spotlight_theme_2026_asset_version( 'assets/css/dashboard-promo-hero.css' )
+	);
+
 	// Add wp_enqueue_script() here when assets/js/main.js exists.
 }
 add_action( 'enqueue_block_assets', 'spotlight_theme_2026_enqueue_assets' );

@@ -31,16 +31,40 @@
 	margin-top: 0;
 }
 
+/*
+ * WordPress core's own block-library CSS ships `.wp-block-columns {
+ * align-items: normal !important; }`, which beats the native
+ * verticalAlignment attribute's own (non-!important) class — confirmed
+ * live via matched stylesheets. Same unavoidable case as
+ * dashboard-promo-hero.css.
+ */
+.archive-listing-header .wp-block-columns.are-vertically-aligned-bottom {
+	align-items: flex-end !important;
+}
+
 .archive-listing-header .wp-block-search__inside-wrapper {
 	border-radius: var(--wp--preset--border-radius--500);
 	overflow: hidden;
+	height: 60px;
+	padding: var(--wp--preset--spacing--5);
+	align-items: center;
 }
 
 /* Figma's Search Button node (547:9536) uses border-radius--500 directly
    on the button itself, not just the outer wrapper — a full pill/capsule,
-   not just rounded corners on the overall bar. */
+   not just rounded corners on the overall bar. It's also h-full in Figma
+   (fills the 60px pill minus the wrapper's own spacing--5 padding), not
+   sized by its own vertical padding — the button's default padding-top/
+   bottom (from theme.json's element style) was inflating the whole bar
+   to ~73px tall instead of Figma's 60px.
+ */
 .archive-listing-header .wp-block-search__button {
 	border-radius: var(--wp--preset--border-radius--500);
+	height: 100%;
+	padding-top: 0;
+	padding-bottom: 0;
+	padding-left: var(--wp--preset--spacing--20);
+	padding-right: var(--wp--preset--spacing--20);
 }
 
 .archive-listing-header .wp-block-search__input {
