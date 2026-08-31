@@ -4,15 +4,27 @@
 <main class="wp-block-group alignwide">
 	<!-- wp:pattern {"slug":"spotlight-theme-2026/page-intro-banner"} /-->
 
-	<!-- wp:group {"layout":{"type":"grid","columnCount":2},"align":"wide"} -->
-	<div class="wp-block-group alignwide">
-		<!-- wp:group {"tagName":"article"} -->
-		<article class="wp-block-group">
-			<!-- wp:post-content /-->
-		</article>
-		<!-- /wp:group -->
+	<!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}}},"layout":{"type":"constrained"}} -->
+	<div class="wp-block-group alignwide" style="padding-top:var(--wp--preset--spacing--70);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--70);padding-left:var(--wp--preset--spacing--20)">
+		<!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|60"}}}} -->
+		<div class="wp-block-columns alignwide">
+			<!-- wp:column {"width":"60.61%"} -->
+			<div class="wp-block-column" style="flex-basis:60.61%">
+				<!-- wp:group {"tagName":"article"} -->
+				<article class="wp-block-group">
+					<!-- wp:post-content /-->
+				</article>
+				<!-- /wp:group -->
+			</div>
+			<!-- /wp:column -->
 
-		<!-- wp:template-part {"slug":"sidebar-editorial"} /-->
+			<!-- wp:column {"width":"34.85%"} -->
+			<div class="wp-block-column" style="flex-basis:34.85%">
+				<!-- wp:template-part {"slug":"sidebar-editorial"} /-->
+			</div>
+			<!-- /wp:column -->
+		</div>
+		<!-- /wp:columns -->
 	</div>
 	<!-- /wp:group -->
 </main>
