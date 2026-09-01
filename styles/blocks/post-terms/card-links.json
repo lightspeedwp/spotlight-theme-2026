@@ -1,0 +1,9 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Card Links",
+	"slug": "card-links",
+	"blockTypes": ["core/post-terms"],
+	"description": "Functional marker only, no visual change — its is-style-card-links class is what spotlight_theme_2026_show_primary_category_only() in functions.php checks for to collapse a post's category list down to its Yoast Primary Category.",
+	"styles": {}
+}
