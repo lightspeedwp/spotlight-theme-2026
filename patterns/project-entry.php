@@ -20,9 +20,9 @@
  * Badge overlay (spotlight-badge.php) is conditional on the post's
  * special_project term, same as every other story-card variant.
  *
- * Deferred, style-only, not yet applied here or in story-card-editorial.php/
- * story-card.php: Figma's title style adds font-weight 500, line-height
- * 1.25, letter-spacing -0.02px, not just the fontSize/textColor set below.
+ * Title typography (fontWeight medium/500, lineHeight "heading"/1.25,
+ * letterSpacing -0.02px) matches Figma exactly, applied here and on every
+ * other story-card variant/inline copy for consistency.
  *
  * blockGap:"0" on both the article and story-card__media, not omitted —
  * omitting it let WordPress's global flow-layout margin-block-start
@@ -56,7 +56,7 @@
 
 		<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"default"}} -->
 		<div class="wp-block-group">
-			<!-- wp:post-title {"level":3,"isLink":true,"textColor":"contrast","fontSize":"300","style":{"elements":{"link":{"color":{"text":"var:preset|color|contrast"},":hover":{"color":{"text":"var:preset|color|brand-500"}}}}}} /-->
+			<!-- wp:post-title {"level":3,"isLink":true,"textColor":"contrast","fontSize":"300","style":{"typography":{"fontWeight":"var(--wp--custom--font-weight--medium)","lineHeight":"var(--wp--custom--line-height--heading)","letterSpacing":"-0.02px"},"elements":{"link":{"color":{"text":"var:preset|color|contrast"},":hover":{"color":{"text":"var:preset|color|brand-500"}}}}}} /-->
 
 			<!-- wp:post-excerpt {"fontSize":"200"} /-->
 
