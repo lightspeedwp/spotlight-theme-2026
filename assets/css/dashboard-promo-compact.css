@@ -3,9 +3,7 @@
  * the per-instance textColor override on the TB button) ships with
  * !important, which beats core-button.css's non-!important
  * is-style-outline hover rule regardless of selector specificity — the
- * one genuine case in this theme where !important is unavoidable
- * (see feedback_css_specificity_over_important memory: every other case
- * here was solved with specificity alone).
+ * only way to win against an !important rule is another !important rule.
  */
 .dashboard-promo-compact .is-style-outline .wp-block-button__link:hover {
 	color: var(--wp--preset--color--base) !important;

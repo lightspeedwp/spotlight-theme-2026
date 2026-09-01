@@ -10,8 +10,8 @@
  * @package spotlight-theme-2026
  *
  * Sidebar size variant of "dashboard-promo" (see dashboard-promo.php for
- * the full banner; dashboard-promo-hero.php is the third, not-yet-built
- * variant for archive headers).
+ * the full banner; dashboard-promo-hero.php is the third variant, for
+ * archive headers).
  *
  * No icon or stats here — Figma's sidebar card is just eyebrow, heading,
  * subtitle, and two full-width buttons (core/button's native `width:100`

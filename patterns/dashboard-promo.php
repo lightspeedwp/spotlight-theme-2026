@@ -10,8 +10,8 @@
  *
  * @package spotlight-theme-2026
  *
- * Full-banner size variant (dashboard-promo-compact and a third "hero"
- * archive-header variant are separate, not-yet-built patterns).
+ * Full-banner size variant (dashboard-promo-compact.php is the sidebar
+ * variant; dashboard-promo-hero.php is the third, archive-header variant).
  *
  * Gradient uses the native style.color.gradient attribute, no CSS.
  * Card border-color and the decorative watermark icon are real CSS

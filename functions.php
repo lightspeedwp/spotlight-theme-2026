@@ -200,8 +200,9 @@ add_filter( 'render_block_data', 'spotlight_theme_2026_resolve_taxonomy_query_na
  * spotlight_theme_2026_resolve_taxonomy_query_namespace() directly to
  * WP_Query's tax_query, once WP_Query's real args are being assembled.
  *
- * Same safe-fallback convention as this file's other query resolvers: an
- * empty taxonomy forces zero results instead of an unfiltered query.
+ * Uses operator "EXISTS" — matches any post with at least one term in the
+ * taxonomy, without fetching every term ID first (a taxonomy with no
+ * terms yet naturally matches zero posts, no explicit fallback needed).
  *
  * @param array    $query WP_Query args being built for this query loop.
  * @param WP_Block $block The query loop block instance.
@@ -214,19 +215,10 @@ function spotlight_theme_2026_apply_taxonomy_query_tax_query( $query, $block ) {
 		return $query;
 	}
 
-	$term_ids = get_terms(
-		array(
-			'taxonomy'   => $taxonomy,
-			'fields'     => 'ids',
-			'hide_empty' => false,
-		)
-	);
-
 	$query['tax_query'] = array(
 		array(
 			'taxonomy' => $taxonomy,
-			'terms'    => is_array( $term_ids ) && $term_ids ? $term_ids : array( 0 ),
-			'field'    => 'term_id',
+			'operator' => 'EXISTS',
 		),
 	);
 
