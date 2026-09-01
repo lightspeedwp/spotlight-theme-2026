@@ -42,9 +42,21 @@
  * variant since 2026-09-01 — Zared confirmed the badge is a property of
  * the post, not of which row/grid it renders in (story-card-featured.php,
  * the old badge-always-shown variant, was retired). Floats over the
- * image's top-left corner, inset by story-card__media's own padding.
- * core/group has no "position" style attribute, so this needs real CSS —
- * .story-card__media is the positioned ancestor every variant shares.
+ * image's top-left corner. core/group has no "position" style attribute,
+ * so this needs real CSS — .story-card__media is the positioned ancestor
+ * every variant shares.
+ *
+ * The featured image is absolutely positioned to bleed to story-card__media's
+ * true edge, ignoring any padding on that wrapper — confirmed against
+ * Figma's own Card/Blog component (node 234:6732;50:6815): the image
+ * there is "absolute inset-0", while the badge is a plain in-flow child
+ * that respects the frame's padding. Badge and image sharing the same
+ * padding-based inset made them land flush against each other instead of
+ * the badge floating 10px in from the image's own edge — story-card.php's
+ * media wrapper (no padding to begin with) never had this bug, only
+ * story-card-editorial.php/project-entry.php did. aspect-ratio moves from
+ * the image (now stretched via inset:0) to the wrapper itself, so it
+ * doesn't collapse once the image is taken out of flow.
  *
  * overflow:hidden also contains a broken/missing image to this box: a
  * failed image falls back to its raw width/height HTML attributes
@@ -56,6 +68,12 @@
 .story-card__media {
 	position: relative;
 	overflow: hidden;
+	aspect-ratio: 3 / 2;
+}
+
+.story-card__media .story-card__featured-image {
+	position: absolute;
+	inset: 0;
 }
 
 .story-card__badge-overlay {

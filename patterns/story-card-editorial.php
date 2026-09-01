@@ -33,13 +33,16 @@
  * core/post-featured-image's border support is __experimentalSkipSerialization
  * in its own block.json, so the image's corner radius is handled by
  * assets/css/story-card.css instead of a style.border.radius attribute.
+ * That same file also positions the image absolute/inset:0 within
+ * story-card__media (bleeding to its true edge, ignoring any padding) —
+ * confirmed against Figma; no padding on this group by design.
  */
 
 ?>
-<!-- wp:group {"tagName":"article","className":"story-card-editorial","style":{"border":{"radius":"var:preset|border-radius|200"}},"layout":{"type":"default"}} -->
+<!-- wp:group {"tagName":"article","className":"story-card-editorial","style":{"border":{"radius":"var:preset|border-radius|200"},"spacing":{"blockGap":"0"}},"layout":{"type":"default"}} -->
 <article class="wp-block-group story-card-editorial" style="border-radius:var(--wp--preset--border-radius--200)">
-	<!-- wp:group {"className":"story-card__media","style":{"spacing":{"padding":"var:preset|spacing|10"}},"layout":{"type":"default"}} -->
-	<div class="wp-block-group story-card__media" style="padding:var(--wp--preset--spacing--10)">
+	<!-- wp:group {"className":"story-card__media","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"default"}} -->
+	<div class="wp-block-group story-card__media">
 		<!-- wp:post-featured-image {"className":"story-card__featured-image","isLink":true,"aspectRatio":"3/2","scale":"cover"} /-->
 
 		<!-- wp:group {"className":"story-card__badge-overlay","layout":{"type":"default"}} -->

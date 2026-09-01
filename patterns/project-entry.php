@@ -23,13 +23,23 @@
  * Deferred, style-only, not yet applied here or in story-card-editorial.php/
  * story-card.php: Figma's title style adds font-weight 500, line-height
  * 1.25, letter-spacing -0.02px, not just the fontSize/textColor set below.
+ *
+ * blockGap:"0" on both the article and story-card__media, not omitted —
+ * omitting it let WordPress's global flow-layout margin-block-start
+ * (spacing--30) land on each group's second child (the badge, and
+ * story-card__content), same class of bug as page-intro-banner.php's.
+ *
+ * story-card__media has no padding by design — assets/css/story-card.css
+ * positions the image absolute/inset:0, bleeding to the wrapper's true
+ * edge, confirmed against Figma; padding here would do nothing for the
+ * image and only misalign the badge from it.
  */
 
 ?>
-<!-- wp:group {"tagName":"article","className":"story-card-editorial","style":{"border":{"radius":"var:preset|border-radius|200"}},"layout":{"type":"default"}} -->
+<!-- wp:group {"tagName":"article","className":"story-card-editorial","style":{"border":{"radius":"var:preset|border-radius|200"},"spacing":{"blockGap":"0"}},"layout":{"type":"default"}} -->
 <article class="wp-block-group story-card-editorial" style="border-radius:var(--wp--preset--border-radius--200)">
-	<!-- wp:group {"className":"story-card__media","style":{"spacing":{"padding":"var:preset|spacing|10"}},"layout":{"type":"default"}} -->
-	<div class="wp-block-group story-card__media" style="padding:var(--wp--preset--spacing--10)">
+	<!-- wp:group {"className":"story-card__media","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"default"}} -->
+	<div class="wp-block-group story-card__media">
 		<!-- wp:post-featured-image {"className":"story-card__featured-image","isLink":true,"aspectRatio":"3/2","scale":"cover"} /-->
 
 		<!-- wp:group {"className":"story-card__badge-overlay","layout":{"type":"default"}} -->
