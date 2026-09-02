@@ -139,6 +139,94 @@ function spotlight_theme_2026_resolve_tag_query_namespace( $parsed_block ) {
 add_filter( 'render_block_data', 'spotlight_theme_2026_resolve_tag_query_namespace' );
 
 /**
+ * Reads a taxonomy-wide query namespace off a core/query block and hands
+ * it off to spotlight_theme_2026_apply_taxonomy_query_tax_query() via a
+ * plain global.
+ *
+ * A query using this mechanism sets its own "namespace" attribute to
+ * "spotlight/taxonomy-query/{taxonomy-slug}" (e.g.
+ * "spotlight/taxonomy-query/special_project") — matches ANY post with at
+ * least one term in that taxonomy, since Special Projects membership is
+ * one term per post, picked freely by editors, not a single fixed term
+ * (unlike spotlight_theme_2026_resolve_tag_query_namespace() above).
+ *
+ * Two real constraints forced the global-relay approach over the more
+ * obvious options, both confirmed by direct testing rather than assumed:
+ * 1. core/query's native taxQuery -> tax_query mapping
+ *    (block_core_query_build_tax_query()) only honors taxonomies
+ *    registered with show_in_rest=true — special_project deliberately
+ *    ships with show_in_rest=false (its own native Gutenberg sidebar
+ *    panel would let editors multi-select terms there, bypassing the ACF
+ *    Radio Buttons field that's meant to be the only way to set it — see
+ *    the "Special Project" ACF field group). Setting attrs.query.taxQuery
+ *    here would simply be dropped for this taxonomy.
+ * 2. Stashing an extra key on the query attribute itself (e.g.
+ *    attrs.query.spotlightTaxonomy) to read back later in
+ *    query_loop_block_query_vars doesn't survive either — WP_Block's own
+ *    attribute preparation strips it before it reaches that hook's
+ *    $block->context['query'], confirmed empirically (logged the stashed
+ *    key vanishing between the two hooks).
+ *
+ * The global works because block rendering is synchronous and
+ * depth-first: this core/query block's render_block_data fires, then its
+ * own descendant post-template's (and query-no-results') calls to
+ * query_loop_block_query_vars fire immediately after, before any other
+ * top-level query block starts rendering. Every core/query block (not
+ * just ones using this namespace) resets the global, so a later
+ * non-matching query block can never read a stale value left by an
+ * earlier one.
+ *
+ * @param array $parsed_block The block being rendered.
+ * @return array
+ */
+function spotlight_theme_2026_resolve_taxonomy_query_namespace( $parsed_block ) {
+	if ( 'core/query' !== $parsed_block['blockName'] ) {
+		return $parsed_block;
+	}
+
+	$namespace = $parsed_block['attrs']['namespace'] ?? '';
+	$prefix    = 'spotlight/taxonomy-query/';
+
+	$GLOBALS['spotlight_pending_taxonomy_query'] = str_starts_with( $namespace, $prefix )
+		? substr( $namespace, strlen( $prefix ) )
+		: null;
+
+	return $parsed_block;
+}
+add_filter( 'render_block_data', 'spotlight_theme_2026_resolve_taxonomy_query_namespace' );
+
+/**
+ * Applies the taxonomy queued by
+ * spotlight_theme_2026_resolve_taxonomy_query_namespace() directly to
+ * WP_Query's tax_query, once WP_Query's real args are being assembled.
+ *
+ * Uses operator "EXISTS" — matches any post with at least one term in the
+ * taxonomy, without fetching every term ID first (a taxonomy with no
+ * terms yet naturally matches zero posts, no explicit fallback needed).
+ *
+ * @param array    $query WP_Query args being built for this query loop.
+ * @param WP_Block $block The query loop block instance.
+ * @return array
+ */
+function spotlight_theme_2026_apply_taxonomy_query_tax_query( $query, $block ) {
+	$taxonomy = $GLOBALS['spotlight_pending_taxonomy_query'] ?? null;
+
+	if ( ! $taxonomy ) {
+		return $query;
+	}
+
+	$query['tax_query'] = array(
+		array(
+			'taxonomy' => $taxonomy,
+			'operator' => 'EXISTS',
+		),
+	);
+
+	return $query;
+}
+add_filter( 'query_loop_block_query_vars', 'spotlight_theme_2026_apply_taxonomy_query_tax_query', 10, 2 );
+
+/**
  * Resolves a topic-band tile's target category into its real name, link,
  * and post count at render time.
  *
@@ -344,6 +432,190 @@ function spotlight_theme_2026_suppress_inline_republish_block() {
 add_filter( 'render_block_cc/post-republisher', 'spotlight_theme_2026_suppress_inline_republish_block' );
 
 /**
+ * Collapses a card's category list down to its Yoast Primary Category.
+ *
+ * core/post-terms always renders every category assigned to a post, joined
+ * by a separator, with no native concept of a "primary" one. Scoped to
+ * blocks carrying the "is-style-card-links" style (see
+ * styles/blocks/post-terms/card-links.json) so this only touches the
+ * plain-text category label used on story-card/-editorial/-featured, not
+ * every core/post-terms instance on the site (e.g. spotlight-badge.php's
+ * pill, which now points at the single-select special_project taxonomy
+ * instead of category and never needs this).
+ *
+ * Provided by Zared (2026-09-01) — kept verbatim apart from converting the
+ * inline closure to a named function per this file's convention.
+ *
+ * @param string   $block_content Rendered block HTML.
+ * @param array    $block         The block being rendered.
+ * @param WP_Block $instance      Block instance (context is resolved by now).
+ * @return string
+ */
+function spotlight_theme_2026_show_primary_category_only( $block_content, $block, $instance ) {
+	if (
+		empty( $block['attrs']['term'] ) ||
+		'category' !== $block['attrs']['term']
+	) {
+		return $block_content;
+	}
+
+	$has_card_links_style =
+		! empty( $block['attrs']['className'] ) &&
+		false !== strpos(
+			$block['attrs']['className'],
+			'is-style-card-links'
+		);
+
+	if ( ! $has_card_links_style ) {
+		return $block_content;
+	}
+
+	/*
+	 * The Post Terms block receives the current post through
+	 * block context. This is important when the block is rendered
+	 * inside a Query Loop. Fall back to the global current post when
+	 * there is no Query Loop context (e.g. a singular template), so
+	 * this block still resolves a primary category there instead of
+	 * showing every category unfiltered.
+	 */
+	$post_id = ! empty( $instance->context['postId'] )
+		? absint( $instance->context['postId'] )
+		: get_the_ID();
+
+	if ( ! $post_id ) {
+		return $block_content;
+	}
+
+	/*
+	 * Get all category links from the already-rendered block.
+	 *
+	 * PREG_OFFSET_CAPTURE lets us later replace the entire rendered
+	 * terms section, including separators, with only the selected link.
+	 */
+	preg_match_all(
+		'/<a\b[^>]*\bhref=(["\'])(.*?)\1[^>]*>.*?<\/a>/is',
+		$block_content,
+		$anchors,
+		PREG_SET_ORDER | PREG_OFFSET_CAPTURE
+	);
+
+	if ( empty( $anchors ) ) {
+		return $block_content;
+	}
+
+	/*
+	 * Default to the first category.
+	 *
+	 * This preserves the old behaviour when no Yoast Primary Category
+	 * has been selected.
+	 */
+	$selected_anchor = $anchors[0][0][0];
+
+	/*
+	 * Retrieve the Yoast Primary Category.
+	 */
+	$primary_term_id = 0;
+
+	if ( function_exists( 'yoast_get_primary_term_id' ) ) {
+		$primary_term_id = (int) yoast_get_primary_term_id(
+			'category',
+			$post_id
+		);
+	} elseif ( class_exists( 'WPSEO_Primary_Term' ) ) {
+		/*
+		 * Compatibility fallback for older Yoast versions.
+		 */
+		$primary_term = new WPSEO_Primary_Term(
+			'category',
+			$post_id
+		);
+
+		$primary_term_id = (int) $primary_term->get_primary_term();
+	}
+
+	if ( $primary_term_id ) {
+		$primary_term = get_term(
+			$primary_term_id,
+			'category'
+		);
+
+		/*
+		 * Make sure Yoast's stored primary category still exists
+		 * and is actually assigned to this post.
+		 */
+		if (
+			$primary_term instanceof WP_Term &&
+			has_term(
+				$primary_term_id,
+				'category',
+				$post_id
+			)
+		) {
+			$primary_url = get_term_link(
+				$primary_term,
+				'category'
+			);
+
+			if ( ! is_wp_error( $primary_url ) ) {
+				$charset = get_bloginfo( 'charset' );
+
+				$primary_url = untrailingslashit(
+					html_entity_decode(
+						$primary_url,
+						ENT_QUOTES | ENT_HTML5,
+						$charset
+					)
+				);
+
+				/*
+				 * Find Yoast's Primary Category in the links
+				 * WordPress has already rendered.
+				 *
+				 * Keeping WordPress's original anchor means any
+				 * other filters affecting category link markup
+				 * remain intact.
+				 */
+				foreach ( $anchors as $anchor ) {
+					$anchor_url = untrailingslashit(
+						html_entity_decode(
+							$anchor[2][0],
+							ENT_QUOTES | ENT_HTML5,
+							$charset
+						)
+					);
+
+					if ( $anchor_url === $primary_url ) {
+						$selected_anchor = $anchor[0][0];
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	/*
+	 * Replace everything between the first and last category links
+	 * with the selected category.
+	 *
+	 * This also removes separators between the original terms.
+	 */
+	$first_anchor = $anchors[0][0];
+	$last_anchor  = $anchors[ count( $anchors ) - 1 ][0];
+
+	$start  = $first_anchor[1];
+	$length =
+		( $last_anchor[1] + strlen( $last_anchor[0] ) ) - $start;
+
+	return substr_replace(
+		$block_content,
+		$selected_anchor,
+		$start,
+		$length
+	);
+}
+add_filter( 'render_block_core/post-terms', 'spotlight_theme_2026_show_primary_category_only', 10, 3 );
+
+/**
  * Returns a cache-busting version string for a theme file.
  *
  * Uses the file's own last-modified time — the theme `Version` header isn't
@@ -516,6 +788,27 @@ function spotlight_theme_2026_enqueue_assets() {
 		get_theme_file_uri( 'assets/css/post-content.css' ),
 		array(),
 		spotlight_theme_2026_asset_version( 'assets/css/post-content.css' )
+	);
+
+	wp_enqueue_style(
+		'spotlight-theme-2026-dashboard-promo',
+		get_theme_file_uri( 'assets/css/dashboard-promo.css' ),
+		array(),
+		spotlight_theme_2026_asset_version( 'assets/css/dashboard-promo.css' )
+	);
+
+	wp_enqueue_style(
+		'spotlight-theme-2026-dashboard-promo-compact',
+		get_theme_file_uri( 'assets/css/dashboard-promo-compact.css' ),
+		array(),
+		spotlight_theme_2026_asset_version( 'assets/css/dashboard-promo-compact.css' )
+	);
+
+	wp_enqueue_style(
+		'spotlight-theme-2026-dashboard-promo-hero',
+		get_theme_file_uri( 'assets/css/dashboard-promo-hero.css' ),
+		array(),
+		spotlight_theme_2026_asset_version( 'assets/css/dashboard-promo-hero.css' )
 	);
 
 	// Add wp_enqueue_script() here when assets/js/main.js exists.

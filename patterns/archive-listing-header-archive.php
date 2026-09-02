@@ -10,55 +10,37 @@
  *
  * @package spotlight-theme-2026
  *
- * Structure matches this theme's own trust-bar.html/footer.html: an
- * align:full outer band, then wp:columns {"align":"wide"} directly (no
- * extra wrapping group), with an explicit column width percentage — the
- * same mechanism footer.html already uses ("width":"30%" columns).
+ * wp:columns {"align":"wide"} with explicit percentages, same convention
+ * as footer.html. Second column is 41.3% (545/1320, Figma's Dashboard
+ * CTA width) — a fixed 545px starved the content column at in-between
+ * viewport widths (cut off the search placeholder at 900px).
+ * Embeds dashboard-promo-hero.php via require(), not wp:pattern — this
+ * file is itself wp:pattern-referenced from archive.html, and a nested
+ * wp:pattern silently drops on front-end render.
  *
- * The second (empty) column reserves space for the future dashboard-promo
- * pattern (PR 5), matching the Figma "Hero" frame's actual two-part layout
- * (content column + Dashboard CTA card).
+ * Padding lives only on the outer group, not also on wp:columns (was
+ * doubling the real vertical padding). Breadcrumb row's inline gap
+ * ("Home" › caret › title) is a literal 3px per Figma, off the scale.
+ * Breadcrumb→title/title→search gaps use padding-bottom, not margin or
+ * blockGap — both proved unreliable here via DevTools.
  *
- * Breadcrumb→title gap is spacing--30; title→search gap is spacing--50 —
- * confirmed directly by the user against the Figma dev-mode spacing
- * annotations. Both use padding-bottom set directly on the block's own
- * style attribute, not margin/blockGap: WordPress's layout support zeroes
- * margin-block-end on every child of a default/constrained container and
- * doesn't reliably apply margin-block-start from blockGap either once a
- * competing rule (even one at similar specificity) is present — margin was
- * proven unreliable here through direct DevTools inspection. Padding has no
- * such conflict, and both wp:group and wp:post-title/wp:query-title
- * support spacing.padding as a real, serializing attribute.
- *
- * The column's own spacing--5 bottom padding matches the Figma "Content"
- * frame's own pb-[5px].
- *
- * query-title stays at its real level:1 — this heading is the only H1 on
- * archive.html (there's no separate page title elsewhere on this
- * template), so the semantic H1 is kept for accessibility/SEO; only its
- * visual font-size is overridden to font-size--500, matching the Figma
- * frame, rather than changing heading level to get a smaller size.
- * showPrefix:false on both query-title instances — every Figma frame checked
- * this session shows a plain term name, never a "Category:"/"Tag:" prefix.
- * No gap is added between this banner and the site header — confirmed
- * against the full "Blog Landing Page" Figma frame that the dark banner
- * sits flush against the nav with zero gap in the real design.
- * The search border-radius/icon are handled by
- * assets/css/archive-listing-header.css — core/search's border support
- * doesn't reliably serialize via attributes (__experimentalSkipSerialization).
+ * query-title stays level:1 (real H1, only font-size overridden) for
+ * a11y; showPrefix:false since Figma never shows "Category:"/"Tag:".
+ * No gap above the banner — confirmed flush against the nav in Figma.
+ * Search radius/icon are CSS — core/search's border doesn't serialize.
  */
 
 ?>
 <!-- wp:group {"align":"full","className":"archive-listing-header","backgroundColor":"accent-600","textColor":"neutral-100","style":{"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|50"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull archive-listing-header has-neutral-100-color has-accent-600-background-color has-text-color has-background" style="padding-top:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--50)">
-	<!-- wp:columns {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|50"}}}} -->
-	<div class="wp-block-columns alignwide" style="padding-top:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--50)">
-		<!-- wp:column {"width":"45%","style":{"spacing":{"padding":{"bottom":"var:preset|spacing|5"}}}} -->
-		<div class="wp-block-column" style="padding-bottom:var(--wp--preset--spacing--5);flex-basis:45%">
-			<!-- wp:group {"className":"archive-listing-header__breadcrumbs","style":{"spacing":{"padding":{"bottom":"var:preset|spacing|30"},"blockGap":"var:preset|spacing|20"}},"layout":{"type":"flex","flexWrap":"nowrap"},"fontSize":"100"} -->
+	<!-- wp:columns {"align":"wide","verticalAlignment":"bottom","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|100"}}}} -->
+	<div class="wp-block-columns are-vertically-aligned-bottom alignwide">
+		<!-- wp:column {"style":{"spacing":{"padding":{"bottom":"var:preset|spacing|5"}}}} -->
+		<div class="wp-block-column" style="padding-bottom:var(--wp--preset--spacing--5)">
+			<!-- wp:group {"className":"archive-listing-header__breadcrumbs","style":{"spacing":{"padding":{"bottom":"var:preset|spacing|30"},"blockGap":"3px"}},"layout":{"type":"flex","flexWrap":"nowrap"},"fontSize":"100"} -->
 			<div class="wp-block-group archive-listing-header__breadcrumbs has-100-font-size" style="padding-bottom:var(--wp--preset--spacing--30)">
-				<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|neutral-100"}}}}} -->
-				<p><a href="<?php echo esc_url( home_url( '/' ) ); ?>" style="color:var(--wp--preset--color--neutral-100)"><?php echo esc_html__( 'Home', 'spotlight-theme-2026' ); ?></a></p>
+				<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|neutral-100"},"typography":{"textDecoration":"none"}}}}} -->
+				<p class="has-link-color"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" style="color:var(--wp--preset--color--neutral-100)"><?php echo esc_html__( 'Home', 'spotlight-theme-2026' ); ?></a></p>
 				<!-- /wp:paragraph -->
 
 				<!-- wp:image {"className":"spotlight-breadcrumb-icon","width":"12px","height":"12px","sizeSlug":"full","linkDestination":"none"} -->
@@ -69,7 +51,7 @@
 			</div>
 			<!-- /wp:group -->
 
-			<!-- wp:query-title {"type":"archive","level":1,"fontSize":"500","className":"archive-listing-header__title","textColor":"neutral-100","showPrefix":false,"style":{"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|50"}}}} /-->
+			<!-- wp:query-title {"type":"archive","level":1,"fontSize":"500","className":"archive-listing-header__title","textColor":"neutral-100","showPrefix":false,"style":{"spacing":{"padding":{"bottom":"var:preset|spacing|50"}}}} /-->
 
 			<!-- wp:search
 			<?php
@@ -80,6 +62,8 @@
 					'placeholder'    => __( 'Search articles, authors, or topics...', 'spotlight-theme-2026' ),
 					'buttonText'     => __( 'Search', 'spotlight-theme-2026' ),
 					'buttonPosition' => 'button-inside',
+					'width'          => 550,
+					'widthUnit'      => 'px',
 				)
 			);
 			?>
@@ -87,8 +71,10 @@
 		</div>
 		<!-- /wp:column -->
 
-		<!-- wp:column {"width":"55%"} -->
-		<div class="wp-block-column" style="flex-basis:55%"></div>
+		<!-- wp:column {"width":"41.3%"} -->
+		<div class="wp-block-column" style="flex-basis:41.3%">
+<?php require __DIR__ . '/dashboard-promo-hero.php'; ?>
+		</div>
 		<!-- /wp:column -->
 	</div>
 	<!-- /wp:columns -->

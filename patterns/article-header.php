@@ -16,10 +16,10 @@
  * single.html, unlike story-card's query-loop case.
  *
  * Badge reused via require() (this is a .php pattern, unlike single.html
- * itself) instead of duplicated raw markup. It renders the same category
- * taxonomy as the plain-text label beside it, styled differently —
- * confirmed intentional, same dual-label convention already used on
- * story-card-featured (see design.md).
+ * itself) instead of duplicated raw markup. It's conditional on the post's
+ * special_project term (renders nothing if unset) and independent of the
+ * plain-text category label beside it — same dual-label convention used
+ * on story-card.php/story-card-editorial.php.
  *
  * The small text below the author name (a tag/section label per Figma,
  * exact source unconfirmed) is a placeholder pending Zared's confirmation
@@ -51,7 +51,7 @@
 		<div class="wp-block-group">
 <?php require __DIR__ . '/spotlight-badge.php'; ?>
 
-			<!-- wp:post-terms {"term":"category","textColor":"brand-500","fontSize":"200","style":{"typography":{"fontWeight":"600","textTransform":"uppercase","letterSpacing":"0.5px"},"elements":{"link":{"color":{"text":"var:preset|color|brand-500"},"typography":{"textDecoration":"none"}}}}} /-->
+			<!-- wp:post-terms {"term":"category","className":"is-style-card-links","textColor":"brand-500","fontSize":"200","style":{"typography":{"fontWeight":"600","textTransform":"uppercase","letterSpacing":"0.5px"},"elements":{"link":{"color":{"text":"var:preset|color|brand-500"},"typography":{"textDecoration":"none"}}}}} /-->
 		</div>
 		<!-- /wp:group -->
 

@@ -19,30 +19,44 @@
  * content sections. story-card.php sets backgroundColor to get the card's
  * white fill, not that spacing, so it's zeroed out here; story-card__media
  * and story-card__content already carry their own deliberate padding.
- * story-card-editorial.php / story-card-featured.php never set a
- * backgroundColor, so they never get the has-background class and don't
- * need this override.
+ * story-card-editorial.php never sets a backgroundColor, so it never gets
+ * the has-background class and doesn't need this override.
  */
 .story-card.has-background {
 	padding: 0;
 }
 
 /*
- * story-card-editorial.php / story-card-featured.php: all four corners,
- * since these cards have no background of their own — the image is a
- * rounded "island" inset by story-card__media's own padding, not a photo
- * flush against the card's edges.
+ * story-card-editorial.php: all four corners, since this card has no
+ * background of its own — the image is a rounded "island" inset by
+ * story-card__media's own padding, not a photo flush against the card's
+ * edges.
  */
-.story-card-editorial .wp-block-post-featured-image img,
-.story-card-featured .wp-block-post-featured-image img {
+.story-card-editorial .wp-block-post-featured-image img {
 	border-radius: var(--wp--preset--border-radius--300);
 }
 
 /*
- * The badge overlay (story-card-featured.php only) floats over the
- * image's top-left corner, inset by story-card__media's own padding.
- * core/group has no "position" style attribute, so this needs real CSS —
- * .story-card__media is the positioned ancestor every variant shares.
+ * The badge overlay is conditional (spotlight-badge.php renders nothing
+ * for a post with no special_project term), present in every story-card
+ * variant since 2026-09-01 — Zared confirmed the badge is a property of
+ * the post, not of which row/grid it renders in (story-card-featured.php,
+ * the old badge-always-shown variant, was retired). Floats over the
+ * image's top-left corner. core/group has no "position" style attribute,
+ * so this needs real CSS — .story-card__media is the positioned ancestor
+ * every variant shares.
+ *
+ * The featured image is absolutely positioned to bleed to story-card__media's
+ * true edge, ignoring any padding on that wrapper — confirmed against
+ * Figma's own Card/Blog component (node 234:6732;50:6815): the image
+ * there is "absolute inset-0", while the badge is a plain in-flow child
+ * that respects the frame's padding. Badge and image sharing the same
+ * padding-based inset made them land flush against each other instead of
+ * the badge floating 10px in from the image's own edge — story-card.php's
+ * media wrapper (no padding to begin with) never had this bug, only
+ * story-card-editorial.php/project-entry.php did. aspect-ratio moves from
+ * the image (now stretched via inset:0) to the wrapper itself, so it
+ * doesn't collapse once the image is taken out of flow.
  *
  * overflow:hidden also contains a broken/missing image to this box: a
  * failed image falls back to its raw width/height HTML attributes
@@ -54,12 +68,18 @@
 .story-card__media {
 	position: relative;
 	overflow: hidden;
+	aspect-ratio: 3 / 2;
+}
+
+.story-card__media .story-card__featured-image {
+	position: absolute;
+	inset: 0;
 }
 
 .story-card__badge-overlay {
 	position: absolute;
 	top: var(--wp--preset--spacing--10);
-	left: var(--wp--preset--spacing--50);
+	left: var(--wp--preset--spacing--10);
 	z-index: 1;
 }
 
@@ -73,7 +93,6 @@
  * its own 3/2 ratio. Each card sizes to its own content instead.
  */
 .story-card,
-.story-card-featured,
 .story-card-editorial {
 	align-self: start;
 }

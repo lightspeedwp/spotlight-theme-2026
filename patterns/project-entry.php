@@ -1,41 +1,38 @@
 <?php
 /**
- * Title: Story Card (Editorial)
- * Slug: spotlight-theme-2026/story-card-editorial
+ * Title: Project Entry
+ * Slug: spotlight-theme-2026/project-entry
  * Categories: spotlight
- * Keywords: story, blog, post, card, article, editorial, perspectives
- * Description: The "editorial" Card/Blog treatment from Figma — no card background, larger corner radius. Used for the front page's "Perspectives" and "Special Projects" rows, and home.html/archive.html's own post-listing grid.
+ * Keywords: story, blog, post, card, article, special projects, badge
+ * Description: The front page's "Special Projects" row card — Figma's "Card/Blog" component, given its own file per Zared (2026-09-01) since Special Projects owns this row even though the treatment matches story-card-editorial.php exactly.
  * Inserter: true
  * Block Types: core/post-template
  *
  * @package spotlight-theme-2026
  *
- * Sibling of story-card.php (boxed background, smaller radius — "Latest
- * news" row only). Confirmed directly against the Perspectives Figma
- * instances: same content structure as story-card.php, but no card
- * background (sits transparent on the section) and a larger radius —
- * border-radius--200 on the card, border-radius--300 on the image, versus
- * story-card.php's border-radius--100 on both.
+ * Reuses the story-card-editorial className, not a new one — confirmed
+ * against Figma (node 234:6732) it's the same Card/Blog component as
+ * story-card-editorial.php, so one shared CSS surface instead of a
+ * duplicate selector set for an identical card.
  *
- * The badge overlay (spotlight-badge.php, require()'d) is conditional —
- * it renders nothing for a post with no special_project term, and the red
- * pill for one that does, regardless of which row/grid this card is in
- * (Zared confirmed 2026-09-01: badge is a property of the post, not the
- * section — story-card-featured.php, the old badge-always-shown variant
- * scoped to Special Projects only, was retired in favor of this).
+ * The "Special Projects" heading lives in front-page.html, not here.
  *
- * Also confirmed directly against Figma to be home.html/archive.html's
- * own grid style, not story-card.php's boxed one — checked two non-first
- * cards in that grid, both matched this editorial treatment exactly (no
- * background, same 8px/16px radius). The original assumption that the
- * general grid and "Latest news" shared the boxed style was wrong.
+ * Badge overlay (spotlight-badge.php) is conditional on the post's
+ * special_project term, same as every other story-card variant.
  *
- * core/post-featured-image's border support is __experimentalSkipSerialization
- * in its own block.json, so the image's corner radius is handled by
- * assets/css/story-card.css instead of a style.border.radius attribute.
- * That same file also positions the image absolute/inset:0 within
- * story-card__media (bleeding to its true edge, ignoring any padding) —
- * confirmed against Figma; no padding on this group by design.
+ * Title typography (fontWeight medium/500, lineHeight "heading"/1.25,
+ * letterSpacing -0.02px) matches Figma exactly, applied here and on every
+ * other story-card variant/inline copy for consistency.
+ *
+ * blockGap:"0" on both the article and story-card__media, not omitted —
+ * omitting it let WordPress's global flow-layout margin-block-start
+ * (spacing--30) land on each group's second child (the badge, and
+ * story-card__content), same class of bug as page-intro-banner.php's.
+ *
+ * story-card__media has no padding by design — assets/css/story-card.css
+ * positions the image absolute/inset:0, bleeding to the wrapper's true
+ * edge, confirmed against Figma; padding here would do nothing for the
+ * image and only misalign the badge from it.
  */
 
 ?>
