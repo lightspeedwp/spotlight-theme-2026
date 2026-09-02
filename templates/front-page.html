@@ -1,15 +1,15 @@
 <!-- wp:template-part {"slug":"header","tagName":"header","align":"wide"} /-->
 
-<!-- wp:group {"tagName":"main","layout":{"type":"constrained"},"align":"wide"} -->
-<main class="wp-block-group alignwide">
+<!-- wp:group {"tagName":"main","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"},"align":"wide"} -->
+<main class="wp-block-group alignwide" style="--wp--style--block-gap:0">
 	<!-- wp:group {"className":"front-page__section front-page__hero","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}}},"layout":{"type":"constrained"},"align":"wide"} -->
 	<div class="wp-block-group alignwide front-page__section front-page__hero" style="padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--20)">
 		<!-- wp:pattern {"slug":"spotlight-theme-2026/hero-lead-story"} /-->
 	</div>
 	<!-- /wp:group -->
 
-	<!-- wp:group {"className":"front-page__section front-page__topics","layout":{"type":"constrained"},"align":"wide"} -->
-	<div class="wp-block-group alignwide front-page__section front-page__topics">
+	<!-- wp:group {"className":"front-page__section front-page__topics","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}}},"layout":{"type":"constrained"},"align":"wide"} -->
+	<div class="wp-block-group alignwide front-page__section front-page__topics" style="padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--20)">
 		<!-- wp:heading {"level":2} -->
 		<h2 class="wp-block-heading">Explore by topic</h2>
 		<!-- /wp:heading -->
@@ -18,8 +18,8 @@
 	</div>
 	<!-- /wp:group -->
 
-	<!-- wp:group {"className":"front-page__section front-page__latest-news","layout":{"type":"constrained"},"align":"wide"} -->
-	<div class="wp-block-group alignwide front-page__section front-page__latest-news">
+	<!-- wp:group {"className":"front-page__section front-page__latest-news","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}}},"layout":{"type":"constrained"},"align":"wide"} -->
+	<div class="wp-block-group alignwide front-page__section front-page__latest-news" style="padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--20)">
 		<!-- wp:heading {"level":2} -->
 		<h2 class="wp-block-heading">Latest news</h2>
 		<!-- /wp:heading -->
@@ -76,11 +76,13 @@
 
 	<!-- wp:pattern {"slug":"spotlight-theme-2026/dashboard-promo"} /-->
 
-	<!-- wp:group {"className":"front-page__section front-page__special-projects","layout":{"type":"constrained"},"align":"wide"} -->
-	<div class="wp-block-group alignwide front-page__section front-page__special-projects">
-		<!-- wp:heading {"level":2} -->
-		<h2 class="wp-block-heading">Special Projects</h2>
-		<!-- /wp:heading -->
+	<!-- wp:group {"className":"front-page__special-projects","align":"full","backgroundColor":"neutral-100","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}}},"layout":{"type":"constrained"}} -->
+	<div class="wp-block-group alignfull front-page__special-projects has-neutral-100-background-color has-background" style="padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--20)">
+		<!-- wp:group {"className":"front-page__section","align":"wide","layout":{"type":"constrained"}} -->
+		<div class="wp-block-group alignwide front-page__section">
+			<!-- wp:heading {"level":2} -->
+			<h2 class="wp-block-heading">Special Projects</h2>
+			<!-- /wp:heading -->
 
 		<!-- wp:query {"align":"wide","query":{"perPage":3,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":false},"namespace":"spotlight/taxonomy-query/special_project"} -->
 		<div class="wp-block-query alignwide">
@@ -135,11 +137,13 @@
 			<!-- /wp:query-no-results -->
 		</div>
 		<!-- /wp:query -->
+		</div>
+		<!-- /wp:group -->
 	</div>
 	<!-- /wp:group -->
 
-	<!-- wp:columns {"className":"front-page__section front-page__provincial-newsletter","align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|50"}}}} -->
-	<div class="wp-block-columns alignwide front-page__section front-page__provincial-newsletter">
+	<!-- wp:columns {"className":"front-page__section front-page__provincial-newsletter","verticalAlignment":"center","align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|20","right":"var:preset|spacing|20"},"blockGap":{"left":"var:preset|spacing|50"}}}} -->
+	<div class="wp-block-columns are-vertically-aligned-center alignwide front-page__section front-page__provincial-newsletter" style="padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--20)">
 		<!-- wp:column {"width":"63.4%"} -->
 		<div class="wp-block-column" style="flex-basis:63.4%">
 			<!-- wp:pattern {"slug":"spotlight-theme-2026/provincial-map"} /-->
@@ -154,11 +158,13 @@
 	</div>
 	<!-- /wp:columns -->
 
-	<!-- wp:group {"className":"front-page__section front-page__perspectives","layout":{"type":"constrained"},"align":"wide"} -->
-	<div class="wp-block-group alignwide front-page__section front-page__perspectives">
-		<!-- wp:heading {"level":2} -->
-		<h2 class="wp-block-heading">Perspectives</h2>
-		<!-- /wp:heading -->
+	<!-- wp:group {"className":"front-page__perspectives","align":"full","backgroundColor":"neutral-100","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}}},"layout":{"type":"constrained"}} -->
+	<div class="wp-block-group alignfull front-page__perspectives has-neutral-100-background-color has-background" style="padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--20)">
+		<!-- wp:group {"className":"front-page__section","align":"wide","layout":{"type":"constrained"}} -->
+		<div class="wp-block-group alignwide front-page__section">
+			<!-- wp:heading {"level":2} -->
+			<h2 class="wp-block-heading">Perspectives</h2>
+			<!-- /wp:heading -->
 
 		<!-- wp:query {"align":"wide","query":{"perPage":3,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":false},"namespace":"spotlight/tag-query/perspectives"} -->
 		<div class="wp-block-query alignwide">
@@ -213,6 +219,8 @@
 			<!-- /wp:query-no-results -->
 		</div>
 		<!-- /wp:query -->
+		</div>
+		<!-- /wp:group -->
 	</div>
 	<!-- /wp:group -->
 </main>

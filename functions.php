@@ -671,6 +671,15 @@ function spotlight_theme_2026_asset_version( $relative_path ) {
  * the relevant lines below once those files exist.
  */
 function spotlight_theme_2026_enqueue_assets() {
+	// Zeroes the root-level margin WP core adds between top-level template
+	// blocks (header/main/template parts/footer) — see the CSS file.
+	wp_enqueue_style(
+		'spotlight-theme-2026-site-blocks-gap',
+		get_theme_file_uri( 'assets/css/site-blocks-gap.css' ),
+		array(),
+		spotlight_theme_2026_asset_version( 'assets/css/site-blocks-gap.css' )
+	);
+
 	// Icon and hover states for Spotlight's own custom core/button block-style variations.
 	// No dependency on 'global-styles' here — that handle is only registered
 	// during the front end's wp_enqueue_scripts flow, which never runs in
@@ -838,6 +847,13 @@ function spotlight_theme_2026_enqueue_assets() {
 		get_theme_file_uri( 'assets/css/dashboard-promo-hero.css' ),
 		array(),
 		spotlight_theme_2026_asset_version( 'assets/css/dashboard-promo-hero.css' )
+	);
+
+	wp_enqueue_style(
+		'spotlight-theme-2026-provincial-map',
+		get_theme_file_uri( 'assets/css/provincial-map.css' ),
+		array(),
+		spotlight_theme_2026_asset_version( 'assets/css/provincial-map.css' )
 	);
 
 	// Add wp_enqueue_script() here when assets/js/main.js exists.

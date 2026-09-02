@@ -21,11 +21,15 @@
  * fills red, nothing else (no separate tooltip/data popup exists
  * anywhere in the design). No JS, no Interactivity API needed.
  *
- * Colors were hardcoded hex in the source file; swapped for real theme
- * tokens here (brand-500 for hover, matching Figma's highlighted
- * province exactly). core/html doesn't support block-level color
- * attributes for raw markup like this, so the SVG's own inline <style>
- * is the only place these can live.
+ * Colors swapped for real theme tokens, confirmed against the exported
+ * province SVG asset: fill neutral-100 (true white — "base" is this
+ * theme's page background and made provinces nearly invisible), border
+ * neutral-700 (#505050), hover brand-500. core/html doesn't support
+ * block-level color attributes, so these live in the SVG's own <style>.
+ *
+ * No gap between the text column and the map — confirmed via Figma's
+ * coordinates (text ends at x=317, map starts at x=317). The visual
+ * space comes from the paragraph's own word-wrap, not a real gap.
  *
  * The 9 province hrefs + the "View our Provincial hub" CTA are resolved
  * by spotlight_theme_2026_get_province_term_url() (functions.php) via
@@ -43,8 +47,8 @@
  */
 
 ?>
-<!-- wp:columns {"style":{"spacing":{"blockGap":{"left":"var:preset|spacing|50"}}}} -->
-<div class="wp-block-columns">
+<!-- wp:columns {"className":"provincial-map__row","verticalAlignment":"center","style":{"spacing":{"blockGap":{"left":"0"}}}} -->
+<div class="wp-block-columns provincial-map__row are-vertically-aligned-center">
 	<!-- wp:column {"width":"37.9%"} -->
 	<div class="wp-block-column" style="flex-basis:37.9%">
 		<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"default"}} -->
@@ -81,7 +85,7 @@
   <desc id="sa-map-description">Select one of South Africa's nine provinces.</desc>
   <style>
     .south-africa-province-map{display:block;width:100%;height:auto}
-    .south-africa-province-map .province{fill:var(--wp--preset--color--base);stroke:var(--wp--preset--color--neutral-300);stroke-width:2;vector-effect:non-scaling-stroke;transition:fill 180ms ease,stroke-width 180ms ease}
+    .south-africa-province-map .province{fill:var(--wp--preset--color--neutral-100);stroke:var(--wp--preset--color--neutral-700);stroke-width:2;vector-effect:non-scaling-stroke;transition:fill 180ms ease,stroke-width 180ms ease}
     .south-africa-province-map .province-link{cursor:pointer;outline:none}
     .south-africa-province-map .province-link:hover .province,.south-africa-province-map .province-link:focus .province,.south-africa-province-map .province-link:focus-visible .province{fill:var(--wp--preset--color--brand-500);stroke-width:4}
   </style>
