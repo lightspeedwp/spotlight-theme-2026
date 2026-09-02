@@ -850,10 +850,10 @@ function spotlight_theme_2026_enqueue_assets() {
 	);
 
 	wp_enqueue_style(
-		'spotlight-theme-2026-provincial-map',
-		get_theme_file_uri( 'assets/css/provincial-map.css' ),
+		'spotlight-theme-2026-columns-vertical-align',
+		get_theme_file_uri( 'assets/css/columns-vertical-align.css' ),
 		array(),
-		spotlight_theme_2026_asset_version( 'assets/css/provincial-map.css' )
+		spotlight_theme_2026_asset_version( 'assets/css/columns-vertical-align.css' )
 	);
 
 	// Add wp_enqueue_script() here when assets/js/main.js exists.
