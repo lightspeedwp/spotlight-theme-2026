@@ -8,21 +8,53 @@
 	</div>
 	<!-- /wp:group -->
 
-	<!-- wp:group {"className":"front-page__section front-page__topics","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}}},"layout":{"type":"constrained"},"align":"wide"} -->
+	<!-- wp:group {"className":"front-page__section front-page__topics","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|20","right":"var:preset|spacing|20"},"blockGap":"var:preset|spacing|40"}},"layout":{"type":"constrained"},"align":"wide"} -->
 	<div class="wp-block-group alignwide front-page__section front-page__topics" style="padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--20)">
-		<!-- wp:heading {"level":2} -->
-		<h2 class="wp-block-heading">Explore by topic</h2>
-		<!-- /wp:heading -->
+		<!-- wp:group {"className":"section-header","align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+		<div class="wp-block-group alignwide section-header">
+			<!-- wp:heading {"level":2,"textColor":"accent-500","fontSize":"500","style":{"typography":{"fontWeight":"var(--wp--custom--font-weight--medium)","lineHeight":"var(--wp--custom--line-height--heading)","letterSpacing":"0.3px"}}} -->
+			<h2 class="wp-block-heading has-accent-500-color has-text-color has-500-font-size" style="font-weight:var(--wp--custom--font-weight--medium);line-height:var(--wp--custom--line-height--heading);letter-spacing:0.3px">Explore by topic</h2>
+			<!-- /wp:heading -->
+
+			<!-- wp:separator {"className":"section-header__divider is-style-wide","backgroundColor":"neutral-300"} -->
+			<hr class="wp-block-separator has-text-color has-neutral-300-color has-alpha-channel-opacity has-neutral-300-background-color has-background section-header__divider is-style-wide"/>
+			<!-- /wp:separator -->
+
+			<!-- wp:buttons {"style":{"spacing":{"blockGap":"0"}}} -->
+			<div class="wp-block-buttons">
+				<!-- wp:button {"className":"is-style-text-link","textColor":"accent-500"} -->
+				<div class="wp-block-button is-style-text-link"><a class="wp-block-button__link has-accent-500-color has-text-color wp-element-button" href="/latest-news/">Read all articles</a></div>
+				<!-- /wp:button -->
+			</div>
+			<!-- /wp:buttons -->
+		</div>
+		<!-- /wp:group -->
 
 		<!-- wp:pattern {"slug":"spotlight-theme-2026/topic-band"} /-->
 	</div>
 	<!-- /wp:group -->
 
-	<!-- wp:group {"className":"front-page__section front-page__latest-news","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}}},"layout":{"type":"constrained"},"align":"wide"} -->
+	<!-- wp:group {"className":"front-page__section front-page__latest-news","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|20","right":"var:preset|spacing|20"},"blockGap":"var:preset|spacing|40"}},"layout":{"type":"constrained"},"align":"wide"} -->
 	<div class="wp-block-group alignwide front-page__section front-page__latest-news" style="padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--20)">
-		<!-- wp:heading {"level":2} -->
-		<h2 class="wp-block-heading">Latest news</h2>
-		<!-- /wp:heading -->
+		<!-- wp:group {"className":"section-header","align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+		<div class="wp-block-group alignwide section-header">
+			<!-- wp:heading {"level":2,"textColor":"accent-500","fontSize":"500","style":{"typography":{"fontWeight":"var(--wp--custom--font-weight--medium)","lineHeight":"var(--wp--custom--line-height--heading)","letterSpacing":"0.3px"}}} -->
+			<h2 class="wp-block-heading has-accent-500-color has-text-color has-500-font-size" style="font-weight:var(--wp--custom--font-weight--medium);line-height:var(--wp--custom--line-height--heading);letter-spacing:0.3px">Latest news</h2>
+			<!-- /wp:heading -->
+
+			<!-- wp:separator {"className":"section-header__divider is-style-wide","backgroundColor":"neutral-300"} -->
+			<hr class="wp-block-separator has-text-color has-neutral-300-color has-alpha-channel-opacity has-neutral-300-background-color has-background section-header__divider is-style-wide"/>
+			<!-- /wp:separator -->
+
+			<!-- wp:buttons {"style":{"spacing":{"blockGap":"0"}}} -->
+			<div class="wp-block-buttons">
+				<!-- wp:button {"className":"is-style-text-link","textColor":"accent-500"} -->
+				<div class="wp-block-button is-style-text-link"><a class="wp-block-button__link has-accent-500-color has-text-color wp-element-button" href="/latest-news/">Read more</a></div>
+				<!-- /wp:button -->
+			</div>
+			<!-- /wp:buttons -->
+		</div>
+		<!-- /wp:group -->
 
 		<!-- wp:query {"align":"wide","query":{"perPage":4,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":false}} -->
 		<div class="wp-block-query alignwide">
@@ -78,11 +110,27 @@
 
 	<!-- wp:group {"className":"front-page__special-projects","align":"full","backgroundColor":"neutral-100","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}}},"layout":{"type":"constrained"}} -->
 	<div class="wp-block-group alignfull front-page__special-projects has-neutral-100-background-color has-background" style="padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--20)">
-		<!-- wp:group {"className":"front-page__section","align":"wide","layout":{"type":"constrained"}} -->
+		<!-- wp:group {"className":"front-page__section","align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"constrained"}} -->
 		<div class="wp-block-group alignwide front-page__section">
-			<!-- wp:heading {"level":2} -->
-			<h2 class="wp-block-heading">Special Projects</h2>
-			<!-- /wp:heading -->
+			<!-- wp:group {"className":"section-header","align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+			<div class="wp-block-group alignwide section-header">
+				<!-- wp:heading {"level":2,"textColor":"accent-500","fontSize":"500","style":{"typography":{"fontWeight":"var(--wp--custom--font-weight--medium)","lineHeight":"var(--wp--custom--line-height--heading)","letterSpacing":"0.3px"}}} -->
+				<h2 class="wp-block-heading has-accent-500-color has-text-color has-500-font-size" style="font-weight:var(--wp--custom--font-weight--medium);line-height:var(--wp--custom--line-height--heading);letter-spacing:0.3px">Special Projects</h2>
+				<!-- /wp:heading -->
+
+				<!-- wp:separator {"className":"section-header__divider is-style-wide","backgroundColor":"neutral-300"} -->
+				<hr class="wp-block-separator has-text-color has-neutral-300-color has-alpha-channel-opacity has-neutral-300-background-color has-background section-header__divider is-style-wide"/>
+				<!-- /wp:separator -->
+
+				<!-- wp:buttons {"style":{"spacing":{"blockGap":"0"}}} -->
+				<div class="wp-block-buttons">
+					<!-- wp:button {"className":"is-style-text-link","textColor":"accent-500"} -->
+					<div class="wp-block-button is-style-text-link"><a class="wp-block-button__link has-accent-500-color has-text-color wp-element-button" href="/special-investigations/">Read more</a></div>
+					<!-- /wp:button -->
+				</div>
+				<!-- /wp:buttons -->
+			</div>
+			<!-- /wp:group -->
 
 		<!-- wp:query {"align":"wide","query":{"perPage":3,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":false},"namespace":"spotlight/taxonomy-query/special_project"} -->
 		<div class="wp-block-query alignwide">
@@ -160,11 +208,27 @@
 
 	<!-- wp:group {"className":"front-page__perspectives","align":"full","backgroundColor":"neutral-100","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}}},"layout":{"type":"constrained"}} -->
 	<div class="wp-block-group alignfull front-page__perspectives has-neutral-100-background-color has-background" style="padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--20)">
-		<!-- wp:group {"className":"front-page__section","align":"wide","layout":{"type":"constrained"}} -->
+		<!-- wp:group {"className":"front-page__section","align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"constrained"}} -->
 		<div class="wp-block-group alignwide front-page__section">
-			<!-- wp:heading {"level":2} -->
-			<h2 class="wp-block-heading">Perspectives</h2>
-			<!-- /wp:heading -->
+			<!-- wp:group {"className":"section-header","align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+			<div class="wp-block-group alignwide section-header">
+				<!-- wp:heading {"level":2,"textColor":"accent-500","fontSize":"500","style":{"typography":{"fontWeight":"var(--wp--custom--font-weight--medium)","lineHeight":"var(--wp--custom--line-height--heading)","letterSpacing":"0.3px"}}} -->
+				<h2 class="wp-block-heading has-accent-500-color has-text-color has-500-font-size" style="font-weight:var(--wp--custom--font-weight--medium);line-height:var(--wp--custom--line-height--heading);letter-spacing:0.3px">Perspectives</h2>
+				<!-- /wp:heading -->
+
+				<!-- wp:separator {"className":"section-header__divider is-style-wide","backgroundColor":"neutral-300"} -->
+				<hr class="wp-block-separator has-text-color has-neutral-300-color has-alpha-channel-opacity has-neutral-300-background-color has-background section-header__divider is-style-wide"/>
+				<!-- /wp:separator -->
+
+				<!-- wp:buttons {"style":{"spacing":{"blockGap":"0"}}} -->
+				<div class="wp-block-buttons">
+					<!-- wp:button {"className":"is-style-text-link","textColor":"accent-500"} -->
+					<div class="wp-block-button is-style-text-link"><a class="wp-block-button__link has-accent-500-color has-text-color wp-element-button" href="/tag/perspectives/">Read more</a></div>
+					<!-- /wp:button -->
+				</div>
+				<!-- /wp:buttons -->
+			</div>
+			<!-- /wp:group -->
 
 		<!-- wp:query {"align":"wide","query":{"perPage":3,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":false},"namespace":"spotlight/tag-query/perspectives"} -->
 		<div class="wp-block-query alignwide">
