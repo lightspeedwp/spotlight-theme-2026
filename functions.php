@@ -310,6 +310,35 @@ function spotlight_theme_2026_resolve_topic_band_term( $parsed_block ) {
 add_filter( 'render_block_data', 'spotlight_theme_2026_resolve_topic_band_term' );
 
 /**
+ * Resolves a category slug into its real archive URL, for
+ * patterns/provincial-map.php's nine province links and its "View our
+ * Provincial hub" CTA.
+ *
+ * Plain PHP, not a render-time filter — unlike
+ * spotlight_theme_2026_resolve_tag_query_namespace() above, a term link
+ * doesn't depend on the current query/post, so it's safe to resolve once
+ * when the pattern registers (see the wp-pattern-runtime-pitfalls
+ * distinction between query-dependent and query-independent lookups).
+ *
+ * Falls back to "#" if the category doesn't exist yet on a fresh
+ * install, rather than a fatal error or an unescaped null.
+ *
+ * @param string $slug Category slug (e.g. "eastern-cape").
+ * @return string
+ */
+function spotlight_theme_2026_get_province_term_url( $slug ) {
+	$term = get_term_by( 'slug', $slug, 'category' );
+
+	if ( ! ( $term instanceof WP_Term ) ) {
+		return '#';
+	}
+
+	$url = get_term_link( $term );
+
+	return is_wp_error( $url ) ? '#' : esc_url( $url );
+}
+
+/**
  * Marks the topic-filter pill matching the current category archive.
  *
  * Core/term-template has no "current" class the way wp_list_categories()
