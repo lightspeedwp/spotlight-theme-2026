@@ -26,9 +26,19 @@
  * stacked as separate lines — confirmed against Figma's vertical tile
  * layout. The name/count wrapper's default flow is horizontal (an <a>
  * and a <span> are both inline), so this also makes it a column.
+ *
+ * height:100% + flex fills the row's stretched column height (core/columns
+ * stretches columns to the tallest one by default) — otherwise a
+ * longer, wrapping title (e.g. "Access to Medicines") makes only that
+ * tile taller while its siblings stay short, breaking the equal-size
+ * grid Figma shows.
  */
 .topic-band__tile {
+	display: flex;
+	flex-direction: column;
 	align-items: center;
+	justify-content: center;
+	height: 100%;
 	text-align: center;
 }
 
