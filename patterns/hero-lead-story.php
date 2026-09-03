@@ -65,7 +65,7 @@
 			<!-- wp:column {"verticalAlignment":"center"} -->
 			<div class="wp-block-column is-vertically-aligned-center">
 				<!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"default"}} -->
-				<div class="wp-block-group" style="--wp--style--block-gap:0">
+				<div class="wp-block-group">
 					<!-- wp:group {"style":{"spacing":{"padding":{"bottom":"var:preset|spacing|20"}}},"layout":{"type":"default"}} -->
 					<div class="wp-block-group" style="padding-bottom:var(--wp--preset--spacing--20)">
 						<?php require __DIR__ . '/spotlight-badge.php'; ?>

@@ -82,7 +82,7 @@
 	<!-- /wp:group -->
 
 	<!-- wp:paragraph {"className":"article-header__subtitle","style":{"typography":{"fontWeight":"600","lineHeight":"var:custom|line-height|heading"},"spacing":{"margin":{"top":"var:preset|spacing|20"}}},"textColor":"neutral-900","fontSize":"300"} -->
-	<p class="article-header__subtitle has-neutral-900-color has-text-color has-300-font-size" style="margin-top:var(--wp--preset--spacing--20);font-weight:600"><?php echo esc_html__( 'South Africa has launched the most promising new HIV-prevention tool in years. But the systems built to reach the people who need it most have been quietly dismantled.', 'spotlight-theme-2026' ); ?></p>
+	<p class="article-header__subtitle has-neutral-900-color has-text-color has-300-font-size" style="margin-top:var(--wp--preset--spacing--20);font-weight:600;line-height:var(--wp--custom--line-height--heading)"><?php echo esc_html__( 'South Africa has launched the most promising new HIV-prevention tool in years. But the systems built to reach the people who need it most have been quietly dismantled.', 'spotlight-theme-2026' ); ?></p>
 	<!-- /wp:paragraph -->
 </div>
 <!-- /wp:group -->
