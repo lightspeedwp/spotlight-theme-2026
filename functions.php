@@ -99,44 +99,72 @@ function spotlight_theme_2026_resolve_hero_featured_tag( $parsed_block ) {
 add_filter( 'render_block_data', 'spotlight_theme_2026_resolve_hero_featured_tag' );
 
 /**
- * Resolves a tag slug encoded in a query block's namespace into that tag's
- * real term ID at render time.
+ * Resolves a "{taxonomy}/{slug}" pair encoded in a query block's namespace
+ * (e.g. "spotlight/term-query/category/perspectives") into a real term ID,
+ * queued for spotlight_theme_2026_apply_term_query_tax_query() via a
+ * global — same relay technique as the taxonomy-wide query below.
  *
- * Generalizes the same technique as spotlight_theme_2026_resolve_hero_featured_tag()
- * for front-page.html's tag-filtered card rows (Special Projects, Perspectives)
- * instead of writing one dedicated filter per row. A query using this
- * mechanism sets its own "namespace" attribute to
- * "spotlight/tag-query/{tag-slug}" (e.g. "spotlight/tag-query/special-projects")
- * — the part after the last slash is the tag slug to resolve.
- *
- * Same safe-fallback behavior as the hero's filter: if the named tag
- * doesn't exist yet, the query is forced to zero results rather than left
- * unfiltered, so the row doesn't silently show unrelated latest posts.
+ * Setting attrs.query.taxQuery directly here (WP's native taxQuery
+ * mapping) resolves correctly but never reaches the real query for a
+ * block living in a template rather than a fresh pattern — confirmed via
+ * debug output, hence the relay.
  *
  * @param array $parsed_block The block being rendered.
  * @return array
  */
-function spotlight_theme_2026_resolve_tag_query_namespace( $parsed_block ) {
+function spotlight_theme_2026_resolve_term_query_namespace( $parsed_block ) {
 	if ( 'core/query' !== $parsed_block['blockName'] ) {
 		return $parsed_block;
 	}
 
 	$namespace = $parsed_block['attrs']['namespace'] ?? '';
+	$prefix    = 'spotlight/term-query/';
 
-	if ( ! str_starts_with( $namespace, 'spotlight/tag-query/' ) ) {
+	if ( ! str_starts_with( $namespace, $prefix ) ) {
+		$GLOBALS['spotlight_pending_term_query'] = null;
 		return $parsed_block;
 	}
 
-	$slug = substr( $namespace, strlen( 'spotlight/tag-query/' ) );
-	$tag  = get_term_by( 'slug', $slug, 'post_tag' );
+	list( $taxonomy, $slug ) = array_pad( explode( '/', substr( $namespace, strlen( $prefix ) ), 2 ), 2, '' );
+	$term                    = get_term_by( 'slug', $slug, $taxonomy );
 
-	$parsed_block['attrs']['query']['taxQuery'] = array(
-		'post_tag' => array( $tag instanceof WP_Term ? $tag->term_id : 0 ),
+	$GLOBALS['spotlight_pending_term_query'] = array(
+		'taxonomy' => $taxonomy,
+		'term_id'  => $term instanceof WP_Term ? $term->term_id : 0,
 	);
 
 	return $parsed_block;
 }
-add_filter( 'render_block_data', 'spotlight_theme_2026_resolve_tag_query_namespace' );
+add_filter( 'render_block_data', 'spotlight_theme_2026_resolve_term_query_namespace' );
+
+/**
+ * Applies the taxonomy/term ID queued by
+ * spotlight_theme_2026_resolve_term_query_namespace() to the real
+ * tax_query. A term ID of 0 (term not found) forces zero results instead
+ * of an unfiltered query.
+ *
+ * @param array    $query WP_Query args being built for this query loop.
+ * @param WP_Block $block The query loop block instance.
+ * @return array
+ */
+function spotlight_theme_2026_apply_term_query_tax_query( $query, $block ) {
+	$pending = $GLOBALS['spotlight_pending_term_query'] ?? null;
+
+	if ( null === $pending ) {
+		return $query;
+	}
+
+	$query['tax_query'] = array(
+		array(
+			'taxonomy' => $pending['taxonomy'],
+			'field'    => 'term_id',
+			'terms'    => array( $pending['term_id'] ),
+		),
+	);
+
+	return $query;
+}
+add_filter( 'query_loop_block_query_vars', 'spotlight_theme_2026_apply_term_query_tax_query', 10, 2 );
 
 /**
  * Reads a taxonomy-wide query namespace off a core/query block and hands
