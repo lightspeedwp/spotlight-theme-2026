@@ -30,7 +30,7 @@
 	<h3 class="wp-block-heading has-accent-700-color has-text-color has-400-font-size" style="font-weight:500;line-height:var(--wp--custom--line-height--heading);letter-spacing:0.3px">More from Spotlight</h3>
 	<!-- /wp:heading -->
 
-	<!-- wp:query {"query":{"perPage":5,"postType":"post","order":"desc","orderBy":"date","inherit":false,"exclude_current":true},"namespace":"advanced-query-loop"} -->
+	<!-- wp:query {"query":{"perPage":5,"postType":"post","order":"desc","orderBy":"date","inherit":false,"excludeCurrent":true}} -->
 	<div class="wp-block-query">
 		<!-- wp:post-template {"className":"related-coverage-callout__list","style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
 			<!-- wp:group {"className":"related-coverage-callout__item","style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->

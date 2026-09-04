@@ -1,0 +1,13 @@
+/*
+ * front-page.html's 4 section headers (Explore by topic, Latest news,
+ * Special Projects, Perspectives): title, a divider line filling the
+ * remaining space, and a "Read more"-style CTA — confirmed against
+ * Figma's "Category Header" component (node 234:6732;50:6773 and its
+ * siblings on the other 3 sections). core/group's flex layout has no
+ * attribute for one child to grow and fill the row, so the divider
+ * needs real CSS.
+ */
+.section-header__divider.wp-block-separator {
+	flex: 1 1 auto;
+	opacity: 1;
+}

@@ -19,7 +19,8 @@
  * top of the breadcrumb's own padding-bottom, doubling the gap.
  *
  * post-title stays level:1 (real H1, only font-size overridden) for a11y.
- * post-excerpt keeps the intro copy dynamic/editable per page.
+ *
+ * post-excerpt removed 2026-09-04 per Zared — no intro copy under the title.
  */
 
 ?>
@@ -44,8 +45,6 @@
 		<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"default"}} -->
 		<div class="wp-block-group">
 			<!-- wp:post-title {"level":1,"fontSize":"500","textColor":"neutral-100"} /-->
-
-			<!-- wp:post-excerpt {"fontSize":"400","textColor":"neutral-300"} /-->
 		</div>
 		<!-- /wp:group -->
 	</div>

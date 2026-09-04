@@ -68,9 +68,22 @@
 	mask-size: contain;
 }
 
-/* No hover color rule: unlike the other custom button styles, Text Link's
-   hover color is the same brand-500 as its resting state, confirmed
-   directly with the user — nothing to override on hover. */
+/* core-button.css's generic `.wp-block-button .wp-block-button__link:hover`
+ * rule out-specifies a plain `.has-*-color` class and turns Text Link
+ * into an accent-300 filled pill on hover — background is fixed here
+ * with a higher-specificity selector, no !important needed. The text
+ * color needs !important though: WordPress's own generated
+ * `.has-accent-500-color { color: ...!important }` global-styles
+ * utility class always ships !important, so nothing without it can
+ * ever override the resting color, confirmed by deleting every
+ * competing non-!important rule live and seeing the color still not
+ * change. Pending Zared's approval; section headers are the only
+ * current use of this style, always with textColor "accent-500".
+ */
+.wp-block-button.is-style-text-link .wp-block-button__link.has-accent-500-color:hover {
+	background-color: transparent;
+	color: var(--wp--preset--color--brand-500) !important;
+}
 
 /* Dashboard (styles/blocks/button/dashboard.json) */
 

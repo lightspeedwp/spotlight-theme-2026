@@ -1,6 +1,6 @@
 <!-- wp:template-part {"slug":"header","tagName":"header","align":"wide"} /-->
 
-<!-- wp:group {"tagName":"main","layout":{"type":"constrained"},"align":"wide"} -->
+<!-- wp:group {"tagName":"main","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"},"align":"wide"} -->
 <main class="wp-block-group alignwide">
 	<!-- wp:group {"className":"front-page__section front-page__hero","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}}},"layout":{"type":"constrained"},"align":"wide"} -->
 	<div class="wp-block-group alignwide front-page__section front-page__hero" style="padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--20)">
@@ -8,25 +8,57 @@
 	</div>
 	<!-- /wp:group -->
 
-	<!-- wp:group {"className":"front-page__section front-page__topics","layout":{"type":"constrained"},"align":"wide"} -->
-	<div class="wp-block-group alignwide front-page__section front-page__topics">
-		<!-- wp:heading {"level":2} -->
-		<h2 class="wp-block-heading">Explore by topic</h2>
-		<!-- /wp:heading -->
+	<!-- wp:group {"className":"front-page__section front-page__topics","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|20","right":"var:preset|spacing|20"},"blockGap":"var:preset|spacing|40"}},"layout":{"type":"constrained"},"align":"wide"} -->
+	<div class="wp-block-group alignwide front-page__section front-page__topics" style="padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--20)">
+		<!-- wp:group {"className":"section-header","align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+		<div class="wp-block-group alignwide section-header">
+			<!-- wp:heading {"level":2,"textColor":"accent-500","fontSize":"500","style":{"typography":{"fontWeight":"var(--wp--custom--font-weight--medium)","lineHeight":"var(--wp--custom--line-height--heading)","letterSpacing":"0.3px"}}} -->
+			<h2 class="wp-block-heading has-accent-500-color has-text-color has-500-font-size" style="font-weight:var(--wp--custom--font-weight--medium);line-height:var(--wp--custom--line-height--heading);letter-spacing:0.3px">Explore by topic</h2>
+			<!-- /wp:heading -->
+
+			<!-- wp:separator {"className":"section-header__divider is-style-wide","backgroundColor":"neutral-300"} -->
+			<hr class="wp-block-separator has-text-color has-neutral-300-color has-alpha-channel-opacity has-neutral-300-background-color has-background section-header__divider is-style-wide"/>
+			<!-- /wp:separator -->
+
+			<!-- wp:buttons {"style":{"spacing":{"blockGap":"0"}}} -->
+			<div class="wp-block-buttons">
+				<!-- wp:button {"className":"is-style-text-link","textColor":"accent-500"} -->
+				<div class="wp-block-button is-style-text-link"><a class="wp-block-button__link has-accent-500-color has-text-color wp-element-button" href="/latest-news/">Read all articles</a></div>
+				<!-- /wp:button -->
+			</div>
+			<!-- /wp:buttons -->
+		</div>
+		<!-- /wp:group -->
 
 		<!-- wp:pattern {"slug":"spotlight-theme-2026/topic-band"} /-->
 	</div>
 	<!-- /wp:group -->
 
-	<!-- wp:group {"className":"front-page__section front-page__latest-news","layout":{"type":"constrained"},"align":"wide"} -->
-	<div class="wp-block-group alignwide front-page__section front-page__latest-news">
-		<!-- wp:heading {"level":2} -->
-		<h2 class="wp-block-heading">Latest news</h2>
-		<!-- /wp:heading -->
+	<!-- wp:group {"className":"front-page__section front-page__latest-news","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|20","right":"var:preset|spacing|20"},"blockGap":"var:preset|spacing|40"}},"layout":{"type":"constrained"},"align":"wide"} -->
+	<div class="wp-block-group alignwide front-page__section front-page__latest-news" style="padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--20)">
+		<!-- wp:group {"className":"section-header","align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+		<div class="wp-block-group alignwide section-header">
+			<!-- wp:heading {"level":2,"textColor":"accent-500","fontSize":"500","style":{"typography":{"fontWeight":"var(--wp--custom--font-weight--medium)","lineHeight":"var(--wp--custom--line-height--heading)","letterSpacing":"0.3px"}}} -->
+			<h2 class="wp-block-heading has-accent-500-color has-text-color has-500-font-size" style="font-weight:var(--wp--custom--font-weight--medium);line-height:var(--wp--custom--line-height--heading);letter-spacing:0.3px">Latest news</h2>
+			<!-- /wp:heading -->
+
+			<!-- wp:separator {"className":"section-header__divider is-style-wide","backgroundColor":"neutral-300"} -->
+			<hr class="wp-block-separator has-text-color has-neutral-300-color has-alpha-channel-opacity has-neutral-300-background-color has-background section-header__divider is-style-wide"/>
+			<!-- /wp:separator -->
+
+			<!-- wp:buttons {"style":{"spacing":{"blockGap":"0"}}} -->
+			<div class="wp-block-buttons">
+				<!-- wp:button {"className":"is-style-text-link","textColor":"accent-500"} -->
+				<div class="wp-block-button is-style-text-link"><a class="wp-block-button__link has-accent-500-color has-text-color wp-element-button" href="/latest-news/">Read more</a></div>
+				<!-- /wp:button -->
+			</div>
+			<!-- /wp:buttons -->
+		</div>
+		<!-- /wp:group -->
 
 		<!-- wp:query {"align":"wide","query":{"perPage":4,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":false}} -->
 		<div class="wp-block-query alignwide">
-			<!-- wp:post-template {"style":{"spacing":{"blockGap":"var:preset|spacing|50"}},"layout":{"type":"grid","columnCount":4}} -->
+			<!-- wp:post-template {"style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"grid","columnCount":4}} -->
 				<!-- wp:group {"tagName":"article","className":"story-card","backgroundColor":"neutral-100","style":{"border":{"radius":"var:preset|border-radius|100"},"spacing":{"blockGap":"0"}},"layout":{"type":"default"}} -->
 				<article class="wp-block-group story-card has-neutral-100-background-color has-background" style="border-radius:var(--wp--preset--border-radius--100)">
 					<!-- wp:group {"className":"story-card__media","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"default"}} -->
@@ -76,11 +108,29 @@
 
 	<!-- wp:pattern {"slug":"spotlight-theme-2026/dashboard-promo"} /-->
 
-	<!-- wp:group {"className":"front-page__section front-page__special-projects","layout":{"type":"constrained"},"align":"wide"} -->
-	<div class="wp-block-group alignwide front-page__section front-page__special-projects">
-		<!-- wp:heading {"level":2} -->
-		<h2 class="wp-block-heading">Special Projects</h2>
-		<!-- /wp:heading -->
+	<!-- wp:group {"className":"front-page__special-projects","align":"full","backgroundColor":"neutral-100","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}}},"layout":{"type":"constrained"}} -->
+	<div class="wp-block-group alignfull front-page__special-projects has-neutral-100-background-color has-background" style="padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--20)">
+		<!-- wp:group {"className":"front-page__section","align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"constrained"}} -->
+		<div class="wp-block-group alignwide front-page__section">
+			<!-- wp:group {"className":"section-header","align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+			<div class="wp-block-group alignwide section-header">
+				<!-- wp:heading {"level":2,"textColor":"accent-500","fontSize":"500","style":{"typography":{"fontWeight":"var(--wp--custom--font-weight--medium)","lineHeight":"var(--wp--custom--line-height--heading)","letterSpacing":"0.3px"}}} -->
+				<h2 class="wp-block-heading has-accent-500-color has-text-color has-500-font-size" style="font-weight:var(--wp--custom--font-weight--medium);line-height:var(--wp--custom--line-height--heading);letter-spacing:0.3px">Special Projects</h2>
+				<!-- /wp:heading -->
+
+				<!-- wp:separator {"className":"section-header__divider is-style-wide","backgroundColor":"neutral-300"} -->
+				<hr class="wp-block-separator has-text-color has-neutral-300-color has-alpha-channel-opacity has-neutral-300-background-color has-background section-header__divider is-style-wide"/>
+				<!-- /wp:separator -->
+
+				<!-- wp:buttons {"style":{"spacing":{"blockGap":"0"}}} -->
+				<div class="wp-block-buttons">
+					<!-- wp:button {"className":"is-style-text-link","textColor":"accent-500"} -->
+					<div class="wp-block-button is-style-text-link"><a class="wp-block-button__link has-accent-500-color has-text-color wp-element-button" href="/special-investigations/">Read more</a></div>
+					<!-- /wp:button -->
+				</div>
+				<!-- /wp:buttons -->
+			</div>
+			<!-- /wp:group -->
 
 		<!-- wp:query {"align":"wide","query":{"perPage":3,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":false},"namespace":"spotlight/taxonomy-query/special_project"} -->
 		<div class="wp-block-query alignwide">
@@ -135,34 +185,52 @@
 			<!-- /wp:query-no-results -->
 		</div>
 		<!-- /wp:query -->
-	</div>
-	<!-- /wp:group -->
-
-	<!-- wp:group {"className":"front-page__section front-page__provincial-newsletter","layout":{"type":"grid","columnCount":2},"align":"wide"} -->
-	<div class="wp-block-group alignwide front-page__section front-page__provincial-newsletter">
-		<!-- wp:group {"layout":{"type":"constrained"}} -->
-		<div class="wp-block-group">
-			<!-- wp:heading {"level":2} -->
-			<h2 class="wp-block-heading">Provincial coverage</h2>
-			<!-- /wp:heading -->
-
-			<!-- wp:paragraph -->
-			<p>[Provincial-map pattern placeholder]</p>
-			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:group -->
-
-		<!-- wp:pattern {"slug":"spotlight-theme-2026/newsletter-signup"} /-->
 	</div>
 	<!-- /wp:group -->
 
-	<!-- wp:group {"className":"front-page__section front-page__perspectives","layout":{"type":"constrained"},"align":"wide"} -->
-	<div class="wp-block-group alignwide front-page__section front-page__perspectives">
-		<!-- wp:heading {"level":2} -->
-		<h2 class="wp-block-heading">Perspectives</h2>
-		<!-- /wp:heading -->
+	<!-- wp:columns {"className":"front-page__section front-page__provincial-newsletter","verticalAlignment":"center","align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|20","right":"var:preset|spacing|20"},"blockGap":{"left":"var:preset|spacing|50"}}}} -->
+	<div class="wp-block-columns are-vertically-aligned-center alignwide front-page__section front-page__provincial-newsletter" style="padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--20)">
+		<!-- wp:column {"width":"63.4%"} -->
+		<div class="wp-block-column" style="flex-basis:63.4%">
+			<!-- wp:pattern {"slug":"spotlight-theme-2026/provincial-map"} /-->
+		</div>
+		<!-- /wp:column -->
 
-		<!-- wp:query {"align":"wide","query":{"perPage":3,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":false},"namespace":"spotlight/tag-query/perspectives"} -->
+		<!-- wp:column {"width":"32.8%"} -->
+		<div class="wp-block-column" style="flex-basis:32.8%">
+			<!-- wp:pattern {"slug":"spotlight-theme-2026/newsletter-signup"} /-->
+		</div>
+		<!-- /wp:column -->
+	</div>
+	<!-- /wp:columns -->
+
+	<!-- wp:group {"className":"front-page__perspectives","align":"full","backgroundColor":"neutral-100","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}}},"layout":{"type":"constrained"}} -->
+	<div class="wp-block-group alignfull front-page__perspectives has-neutral-100-background-color has-background" style="padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--20)">
+		<!-- wp:group {"className":"front-page__section","align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"constrained"}} -->
+		<div class="wp-block-group alignwide front-page__section">
+			<!-- wp:group {"className":"section-header","align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+			<div class="wp-block-group alignwide section-header">
+				<!-- wp:heading {"level":2,"textColor":"accent-500","fontSize":"500","style":{"typography":{"fontWeight":"var(--wp--custom--font-weight--medium)","lineHeight":"var(--wp--custom--line-height--heading)","letterSpacing":"0.3px"}}} -->
+				<h2 class="wp-block-heading has-accent-500-color has-text-color has-500-font-size" style="font-weight:var(--wp--custom--font-weight--medium);line-height:var(--wp--custom--line-height--heading);letter-spacing:0.3px">Perspectives</h2>
+				<!-- /wp:heading -->
+
+				<!-- wp:separator {"className":"section-header__divider is-style-wide","backgroundColor":"neutral-300"} -->
+				<hr class="wp-block-separator has-text-color has-neutral-300-color has-alpha-channel-opacity has-neutral-300-background-color has-background section-header__divider is-style-wide"/>
+				<!-- /wp:separator -->
+
+				<!-- wp:buttons {"style":{"spacing":{"blockGap":"0"}}} -->
+				<div class="wp-block-buttons">
+					<!-- wp:button {"className":"is-style-text-link","textColor":"accent-500"} -->
+					<div class="wp-block-button is-style-text-link"><a class="wp-block-button__link has-accent-500-color has-text-color wp-element-button" href="/perspectives/">Read more</a></div>
+					<!-- /wp:button -->
+				</div>
+				<!-- /wp:buttons -->
+			</div>
+			<!-- /wp:group -->
+
+		<!-- wp:query {"align":"wide","query":{"perPage":3,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":false},"namespace":"spotlight/term-query/category/perspectives"} -->
 		<div class="wp-block-query alignwide">
 			<!-- wp:post-template {"style":{"spacing":{"blockGap":"var:preset|spacing|50"}},"layout":{"type":"grid","columnCount":3}} -->
 				<!-- wp:group {"tagName":"article","className":"story-card-editorial","style":{"border":{"radius":"var:preset|border-radius|200"},"spacing":{"blockGap":"0"}},"layout":{"type":"default"}} -->
@@ -215,6 +283,8 @@
 			<!-- /wp:query-no-results -->
 		</div>
 		<!-- /wp:query -->
+		</div>
+		<!-- /wp:group -->
 	</div>
 	<!-- /wp:group -->
 </main>

@@ -47,8 +47,8 @@
 <div class="wp-block-group article-header" style="margin-bottom:var(--wp--preset--spacing--40)">
 	<!-- wp:group {"className":"article-header__intro","style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"default"}} -->
 	<div class="wp-block-group article-header__intro">
-		<!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
-		<div class="wp-block-group">
+		<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|50"}}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
+		<div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--50)">
 <?php require __DIR__ . '/spotlight-badge.php'; ?>
 
 			<!-- wp:post-terms {"term":"category","className":"is-style-card-links","textColor":"brand-500","fontSize":"200","style":{"typography":{"fontWeight":"600","textTransform":"uppercase","letterSpacing":"0.5px"},"elements":{"link":{"color":{"text":"var:preset|color|brand-500"},"typography":{"textDecoration":"none"}}}}} /-->
@@ -82,7 +82,7 @@
 	<!-- /wp:group -->
 
 	<!-- wp:paragraph {"className":"article-header__subtitle","style":{"typography":{"fontWeight":"600","lineHeight":"var:custom|line-height|heading"},"spacing":{"margin":{"top":"var:preset|spacing|20"}}},"textColor":"neutral-900","fontSize":"300"} -->
-	<p class="article-header__subtitle has-neutral-900-color has-text-color has-300-font-size" style="margin-top:var(--wp--preset--spacing--20);font-weight:600"><?php echo esc_html__( 'South Africa has launched the most promising new HIV-prevention tool in years. But the systems built to reach the people who need it most have been quietly dismantled.', 'spotlight-theme-2026' ); ?></p>
+	<p class="article-header__subtitle has-neutral-900-color has-text-color has-300-font-size" style="margin-top:var(--wp--preset--spacing--20);font-weight:600;line-height:var(--wp--custom--line-height--heading)"><?php echo esc_html__( 'South Africa has launched the most promising new HIV-prevention tool in years. But the systems built to reach the people who need it most have been quietly dismantled.', 'spotlight-theme-2026' ); ?></p>
 	<!-- /wp:paragraph -->
 </div>
 <!-- /wp:group -->

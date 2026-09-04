@@ -47,17 +47,24 @@
  * was the element getting max-width:content-size (800px) from WordPress's
  * layout support, which only targets direct children. align:"wide" on the
  * deeply-nested columns block was a no-op; its ancestor was already capped.
+ *
+ * The wp:query's own left/right spacing|50 padding (pre-dating the
+ * theme.json blockGap fix) and several internal padding+blockGap pairs
+ * doubling the same gap (badge→title measured 40px live, Figma wants 20px)
+ * have been removed — verified against Figma node 234:6732. Text column
+ * uses verticalAlignment:"center" instead of a fixed top/bottom padding,
+ * matching Figma's exact center point against the image column.
  */
 
 ?>
-<!-- wp:query {"align":"wide","style":{"spacing":{"padding":{"left":"var:preset|spacing|50","right":"var:preset|spacing|50"}}},"query":{"perPage":1,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":false},"namespace":"spotlight/hero-lead-story"} -->
-<div class="wp-block-query alignwide" style="padding-right:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--50)">
+<!-- wp:query {"align":"wide","query":{"perPage":1,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":false},"namespace":"spotlight/hero-lead-story"} -->
+<div class="wp-block-query alignwide">
 	<!-- wp:post-template -->
-		<!-- wp:columns {"style":{"spacing":{"blockGap":{"left":"var:preset|spacing|60"}}}} -->
-		<div class="wp-block-columns">
-			<!-- wp:column {"style":{"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30"}}}} -->
-			<div class="wp-block-column" style="padding-top:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30)">
-				<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"default"}} -->
+		<!-- wp:columns {"className":"hero-lead-story__row","verticalAlignment":"center","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|60"}}}} -->
+		<div class="wp-block-columns are-vertically-aligned-center hero-lead-story__row">
+			<!-- wp:column {"verticalAlignment":"center"} -->
+			<div class="wp-block-column is-vertically-aligned-center">
+				<!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"default"}} -->
 				<div class="wp-block-group">
 					<!-- wp:group {"style":{"spacing":{"padding":{"bottom":"var:preset|spacing|20"}}},"layout":{"type":"default"}} -->
 					<div class="wp-block-group" style="padding-bottom:var(--wp--preset--spacing--20)">
@@ -69,9 +76,9 @@
 
 					<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"default"}} -->
 					<div class="wp-block-group">
-						<!-- wp:post-excerpt {"fontSize":"300","style":{"spacing":{"padding":{"bottom":"var:preset|spacing|20"}}}} /-->
+						<!-- wp:post-excerpt {"fontSize":"300"} /-->
 
-						<!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap"}} -->
+						<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"wrap"}} -->
 						<div class="wp-block-group">
 							<!-- wp:post-author-name {"fontSize":"100"} /-->
 
@@ -91,7 +98,7 @@
 
 			<!-- wp:column -->
 			<div class="wp-block-column">
-				<!-- wp:post-featured-image {"isLink":true,"style":{"border":{"radius":"var:preset|border-radius|250"}}} /-->
+				<!-- wp:post-featured-image {"isLink":true,"aspectRatio":"3/2","scale":"cover","style":{"border":{"radius":"var:preset|border-radius|250"}}} /-->
 			</div>
 			<!-- /wp:column -->
 		</div>
