@@ -126,7 +126,7 @@ function spotlight_theme_2026_resolve_term_query_namespace( $parsed_block ) {
 	}
 
 	list( $taxonomy, $slug ) = array_pad( explode( '/', substr( $namespace, strlen( $prefix ) ), 2 ), 2, '' );
-	$term                    = get_term_by( 'slug', $slug, $taxonomy );
+	$term                    = taxonomy_exists( $taxonomy ) ? get_term_by( 'slug', $slug, $taxonomy ) : false;
 
 	$GLOBALS['spotlight_pending_term_query'] = array(
 		'taxonomy' => $taxonomy,
@@ -176,7 +176,7 @@ add_filter( 'query_loop_block_query_vars', 'spotlight_theme_2026_apply_term_quer
  * "spotlight/taxonomy-query/special_project") — matches ANY post with at
  * least one term in that taxonomy, since Special Projects membership is
  * one term per post, picked freely by editors, not a single fixed term
- * (unlike spotlight_theme_2026_resolve_tag_query_namespace() above).
+ * (unlike spotlight_theme_2026_resolve_term_query_namespace() above).
  *
  * Two real constraints forced the global-relay approach over the more
  * obvious options, both confirmed by direct testing rather than assumed:
@@ -343,7 +343,7 @@ add_filter( 'render_block_data', 'spotlight_theme_2026_resolve_topic_band_term' 
  * Provincial hub" CTA.
  *
  * Plain PHP, not a render-time filter — unlike
- * spotlight_theme_2026_resolve_tag_query_namespace() above, a term link
+ * spotlight_theme_2026_resolve_term_query_namespace() above, a term link
  * doesn't depend on the current query/post, so it's safe to resolve once
  * when the pattern registers (see the wp-pattern-runtime-pitfalls
  * distinction between query-dependent and query-independent lookups).

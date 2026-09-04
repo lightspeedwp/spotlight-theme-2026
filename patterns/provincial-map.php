@@ -80,7 +80,7 @@
 	<!-- wp:column {"width":"62.1%"} -->
 	<div class="wp-block-column" style="flex-basis:62.1%">
 		<!-- wp:html -->
-<svg class="south-africa-province-map" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 780" role="img" aria-labelledby="sa-map-title sa-map-description">
+<svg class="south-africa-province-map" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 780" aria-labelledby="sa-map-title sa-map-description">
   <title id="sa-map-title">South Africa province map</title>
   <desc id="sa-map-description">Select one of South Africa's nine provinces.</desc>
   <style>
