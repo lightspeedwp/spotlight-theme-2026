@@ -491,8 +491,9 @@ add_filter( 'render_block_cc/post-republisher', 'spotlight_theme_2026_suppress_i
 /**
  * Collapses a card's category list down to its Yoast Primary Category.
  *
- * core/post-terms always renders every category assigned to a post, joined
- * by a separator, with no native concept of a "primary" one. Scoped to
+ * The core/post-terms block always renders every category assigned to a
+ * post, joined by a separator, with no native concept of a "primary" one.
+ * Scoped to
  * blocks carrying the "is-style-card-links" style (see
  * styles/blocks/post-terms/card-links.json) so this only touches the
  * plain-text category label used on story-card/-editorial/-featured, not
