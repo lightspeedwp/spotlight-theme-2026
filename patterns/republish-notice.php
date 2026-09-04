@@ -38,12 +38,12 @@
  */
 
 ?>
-<!-- wp:group {"className":"republish-notice","style":{"border":{"radius":"var:preset|border-radius|300"},"spacing":{"padding":"var:preset|spacing|20","blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+<!-- wp:group {"className":"republish-notice","style":{"border":{"radius":"var:preset|border-radius|300"},"spacing":{"padding":"var:preset|spacing|20","blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
 <div class="wp-block-group republish-notice" style="border-radius:var(--wp--preset--border-radius--300);padding:var(--wp--preset--spacing--20)">
 	<!-- wp:group {"className":"republish-notice__icon","layout":{"type":"flex","justifyContent":"center"}} -->
 	<div class="wp-block-group republish-notice__icon">
-		<!-- wp:paragraph {"fontSize":"100"} -->
-		<p class="has-100-font-size"><?php echo esc_html__( 'CC', 'spotlight-theme-2026' ); ?></p>
+		<!-- wp:paragraph {"fontSize":"100","style":{"typography":{"fontWeight":"var(--wp--custom--font-weight--extra-bold)"}}} -->
+		<p class="has-100-font-size" style="font-weight:var(--wp--custom--font-weight--extra-bold)"><?php echo esc_html__( 'CC', 'spotlight-theme-2026' ); ?></p>
 		<!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:group -->

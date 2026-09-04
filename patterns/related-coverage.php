@@ -26,19 +26,31 @@
  * pattern's query establishes its own context for its own loop
  * instead, the same as topic-band's safe case.
  *
- * Query uses the Advanced Query Loop plugin's exclude_current option
- * so the post being viewed never appears in its own recent-stories
- * list — same mechanism the replaced placeholder markup already used.
+ * Query excludes the post being viewed via core/query's native
+ * excludeCurrent (WP 7.1+), so it never appears in its own
+ * recent-stories list.
+ *
+ * Title row reuses front-page.html's section-header markup (heading +
+ * flex-filling divider, see section-header.css) with no "Read more"
+ * button — the divider's flex:1 1 auto just fills the extra space.
  */
 
 ?>
-<!-- wp:group {"className":"related-coverage","align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"},"blockGap":"var:preset|spacing|20"}},"layout":{"type":"default"}} -->
-<div class="wp-block-group related-coverage alignwide" style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50)">
-	<!-- wp:heading {"level":3,"fontSize":"300"} -->
-	<h3 class="wp-block-heading has-300-font-size"><?php echo esc_html__( 'Recent stories', 'spotlight-theme-2026' ); ?></h3>
-	<!-- /wp:heading -->
+<!-- wp:group {"className":"related-coverage","align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|20","right":"var:preset|spacing|20"},"blockGap":"var:preset|spacing|20"}},"layout":{"type":"default"}} -->
+<div class="wp-block-group related-coverage alignwide" style="padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--20)">
+	<!-- wp:group {"className":"section-header","style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+	<div class="wp-block-group section-header">
+		<!-- wp:heading {"level":2,"textColor":"accent-500","fontSize":"500","style":{"typography":{"fontWeight":"var(--wp--custom--font-weight--medium)","lineHeight":"var(--wp--custom--line-height--heading)","letterSpacing":"0.3px"}}} -->
+		<h2 class="wp-block-heading has-accent-500-color has-text-color has-500-font-size" style="font-weight:var(--wp--custom--font-weight--medium);line-height:var(--wp--custom--line-height--heading);letter-spacing:0.3px"><?php echo esc_html__( 'Recent stories', 'spotlight-theme-2026' ); ?></h2>
+		<!-- /wp:heading -->
 
-	<!-- wp:query {"query":{"perPage":3,"postType":"post","order":"desc","orderBy":"date","inherit":false,"exclude_current":true},"namespace":"advanced-query-loop"} -->
+		<!-- wp:separator {"className":"section-header__divider is-style-wide","backgroundColor":"neutral-300"} -->
+		<hr class="wp-block-separator has-text-color has-neutral-300-color has-alpha-channel-opacity has-neutral-300-background-color has-background section-header__divider is-style-wide"/>
+		<!-- /wp:separator -->
+	</div>
+	<!-- /wp:group -->
+
+	<!-- wp:query {"query":{"perPage":3,"postType":"post","order":"desc","orderBy":"date","inherit":false,"excludeCurrent":true}} -->
 	<div class="wp-block-query">
 		<!-- wp:post-template {"layout":{"type":"grid","columnCount":3},"style":{"spacing":{"blockGap":"var:preset|spacing|50"}}} -->
 <?php require __DIR__ . '/story-card-editorial.php'; ?>
