@@ -58,7 +58,9 @@
 	font-size: var(--wp--preset--font-size--200);
 }
 
-.newsletter-signup-compact .gform_footer input.gform_button {
+/* Gravity Forms 3.x renders the submit control as <button>, 2.x as <input> — both selectors kept so this survives either version. */
+.newsletter-signup-compact .gform_footer input.gform_button,
+.newsletter-signup-compact .gform_footer button.gform_button {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -74,6 +76,7 @@
 	cursor: pointer;
 }
 
-.newsletter-signup-compact .gform_footer input.gform_button:hover {
+.newsletter-signup-compact .gform_footer input.gform_button:hover,
+.newsletter-signup-compact .gform_footer button.gform_button:hover {
 	background-color: var(--wp--preset--color--accent-300);
 }
