@@ -1,0 +1,29 @@
+/*
+ * WordPress core/navigation-link's own built-in style
+ * (wp-includes/blocks/navigation-link/style.min.css) sets
+ * .wp-block-navigation .wp-block-navigation-item__content.wp-block-navigation-item__content
+ * { color: inherit } — specificity (0,3,0) — which out-specifies
+ * theme.json's generated elements.link color rule
+ * (:root :where(.wp-block-navigation a:where(:not(.wp-element-button))),
+ * effective specificity (0,1,0), since :where() contributes zero).
+ *
+ * This matches core's selector exactly (0,3,0), not a class deeper, and
+ * relies on source order (this stylesheet is enqueued after core's block
+ * styles) to win the tie — the same mechanism WordPress's own generated
+ * global styles use to override block defaults. Going a class deeper
+ * would also out-specify a real per-instance link colour a user picks
+ * in the Site Editor's Style panel for a single Navigation block
+ * (WordPress emits those as .wp-elements-<hash> a:where(...), a lower
+ * (0,1,1)) — core's own color:inherit rule already outranks that kind
+ * of per-instance override today, so matching (not exceeding) core's
+ * specificity here is the closest this can get to leaving user
+ * overrides alone.
+ */
+
+.wp-block-navigation .wp-block-navigation-item__content.wp-block-navigation-item__content {
+	color: var(--wp--preset--color--accent-700);
+}
+
+.wp-block-navigation .wp-block-navigation-item__content.wp-block-navigation-item__content:hover {
+	color: var(--wp--preset--color--brand-500);
+}

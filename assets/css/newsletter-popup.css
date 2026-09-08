@@ -1,0 +1,85 @@
+/*
+ * newsletter-popup.php content lives in the "Newsletter Subscribe Pop
+ * Up" Popup Maker popup (wp-admin), not a theme pattern file — the
+ * popup's own container (width/border/radius/background) is configured
+ * on its assigned Popup Theme post, not here. This file only restyles
+ * the embedded Gravity Form (ID 2)'s own generated markup, the same
+ * CSS-bridge approach used in newsletter-signup.css for form 1.
+ */
+
+/*
+ * Popup Maker renders this popup's content through its own hook rather
+ * than the main page's content flow, so WordPress's per-request block
+ * CSS detection never registers the header group's flex layout — core
+ * only prints its is-content-justification-center rule for the block
+ * types it saw rendered in the main request, and the group block never
+ * makes that list here. Explicit fallback instead of relying on it.
+ */
+.newsletter-popup__header {
+	justify-content: center;
+}
+
+/*
+ * Popup Maker's own JS sets the popup box's width as a fixed inline
+ * style (from the popup's "Custom" size setting, 659px) with no
+ * viewport-based cap, so on a narrow screen the box renders far wider
+ * than the viewport instead of shrinking — on mobile it overflows off
+ * the left edge and everything on it reads oversized. max-width still
+ * constrains an inline width (it's a separate property, not something
+ * that has to out-specificity it), so this only ever kicks in below
+ * 659px + the gutter; desktop is unaffected.
+ */
+.pum-container.theme-34046 {
+	max-width: calc(100vw - (var(--wp--preset--spacing--20) * 2));
+	box-sizing: border-box;
+}
+
+.newsletter-popup .gfield_label {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+.newsletter-popup .ginput_container input[type="email"],
+.newsletter-popup .ginput_container input[type="text"] {
+	width: 100%;
+	background-color: var(--wp--preset--color--base);
+	border: 1px solid var(--wp--preset--color--neutral-400);
+	border-radius: var(--wp--preset--border-radius--200);
+	padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--200);
+}
+
+/*
+ * Gravity Forms' own theme.min.css sets padding-bottom:16px on
+ * .gform_wrapper.gravity-theme .gform_footer at equal (0,3,0)
+ * specificity — matching its ancestor selector here to outrank it
+ * instead of reaching for !important.
+ */
+.newsletter-popup .gform_wrapper.gravity-theme .gform_footer.top_label {
+	padding-bottom: 0;
+}
+
+.newsletter-popup .gform_footer input.gform_button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	background-color: var(--wp--preset--color--accent-200);
+	color: var(--wp--preset--color--neutral-100);
+	border: none;
+	border-radius: var(--wp--preset--border-radius--500);
+	padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--30);
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--300);
+	font-weight: var(--wp--custom--font-weight--semi-bold);
+	cursor: pointer;
+}
+
+.newsletter-popup .gform_footer input.gform_button:hover {
+	background-color: var(--wp--preset--color--accent-300);
+}

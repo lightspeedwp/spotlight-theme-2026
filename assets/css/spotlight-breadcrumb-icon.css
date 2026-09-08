@@ -1,0 +1,11 @@
+/*
+ * Shared fix for every breadcrumb separator icon (a core/image figure) used
+ * across the pattern library — archive-listing-header, archive-listing-
+ * header-archive, and page-intro-banner all render one. core/image's figure
+ * has no style support for line-height, so the real save() output never
+ * includes an inline style on it; this genuinely needs CSS. Centralized
+ * here under one shared class instead of duplicated per pattern stylesheet.
+ */
+.spotlight-breadcrumb-icon {
+	line-height: 0;
+}

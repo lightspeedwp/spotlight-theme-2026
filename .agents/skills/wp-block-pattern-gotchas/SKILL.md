@@ -1,0 +1,137 @@
+# SKILL: WordPress Block Pattern Gotchas
+
+**Version:** 1.0.0
+**Scope:** Any WordPress block theme — `patterns/*.php`, `templates/*.html`, `parts/*.html`
+
+---
+
+## Purpose
+
+A checklist of WordPress core behaviors that look intuitive but aren't, learned the expensive way (hours of debugging) while building this theme's pattern library. Read this **before** writing or debugging a pattern, template, or part — most of these fail silently (no error, no exception) rather than loudly, which is what makes them slow to diagnose.
+
+## Governing rule: verify against source, don't assume
+
+Before implementing a WordPress core layout/attribute/block-support mechanism, **read the actual source** rather than relying on training-data memory or a summarized description:
+- Layout support: `wp-includes/block-supports/layout.php`
+- Any block's real attributes/supports: its `block.json`
+- If unsure whether an attribute serializes into saved markup: grep the block's `block.json` for `__experimentalSkipSerialization`
+
+A wrong assumption here doesn't error — it silently produces no visual effect, which burns far more time to trace than reading the ~50 lines of core source up front.
+
+---
+
+## Pitfall: `layout.type` accepts a limited, specific set of values
+
+**Symptom:** Block preview/validation breaks silently ("Block contains unexpected or invalid content" or the block just won't render), with no obvious cause in the markup.
+
+**Fix:** `layout.type` only accepts `"default"`, `"constrained"`, `"flex"`, or `"grid"`. There is no `"flow"` — that is not a real value. Use `"default"` for plain vertical stacking with no special layout behavior.
+
+**Working example:** `patterns/hero-lead-story.php`'s inner `wp:group` blocks using `"layout":{"type":"default"}`.
+
+---
+
+## Pitfall: setting only one of `contentSize`/`wideSize` overrides both
+
+**Symptom:** A group with `"layout":{"type":"constrained"}` and no explicit size still gets a working max-width with no extra attribute needed — theme.json's own global base stylesheet emits a generic `:where(.is-layout-constrained)` rule using the theme's default `contentSize`/`wideSize` automatically. This works the same in hand-authored PHP patterns as anywhere else, so most patterns don't need to set either value at all.
+
+The real pitfall is a partial override. `wp_get_layout_style()` (`wp-includes/block-supports/layout.php`) cross-fills a missing value from the one you *did* set — `contentSize` alone becomes the max-width for both normal and wide-aligned children, not just normal-width ones, and this per-instance rule replaces theme.json's separate default entirely for that block. That's fine when a single width is genuinely the intent (e.g. `page-intro-banner.php` deliberately sets only `contentSize` so `alignwide` children don't get a separate, wider breakout). It's a mistake if you meant to keep the theme's own `wideSize` for `alignwide` children while only narrowing the default column — that requires setting both explicitly.
+
+**Fix:** Leave both unset to inherit the theme.json default entirely. Set only `contentSize` when a single width is genuinely intended for all children regardless of alignment. Set both explicitly, matching `theme.json`'s real values, only when overriding each independently: `"layout":{"type":"constrained","contentSize":"800px","wideSize":"1320px"}`. To left-align instead of center (without a custom CSS override), add `"justifyContent":"left"` — this produces `margin-left:0` instead of the type's centered default, verified directly against the same core file.
+
+**Working example:** `patterns/page-intro-banner.php`'s wrapper group (single-width override via `contentSize` alone); `templates/front-page.html`'s section wrappers (no override, relies on the theme.json default).
+
+---
+
+## Pitfall: any unexpanded `wp:pattern` reference loses ambient block context — not just when nested inside another pattern
+
+**Symptom:** A pattern embedded via `<!-- wp:pattern {"slug":"..."} /-->` renders empty/wrong on the **front end** wherever it sits — inside another pattern's own markup, or directly inside a query loop's `wp:post-template` in a theme template file. A WP-CLI `do_blocks()` test of the same markup looks fine, which hides the bug until it's live.
+
+**Why:** `render_block_core_pattern()` (`wp-includes/blocks/pattern.php`) renders the referenced pattern's content through a fresh `do_blocks( $content )` call with **no context argument at all** — this is a property of `core/pattern`'s own render function, not something that depends on where the reference happens to sit in the block tree. Any block that needs context from an ancestor (e.g. `core/post-terms`/`core/post-title`/`core/post-featured-image` needing `postId` inside a query loop) gets nothing, so it renders empty. This is a context-loss issue specific to context-dependent blocks, not a blanket "nested patterns don't work" rule — a context-independent pattern (or one whose dynamic behavior comes from a custom filter matched on the block's own static attributes, not on inherited context) renders fine either way.
+
+**Fix:** for a `.php` pattern referencing another pattern that needs ambient context, inline it with PHP `require __DIR__ . '/other-pattern.php';` instead of `wp:pattern` — the required file stays independently registered and reusable elsewhere. For a `.html` **template** — which can't use `require()` at all — the fix is to expand the referenced pattern's block markup directly into the template instead of leaving a `wp:pattern` reference, accepting that the template-embedded copy won't stay perfectly in sync if the source pattern is edited later. This is a real, inherent limitation of Gutenberg's pattern system inside query loops, not something to route around cleverly. Always test on the actual rendered front-end page for this one — CLI `do_blocks()` will not reproduce it.
+
+**Working examples:** `patterns/hero-lead-story.php` requiring `patterns/spotlight-badge.php` inside its query loop (the `.php`-pattern case); `templates/home.html`/`templates/archive.html` expanding `story-card`'s markup directly inside `wp:post-template` instead of referencing it (the `.html`-template case).
+
+---
+
+## Pitfall: margin / `blockGap` between siblings is unreliable inside `default`/`constrained` layouts
+
+**Symptom:** A `style.spacing.margin` or a group's `blockGap` value is set correctly in the markup, but the visual gap doesn't match — confirmed via DevTools that the computed margin is `0` or otherwise overridden.
+
+**Why:** WordPress's layout support auto-applies `margin-block-end: 0` to every child of a `default`/`constrained`-layout container, and a `blockGap`-driven `margin-block-start` can be beaten by a competing rule at similar specificity.
+
+**Fix:** Use `style.spacing.padding` instead — it's a real, always-serializing attribute with no such override, on `wp:group`, `wp:post-title`, `wp:query-title`, and most other blocks.
+
+**Working example:** `patterns/archive-listing-header.php`'s breadcrumb and title padding-bottom values.
+
+---
+
+## Pitfall: not every block attribute actually serializes into saved markup
+
+**Symptom:** A style attribute (e.g. `style.border.radius` on `core/search`) is set in the pattern's JSON, but the rendered HTML has no matching inline style — the attribute is silently dropped.
+
+**Why:** A block's `block.json` can mark a support as `__experimentalSkipSerialization`, meaning the attribute exists (and shows correctly in the editor) but is deliberately excluded from the saved/rendered output.
+
+**Fix:** Check the block's `block.json` before assuming an attribute will serialize. When it's skip-serialized, use real enqueued CSS targeting the block's rendered class/markup instead of a block attribute.
+
+**Working example:** `assets/css/archive-listing-header.css`'s `.wp-block-search__inside-wrapper`/`.wp-block-search__button` border-radius rules, enqueued in `functions.php`.
+
+---
+
+## Pitfall: bare HTML tags inside pattern PHP break block validation
+
+**Symptom:** An unwrapped `<img>` (or other bare tag) inside a pattern's static markup causes WordPress's block-children reconciliation to fail validation.
+
+**Fix:** Every visual element needs a real, matching block-comment wrapper — e.g. `<!-- wp:image {...} --><figure class="wp-block-image">...<img /></figure><!-- /wp:image -->` — never a bare tag dropped into the markup.
+
+**Working example:** the breadcrumb separator icon in `patterns/archive-listing-header.php`, `patterns/archive-listing-header-archive.php`, and `patterns/page-intro-banner.php` (shared `spotlight-breadcrumb-icon` class, styled in `assets/css/spotlight-breadcrumb-icon.css`).
+
+---
+
+## Pitfall: a DB-stored template/pattern override shadows file edits
+
+**Symptom:** Editing a `patterns/*.php` or `templates/*.html` file has no visible effect, even after cache clears, because it was previously edited in the Site Editor canvas.
+
+**Why:** Editing a template/pattern directly in the Site Editor creates a frozen database copy that takes rendering priority over the theme file, regardless of subsequent file edits.
+
+**Fix:** Appearance → Editor → Manage all templates (or Patterns) → find the item → Reset, to restore the theme file as the source of truth. See the `wp-db-override-reconciliation` skill for the full diagnostic flow.
+
+---
+
+## Pitfall: caching layers mask file edits
+
+**Symptom:** A pattern/CSS file is clearly changed on disk, hard refresh doesn't help, and the live page still shows old output.
+
+**Fix:** Before assuming the code is wrong, rule out caching — WP Super Cache, Perfmatters (or similar), and PHP OPcache are common culprits and each needs its own clear/flush step.
+
+---
+
+## Pitfall: `php -l` doesn't catch a `require()` to a deleted file
+
+**Symptom:** Every pattern in the theme disappears at once — not just the one that changed. No PHP error is visible anywhere obvious, and `composer run lint:php` reports a clean pass.
+
+**Why:** `php -l` only checks syntax, not whether a `require()` target actually exists on disk. A plain `require` (not `require_once` with error suppression) throws a fatal error the instant it can't find its target — and since `WP_DEVELOPMENT_MODE=theme` (this theme's dev setup) re-scans and re-executes every `patterns/*.php` file's top-level PHP on every single request, one dangling `require()` can crash that whole scan, taking every other pattern down with it, not just the file that broke.
+
+**Fix:** When deleting a file that other patterns `require()`, grep for its filename across `patterns/` (and `functions.php`) before considering the deletion done — `grep -rn "the-deleted-file" patterns/`. Removing the file itself is only half the change.
+
+**Verify by executing every pattern file, not just linting it:** loop over `patterns/*.php`, `require` each one with plain function stubs (`__`, `esc_html__`, `esc_url`, `home_url`, `get_theme_file_uri`, etc.) in a real PHP process, and confirm none of them fatals. This catches missing `require()` targets, undefined functions, and other runtime-only errors that `php -l` cannot see.
+
+## Verification habits that catch these early
+
+- Render a pattern in isolation with plain PHP stubs for `esc_html__`/`esc_url`/etc. and assert the output block comments parse as valid JSON — catches malformed attribute JSON before it ever reaches WordPress.
+- Test dynamic/context-dependent patterns on the actual rendered front-end page, not just a CLI `do_blocks()` call.
+- After any pattern/CSS edit, confirm the relevant cache is actually cleared before judging whether a fix worked.
+- Run `npm run schema:validate`, `npm run theme:validate`, `composer run lint:php`, and `composer run phpcs` after every pattern/template change — several of the pitfalls above (invalid layout type, bare HTML tags) are caught immediately by these.
+
+## Related
+
+- `wp-pattern-runtime-pitfalls` — a broader pattern-runtime skill covering registration-vs-render timing and block bindings for per-request data, if available in the environment.
+- `wp-db-override-reconciliation` — full diagnostic flow for the DB-override pitfall above.
+
+## Further Reading
+
+Background context for the concepts above — none of these document the specific silent-failure pitfalls in this file (those came from reading `wp-includes/block-supports/layout.php` and each block's own `block.json` directly, not from the handbook). Use the source files as the authoritative check; use these for general orientation.
+
+- [Patterns handbook](https://developer.wordpress.org/themes/patterns/) — pattern registration, header comment fields, categories
+- [Global Settings & Styles (`theme.json`)](https://developer.wordpress.org/themes/global-settings-and-styles/) — `contentSize`/`wideSize`, spacing scale, and other tokens referenced above
+- [Block Supports reference](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-supports/) — the `layout`, `spacing`, and `__experimentalSkipSerialization` mechanics behind several pitfalls above

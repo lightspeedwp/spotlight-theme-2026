@@ -7,8 +7,7 @@ Human developers should also read this file before contributing.
 
 ## Repo Purpose
 
-This is a **LightSpeed WordPress block theme starter repository**.
-It is designed to be used as a GitHub template for building custom WordPress block themes for client and commercial work.
+This is the **Spotlight** theme — a specific WordPress block theme built for a specific client site (spotlightnsp.co.za), not a reusable starter or GitHub template. It was bootstrapped from LightSpeed's internal WordPress block theme starter, and all placeholder tokens have already been replaced with Spotlight's real values (see `style.css`, `theme.json`, `composer.json`, `package.json`). Do not treat hard-coded, site-specific values here — a real navigation menu `ref`, real image paths, real content — as portability gaps to flag; they're correct for this site.
 
 It is **not** specifically packaged for WordPress.org submission.
 Do not add WordPress.org-specific bureaucracy unless there is clear value.
@@ -80,9 +79,9 @@ Do not add WordPress.org-specific bureaucracy unless there is clear value.
 
 ## Slug and Text Domain Consistency
 
-Replace all placeholder tokens before using this starter:
+This theme's identity is already set — these are the confirmed, final values, not placeholders awaiting replacement:
 
-| Placeholder         | Description                              |
+| Value               | Description                              |
 |---------------------|------------------------------------------|
 | `Spotlight Theme 2026`    | Human-readable theme name                |
 | `spotlight-theme-2026`    | Kebab-case slug (used in folder names)   |
@@ -97,8 +96,7 @@ Replace all placeholder tokens before using this starter:
 Rules:
 - `spotlight-theme-2026` must match `spotlight-theme-2026` everywhere.
 - Keep the slug consistent in `style.css`, `theme.json`, `composer.json`, and `package.json`.
-- Do not leave placeholder tokens blank — replace them with real values.
-- Search the repo for `{{` to find all remaining placeholders.
+- Do not reintroduce `{{...}}`-style placeholder tokens — that pattern belongs to the starter theme this project was bootstrapped from, not to this repo.
 
 ---
 
@@ -159,9 +157,17 @@ Rules:
 - Style variations live in `styles/`.
 - Two starter variations are provided: `light.json` and `dark.json`.
 - Additional variations can be added as `styles/*.json`.
-- `styles/blocks/` and `styles/sections/` are organisational conventions for future per-block or per-section styles.
-- These nested JSON files are not automatically consumed by WordPress as global style variations — they are available for reference or tooling.
+- `styles/blocks/<block>/<variation-slug>.json` and `styles/sections/<variation-slug>.json` register **block style variations**: a JSON file with `slug`, `title`, `blockTypes`, and `styles` keys (see `styles/blocks/button/*.json`). WordPress core auto-registers these — confirmed working in this theme (LS-1711) — so they appear as selectable options in the block style picker for any block listed in `blockTypes`. No PHP registration is needed.
+- Keep each variation file scoped to one block and one look — one file, one responsibility (do not combine multiple unrelated looks in a single file).
 - Keep variation files small and focused.
+
+---
+
+## Pattern and Template Development
+
+Before writing or debugging anything in `patterns/*.php`, `templates/*.html`, or `parts/*.html`, read `.agents/skills/wp-block-pattern-gotchas/SKILL.md`. It documents WordPress core behaviors that fail *silently* rather than with an error — invalid layout types, `constrained` layout needing an explicit `contentSize` in static markup, nested `wp:pattern` losing block context, unreliable margin/`blockGap` spacing, attributes that don't actually serialize, and DB template overrides shadowing file edits. Every entry there cost real debugging time once; the goal is to not pay that cost twice.
+
+**Verify WordPress core behavior against its actual source before implementing it** — `wp-includes/block-supports/*.php` for layout/spacing mechanics, a block's own `block.json` for its real attributes and supports — rather than assuming from memory. A wrong assumption about a core mechanism usually produces no error at all, just a silent no-op, which is far more expensive to trace back than reading the source up front.
 
 ---
 
@@ -250,5 +256,7 @@ composer run lint:php
 12. **Keep agent personas in `.agents/agents/`.** Agent persona files describe specialist roles.
 13. **Do not modify `.github/workflows/` without understanding CI impacts.**
 14. **Always update `CHANGELOG.md`** when making meaningful changes.
-15. **Replace all placeholder tokens** before considering setup complete.
-16. **Use placeholder tokens** (`spotlight-theme-2026` etc.) rather than leaving metadata blank.
+15. **Do not reintroduce placeholder tokens.** This theme's identity (`spotlight-theme-2026` etc.) is already set — see "Slug and Text Domain Consistency" above.
+16. **Do not flag site-specific hard-coded values as portability gaps.** This is a specific client theme, not a starter template — a real navigation menu `ref`, real asset paths, and real content are correct here, not something to generalize.
+17. **Read `.agents/skills/wp-block-pattern-gotchas/SKILL.md` before writing or debugging `patterns/*.php`, `templates/*.html`, or `parts/*.html`.** It documents known WordPress core behaviors that fail silently — see "Pattern and Template Development" above.
+18. **Verify a WordPress core mechanism against its actual source before implementing it** — `wp-includes/block-supports/*.php` for layout/spacing, a block's `block.json` for its real attributes/supports — rather than assuming from memory. Do not guess at layout types, attribute serialization, or spacing behavior.

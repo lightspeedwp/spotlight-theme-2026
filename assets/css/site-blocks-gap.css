@@ -1,0 +1,13 @@
+/*
+ * WordPress core adds margin-block-start: var(--wp--style--block-gap)
+ * between the site's root-level blocks (header, main, template parts,
+ * footer) via .wp-site-blocks > * + *. theme.json's global blockGap
+ * (spacing|30) leaked into that root spacing, pushing every top-level
+ * section away from its neighbor even though each section already
+ * carries its own padding. Figma's Ready For Dev homepage (node
+ * 234:6732) confirms every section sits flush against the next, so
+ * this root gap is zeroed sitewide.
+ */
+.wp-site-blocks > * + * {
+	margin-block-start: 0;
+}

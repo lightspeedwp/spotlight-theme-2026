@@ -17,7 +17,9 @@ Each skill has its own subfolder:
 
 ```text
 skills/
-└── block-theme-audit/
+├── block-theme-audit/
+│   └── SKILL.md
+└── wp-block-pattern-gotchas/
     └── SKILL.md
 ```
 
@@ -31,9 +33,10 @@ skills/
 
 ## Available Skills
 
-| Skill folder           | Purpose                                |
-|------------------------|----------------------------------------|
-| `block-theme-audit/`   | Audit a WordPress block theme          |
+| Skill folder                 | Purpose                                                     |
+|------------------------------|--------------------------------------------------------------|
+| `block-theme-audit/`         | Audit a WordPress block theme                                |
+| `wp-block-pattern-gotchas/`  | Known WordPress core pitfalls when writing patterns/templates |
 
 ---
 

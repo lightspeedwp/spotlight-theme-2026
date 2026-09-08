@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Text Link",
+	"slug": "text-link",
+	"blockTypes": ["core/button"],
+	"description": "No border or background — brand-500 text with a trailing arrow, for a section's \"Read more\"-style link presented as a button block.",
+	"styles": {
+		"color": {
+			"background": "transparent",
+			"text": "var(--wp--preset--color--brand-500)"
+		},
+		"border": {
+			"width": "0",
+			"style": "none"
+		},
+		"spacing": {
+			"padding": {
+				"top": "0",
+				"right": "0",
+				"bottom": "0",
+				"left": "0"
+			}
+		},
+		"typography": {
+			"fontSize": "var(--wp--preset--font-size--200)",
+			"fontWeight": "var:custom|font-weight|semi-bold"
+		}
+	}
+}

@@ -1,0 +1,42 @@
+## 1. Colour palette
+
+- [x] 1.1 Replace `settings.color.palette` with the audited `base`/`contrast`, `neutral-100`…`neutral-900` + `neutral-450`, `brand-100`…`brand-900`, and `accent-100`…`accent-900` slugs and values
+- [x] 1.2 Add the 5 system colour pairs (`error`/`warning`/`information`/`success`/`positive`, each `-foreground` + `-background`) — note: `positive` is a single colour in the Figma source (no matching background variant), implemented as one slug rather than a pair
+- [x] 1.3 Add the 2 surface colours (`surface-dark-card`, `surface-dark-inner`)
+- [x] 1.4 Remove the legacy placeholder slugs (`base-2`, `accent-2`, `contrast-2`) and confirm nothing in the repo references them — also fixed the dangling `accent`/`accent-2` references in `theme.json`'s link element (now `brand-500`/`brand-600`), and cleaned up `styles/light.json` and `styles/dark.json`, which both duplicated the old placeholder palette
+
+## 2. Typography — families and font files
+
+- [x] 2.1 Source Libre Baskerville and Source Sans 3 `.woff2` files and add them under `assets/fonts/` — both are variable fonts on Google Fonts (Libre Baskerville: `wght` axis 400–700, Source Sans 3: 200–900), so a single variable file per subset covers the full Bold/SemiBold/Regular range rather than needing discrete per-weight files; sourced latin + latin-ext subsets only (no other scripts needed for this site)
+- [x] 2.2 Register `heading` (Libre Baskerville) and `body` (Source Sans 3) in `settings.typography.fontFamilies` with `@font-face` entries pointing at the added files, using `fontWeight` ranges ("400 700" / "400 600") matching kwv-theme-2026's own variable-font pattern (e.g. its Bodoni Moda entry)
+
+## 3. Typography — sizes and element styles
+
+- [x] 3.1 Replace `settings.typography.fontSizes` with the audited 7-step scale — named to match `kwv-theme-2026`'s own labels for the same slug shape (`100` Tiny 12px / `200` Base 16px / `300` Small 20px / `400` Medium 24px / `500` Large 32px / `600` X-Large 40px / `700` Huge 48px) rather than role-specific names, since these are general-purpose presets selectable on any block, not just headings. Also fixed a dangling reference to the removed `font-size--medium` slug in the global default typography (now `font-size--200`, i.e. Base/16px)
+- [x] 3.2 Set `styles.elements.h1`–`h6` typography (size/weight) per the audited heading scale, plus a shared `heading` element carrying `fontFamily`/`lineHeight` (1.25, matching kwv's own heading line-height) so it isn't repeated 6 times — no blanket uppercase transform
+- [x] 3.3 Applied uppercase only to `h6`'s own style block
+- [x] 3.4 Added a `button` element with `fontWeight: 600` (SemiBold) and a Base (16px) default font size — Large/Small/Tiny button sizes are just the same font-size presets from 3.1, selectable per-instance once buttons appear in patterns; no dedicated "Paragraph" override was needed since Regular/Source Sans 3 is already the global default typography
+
+## 4. Spacing
+
+- [x] 4.1 Replace the auto-generated `settings.spacing.spacingScale` with an explicit `spacingSizes` list matching the audited 11-step scale (5–100px, XXS→Colossal — corrected the earlier "10-step" count, the confirmed scale has 11 steps including the `Gigantic` 90px gap-fill). Slugs kept as the literal px numbers (`5`/`10`/.../`100`), matching both the original Figma variable names and `kwv-theme-2026`'s own spacing slug convention — unlike font-size/radius, spacing doesn't use the `n00` numbering. `spacingScale` (the old auto-generation config) removed entirely since it's superseded by the explicit list. Note: slugs `10`–`70` already existed in the placeholder scale, so nothing broke, but their actual sizes changed (e.g. `blockGap`'s `spacing--30` goes from 1.5rem/24px to a literal 30px) — an intended value update, not a dangling reference.
+
+## 5. Border radius and width
+
+- [x] 5.1 Add `settings.border.radiusSizes` with numeric slugs matching `kwv-theme-2026`'s convention: `0`/`100`/`200`/`250`/`300`/`400`/`500` → 0/4/8/12/16/24/9999px (None/Small/Medium/Card/Large/X-Large/Round)
+- [x] 5.2 Add `settings.custom.borderWidth` (none/base/small/medium/large → 0/1/2/4/8px), following `kwv-theme-2026`'s descriptive-key convention for `settings.custom` groups (this is also the first `settings.custom` entry in the file)
+
+## 6. Layout widths
+
+- [x] 6.1 Update `settings.layout.contentSize` to `800px` and `settings.layout.wideSize` to `1320px`
+
+## 7. Semantic custom tokens
+
+- [x] 7.1 Add `settings.custom.fontWeight` — full 100–900 ladder (thin…black), matching `kwv-theme-2026`'s exact key set, even though only `regular`/`semi-bold`/`bold` are consumed today; the other steps are free future-proofing at zero cost since it's just a static lookup table
+- [x] 7.2 Add `settings.custom.lineHeight` (`heading`: 1.25, `body`: 1.6) and reference both `fontWeight` and `lineHeight` from `styles.typography` and the `heading`/`h1`–`h6`/`button` element entries, replacing their literals. **Skipped `letterSpacing`**: h1–h6 never had a literal `letterSpacing` value to convert (task 3.2 deliberately left it unset — it wasn't part of the designer's confirmed answer), so there was nothing to tokenize. Not adding a `letterSpacing` custom-token group with invented values or as unused scaffolding.
+
+## 8. Validation
+
+- [x] 8.1 Run `npm run schema:validate` and confirm `theme.json` still validates — passes
+- [x] 8.2 Run `npm run theme:validate` and confirm no consistency errors — passes (also ran full `npm run lint`, clean)
+- [x] 8.3 Spot-check in the Site Editor (or a quick WP install) that the palette, fonts, spacing, and radius presets appear as expected in the block editor UI — confirmed, everything checks out

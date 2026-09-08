@@ -1,0 +1,12 @@
+/*
+ * WordPress core's own block-library CSS ships `.wp-block-columns {
+ * align-items: normal !important; }` — core's own `are-vertically-
+ * aligned-center` class has no !important to compete, so the native
+ * verticalAlignment attribute is silently overridden by core itself.
+ * Confirmed live (matched stylesheets, inline block-library CSS, no
+ * plugin involved) — the one genuine case where !important is
+ * unavoidable, not a shortcut around specificity.
+ */
+.dashboard-promo-hero .wp-block-columns.are-vertically-aligned-center {
+	align-items: center !important;
+}

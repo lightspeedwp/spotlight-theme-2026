@@ -1,0 +1,12 @@
+/*
+ * WordPress core's own block-library CSS ships
+ * .wp-block-columns{align-items:normal!important}, which beats the
+ * native verticalAlignment attribute's own class. Each selector below
+ * was confirmed against Figma coordinates to share an exact vertical
+ * center between its columns, not the top.
+ */
+.front-page__provincial-newsletter.wp-block-columns.are-vertically-aligned-center,
+.provincial-map__row.wp-block-columns.are-vertically-aligned-center,
+.hero-lead-story__row.wp-block-columns.are-vertically-aligned-center {
+	align-items: center !important;
+}

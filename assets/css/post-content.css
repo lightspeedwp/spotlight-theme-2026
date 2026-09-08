@@ -1,0 +1,17 @@
+/*
+ * The classic [caption] shortcode renders <figure class="wp-caption"
+ * style="width: Npx">, hardcoding the image's own attachment width
+ * inline with no clamp against its container — an image wider than
+ * the content column overflows the whole page horizontally instead of
+ * scaling down. Found on a real post using this shortcode with a
+ * 1920px-wide image. max-width still constrains an inline width (it's
+ * a separate property, not something that has to out-specificity it),
+ * so no !important is needed here. No theme file had this baseline
+ * safety net anywhere — it was genuinely missing, not overridden.
+ */
+.wp-caption,
+.wp-caption img,
+.wp-block-post-content img {
+	max-width: 100%;
+	height: auto;
+}

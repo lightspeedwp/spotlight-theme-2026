@@ -100,6 +100,110 @@ function collectFiles( dir, extension ) {
 // ---------------------------------------------------------------------------
 
 /**
+ * Property names WordPress core recognises as pseudo-selectors inside a
+ * block/element style object (e.g. `styles.blocks.core/button.variations.
+ * primary[":hover"]`). Confirmed valid by WP core and by the schema's own
+ * `stylesBlocksPseudoSelectorsPropertyNames` definition — but excluded here
+ * before validation; see the note below.
+ */
+const STYLES_PSEUDO_SELECTOR_KEYS = [ ':hover', ':focus', ':focus-visible', ':active' ];
+
+/**
+ * Recursively strips pseudo-selector keys from every object in a styles
+ * tree, not just the top level — a nested pseudo-selector (e.g.
+ * `styles.elements.link[":hover"]` inside a block-style-variation file)
+ * would otherwise still trip the same upstream ajv limitation this
+ * workaround exists for.
+ *
+ * @param {*} node A styles (sub-)tree, or any nested value within one.
+ * @returns {*} The same shape with pseudo-selector keys removed at every level.
+ */
+function stripPseudoSelectorsDeep( node ) {
+	if ( Array.isArray( node ) ) {
+		return node.map( stripPseudoSelectorsDeep );
+	}
+	if ( node === null || typeof node !== 'object' ) {
+		return node;
+	}
+	const result = {};
+	for ( const [ key, value ] of Object.entries( node ) ) {
+		if ( STYLES_PSEUDO_SELECTOR_KEYS.includes( key ) ) {
+			continue;
+		}
+		result[ key ] = stripPseudoSelectorsDeep( value );
+	}
+	return result;
+}
+
+/**
+ * Checks that a block-style-variation file's identifying fields are the
+ * shape WordPress core actually requires to register it, before wrapping
+ * and schema-validating its styles. Without this, a file with a malformed
+ * `slug`/`title`/`blockTypes` could still "pass" schema validation and only
+ * fail at runtime in the Site Editor.
+ *
+ * @param {object} data Parsed JSON contents of a block-style-variation file.
+ * @returns {string|null} An error message, or null if the shape is valid.
+ */
+function getBlockStyleVariationShapeError( data ) {
+	if ( typeof data.slug !== 'string' || data.slug.trim() === '' ) {
+		return '/slug must be a non-empty string for a block style variation file';
+	}
+	if ( typeof data.title !== 'string' || data.title.trim() === '' ) {
+		return '/title must be a non-empty string for a block style variation file';
+	}
+	const hasOnlyNonEmptyStrings = data.blockTypes.every(
+		( blockType ) => typeof blockType === 'string' && blockType.trim() !== ''
+	);
+	if ( ! hasOnlyNonEmptyStrings ) {
+		return '/blockTypes must be an array of non-empty strings for a block style variation file';
+	}
+	return null;
+}
+
+/**
+ * Block-style-variation partial files (styles/blocks/<block>/<slug>.json,
+ * styles/sections/<slug>.json) declare a `blockTypes` array — the same signal
+ * WordPress core uses to auto-register them. Their `styles` object is only
+ * ever placed at `styles.blocks.<blockType>.variations.<slug>` at runtime, a
+ * position that allows pseudo-selectors like `:hover` that are NOT valid at
+ * the flat root `styles` level. Validating the raw file against the root
+ * schema checks the wrong shape, so these files are wrapped into their real
+ * runtime position before validation.
+ *
+ * Known limitation: the public schema at https://schemas.wp.org/trunk/theme.json,
+ * as compiled by ajv, still rejects pseudo-selector keys (`:hover`, `:focus`,
+ * etc.) even at this correct nested position — confirmed by reproducing the
+ * same failure against kwv-theme-2026's own production `styles/blocks/button/
+ * cta.json` content, so this is an upstream schema/ajv-composition issue, not
+ * something specific to this theme's files. Pseudo-selector keys are stripped
+ * before validation so the rest of the variation (colours, spacing,
+ * typography, the `css` escape hatch, structure) still gets checked; their
+ * contents are only ever verified by hand/in the Site Editor.
+ *
+ * @param {object} data Parsed JSON contents of a block-style-variation file.
+ * @returns {object} A synthetic theme.json-shaped document for validation.
+ */
+function wrapBlockStyleVariation( data ) {
+	const blockType = data.blockTypes[ 0 ];
+	const slug = data.slug || 'variation';
+	const { styles, ...rest } = data;
+	const stylesWithoutPseudoSelectors = stripPseudoSelectorsDeep( styles );
+	return {
+		...rest,
+		styles: {
+			blocks: {
+				[ blockType ]: {
+					variations: {
+						[ slug ]: stylesWithoutPseudoSelectors,
+					},
+				},
+			},
+		},
+	};
+}
+
+/**
  * Validate theme.json and all styles/*.json files against the WordPress theme.json schema.
  * Also validates any JSON files found in styles/blocks/ and styles/sections/.
  */
@@ -157,7 +261,24 @@ async function validateSchema() {
 				hasErrors = true;
 				continue;
 			}
-			const valid = validate( data );
+			const isBlockStyleVariation = Array.isArray( data.blockTypes ) && data.blockTypes.length > 0;
+			if ( isBlockStyleVariation ) {
+				const shapeError = getBlockStyleVariationShapeError( data );
+				if ( shapeError ) {
+					error( `Schema validation failed: ${ rel }` );
+					error( `  ${ shapeError }` );
+					hasErrors = true;
+					continue;
+				}
+				if ( typeof data.styles !== 'object' || data.styles === null ) {
+					error( `Schema validation failed: ${ rel }` );
+					error( '  /styles must be a non-null object for a block style variation file' );
+					hasErrors = true;
+					continue;
+				}
+			}
+			const dataToValidate = isBlockStyleVariation ? wrapBlockStyleVariation( data ) : data;
+			const valid = validate( dataToValidate );
 			if ( ! valid ) {
 				error( `Schema validation failed: ${ rel }` );
 				for ( const validationError of ( validate.errors || [] ) ) {

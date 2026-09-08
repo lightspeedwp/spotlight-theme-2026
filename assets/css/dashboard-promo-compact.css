@@ -1,0 +1,10 @@
+/*
+ * WP core's own preset-color utility class (.has-accent-300-color, from
+ * the per-instance textColor override on the TB button) ships with
+ * !important, which beats core-button.css's non-!important
+ * is-style-outline hover rule regardless of selector specificity — the
+ * only way to win against an !important rule is another !important rule.
+ */
+.dashboard-promo-compact .is-style-outline .wp-block-button__link:hover {
+	color: var(--wp--preset--color--base) !important;
+}
