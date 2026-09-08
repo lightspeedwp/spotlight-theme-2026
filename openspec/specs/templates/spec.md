@@ -60,7 +60,7 @@ Defines which WordPress template file renders which URL for Spotlight, and each 
 
 #### Scenario: Single includes a related-posts query
 - **WHEN** `templates/single.html` is inspected
-- **THEN** it SHALL contain a `core/query` block distinct from the main post content, configured with `query.excludeCurrent: true` so the current post never appears among its own related posts, and identifiable (e.g. via a distinguishing `className`) so a `query_loop_block_query_vars` filter can scope it to categories shared with the current post — a post's categories vary per post and can't be expressed as a static `query` attribute value
+- **THEN** it SHALL contain a `core/query` block distinct from the main post content, configured with `query.excludeCurrent: true` so the current post never appears among its own related posts, and identifiable via a distinguishing `className` so a future `query_loop_block_query_vars` filter could scope it further without a markup change — per the `pattern-library` capability's Related-coverage requirement, this query is deliberately most-recent-N rather than category-scoped; no recommendation or relatedness logic beyond exclude-current is in scope
 
 ### Requirement: Page template
 `templates/page.html` SHALL render static page content in a two-column layout reusing the same `sidebar-editorial` template part as `templates/single.html`, with no post-meta elements.

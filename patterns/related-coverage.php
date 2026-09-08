@@ -28,7 +28,11 @@
  *
  * Query excludes the post being viewed via core/query's native
  * excludeCurrent (WP 7.1+), so it never appears in its own
- * recent-stories list.
+ * recent-stories list. Deliberately most-recent-N, not category-scoped
+ * "related" — see the pattern-library spec's Related-coverage
+ * requirement. The related-coverage__query className exists so a future
+ * category-scoping filter has something to target via
+ * query_loop_block_query_vars without a markup change.
  *
  * Title row reuses front-page.html's section-header markup (heading +
  * flex-filling divider, see section-header.css) with no "Read more"
@@ -50,8 +54,8 @@
 	</div>
 	<!-- /wp:group -->
 
-	<!-- wp:query {"query":{"perPage":3,"postType":"post","order":"desc","orderBy":"date","inherit":false,"excludeCurrent":true}} -->
-	<div class="wp-block-query">
+	<!-- wp:query {"className":"related-coverage__query","query":{"perPage":3,"postType":"post","order":"desc","orderBy":"date","inherit":false,"excludeCurrent":true}} -->
+	<div class="wp-block-query related-coverage__query">
 		<!-- wp:post-template {"layout":{"type":"grid","columnCount":3},"style":{"spacing":{"blockGap":"var:preset|spacing|50"}}} -->
 <?php require __DIR__ . '/story-card-editorial.php'; ?>
 		<!-- /wp:post-template -->
