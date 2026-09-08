@@ -28,8 +28,13 @@
  * constrains an inline width (it's a separate property, not something
  * that has to out-specificity it), so this only ever kicks in below
  * 659px + the gutter; desktop is unaffected.
+ *
+ * Selected by content (:has(.newsletter-popup)) rather than Popup
+ * Maker's auto-generated .theme-{postID} class — that class is tied to
+ * the assigned Popup Theme's post ID, which isn't portable across
+ * environments (confirmed different between local and staging).
  */
-.pum-container.theme-34046 {
+.pum-container:has(.newsletter-popup) {
 	max-width: calc(100vw - (var(--wp--preset--spacing--20) * 2));
 	box-sizing: border-box;
 }
@@ -64,7 +69,9 @@
 	padding-bottom: 0;
 }
 
-.newsletter-popup .gform_footer input.gform_button {
+/* Gravity Forms 3.x renders the submit control as <button>, 2.x as <input> — both selectors kept so this survives either version. */
+.newsletter-popup .gform_footer input.gform_button,
+.newsletter-popup .gform_footer button.gform_button {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -80,6 +87,7 @@
 	cursor: pointer;
 }
 
-.newsletter-popup .gform_footer input.gform_button:hover {
+.newsletter-popup .gform_footer input.gform_button:hover,
+.newsletter-popup .gform_footer button.gform_button:hover {
 	background-color: var(--wp--preset--color--accent-300);
 }
