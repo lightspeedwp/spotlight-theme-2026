@@ -29,12 +29,15 @@
  * that has to out-specificity it), so this only ever kicks in below
  * 659px + the gutter; desktop is unaffected.
  *
- * Selected by content (:has(.newsletter-popup)) rather than Popup
- * Maker's auto-generated .theme-{postID} class — that class is tied to
- * the assigned Popup Theme's post ID, which isn't portable across
- * environments (confirmed different between local and staging).
+ * Selected via Popup Maker's own .size-{slug} class (auto-added from
+ * the "Custom" size setting) rather than its .theme-{postID} class —
+ * that one's tied to the assigned Popup Theme's post ID, which isn't
+ * portable across environments (confirmed different between local and
+ * staging). .size-custom has full browser support, unlike :has(), and
+ * is the correct scope anyway: the overflow this fixes is inherent to
+ * any custom fixed-pixel-width popup, not specific to this one.
  */
-.pum-container:has(.newsletter-popup) {
+.pum-container.size-custom {
 	max-width: calc(100vw - (var(--wp--preset--spacing--20) * 2));
 	box-sizing: border-box;
 }
