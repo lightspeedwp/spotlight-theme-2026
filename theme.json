@@ -666,5 +666,11 @@
 			"area": "uncategorized"
 		}
 	],
-	"customTemplates": []
+	"customTemplates": [
+		{
+			"name": "page-full-width",
+			"title": "Full Width Page",
+			"postTypes": [ "page" ]
+		}
+	]
 }
