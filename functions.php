@@ -843,6 +843,15 @@ function spotlight_theme_2026_enqueue_assets() {
 		spotlight_theme_2026_asset_version( 'assets/css/newsletter-popup.css' )
 	);
 
+	// The "Republish Articles Pop Up" Popup Maker popup, opened from the
+	// header and footer "Republish" links (.republish-cta trigger class).
+	wp_enqueue_style(
+		'spotlight-theme-2026-republish-popup',
+		get_theme_file_uri( 'assets/css/republish-popup.css' ),
+		array(),
+		spotlight_theme_2026_asset_version( 'assets/css/republish-popup.css' )
+	);
+
 	wp_enqueue_style(
 		'spotlight-theme-2026-article-header',
 		get_theme_file_uri( 'assets/css/article-header.css' ),
