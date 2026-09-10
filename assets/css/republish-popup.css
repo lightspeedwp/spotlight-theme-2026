@@ -1,10 +1,10 @@
 /*
- * republish-popup.php content lives in the "Republish Articles Pop Up"
- * Popup Maker popup (wp-admin), not a theme pattern file — the popup's
- * own container (width/border/radius/background) is configured on its
- * assigned Popup Theme post (shared with the newsletter popup), not
- * here. This file only covers the two spots that theme.json/native
- * block support couldn't reach inside a Popup Maker-rendered popup.
+ * The "Republish Articles Pop Up" Popup Maker popup (wp-admin) is 100%
+ * DB content, not a theme pattern file — its own container (width/
+ * border/radius/background) is configured on its assigned Popup Theme
+ * post (shared with the newsletter popup), not here. This file only
+ * covers the two spots that theme.json/native block support couldn't
+ * reach inside a Popup Maker-rendered popup.
  */
 
 /*
@@ -16,18 +16,27 @@
  * never makes that list here (same root cause already documented for
  * .newsletter-popup__header in newsletter-popup.css). Explicit
  * class-based fallback instead of relying on the per-instance ID.
+ *
+ * The Creative Commons attribution URL is also one long unbroken string
+ * with no spaces, so at the popup's fixed 659px width it overflows past
+ * the box's right edge instead of wrapping — confirmed ~34px overflow
+ * at default size. Every other line in this popup is ordinary prose
+ * that wraps fine on its own; only this raw URL needs the break
+ * allowed.
  */
 .republish-popup a {
 	color: var(--wp--preset--color--accent-500);
+	overflow-wrap: anywhere;
+	text-decoration: none;
 }
 
 /*
- * The Creative Commons attribution URL is one long unbroken string with
- * no spaces, so at the popup's fixed 659px width it overflows past the
- * box's right edge instead of wrapping — confirmed ~34px overflow at
- * default size. Every other line in this popup is ordinary prose that
- * wraps fine on its own; only this raw URL needs the break allowed.
+ * Figma has no hover state defined for this link, so it borrows the
+ * header top bar's own link hover colour (parts/header.html's
+ * site-header__top group) for consistency with the rest of the site.
+ * Same out-of-flow rendering issue as the base colour above — a native
+ * block hover style wouldn't get its scoped rule printed here either.
  */
-.republish-popup a {
-	overflow-wrap: anywhere;
+.republish-popup a:hover {
+	color: var(--wp--preset--color--accent-200);
 }
