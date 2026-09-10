@@ -36,7 +36,10 @@
  * site-header__top group) for consistency with the rest of the site.
  * Same out-of-flow rendering issue as the base colour above — a native
  * block hover style wouldn't get its scoped rule printed here either.
+ * :focus-visible mirrors :hover so keyboard users get the same
+ * indication mouse users do.
  */
-.republish-popup a:hover {
+.republish-popup a:hover,
+.republish-popup a:focus-visible {
 	color: var(--wp--preset--color--accent-200);
 }
