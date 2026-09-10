@@ -1,0 +1,33 @@
+/*
+ * republish-popup.php content lives in the "Republish Articles Pop Up"
+ * Popup Maker popup (wp-admin), not a theme pattern file — the popup's
+ * own container (width/border/radius/background) is configured on its
+ * assigned Popup Theme post (shared with the newsletter popup), not
+ * here. This file only covers the two spots that theme.json/native
+ * block support couldn't reach inside a Popup Maker-rendered popup.
+ */
+
+/*
+ * Popup Maker renders this popup's content through its own hook rather
+ * than the main page's content flow, so WordPress's per-request block
+ * CSS detection never registers this paragraph's "elements.link" colour
+ * as used — core only prints a block's scoped .wp-elements-N rule for
+ * elements it saw rendered in the main request, and this paragraph
+ * never makes that list here (same root cause already documented for
+ * .newsletter-popup__header in newsletter-popup.css). Explicit
+ * class-based fallback instead of relying on the per-instance ID.
+ */
+.republish-popup a {
+	color: var(--wp--preset--color--accent-500);
+}
+
+/*
+ * The Creative Commons attribution URL is one long unbroken string with
+ * no spaces, so at the popup's fixed 659px width it overflows past the
+ * box's right edge instead of wrapping — confirmed ~34px overflow at
+ * default size. Every other line in this popup is ordinary prose that
+ * wraps fine on its own; only this raw URL needs the break allowed.
+ */
+.republish-popup a {
+	overflow-wrap: anywhere;
+}
