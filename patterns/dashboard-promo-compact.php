@@ -51,11 +51,11 @@
 	<!-- wp:buttons {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
 	<div class="wp-block-buttons">
 		<!-- wp:button {"width":100,"className":"is-style-secondary","fontSize":"300","style":{"spacing":{"padding":{"left":"var:preset|spacing|10","right":"var:preset|spacing|10"}}}} -->
-		<div class="wp-block-button has-custom-width has-custom-font-size wp-block-button__width-100 is-style-secondary has-300-font-size"><a class="wp-block-button__link has-300-font-size has-custom-font-size wp-element-button" href="<?php echo esc_url( 'https://www.spotlightnsp.co.za/hiv-dashboard/' ); ?>" style="padding-right:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)"><?php echo esc_html__( 'View the HIV Dashboard', 'spotlight-theme-2026' ); ?></a></div>
+		<div class="wp-block-button has-custom-width has-custom-font-size wp-block-button__width-100 is-style-secondary has-300-font-size"><a class="wp-block-button__link has-300-font-size has-custom-font-size wp-element-button" href="<?php echo esc_url( '/hiv-dashboard/' ); ?>" style="padding-right:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)"><?php echo esc_html__( 'View the HIV Dashboard', 'spotlight-theme-2026' ); ?></a></div>
 		<!-- /wp:button -->
 
 		<!-- wp:button {"width":100,"className":"is-style-outline","textColor":"accent-300","fontSize":"300","style":{"spacing":{"padding":{"left":"var:preset|spacing|10","right":"var:preset|spacing|10"}}}} -->
-		<div class="wp-block-button has-custom-width has-custom-font-size wp-block-button__width-100 is-style-outline has-300-font-size"><a class="wp-block-button__link has-accent-300-color has-text-color has-300-font-size has-custom-font-size wp-element-button" href="<?php echo esc_url( 'https://www.spotlightnsp.co.za/tb-dashboard/' ); ?>" style="padding-right:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)"><?php echo esc_html__( 'View the TB Dashboard', 'spotlight-theme-2026' ); ?></a></div>
+		<div class="wp-block-button has-custom-width has-custom-font-size wp-block-button__width-100 is-style-outline has-300-font-size"><a class="wp-block-button__link has-accent-300-color has-text-color has-300-font-size has-custom-font-size wp-element-button" href="<?php echo esc_url( '/tb-dashboard/' ); ?>" style="padding-right:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--10)"><?php echo esc_html__( 'View the TB Dashboard', 'spotlight-theme-2026' ); ?></a></div>
 		<!-- /wp:button -->
 	</div>
 	<!-- /wp:buttons -->

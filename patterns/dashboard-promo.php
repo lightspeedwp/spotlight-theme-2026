@@ -125,7 +125,7 @@
 				<!-- wp:buttons -->
 				<div class="wp-block-buttons">
 					<!-- wp:button {"className":"is-style-secondary","fontSize":"300","style":{"spacing":{"padding":{"left":"var:preset|spacing|30","right":"var:preset|spacing|30"}}}} -->
-					<div class="wp-block-button has-custom-font-size is-style-secondary has-300-font-size"><a class="wp-block-button__link has-300-font-size has-custom-font-size wp-element-button" href="<?php echo esc_url( 'https://www.spotlightnsp.co.za/hiv-dashboard/' ); ?>" style="padding-right:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)"><?php echo esc_html__( 'Open the HIV Dashboard', 'spotlight-theme-2026' ); ?></a></div>
+					<div class="wp-block-button has-custom-font-size is-style-secondary has-300-font-size"><a class="wp-block-button__link has-300-font-size has-custom-font-size wp-element-button" href="<?php echo esc_url( '/hiv-dashboard/' ); ?>" style="padding-right:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)"><?php echo esc_html__( 'Open the HIV Dashboard', 'spotlight-theme-2026' ); ?></a></div>
 					<!-- /wp:button -->
 				</div>
 				<!-- /wp:buttons -->
@@ -193,7 +193,7 @@
 				<!-- wp:buttons -->
 				<div class="wp-block-buttons">
 					<!-- wp:button {"className":"is-style-secondary","fontSize":"300","style":{"spacing":{"padding":{"left":"var:preset|spacing|30","right":"var:preset|spacing|30"}}}} -->
-					<div class="wp-block-button has-custom-font-size is-style-secondary has-300-font-size"><a class="wp-block-button__link has-300-font-size has-custom-font-size wp-element-button" href="<?php echo esc_url( 'https://www.spotlightnsp.co.za/tb-dashboard/' ); ?>" style="padding-right:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)"><?php echo esc_html__( 'Open the TB Dashboard', 'spotlight-theme-2026' ); ?></a></div>
+					<div class="wp-block-button has-custom-font-size is-style-secondary has-300-font-size"><a class="wp-block-button__link has-300-font-size has-custom-font-size wp-element-button" href="<?php echo esc_url( '/tb-dashboard/' ); ?>" style="padding-right:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)"><?php echo esc_html__( 'Open the TB Dashboard', 'spotlight-theme-2026' ); ?></a></div>
 					<!-- /wp:button -->
 				</div>
 				<!-- /wp:buttons -->
