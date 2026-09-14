@@ -91,6 +91,7 @@ Given that feature description, do this:
       - If `branch_numbering` was used (and `feature_numbering` was absent), emit a one-line warning: "⚠️ `branch_numbering` in init-options.json is deprecated. Rename to `feature_numbering`."
 
    **Create the directory and spec file**:
+   - **Validate containment first**: resolve `SPECIFY_FEATURE_DIRECTORY` to an absolute path and confirm it stays within the repository root before creating anything. If it escapes the repo (via a `../` traversal or an absolute path elsewhere), stop with an error instead of creating a directory or writing any file.
    - `mkdir -p SPECIFY_FEATURE_DIRECTORY`
    - Resolve the active `spec-template` through the Spec Kit preset/template resolution stack (equivalent to `specify preset resolve spec-template`)
    - Copy the resolved `spec-template` file to `SPECIFY_FEATURE_DIRECTORY/spec.md` as the starting point
