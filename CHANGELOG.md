@@ -41,7 +41,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Three named `core/button` block-style variations — `styles/blocks/button/primary.json`, `dark.json`, `dark-pill.json` — matching the dashboard CTA, article action, and header nav CTA button treatments confirmed in Figma dev-mode frames.
 - `openspec/specs/base-styles/` capability spec, documenting the base element/block styling requirements this change adds.
 - `openspec/changes/archive/2026-08-05-spotlight-global-styles-and-block-rules/` proposal, design, and task artifacts for LS-1711.
-- GitHub Spec Kit (`/speckit-*`) as the repo's active spec-driven workflow: `.specify/` (config, templates, `memory/constitution.md` ratified v1.0.0 from `AGENTS.md`) plus Claude Code and GitHub Copilot skills (`.claude/skills/speckit-*/`, `.github/skills/speckit-*/`). `AGENTS.md` documents the new workflow and folder conventions (see LS-4126).
+- GitHub Spec Kit (`/speckit-*`) as the repo's active spec-driven workflow: `.specify/` (config, templates, `memory/constitution.md` ratified v1.0.1 from `AGENTS.md`) plus Claude Code and GitHub Copilot skills (`.claude/skills/speckit-*/`, `.github/skills/speckit-*/`). `AGENTS.md` documents the new workflow and folder conventions (see LS-4126).
 
 ### Changed
 

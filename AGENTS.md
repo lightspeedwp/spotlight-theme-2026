@@ -62,6 +62,7 @@ Do not add WordPress.org-specific bureaucracy unless there is clear value.
 │   ├── copilot-instructions.md
 │   ├── instructions/
 │   ├── prompts/
+│   ├── skills/                # Copilot skills installed by Spec Kit
 │   ├── reports/
 │   ├── tasks/
 │   └── workflows/
@@ -264,8 +265,10 @@ reference, not as active guidance.
 | `.github/reports/`      | Developer and AI-generated reports         |
 | `.github/tasks/`        | Task lists and AI-maintained work tracking |
 | `.github/instructions/` | Copilot instruction files per file type    |
+| `.github/skills/`       | Copilot skills installed by Spec Kit       |
 | `.agents/skills/`       | Portable, reusable AI skills               |
 | `.agents/agents/`       | Agent persona definitions                  |
+| `.claude/skills/`       | Claude Code skills installed by Spec Kit   |
 | `.specify/`             | Spec Kit config, templates, constitution   |
 | `specs/`                | Spec Kit feature specs (active workflow)   |
 | `openspec/`             | Frozen historical record (do not edit)     |

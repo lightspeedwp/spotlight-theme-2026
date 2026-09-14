@@ -217,6 +217,11 @@ function Get-FeaturePathsEnv {
     # caller uses $featureDir for reads or writes. GetFullPath canonicalises "."
     # and ".." lexically without requiring the path to exist yet (unlike
     # Resolve-Path, since a brand-new feature directory may not exist yet).
+    # Known accepted limitation: this is a string comparison on the lexical path,
+    # not a symlink/junction-aware resolution -- an existing reparse point inside
+    # specs/ pointing outside the repo would still pass. Accepted for now: this
+    # tool only runs against a trusted local checkout, never external input, and
+    # exploiting it requires a symlink someone already planted on their own machine.
     $repoRootFull = (Resolve-Path -LiteralPath $repoRoot).Path.TrimEnd('/', '\')
     $featureDirFull = [System.IO.Path]::GetFullPath($featureDir).TrimEnd('/', '\')
     if ($null -ne $IsWindows) { $onWin = $IsWindows } else { $onWin = $true }
