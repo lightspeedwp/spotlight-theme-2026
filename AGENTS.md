@@ -37,6 +37,10 @@ Do not add WordPress.org-specific bureaucracy unless there is clear value.
 ├── package.json
 ├── composer.json
 ├── theme-utils.mjs            # Validation and utility script
+├── .specify/                  # Spec Kit config, templates, constitution (active spec workflow)
+├── specs/                     # Spec Kit feature specs (spec.md/plan.md/tasks.md per feature)
+├── openspec/                  # Frozen historical record — do not edit, see Spec-Driven Workflow
+├── .claude/                   # Claude Code skills installed by Spec Kit
 ├── assets/
 │   ├── fonts/                 # Binary font assets (.woff2 etc.)
 │   ├── icons/
@@ -227,16 +231,41 @@ composer run lint:php
 
 ---
 
+## Spec-Driven Workflow
+
+This repo uses [GitHub Spec Kit](https://github.com/github/spec-kit) as its **active** spec-driven
+workflow for all feature work going forward. Run these skills in order, once per feature:
+`/speckit-specify` → `/speckit-clarify` (recommended) → `/speckit-plan` → `/speckit-tasks` →
+`/speckit-checklist`/`/speckit-analyze` (optional) → `/speckit-implement` → `/speckit-converge`
+(optional). Each feature's artifacts live in `specs/<NNN-feature-name>/`. Project principles live
+in `.specify/memory/constitution.md` — it is derived from this file (`AGENTS.md`); if the two ever
+disagree, update `AGENTS.md` first and sync the constitution afterward, never the reverse.
+
+Create or switch to the feature branch **before** running any `/speckit-*` command — specs are
+written against the current branch. Feature branches come off `develop`, not `main`, per this
+repo's existing branching convention.
+
+`openspec/` is a **frozen historical record** of work designed and shipped before Spec Kit was
+adopted (2026-09-14) — `base-styles`, `design-tokens`, `pattern-library`, `template-parts`,
+`templates`, and their archived change proposals. Do not edit, extend, or archive new changes into
+it; it exists only so past decisions and their rationale stay traceable. Treat it as read-only
+reference, not as active guidance.
+
+---
+
 ## AI Folder Expectations
 
-| Folder                  | Purpose                                      |
-|-------------------------|----------------------------------------------|
-| `.github/prompts/`      | Reusable GitHub Copilot prompt files         |
-| `.github/reports/`      | Developer and AI-generated reports           |
-| `.github/tasks/`        | Task lists and AI-maintained work tracking   |
-| `.github/instructions/` | Copilot instruction files per file type      |
-| `.agents/skills/`       | Portable, reusable AI skills                 |
-| `.agents/agents/`       | Agent persona definitions                    |
+| Folder                  | Purpose                                    |
+|-------------------------|--------------------------------------------|
+| `.github/prompts/`      | Reusable GitHub Copilot prompt files       |
+| `.github/reports/`      | Developer and AI-generated reports         |
+| `.github/tasks/`        | Task lists and AI-maintained work tracking |
+| `.github/instructions/` | Copilot instruction files per file type    |
+| `.agents/skills/`       | Portable, reusable AI skills               |
+| `.agents/agents/`       | Agent persona definitions                  |
+| `.specify/`             | Spec Kit config, templates, constitution   |
+| `specs/`                | Spec Kit feature specs (active workflow)   |
+| `openspec/`             | Frozen historical record (do not edit)     |
 
 ---
 
@@ -260,3 +289,5 @@ composer run lint:php
 16. **Do not flag site-specific hard-coded values as portability gaps.** This is a specific client theme, not a starter template — a real navigation menu `ref`, real asset paths, and real content are correct here, not something to generalize.
 17. **Read `.agents/skills/wp-block-pattern-gotchas/SKILL.md` before writing or debugging `patterns/*.php`, `templates/*.html`, or `parts/*.html`.** It documents known WordPress core behaviors that fail silently — see "Pattern and Template Development" above.
 18. **Verify a WordPress core mechanism against its actual source before implementing it** — `wp-includes/block-supports/*.php` for layout/spacing, a block's `block.json` for its real attributes/supports — rather than assuming from memory. Do not guess at layout types, attribute serialization, or spacing behavior.
+19. **Use Spec Kit (`specs/`, `.specify/`) for all new feature work.** Do not edit or extend `openspec/` — it is a frozen historical record, not an active workflow. See "Spec-Driven Workflow" above.
+20. **Create/switch to the feature branch before running any `/speckit-*` command**, and branch it off `develop`, not `main`.
