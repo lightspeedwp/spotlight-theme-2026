@@ -175,6 +175,7 @@ function Get-FeaturePathsEnv {
     #   2. .specify/feature.json "feature_directory" key (persisted by specify command)
     #   3. Error - no feature context available
     $featureJson = Join-Path $repoRoot '.specify/feature.json'
+    $pendingPersist = $false
     if ($env:SPECIFY_FEATURE_DIRECTORY) {
         $featureDir = $env:SPECIFY_FEATURE_DIRECTORY
         # Normalize relative paths to absolute under repo root
@@ -183,9 +184,10 @@ function Get-FeaturePathsEnv {
         }
         # Persist to feature.json so future sessions without the env var still
         # work - unless the caller opted out for read-only resolution (#3025).
-        if (-not $NoPersist) {
-            Save-FeatureJson -RepoRoot $repoRoot -FeatureDirectory $env:SPECIFY_FEATURE_DIRECTORY
-        }
+        # Deferred until after the containment check below (issue #3041): persisting
+        # an out-of-repo value here first would poison feature.json with a path that
+        # every future invocation keeps rejecting, even after removing the env var.
+        $pendingPersist = -not $NoPersist
     } elseif (Test-Path $featureJson) {
         $featureJsonRaw = [System.IO.File]::ReadAllText($featureJson, [System.Text.Encoding]::UTF8)
         try {
@@ -237,6 +239,10 @@ function Get-FeaturePathsEnv {
         exit 1
     }
     $featureDir = $featureDirFull
+
+    if ($pendingPersist) {
+        Save-FeatureJson -RepoRoot $repoRoot -FeatureDirectory $featureDir
+    }
 
     # When no branch context exists (no SPECIFY_FEATURE, feature resolved via
     # SPECIFY_FEATURE_DIRECTORY or feature.json), fall back to the feature
