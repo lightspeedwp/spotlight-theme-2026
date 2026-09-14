@@ -241,6 +241,9 @@ workflow for all feature work going forward. Run these skills in order, once per
 in `.specify/memory/constitution.md` — it is derived from this file (`AGENTS.md`); if the two ever
 disagree, update `AGENTS.md` first and sync the constitution afterward, never the reverse.
 
+Every `/speckit-*` command shells out to a PowerShell script in `.specify/scripts/powershell/`.
+PowerShell 7+ (`pwsh`) must be installed and on `PATH`, or these commands fail outright.
+
 Create or switch to the feature branch **before** running any `/speckit-*` command — specs are
 written against the current branch. Feature branches come off `develop`, not `main`, per this
 repo's existing branching convention.

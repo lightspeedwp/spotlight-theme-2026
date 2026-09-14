@@ -212,6 +212,27 @@ function Get-FeaturePathsEnv {
         exit 1
     }
 
+    # Guard against SPECIFY_FEATURE_DIRECTORY / feature.json resolving outside the
+    # repo (via a "../.." traversal or an absolute path elsewhere) before any
+    # caller uses $featureDir for reads or writes. GetFullPath canonicalises "."
+    # and ".." lexically without requiring the path to exist yet (unlike
+    # Resolve-Path, since a brand-new feature directory may not exist yet).
+    $repoRootFull = (Resolve-Path -LiteralPath $repoRoot).Path.TrimEnd('/', '\')
+    $featureDirFull = [System.IO.Path]::GetFullPath($featureDir).TrimEnd('/', '\')
+    if ($null -ne $IsWindows) { $onWin = $IsWindows } else { $onWin = $true }
+    if ($onWin) {
+        $cmp = [System.StringComparison]::OrdinalIgnoreCase
+    } else {
+        $cmp = [System.StringComparison]::Ordinal
+    }
+    $isContained = ($featureDirFull -eq $repoRootFull) -or $featureDirFull.StartsWith($repoRootFull + [System.IO.Path]::DirectorySeparatorChar, $cmp)
+    if (-not $isContained) {
+        [Console]::Error.WriteLine("ERROR: Resolved feature directory is outside the repository root: $featureDirFull")
+        if ($ReturnNullOnError) { return $null }
+        exit 1
+    }
+    $featureDir = $featureDirFull
+
     # When no branch context exists (no SPECIFY_FEATURE, feature resolved via
     # SPECIFY_FEATURE_DIRECTORY or feature.json), fall back to the feature
     # directory basename so CURRENT_BRANCH is a usable identifier rather than

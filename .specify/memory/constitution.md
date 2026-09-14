@@ -1,16 +1,3 @@
-<!--
-SYNC IMPACT REPORT
-Version change: [TEMPLATE] → 1.0.0 (initial ratification)
-Modified principles: n/a — first ratification, all principles newly defined from AGENTS.md
-Added sections: Core Principles (I–VII), Site Identity & Scope Constraints,
-  Spec-Driven Workflow & Branching, Governance
-Removed sections: none
-Templates requiring updates: none — plan/spec/tasks templates reference the constitution
-  generically and need no direct edits
-Follow-up TODOs: none
-This report is scratch material for human review; remove it once the amendment is reviewed.
--->
-
 # Spotlight Theme 2026 Constitution
 
 ## Core Principles
@@ -95,9 +82,9 @@ their rationale remain traceable.
 Create or switch to the feature's branch before running any `/speckit-*` command — specs are
 written against the current branch/feature directory. Feature branches for spec work branch
 off `develop`, never `main`, matching this repository's existing branching convention. Before
-a spec's tasks are considered complete, the validation commands in `AGENTS.md` (`npm run
-lint`, `schema:validate`, `theme:validate`, `patterns:escape`, `security:scan`, `composer run
-phpcs`) MUST pass.
+a spec's tasks are considered complete, the validation commands in `AGENTS.md` (`npm run lint`,
+`npm run schema:validate`, `npm run theme:validate`, `npm run patterns:escape`, `npm run
+security:scan`, `composer run phpcs`, `composer run lint:php`) MUST pass.
 
 ## Governance
 
@@ -116,4 +103,4 @@ Versioning follows semantic versioning: MAJOR for backward-incompatible principl
 redefinitions, MINOR for a new principle or materially expanded guidance, PATCH for wording or
 clarification-only edits.
 
-**Version**: 1.0.0 | **Ratified**: 2026-09-14 | **Last Amended**: 2026-09-14
+**Version**: 1.0.1 | **Ratified**: 2026-09-14 | **Last Amended**: 2026-09-14
