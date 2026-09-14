@@ -41,6 +41,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Three named `core/button` block-style variations — `styles/blocks/button/primary.json`, `dark.json`, `dark-pill.json` — matching the dashboard CTA, article action, and header nav CTA button treatments confirmed in Figma dev-mode frames.
 - `openspec/specs/base-styles/` capability spec, documenting the base element/block styling requirements this change adds.
 - `openspec/changes/archive/2026-08-05-spotlight-global-styles-and-block-rules/` proposal, design, and task artifacts for LS-1711.
+- GitHub Spec Kit (`/speckit-*`) as the repo's active spec-driven workflow: `.specify/` (config, templates, `memory/constitution.md` ratified v1.0.1 from `AGENTS.md`) plus Claude Code and GitHub Copilot skills (`.claude/skills/speckit-*/`, `.github/skills/speckit-*/`). `AGENTS.md` documents the new workflow and folder conventions (see LS-4126).
 
 ### Changed
 
@@ -75,6 +76,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 - `assets/css/template-parts.css` and its `wp_enqueue_style()` call in `functions.php` — its one remaining rule (the header search-button's outline-circle border) was removed per design feedback; the trust-bar and FAIR-badge rules it used to carry were already superseded earlier. Nothing left in the file to keep it around for (see `docs/foundation-exceptions.md`).
+- OpenSpec's active tooling, superseded by Spec Kit: `.github/prompts/opsx-*.prompt.md`, `.claude/skills/openspec-*/`, `.github/skills/openspec-*/`, `.claude/commands/opsx/*.md`. `openspec/` itself (specs and archived changes) is untouched and kept as a frozen historical record (see LS-4126).
 
 ### Fixed
 
