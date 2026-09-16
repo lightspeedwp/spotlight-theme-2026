@@ -1,0 +1,92 @@
+/*
+ * core/search's collapsed input (isSearchFieldHidden) stays in normal flex
+ * flow by default, so expanding it pushes the header's "Dashboards" button
+ * around. Taking it out of flow via position:absolute (sliding out to the
+ * left of the icon) fixes that, but the header's three-column layout
+ * (utility links / centered logo / search+Dashboards) means the gap between
+ * the search icon and the site logo shrinks fast as the viewport narrows —
+ * measured on spotlight.local: ~274px at desktop widths (>=1320px, where
+ * the alignwide row hits its theme.json wideSize cap), down to ~125px at
+ * 1024px, and under 60px by ~900px. A single width can't stay inside that
+ * shrinking gap and still be a usable text input, so:
+ *  - >1000px: slides out to the left of the icon, sized per breakpoint to
+ *    stay clear of the logo.
+ *  - <=1000px: the gap is too tight for a usable inline input at all, so
+ *    it instead drops open as a full-width bar below the *entire* header
+ *    (utility row + logo + nav) — anchored to .site-header, which wraps
+ *    both site-header__top and site-header__nav, so it clears both.
+ */
+.is-style-header-search {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+
+.is-style-header-search .wp-block-search__input {
+	position: absolute;
+	right: 100%;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 0;
+	min-width: 0;
+	margin-right: 0;
+	padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--20);
+	opacity: 0;
+	pointer-events: none;
+	border: 1px solid var(--wp--preset--color--neutral-300);
+	border-radius: var(--wp--preset--border-radius--200);
+	background: var(--wp--preset--color--base);
+	color: var(--wp--preset--color--contrast);
+	z-index: 25;
+	transition: width 0.3s ease, opacity 0.2s, padding 0.2s, margin 0.2s;
+}
+
+.is-style-header-search .wp-block-search__input:not(.wp-block-search__searchfield-hidden) {
+	width: 180px;
+	margin-right: var(--wp--preset--spacing--10);
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.is-style-header-search .wp-block-search__searchfield-hidden {
+	width: 0 !important;
+	margin-right: 0 !important;
+	padding: var(--wp--preset--spacing--10) 0 !important;
+	border-width: 0 !important;
+	opacity: 0 !important;
+	pointer-events: none !important;
+}
+
+@media (max-width: 1280px) {
+	.is-style-header-search .wp-block-search__input:not(.wp-block-search__searchfield-hidden) {
+		width: 100px;
+	}
+}
+
+@media (max-width: 1000px) {
+	/* .is-style-header-search dropping back to position:static hands the
+	   input's containing block up to .site-header (the nearest remaining
+	   positioned ancestor), so "left/right:0" below spans the header's
+	   full alignwide width instead of just the small search form. */
+	.site-header {
+		position: relative;
+	}
+
+	.is-style-header-search {
+		position: static;
+	}
+
+	.is-style-header-search .wp-block-search__input {
+		right: auto;
+		top: 100%;
+		left: 0;
+		transform: none;
+	}
+
+	.is-style-header-search .wp-block-search__input:not(.wp-block-search__searchfield-hidden) {
+		right: 0;
+		width: auto;
+		margin-right: 0;
+		margin-top: var(--wp--preset--spacing--10);
+	}
+}
