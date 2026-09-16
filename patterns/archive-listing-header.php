@@ -50,7 +50,7 @@
 			</div>
 			<!-- /wp:group -->
 
-			<!-- wp:post-title {"level":1,"fontSize":"500","className":"archive-listing-header__title","textColor":"neutral-100","style":{"spacing":{"padding":{"bottom":"var:preset|spacing|50"}}}} /-->
+			<!-- wp:post-title {"level":1,"fontSize":"500","className":"archive-listing-header__title","textColor":"neutral-100","style":{"spacing":{"padding":{"bottom":"var:preset|spacing|50"}},"typography":{"fontWeight":"var(--wp--custom--font-weight--semi-bold)"}}} /-->
 
 			<!-- wp:search
 			<?php

@@ -44,7 +44,7 @@
 
 		<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"default"}} -->
 		<div class="wp-block-group">
-			<!-- wp:post-title {"level":1,"fontSize":"500","textColor":"neutral-100"} /-->
+			<!-- wp:post-title {"level":1,"fontSize":"500","textColor":"neutral-100","style":{"typography":{"fontWeight":"var(--wp--custom--font-weight--semi-bold)"}}} /-->
 		</div>
 		<!-- /wp:group -->
 	</div>

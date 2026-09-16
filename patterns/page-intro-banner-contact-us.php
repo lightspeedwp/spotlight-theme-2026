@@ -42,7 +42,7 @@
 
 		<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"default"}} -->
 		<div class="wp-block-group">
-			<!-- wp:post-title {"level":1,"fontSize":"500","textColor":"neutral-100"} /-->
+			<!-- wp:post-title {"level":1,"fontSize":"500","textColor":"neutral-100","style":{"typography":{"fontWeight":"var(--wp--custom--font-weight--semi-bold)"}}} /-->
 
 			<!-- wp:paragraph {"textColor":"neutral-300","fontSize":"400"} -->
 			<p class="has-neutral-300-color has-text-color has-400-font-size"><?php echo esc_html__( "Have a question, a story idea, or some feedback? We'd love to hear from you. Reach out and our team will get back to you as soon as possible.", 'spotlight-theme-2026' ); ?></p>

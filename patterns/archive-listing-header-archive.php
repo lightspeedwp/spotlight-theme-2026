@@ -51,7 +51,7 @@
 			</div>
 			<!-- /wp:group -->
 
-			<!-- wp:query-title {"type":"archive","level":1,"fontSize":"500","className":"archive-listing-header__title","textColor":"neutral-100","showPrefix":false,"style":{"spacing":{"padding":{"bottom":"var:preset|spacing|50"}}}} /-->
+			<!-- wp:query-title {"type":"archive","level":1,"fontSize":"500","className":"archive-listing-header__title","textColor":"neutral-100","showPrefix":false,"style":{"spacing":{"padding":{"bottom":"var:preset|spacing|50"}},"typography":{"fontWeight":"var(--wp--custom--font-weight--semi-bold)"}}} /-->
 
 			<!-- wp:search
 			<?php
