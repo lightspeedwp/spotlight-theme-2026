@@ -31,8 +31,8 @@
  */
 
 ?>
-<!-- wp:group {"align":"full","className":"archive-listing-header","backgroundColor":"accent-600","textColor":"neutral-100","style":{"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|50"}}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull archive-listing-header has-neutral-100-color has-accent-600-background-color has-text-color has-background" style="padding-top:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--50)">
+<!-- wp:group {"align":"full","className":"archive-listing-header","backgroundColor":"accent-600","textColor":"neutral-100","style":{"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|50","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull archive-listing-header has-neutral-100-color has-accent-600-background-color has-text-color has-background" style="padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--20)">
 	<!-- wp:columns {"align":"wide","verticalAlignment":"bottom","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|100"}}}} -->
 	<div class="wp-block-columns are-vertically-aligned-bottom alignwide">
 		<!-- wp:column {"style":{"spacing":{"padding":{"bottom":"var:preset|spacing|5"}}}} -->
@@ -51,7 +51,7 @@
 			</div>
 			<!-- /wp:group -->
 
-			<!-- wp:query-title {"type":"archive","level":1,"fontSize":"500","className":"archive-listing-header__title","textColor":"neutral-100","showPrefix":false,"style":{"spacing":{"padding":{"bottom":"var:preset|spacing|50"}}}} /-->
+			<!-- wp:query-title {"type":"archive","level":1,"fontSize":"500","className":"archive-listing-header__title","textColor":"neutral-100","showPrefix":false,"style":{"spacing":{"padding":{"bottom":"var:preset|spacing|50"}},"typography":{"fontWeight":"var(--wp--custom--font-weight--semi-bold)"}}} /-->
 
 			<!-- wp:search
 			<?php

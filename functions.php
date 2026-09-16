@@ -901,6 +901,17 @@ function spotlight_theme_2026_enqueue_assets() {
 		spotlight_theme_2026_asset_version( 'assets/css/section-header.css' )
 	);
 
+	// core/search's collapsed-input state (isSearchFieldHidden) has no
+	// block-attribute way to take the input out of flex flow, so the
+	// header's "Dashboards" button gets pushed around when it opens —
+	// needs real CSS, same is-style-header-search approach as ati-theme-2026.
+	wp_enqueue_style(
+		'spotlight-theme-2026-header-search',
+		get_theme_file_uri( 'assets/css/header-search.css' ),
+		array(),
+		spotlight_theme_2026_asset_version( 'assets/css/header-search.css' )
+	);
+
 	// Add wp_enqueue_script() here when assets/js/main.js exists.
 }
 add_action( 'enqueue_block_assets', 'spotlight_theme_2026_enqueue_assets' );

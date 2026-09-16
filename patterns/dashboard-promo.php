@@ -92,7 +92,7 @@
 
 				<!-- wp:group {"className":"dashboard-promo__stats","style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
 				<div class="wp-block-group dashboard-promo__stats">
-					<!-- wp:group {"layout":{"type":"default"}} -->
+					<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|5"}},"layout":{"type":"default"}} -->
 					<div class="wp-block-group">
 						<!-- wp:paragraph {"textColor":"accent-500","fontSize":"400","style":{"typography":{"fontWeight":"500","lineHeight":"var:custom|line-height|heading","letterSpacing":"0.3px"}}} -->
 						<p class="has-accent-500-color has-text-color has-400-font-size" style="font-weight:500;line-height:var(--wp--custom--line-height--heading);letter-spacing:0.3px"><?php echo esc_html__( '6.1m', 'spotlight-theme-2026' ); ?></p>
@@ -108,7 +108,7 @@
 					<div class="wp-block-group dashboard-promo__stats-divider"></div>
 					<!-- /wp:group -->
 
-					<!-- wp:group {"layout":{"type":"default"}} -->
+					<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|5"}},"layout":{"type":"default"}} -->
 					<div class="wp-block-group">
 						<!-- wp:paragraph {"textColor":"accent-500","fontSize":"400","style":{"typography":{"fontWeight":"500","lineHeight":"var:custom|line-height|heading","letterSpacing":"0.3px"}}} -->
 						<p class="has-accent-500-color has-text-color has-400-font-size" style="font-weight:500;line-height:var(--wp--custom--line-height--heading);letter-spacing:0.3px"><?php echo esc_html__( '145k', 'spotlight-theme-2026' ); ?></p>
@@ -160,7 +160,7 @@
 
 				<!-- wp:group {"className":"dashboard-promo__stats","style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
 				<div class="wp-block-group dashboard-promo__stats">
-					<!-- wp:group {"layout":{"type":"default"}} -->
+					<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|5"}},"layout":{"type":"default"}} -->
 					<div class="wp-block-group">
 						<!-- wp:paragraph {"textColor":"accent-500","fontSize":"400","style":{"typography":{"fontWeight":"500","lineHeight":"var:custom|line-height|heading","letterSpacing":"0.3px"}}} -->
 						<p class="has-accent-500-color has-text-color has-400-font-size" style="font-weight:500;line-height:var(--wp--custom--line-height--heading);letter-spacing:0.3px"><?php echo esc_html__( '74%', 'spotlight-theme-2026' ); ?></p>
@@ -176,7 +176,7 @@
 					<div class="wp-block-group dashboard-promo__stats-divider"></div>
 					<!-- /wp:group -->
 
-					<!-- wp:group {"layout":{"type":"default"}} -->
+					<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|5"}},"layout":{"type":"default"}} -->
 					<div class="wp-block-group">
 						<!-- wp:paragraph {"textColor":"accent-500","fontSize":"400","style":{"typography":{"fontWeight":"500","lineHeight":"var:custom|line-height|heading","letterSpacing":"0.3px"}}} -->
 						<p class="has-accent-500-color has-text-color has-400-font-size" style="font-weight:500;line-height:var(--wp--custom--line-height--heading);letter-spacing:0.3px"><?php echo esc_html__( '50k', 'spotlight-theme-2026' ); ?></p>
