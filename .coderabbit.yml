@@ -3,12 +3,42 @@ language: en-US
 
 reviews:
   enabled: true
+  profile: assertive
   auto_review:
     enabled: true
     drafts: false
+    auto_incremental_review: true
     base_branches:
       - main
       - develop
+      - feature/.*
+      - fix/.*
+  request_changes_workflow: true
+  high_level_summary: true
+  collapse_walkthrough: true
+  assess_linked_issues: true
+  related_issues: true
+  related_prs: true
+  path_filters:
+    - "!node_modules/**"
+    - "!vendor/**"
+    - "!assets/css/*.map"
+  finishing_touches:
+    autofix:
+      enabled: true
+    docstrings:
+      enabled: true
+    unit_tests:
+      enabled: true
+  tools:
+    eslint:
+      enabled: true
+    markdownlint:
+      enabled: true
+    gitleaks:
+      enabled: true
+    trufflehog:
+      enabled: true
   path_instructions:
     - path: "theme.json"
       instructions: |
@@ -111,6 +141,14 @@ reviews:
     - Check for unnecessary complexity or dependencies
     - Check that no {{...}} placeholder tokens remain unreplaced — this is the Spotlight client theme, not a starter template
     - Check for consistent text domain usage
+
+knowledge_base:
+  code_guidelines:
+    enabled: true
+    filePatterns:
+      - "AGENTS.md"
+  learnings:
+    scope: auto
 
 chat:
   enabled: true

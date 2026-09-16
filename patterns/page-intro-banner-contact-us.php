@@ -1,26 +1,24 @@
 <?php
 /**
- * Title: Page Intro Banner
- * Slug: spotlight-theme-2026/page-intro-banner
+ * Title: Page Intro Banner (Contact Us)
+ * Slug: spotlight-theme-2026/page-intro-banner-contact-us
  * Categories: spotlight
- * Keywords: page, intro, banner, hero, breadcrumbs
- * Description: Full-width dark banner with breadcrumbs, page title, and intro copy, for page.html (static pages). Fills the hero section page.html currently has none of.
- * Inserter: true
- * Template Types: page
+ * Keywords: page, intro, banner, hero, breadcrumbs, contact
+ * Description: Contact-us-only variant of Page Intro Banner, with the subtitle Figma shows for that page (node 234:6734). page-intro-banner.php itself stays subtitle-free per Zared's 2026-09-04 "no intro copy under the title" note — that decision was about the shared banner every default page gets, not this one page's copy (BugHerd #16).
+ * Inserter: false
  *
  * @package spotlight-theme-2026
  *
- * Padding: outer spacing--20/100/20/20 (asymmetric, per Figma). Background
- * photo deferred (accent-600 solid for now) — Zared hasn't confirmed the
- * real image yet. Breadcrumb gap is a literal 3px per Figma, off the
- * scale. The wide wrapper's blockGap is explicitly "0", not omitted —
- * omitting it let theme.json's global constrained-layout default
- * (margin-block-start:spacing--30 on every non-first child) sneak in on
- * top of the breadcrumb's own padding-bottom, doubling the gap.
+ * Referenced from templates/page-contact-us.html (picked up automatically
+ * by WordPress's page-{slug}.html template hierarchy for the "contact-us"
+ * page, no manual template assignment needed) instead of page.html's
+ * generic page-intro-banner, so no other page picks up this copy.
  *
- * post-title stays level:1 (real H1, only font-size overridden) for a11y.
- *
- * post-excerpt removed 2026-09-04 per Zared — no intro copy under the title.
+ * Subtitle style/spacing matches Figma exactly: fontSize--400/
+ * neutral-300 for the text; the blockGap--30 already on the title's
+ * wrapper group and the banner's own padding-bottom--100 already
+ * matched Figma's measured gaps before this pattern existed, so
+ * neither needed changing — see page-intro-banner.php's own header.
  */
 
 ?>
@@ -45,6 +43,10 @@
 		<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"default"}} -->
 		<div class="wp-block-group">
 			<!-- wp:post-title {"level":1,"fontSize":"500","textColor":"neutral-100","style":{"typography":{"fontWeight":"var(--wp--custom--font-weight--semi-bold)"}}} /-->
+
+			<!-- wp:paragraph {"textColor":"neutral-300","fontSize":"400"} -->
+			<p class="has-neutral-300-color has-text-color has-400-font-size"><?php echo esc_html__( "Have a question, a story idea, or some feedback? We'd love to hear from you. Reach out and our team will get back to you as soon as possible.", 'spotlight-theme-2026' ); ?></p>
+			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:group -->
 	</div>

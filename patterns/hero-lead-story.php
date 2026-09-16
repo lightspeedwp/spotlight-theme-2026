@@ -57,7 +57,7 @@
  */
 
 ?>
-<!-- wp:query {"align":"wide","query":{"perPage":1,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":false},"namespace":"spotlight/hero-lead-story"} -->
+<!-- wp:query {"align":"wide","query":{"perPage":1,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","sticky":"only","inherit":false},"namespace":"spotlight/hero-lead-story"} -->
 <div class="wp-block-query alignwide">
 	<!-- wp:post-template -->
 		<!-- wp:columns {"className":"hero-lead-story__row","verticalAlignment":"center","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|60"}}}} -->
