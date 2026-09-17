@@ -54,7 +54,7 @@
 	</div>
 	<!-- /wp:group -->
 
-	<!-- wp:query {"className":"related-coverage__query","query":{"perPage":3,"postType":"post","order":"desc","orderBy":"date","inherit":false,"excludeCurrent":true}} -->
+	<!-- wp:query {"className":"related-coverage__query","query":{"perPage":3,"postType":"post","order":"desc","orderBy":"date","inherit":false,"excludeCurrent":true,"sticky":"ignore"}} -->
 	<div class="wp-block-query related-coverage__query">
 		<!-- wp:post-template {"layout":{"type":"grid","columnCount":3},"style":{"spacing":{"blockGap":"var:preset|spacing|50"}}} -->
 <?php require __DIR__ . '/story-card-editorial.php'; ?>
