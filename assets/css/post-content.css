@@ -15,3 +15,16 @@
 	max-width: 100%;
 	height: auto;
 }
+
+/*
+ * The classic [caption] shortcode's <figcaption> ships with no styling of
+ * its own, unlike the featured image's caption (added via
+ * spotlight_theme_2026_add_article_header_image_caption() in functions.php)
+ * which already resolves to this same neutral-700/100 look through its
+ * has-*-color/has-*-font-size classes. Match it here so in-body captions
+ * are consistent regardless of how the image was inserted.
+ */
+.wp-caption-text {
+	color: var(--wp--preset--color--neutral-700);
+	font-size: var(--wp--preset--font-size--100);
+}
