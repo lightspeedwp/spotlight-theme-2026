@@ -48,3 +48,14 @@
 	margin-left: auto;
 	margin-right: auto;
 }
+
+/*
+ * theme.json's sitewide default paragraph size (font-size--200, 16px) is
+ * smaller than the Figma-approved size for long-form body copy
+ * (font-size--300, 20px). Scoped to post content so it covers both posts
+ * and pages without touching card excerpts, which already set their own
+ * explicit font size.
+ */
+.wp-block-post-content p {
+	font-size: var(--wp--preset--font-size--300);
+}
