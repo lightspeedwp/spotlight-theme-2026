@@ -80,6 +80,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- `hero-lead-story.php`'s author name had no colour set, rendering black instead of the `neutral-600` used on every other story card (BugHerd #18).
+- Legacy `[caption]` shortcode text (`.wp-caption-text`) had no theme styling; now matches the featured-image caption's look (BugHerd #28).
+- TablePress table-name headings inherited the theme's global `h2` size (40px) instead of reading as an in-article cross-head (BugHerd #31).
+- `article-header.php`'s author meta had no colour/weight set, off the Figma spec (`neutral-700`/600) (BugHerd #32).
+- Article meta divider lines were darker than Figma's spec; updated to the exact `#ececef` value (BugHerd #33).
+- HIV/TB dashboard embeds were capped at the default ~800px content width despite the page being full-width; now match the theme's wide width responsively (BugHerd #36).
+- `page-intro-banner`'s bottom padding left excess empty space on Dashboards, HIV/TB dashboards, and About Us, which lack the search/promo block it was sized for (BugHerd #37).
+- Post/page body copy rendered at the sitewide default (16px) instead of the approved 20px for long-form content (BugHerd #46/#47).
+- Bluesky embeds rendered at their own inline 600px cap; reduced to 500px (BugHerd #50).
 - Header navigation now uses the mobile overlay menu to keep narrow-screen navigation accessible.
 - Footer markup no longer nests the Site Title block inside a paragraph, preventing invalid heading-in-paragraph output.
 - Fixed `theme-utils.mjs`'s `validate-schema` command to check block-style-variation partial files (`styles/blocks/**/*.json`) at their real runtime position instead of the flat root `styles` shape, and to work around a confirmed upstream schema/`ajv` limitation with pseudo-selector property names.
