@@ -54,9 +54,11 @@
  * smaller than the Figma-approved size for long-form body copy
  * (font-size--300, 20px). Scoped to post content so it covers both posts
  * and pages without touching card excerpts, which already set their own
- * explicit font size.
+ * explicit font size. :not([class*="-font-size"]) excludes any paragraph
+ * where an editor already picked their own size, so this only fills in
+ * the default (CodeRabbit PR #27 review).
  */
-.wp-block-post-content p {
+.wp-block-post-content p:not([class*="-font-size"]) {
 	font-size: var(--wp--preset--font-size--300);
 }
 
