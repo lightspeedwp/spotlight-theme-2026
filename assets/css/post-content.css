@@ -17,12 +17,8 @@
 }
 
 /*
- * The classic [caption] shortcode's <figcaption> ships with no styling of
- * its own, unlike the featured image's caption (added via
- * spotlight_theme_2026_add_article_header_image_caption() in functions.php)
- * which already resolves to this same neutral-700/100 look through its
- * has-*-color/has-*-font-size classes. Match it here so in-body captions
- * are consistent regardless of how the image was inserted.
+ * The [caption] shortcode's <figcaption> has no styling of its own; match
+ * it to the featured-image caption's look (functions.php) for consistency.
  */
 .wp-caption-text {
 	color: var(--wp--preset--color--neutral-700);
@@ -31,10 +27,24 @@
 
 /*
  * TablePress renders its table name as a bare <h2>, inheriting theme.json's
- * global h2 size (font-size--700, 40px) — the same size as a real section
- * heading, not an in-article cross-head. Scope it down so it never reads
- * larger than the article's own H2/H3 cross-heads.
+ * global h2 size (40px) as if it were a section heading, not a cross-head.
  */
 .tablepress-table-name {
 	font-size: var(--wp--preset--font-size--500);
+}
+
+/*
+ * shiny-embed-wrap (hand-authored page content) sits in a plain group with
+ * no wide alignment, capped at the default ~800px width. width: min(...)
+ * gives it a side gutter below the wideSize breakpoint and the theme's
+ * exact wide width above it, instead of max-width+padding double-subtracting.
+ */
+.wp-block-post-content > .wp-block-group:has(.shiny-embed-wrap) {
+	width: min(
+		calc(100% - (2 * var(--wp--preset--spacing--20))),
+		var(--wp--style--global--wide-size)
+	);
+	max-width: none;
+	margin-left: auto;
+	margin-right: auto;
 }
