@@ -78,15 +78,15 @@
 					<div class="wp-block-group">
 						<!-- wp:post-excerpt {"fontSize":"300"} /-->
 
-						<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"wrap"}} -->
-						<div class="wp-block-group">
-							<!-- wp:post-author-name {"fontSize":"100"} /-->
+						<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"wrap"},"fontSize":"100","textColor":"neutral-600"} -->
+						<div class="wp-block-group has-neutral-600-color has-text-color has-100-font-size">
+							<!-- wp:post-author-name /-->
 
-							<!-- wp:paragraph {"fontSize":"100"} -->
-							<p class="has-100-font-size">·</p>
+							<!-- wp:paragraph -->
+							<p>·</p>
 							<!-- /wp:paragraph -->
 
-							<!-- wp:post-date {"fontSize":"100"} /-->
+							<!-- wp:post-date /-->
 						</div>
 						<!-- /wp:group -->
 					</div>

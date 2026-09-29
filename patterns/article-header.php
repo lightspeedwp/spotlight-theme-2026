@@ -63,7 +63,7 @@
 	<div class="wp-block-group article-header__meta" style="margin-top:var(--wp--preset--spacing--20);padding-top:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20)">
 		<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|5"}},"layout":{"type":"default"}} -->
 		<div class="wp-block-group">
-			<!-- wp:post-author {"showAvatar":false,"fontSize":"200"} /-->
+			<!-- wp:post-author {"showAvatar":false,"fontSize":"200","textColor":"neutral-700","style":{"typography":{"fontWeight":"600"}}} /-->
 
 			<!-- wp:paragraph {"className":"article-header__section-tag","fontSize":"100","textColor":"neutral-600"} -->
 			<p class="article-header__section-tag has-neutral-600-color has-text-color has-100-font-size"><?php echo esc_html__( 'News & Features', 'spotlight-theme-2026' ); ?></p>

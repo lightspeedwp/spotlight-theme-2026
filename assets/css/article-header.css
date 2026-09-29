@@ -3,9 +3,14 @@
  * corner radius aren't reliably expressible as block style attributes —
  * see article-header.php's header comment.
  */
+/*
+ * #ECECEF is a literal value, not a palette token — it sits between
+ * neutral-200 (#f9fafb, too light to read as a line) and neutral-300
+ * (#d8d8d8, darker than Figma's spec) with no existing token matching it.
+ */
 .article-header__meta {
-	border-top: 1px solid var(--wp--preset--color--neutral-300);
-	border-bottom: 1px solid var(--wp--preset--color--neutral-300);
+	border-top: 1px solid #ececef;
+	border-bottom: 1px solid #ececef;
 }
 
 .article-header__featured-image img {

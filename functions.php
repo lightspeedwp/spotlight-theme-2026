@@ -867,6 +867,13 @@ function spotlight_theme_2026_enqueue_assets() {
 	);
 
 	wp_enqueue_style(
+		'spotlight-theme-2026-page-intro-banner',
+		get_theme_file_uri( 'assets/css/page-intro-banner.css' ),
+		array(),
+		spotlight_theme_2026_asset_version( 'assets/css/page-intro-banner.css' )
+	);
+
+	wp_enqueue_style(
 		'spotlight-theme-2026-dashboard-promo',
 		get_theme_file_uri( 'assets/css/dashboard-promo.css' ),
 		array(),

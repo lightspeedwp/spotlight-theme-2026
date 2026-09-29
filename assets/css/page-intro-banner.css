@@ -1,0 +1,14 @@
+/*
+ * page-intro-banner's bottom padding (spacing--100) is sized for pages
+ * that have a search/promo block right below it. HIV/TB dashboards and
+ * About Us don't, leaving too much empty space — scoped by page ID so
+ * every other page keeps the pattern's original spacing. !important is
+ * needed because the value it's overriding is an inline style on the
+ * block itself, not a stylesheet rule.
+ */
+.page-id-30619 .page-intro-banner,
+.page-id-31486 .page-intro-banner,
+.page-id-6667 .page-intro-banner,
+.page-id-34083 .page-intro-banner {
+	padding-bottom: var(--wp--preset--spacing--50) !important;
+}

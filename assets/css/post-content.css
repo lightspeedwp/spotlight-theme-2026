@@ -15,3 +15,55 @@
 	max-width: 100%;
 	height: auto;
 }
+
+/*
+ * The [caption] shortcode's <figcaption> has no styling of its own; match
+ * it to the featured-image caption's look (functions.php) for consistency.
+ */
+.wp-caption-text {
+	color: var(--wp--preset--color--neutral-700);
+	font-size: var(--wp--preset--font-size--100);
+}
+
+/*
+ * TablePress renders its table name as a bare <h2>, inheriting theme.json's
+ * global h2 size (40px) as if it were a section heading, not a cross-head.
+ */
+.tablepress-table-name {
+	font-size: var(--wp--preset--font-size--500);
+}
+
+/*
+ * shiny-embed-wrap (hand-authored page content) sits in a plain group with
+ * no wide alignment, capped at the default ~800px width. width: min(...)
+ * gives it a side gutter below the wideSize breakpoint and the theme's
+ * exact wide width above it, instead of max-width+padding double-subtracting.
+ */
+.wp-block-post-content > .wp-block-group:has(.shiny-embed-wrap) {
+	width: min(
+		calc(100% - (2 * var(--wp--preset--spacing--20))),
+		var(--wp--style--global--wide-size)
+	);
+	max-width: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/*
+ * theme.json's sitewide default paragraph size (font-size--200, 16px) is
+ * smaller than the Figma-approved size for long-form body copy
+ * (font-size--300, 20px). Scoped to post content so it covers both posts
+ * and pages without touching card excerpts, which already set their own
+ * explicit font size.
+ */
+.wp-block-post-content p {
+	font-size: var(--wp--preset--font-size--300);
+}
+
+/*
+ * Bluesky's own embed script sets max-width:600px as an inline style on
+ * .bluesky-embed, so !important is needed to bring it down further.
+ */
+.bluesky-embed {
+	max-width: 500px !important;
+}
