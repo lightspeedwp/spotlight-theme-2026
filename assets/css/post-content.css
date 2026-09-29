@@ -59,3 +59,11 @@
 .wp-block-post-content p {
 	font-size: var(--wp--preset--font-size--300);
 }
+
+/*
+ * Bluesky's own embed script sets max-width:600px as an inline style on
+ * .bluesky-embed, so !important is needed to bring it down further.
+ */
+.bluesky-embed {
+	max-width: 500px !important;
+}
