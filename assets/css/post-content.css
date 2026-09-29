@@ -28,3 +28,13 @@
 	color: var(--wp--preset--color--neutral-700);
 	font-size: var(--wp--preset--font-size--100);
 }
+
+/*
+ * TablePress renders its table name as a bare <h2>, inheriting theme.json's
+ * global h2 size (font-size--700, 40px) — the same size as a real section
+ * heading, not an in-article cross-head. Scope it down so it never reads
+ * larger than the article's own H2/H3 cross-heads.
+ */
+.tablepress-table-name {
+	font-size: var(--wp--preset--font-size--500);
+}
