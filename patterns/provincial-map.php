@@ -4,7 +4,7 @@
  * Slug: spotlight-theme-2026/provincial-map
  * Categories: spotlight
  * Keywords: province, map, south africa, provincial coverage
- * Description: front-page.html's "Provincial coverage" section — heading/copy/CTA beside a linked SVG map of South Africa's nine provinces. Pairs with newsletter-signup.php (see front-page.html).
+ * Description: front-page.html's "Province by Province" section — heading/copy/CTA beside a linked SVG map of South Africa's nine provinces. Pairs with newsletter-signup.php (see front-page.html).
  * Inserter: true
  * Template Types: front-page
  *
@@ -39,7 +39,11 @@
  * query-dependent, so resolving them once at pattern registration is
  * safe (see the wp-pattern-runtime-pitfalls query-independent case).
  *
- * "Provincial coverage" heading/copy/button colors: Figma's own
+ * Heading, copy and the "Click on a province" caption are the
+ * client-approved text (BugHerd #48, #49), not the original Figma
+ * placeholder.
+ *
+ * "Province by Province" heading/copy/button colors: Figma's own
  * exported variable names for these ("brand-500", "brand-200") don't
  * match this theme's actual token names for those hex values
  * (accent-500, accent-200) — confirmed by matching the literal hex,
@@ -56,11 +60,11 @@
 			<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"default"}} -->
 			<div class="wp-block-group">
 				<!-- wp:heading {"level":2,"textColor":"accent-500","fontSize":"500","style":{"typography":{"fontWeight":"var(--wp--custom--font-weight--medium)","lineHeight":"var(--wp--custom--line-height--heading)","letterSpacing":"0.3px"}}} -->
-				<h2 class="wp-block-heading has-accent-500-color has-text-color has-500-font-size" style="font-weight:var(--wp--custom--font-weight--medium);line-height:var(--wp--custom--line-height--heading);letter-spacing:0.3px"><?php echo esc_html__( 'Provincial coverage', 'spotlight-theme-2026' ); ?></h2>
+				<h2 class="wp-block-heading has-accent-500-color has-text-color has-500-font-size" style="font-weight:var(--wp--custom--font-weight--medium);line-height:var(--wp--custom--line-height--heading);letter-spacing:0.3px"><?php echo esc_html__( 'Province by Province', 'spotlight-theme-2026' ); ?></h2>
 				<!-- /wp:heading -->
 
 				<!-- wp:paragraph {"textColor":"neutral-700","fontSize":"300"} -->
-				<p class="has-neutral-700-color has-text-color has-300-font-size"><?php echo esc_html__( 'Peer-reviewed research and clinical data from all 9 provinces, covering public health trends, emerging treatments, and healthcare outcomes shaping medical practice nationwide', 'spotlight-theme-2026' ); ?></p>
+				<p class="has-neutral-700-color has-text-color has-300-font-size"><?php echo esc_html__( 'Stories from all 9 of South Africa’s provinces, covering provincial health governance, the realities in our hospitals and clinics, and the people who keep our health system going. Click on the province of your choice to learn more.', 'spotlight-theme-2026' ); ?></p>
 				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
@@ -118,6 +122,10 @@
 	</a>
 </svg>
 		<!-- /wp:html -->
+
+		<!-- wp:paragraph {"style":{"typography":{"textAlign":"center"}}} -->
+		<p class="has-text-align-center"><?php echo esc_html__( 'Click on a province', 'spotlight-theme-2026' ); ?></p>
+		<!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:column -->
 </div>
