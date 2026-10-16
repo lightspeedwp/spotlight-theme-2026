@@ -87,7 +87,7 @@
 				<!-- /wp:heading -->
 
 				<!-- wp:paragraph {"textColor":"neutral-700","fontSize":"300"} -->
-				<p class="has-neutral-700-color has-text-color has-300-font-size"><?php echo esc_html__( 'Explore comprehensive data on HIV prevalence, treatment access, and prevention programs across all nine provinces.', 'spotlight-theme-2026' ); ?></p>
+				<p class="has-neutral-700-color has-text-color has-300-font-size"><?php echo esc_html__( 'Explore comprehensive estimates of HIV prevalence, treatment access, and prevention programmes across all nine provinces.', 'spotlight-theme-2026' ); ?></p>
 				<!-- /wp:paragraph -->
 
 				<!-- wp:group {"className":"dashboard-promo__stats","style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
@@ -155,7 +155,7 @@
 				<!-- /wp:heading -->
 
 				<!-- wp:paragraph {"textColor":"neutral-700","fontSize":"300"} -->
-				<p class="has-neutral-700-color has-text-color has-300-font-size"><?php echo esc_html__( 'Track Tuberculosis diagnosis rates, treatment success metrics, and drug-resistant strains across health districts.', 'spotlight-theme-2026' ); ?></p>
+				<p class="has-neutral-700-color has-text-color has-300-font-size"><?php echo esc_html__( 'How many people are falling ill with tuberculosis, how many of them are diagnosed, and how many lives are lost? Find out.', 'spotlight-theme-2026' ); ?></p>
 				<!-- /wp:paragraph -->
 
 				<!-- wp:group {"className":"dashboard-promo__stats","style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
