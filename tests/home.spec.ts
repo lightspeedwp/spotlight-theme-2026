@@ -80,7 +80,12 @@ test.describe('Home: provinces section', () => {
 				'Western Cape',
 			].sort()
 		);
-		// A missing category makes the pattern fall back to "#", so this also catches an unresolved province.
+		// A missing category makes the pattern fall back to "#", so reject it before checking uniqueness.
+		const rawHrefs = await links.evaluateAll((anchors) => anchors.map((a) => a.getAttribute('href')));
+		for (const href of rawHrefs) {
+			expect(href).toBeTruthy();
+			expect(href).not.toBe('#');
+		}
 		const destinations = await links.evaluateAll((anchors) =>
 			anchors.map((a) => new URL(a.getAttribute('href') ?? '', document.baseURI).href)
 		);
