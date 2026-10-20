@@ -6,7 +6,7 @@ const content = '.wp-block-post-content';
 test.describe('Article: body typography', () => {
 	test('BugHerd #46 / LS-4648: body paragraphs are neutral-900 20px [pending deploy on staging]', async ({ page }) => {
 		await go(page, URLS.article);
-		const paragraphs = page.locator(`${content} > p:not(.has-text-color)`).filter({ hasText: /.{60,}/ });
+		const paragraphs = page.locator(`${content} > p:not(.has-text-color)`);
 		await expect(paragraphs.first()).toBeVisible();
 		for (const paragraph of await paragraphs.all()) {
 			await expect(paragraph).toHaveCSS('color', 'rgb(24, 24, 24)');
