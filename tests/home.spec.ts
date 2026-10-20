@@ -58,12 +58,33 @@ test.describe('Home: provinces section', () => {
 		expect(mapBox).not.toBeNull();
 		expect(captionBox).not.toBeNull();
 		expect(captionBox!.y).toBeGreaterThanOrEqual(mapBox!.y + mapBox!.height - 2);
+		const mapCenterX = mapBox!.x + mapBox!.width / 2;
+		const captionCenterX = captionBox!.x + captionBox!.width / 2;
+		expect(Math.abs(captionCenterX - mapCenterX)).toBeLessThanOrEqual(2);
 	});
 
-	test('BugHerd #48/#49 / LS-4655: province map exposes at least 9 links', async ({ page }) => {
+	test('BugHerd #48/#49 / LS-4655: province map has the nine provinces, each with its own link', async ({ page }) => {
 		const links = page.locator('.south-africa-province-map a');
-		await expect(links.first()).toBeAttached();
-		await expect.poll(() => links.count()).toBeGreaterThanOrEqual(9);
+		await expect(links).toHaveCount(9);
+		const labels = await links.evaluateAll((anchors) => anchors.map((a) => a.getAttribute('aria-label')).sort());
+		expect(labels).toEqual(
+			[
+				'Eastern Cape',
+				'Free State',
+				'Gauteng',
+				'KwaZulu-Natal',
+				'Limpopo',
+				'Mpumalanga',
+				'North West',
+				'Northern Cape',
+				'Western Cape',
+			].sort()
+		);
+		// A missing category makes the pattern fall back to "#", so this also catches an unresolved province.
+		const destinations = await links.evaluateAll((anchors) =>
+			anchors.map((a) => new URL(a.getAttribute('href') ?? '', document.baseURI).href)
+		);
+		expect(new Set(destinations).size).toBe(9);
 	});
 
 	test('BugHerd #48/#49 / LS-4655: province title and copy column visual baseline', async ({ page }) => {

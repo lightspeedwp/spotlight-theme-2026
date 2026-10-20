@@ -54,6 +54,6 @@ Three element-level `toHaveScreenshot()` checks: the dashboard promo cards, the 
 
 - Not run in CI. A CI job and Linux baselines are future work.
 - The local site is slow (3 to 4 seconds per page) and never reaches the `load` event reliably, so navigation waits for `domcontentloaded`.
-- `networkidle` before a screenshot is best effort; the assertion retries on its own.
+- Screenshot checks do not wait for `networkidle` (analytics can keep it busy for 20 s); `toHaveScreenshot` retries until the element is stable.
 - Tests that depend on fixed posts (33263, 33875, 33791) break if those posts are deleted or their author, date or type changes.
 - `pageswap` (the view-transition check) needs Chromium 124 or newer.

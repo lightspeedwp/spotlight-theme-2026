@@ -35,8 +35,5 @@ export async function go(page: Page, path: string) {
 export async function expectElementScreenshot(page: Page, target: Locator, name: string) {
 	await expect(target).toBeVisible();
 	await target.scrollIntoViewIfNeeded();
-	await page.waitForLoadState('networkidle', { timeout: 20_000 }).catch(() => {
-		/* best effort: the screenshot assertion retries on its own */
-	});
 	await expect(target).toHaveScreenshot(`${name}.png`);
 }
