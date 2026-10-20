@@ -90,6 +90,17 @@ test.describe('Home: provinces section', () => {
 			anchors.map((a) => new URL(a.getAttribute('href') ?? '', document.baseURI).href)
 		);
 		expect(new Set(destinations).size).toBe(9);
+		// Each label must point at its own province, so two swapped slugs do not pass.
+		const labelAndPaths = await links.evaluateAll((anchors) =>
+			anchors.map((a) => ({
+				label: a.getAttribute('aria-label') ?? '',
+				path: new URL(a.getAttribute('href') ?? '', document.baseURI).pathname,
+			}))
+		);
+		for (const { label, path } of labelAndPaths) {
+			const slug = label.toLowerCase().replace(/\s+/g, '-');
+			expect(path).toMatch(new RegExp(`/${slug}/?$`));
+		}
 	});
 
 	test('BugHerd #48/#49 / LS-4655: province title and copy column visual baseline', async ({ page }) => {
