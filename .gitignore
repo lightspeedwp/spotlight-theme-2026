@@ -103,3 +103,7 @@ $RECYCLE.BIN/
 .aider*
 .continue/
 .playwright-mcp/
+
+# Playwright test output (the screenshot baselines in tests/**-snapshots/ ARE committed)
+test-results/
+playwright-report/

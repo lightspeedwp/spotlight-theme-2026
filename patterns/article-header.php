@@ -4,7 +4,7 @@
  * Slug: spotlight-theme-2026/article-header
  * Categories: spotlight
  * Keywords: single post, article, header, hero, badge, byline, featured image
- * Description: single.html's full-width intro section — badge + category, title, author/tag/date meta row, featured image with caption, and a subtitle paragraph.
+ * Description: single.html's full-width intro section — badge + category, title, author/article-type/date meta row, and featured image with caption.
  * Inserter: true
  * Template Types: single
  *
@@ -21,9 +21,11 @@
  * plain-text category label beside it — same dual-label convention used
  * on story-card.php/story-card-editorial.php.
  *
- * The small text below the author name (a tag/section label per Figma,
- * exact source unconfirmed) is a placeholder pending Zared's confirmation
- * of what it actually represents — do not treat as resolved.
+ * The small text below the author name is the post's ACF "Article Type"
+ * field (article_type, confirmed with Zared 2026-10-16), read through a
+ * core Block Binding (acf/field), not hardcoded. A post with no type, or
+ * ACF inactive, renders an empty paragraph that article-header.css hides.
+ * The field is a checkbox, so a post with both types shows them comma-joined.
  *
  * Meta row's border and the featured image's radius are real CSS
  * (assets/css/article-header.css), not block style attributes — same
@@ -65,13 +67,13 @@
 		<div class="wp-block-group">
 			<!-- wp:post-author {"showAvatar":false,"fontSize":"200","textColor":"neutral-700","style":{"typography":{"fontWeight":"600"}}} /-->
 
-			<!-- wp:paragraph {"className":"article-header__section-tag","fontSize":"100","textColor":"neutral-600"} -->
-			<p class="article-header__section-tag has-neutral-600-color has-text-color has-100-font-size"><?php echo esc_html__( 'News & Features', 'spotlight-theme-2026' ); ?></p>
+			<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"acf/field","args":{"key":"article_type"}}}},"className":"article-header__section-tag","textColor":"brand-500","fontSize":"100","style":{"typography":{"fontWeight":"600","letterSpacing":"0.5px"}}} -->
+			<p class="article-header__section-tag has-brand-500-color has-text-color has-100-font-size" style="font-weight:600;letter-spacing:0.5px"></p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:group -->
 
-		<!-- wp:post-date {"fontSize":"100"} /-->
+		<!-- wp:post-date {"fontSize":"200","textColor":"neutral-600","style":{"typography":{"fontWeight":"600"}}} /-->
 	</div>
 	<!-- /wp:group -->
 
@@ -80,9 +82,5 @@
 		<!-- wp:post-featured-image {"className":"article-header__featured-image","isLink":false,"scale":"cover"} /-->
 	</div>
 	<!-- /wp:group -->
-
-	<!-- wp:paragraph {"className":"article-header__subtitle","style":{"typography":{"fontWeight":"600","lineHeight":"var:custom|line-height|heading"},"spacing":{"margin":{"top":"var:preset|spacing|20"}}},"textColor":"neutral-900","fontSize":"300"} -->
-	<p class="article-header__subtitle has-neutral-900-color has-text-color has-300-font-size" style="margin-top:var(--wp--preset--spacing--20);font-weight:600;line-height:var(--wp--custom--line-height--heading)"><?php echo esc_html__( 'South Africa has launched the most promising new HIV-prevention tool in years. But the systems built to reach the people who need it most have been quietly dismantled.', 'spotlight-theme-2026' ); ?></p>
-	<!-- /wp:paragraph -->
 </div>
 <!-- /wp:group -->
