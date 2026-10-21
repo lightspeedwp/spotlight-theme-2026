@@ -14,6 +14,19 @@ test.describe('Article: body typography', () => {
 		}
 	});
 
+	test('BugHerd #46 / LS-4648: a colour set on a parent block is kept by the paragraphs inside it', async ({ page }) => {
+		await go(page, URLS.article);
+		const colour = await page.evaluate((selector) => {
+			const group = document.createElement('div');
+			group.className = 'wp-block-group has-text-color';
+			group.style.color = 'rgb(255, 0, 0)';
+			group.innerHTML = '<p id="pw-group-paragraph">Paragraph inside a coloured Group</p>';
+			document.querySelector(selector)!.appendChild(group);
+			return getComputedStyle(group.querySelector('p')!).color;
+		}, content);
+		expect(colour).toBe('rgb(255, 0, 0)');
+	});
+
 	test('BugHerd #46 / LS-4648: content headings stay black', async ({ page }) => {
 		await go(page, URLS.article);
 		await expect(page.locator(`${content} h2`).first()).toHaveCSS('color', 'rgb(0, 0, 0)');

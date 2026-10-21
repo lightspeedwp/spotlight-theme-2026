@@ -66,10 +66,11 @@
  * Figma's body paragraph colour is neutral-900 (#181818) while headings and
  * quotes stay black, so this targets paragraphs instead of setting the colour
  * on the post-content block, which headings and quotes would inherit.
- * :not(.has-text-color) keeps any colour an editor picked; paragraphs inside
- * a quote keep the quote's own colour.
+ * :not(.has-text-color, .has-text-color p) keeps any colour an editor picked
+ * on the paragraph or on a parent block such as a Group; paragraphs inside a
+ * quote keep the quote's own colour.
  */
-.wp-block-post-content p:not(.has-text-color, blockquote p) {
+.wp-block-post-content p:not(.has-text-color, .has-text-color p, blockquote p) {
 	color: var(--wp--preset--color--neutral-900);
 }
 
