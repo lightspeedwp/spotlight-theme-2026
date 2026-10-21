@@ -63,6 +63,17 @@
 }
 
 /*
+ * Figma's body paragraph colour is neutral-900 (#181818) while headings and
+ * quotes stay black, so this targets paragraphs instead of setting the colour
+ * on the post-content block, which headings and quotes would inherit.
+ * :not(.has-text-color) keeps any colour an editor picked; paragraphs inside
+ * a quote keep the quote's own colour.
+ */
+.wp-block-post-content p:not(.has-text-color, blockquote p) {
+	color: var(--wp--preset--color--neutral-900);
+}
+
+/*
  * Bluesky's own embed script sets max-width:600px as an inline style on
  * .bluesky-embed, so !important is needed to bring it down further.
  */

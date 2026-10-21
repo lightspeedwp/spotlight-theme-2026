@@ -13,6 +13,14 @@
 	border-bottom: 1px solid #ececef;
 }
 
+/*
+ * Article Type is a block binding to an ACF field: hide the line (and its
+ * block gap) when the post has no value.
+ */
+.article-header__section-tag:empty {
+	display: none;
+}
+
 .article-header__featured-image img {
 	height: 34.375rem;
 	border-radius: var(--wp--preset--border-radius--300);

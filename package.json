@@ -9,9 +9,13 @@
 		"patterns:escape": "node theme-utils.mjs escape-patterns",
 		"security:scan": "node theme-utils.mjs security-scan",
 		"lint": "npm run lint:json",
-		"lint:json": "node --input-type=module --eval \"import { readFileSync } from 'fs'; import { glob } from 'glob'; const files = await glob(['theme.json', 'styles/**/*.json']); let ok = true; for (const f of files) { try { JSON.parse(readFileSync(f, 'utf8')); } catch (e) { console.error('Invalid JSON:', f, e.message); ok = false; } } if (ok) console.log('All JSON files are valid.'); else process.exit(1);\""
+		"lint:json": "node --input-type=module --eval \"import { readFileSync } from 'fs'; import { glob } from 'glob'; const files = await glob(['theme.json', 'styles/**/*.json']); let ok = true; for (const f of files) { try { JSON.parse(readFileSync(f, 'utf8')); } catch (e) { console.error('Invalid JSON:', f, e.message); ok = false; } } if (ok) console.log('All JSON files are valid.'); else process.exit(1);\"",
+		"test:e2e": "playwright test --project=staging",
+		"test:e2e:local": "playwright test --project=local --workers=1",
+		"test:e2e:update": "playwright test --project=local --workers=1 --update-snapshots -g \"visual baseline\""
 	},
 	"devDependencies": {
+		"@playwright/test": "1.64.1",
 		"ajv": "^8.17.1",
 		"glob": "^11.0.1"
 	},
