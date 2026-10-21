@@ -96,3 +96,12 @@
 .story-card-editorial {
 	align-self: start;
 }
+
+/*
+ * Card and hero-lead excerpts inherit the sitewide black; body copy is
+ * neutral-900. Set once here instead of per template (BugHerd #46).
+ */
+.story-card__content .wp-block-post-excerpt,
+.hero-lead-story__row .wp-block-post-excerpt {
+	color: var(--wp--preset--color--neutral-900);
+}

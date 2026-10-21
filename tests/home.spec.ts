@@ -136,3 +136,14 @@ test.describe('Home: hero meta', () => {
 		}
 	});
 });
+
+test.describe('Home: card excerpts', () => {
+	test('BugHerd #46 / LS-4648: story card and hero excerpts are neutral-900 [pending deploy on staging]', async ({ page }) => {
+		await go(page, URLS.home);
+		const excerpts = page.locator('.hero-lead-story__row .wp-block-post-excerpt__excerpt, .story-card__content .wp-block-post-excerpt__excerpt');
+		await expect(excerpts.first()).toBeVisible();
+		for (const excerpt of await excerpts.all()) {
+			await expect(excerpt).toHaveCSS('color', 'rgb(24, 24, 24)');
+		}
+	});
+});
