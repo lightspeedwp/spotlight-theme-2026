@@ -43,7 +43,7 @@
 		<!-- /wp:heading -->
 
 		<!-- wp:paragraph {"textColor":"neutral-400","fontSize":"100"} -->
-		<p class="has-neutral-400-color has-text-color has-100-font-size"><?php echo esc_html__( 'Live indicators, province breakdowns and downloadable data.', 'spotlight-theme-2026' ); ?></p>
+		<p class="has-neutral-400-color has-text-color has-100-font-size"><?php echo esc_html__( 'Key indicators, province breakdowns and downloadable data.', 'spotlight-theme-2026' ); ?></p>
 		<!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:group -->
