@@ -35,10 +35,13 @@ test.describe('Special Projects page (LS-4717)', () => {
 		await go(page, URLS.home);
 		const nav = page.locator('header nav').first();
 		const inFocus = nav.locator('li', { hasText: 'In Focus' }).first();
+		await expect(inFocus).toHaveCount(1);
 		await expect(inFocus.locator(':scope > a[href]')).toHaveCount(0);
-		await expect(nav.locator('a[href="/in-focus/covid-19/"]')).toHaveCount(1);
+		await expect(inFocus.locator('a[href="/in-focus/covid-19/"]')).toHaveCount(1);
 		await expect(nav.locator('a', { hasText: 'Access to Medicines' })).toHaveCount(0);
 		const projects = nav.locator('li', { hasText: 'Special Projects' }).first();
+		await expect(projects).toHaveCount(1);
+		await expect(projects.locator(':scope > a[href]')).toHaveCount(0);
 		await expect(projects.locator('a[href^="/special-projects/"]')).toHaveCount(9);
 	});
 
