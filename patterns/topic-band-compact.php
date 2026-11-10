@@ -123,22 +123,6 @@
 		<!-- wp:group {"className":"topic-band-compact__tile","backgroundColor":"neutral-100","style":{"border":{"radius":"var:preset|border-radius|200"},"spacing":{"padding":"var:preset|spacing|20","blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 		<div class="wp-block-group topic-band-compact__tile has-neutral-100-background-color has-background" style="border-radius:var(--wp--preset--border-radius--200);padding:var(--wp--preset--spacing--20)">
 			<!-- wp:image {"width":"24px","height":"24px","sizeSlug":"full","linkDestination":"none"} -->
-			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/icons/topic-access-to-medicines.svg' ) ); ?>" alt="" style="width:24px;height:24px" /></figure>
-			<!-- /wp:image -->
-
-			<!-- wp:group {"anchor":"topic-band-access-to-medicines","className":"topic-band__term-info","layout":{"type":"default"}} -->
-			<div id="topic-band-access-to-medicines" class="wp-block-group topic-band__term-info">
-				<!-- wp:paragraph -->
-				<p><a class="topic-band__term-name" href="#"><?php echo esc_html__( 'Access to Medicines', 'spotlight-theme-2026' ); ?></a></p>
-				<!-- /wp:paragraph -->
-			</div>
-			<!-- /wp:group -->
-		</div>
-		<!-- /wp:group -->
-
-		<!-- wp:group {"className":"topic-band-compact__tile","backgroundColor":"neutral-100","style":{"border":{"radius":"var:preset|border-radius|200"},"spacing":{"padding":"var:preset|spacing|20","blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-		<div class="wp-block-group topic-band-compact__tile has-neutral-100-background-color has-background" style="border-radius:var(--wp--preset--border-radius--200);padding:var(--wp--preset--spacing--20)">
-			<!-- wp:image {"width":"24px","height":"24px","sizeSlug":"full","linkDestination":"none"} -->
 			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/icons/topic-healthcare-system.svg' ) ); ?>" alt="" style="width:24px;height:24px" /></figure>
 			<!-- /wp:image -->
 
