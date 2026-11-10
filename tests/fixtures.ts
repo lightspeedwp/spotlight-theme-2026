@@ -4,6 +4,7 @@ import { expect, test, type Locator, type Page, type TestInfo } from '@playwrigh
 export const URLS = {
 	home: '/',
 	latestNews: '/latest-news/',
+	specialProjects: '/special-projects/',
 	contact: '/contact-us/',
 	/** "News & Features", post ID 33263, one <h2>, no blockquotes. */
 	article: '/2026/07/01/in-the-spotlight-what-is-in-sas-vaccination-schedule-and-how-does-it-measure-up/',

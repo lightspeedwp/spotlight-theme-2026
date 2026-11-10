@@ -29,7 +29,7 @@
 		<!-- /wp:heading -->
 
 		<!-- wp:paragraph {"fontSize":"200","textColor":"neutral-700"} -->
-		<p class="has-neutral-700-color has-text-color has-200-font-size"><?php echo esc_html__( "Spotlight's free newsletter delivers in-depth health journalism — no spam, unsubscribe anytime.", 'spotlight-theme-2026' ); ?></p>
+		<p class="has-neutral-700-color has-text-color has-200-font-size"><?php echo esc_html__( "Our journalism and expert insights will keep you informed. Sign-up for our newsletter — no spam, unsubscribe anytime.", 'spotlight-theme-2026' ); ?></p>
 		<!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:group -->
